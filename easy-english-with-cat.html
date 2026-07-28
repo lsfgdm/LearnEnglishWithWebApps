@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fluency Method Masterclass & Quiz | Easy English With Cat</title>
+  <style>
+    :root {
+      --primary-color: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --correct-bg: #dcfce7;
+      --correct-border: #22c55e;
+      --correct-text: #14532d;
+      --incorrect-bg: #fee2e2;
+      --incorrect-border: #ef4444;
+      --incorrect-text: #7f1d1d;
+      --accent-blue: #0284c7;
+      --border-color: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 20px 15px 60px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .video-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      margin-bottom: 35px;
+    }
+
+    .video-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .video-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 15px;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      background-color: #000;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .quiz-section {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .question-block {
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .question-block:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .question-text {
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 600px) {
+      .options-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .option-btn {
+      background-color: #f1f5f9;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px 15px;
+      text-align: left;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: var(--text-main);
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background-color: #e2e8f0;
+      border-color: #cbd5e1;
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-btn.selected-correct {
+      background-color: var(--correct-bg);
+      border-color: var(--correct-border);
+      color: var(--correct-text);
+      font-weight: 600;
+    }
+
+    .option-btn.selected-incorrect {
+      background-color: var(--incorrect-bg);
+      border-color: var(--incorrect-border);
+      color: var(--incorrect-text);
+      font-weight: 600;
+    }
+
+    .option-btn.show-correct {
+      border: 2px solid var(--correct-border);
+      background-color: #f0fdf4;
+    }
+
+    .feedback-box {
+      margin-top: 12px;
+      padding: 12px 15px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .feedback-box.correct {
+      display: block;
+      background-color: var(--correct-bg);
+      border-left: 4px solid var(--correct-border);
+      color: var(--correct-text);
+    }
+
+    .feedback-box.incorrect {
+      display: block;
+      background-color: var(--incorrect-bg);
+      border-left: 4px solid var(--incorrect-border);
+      color: var(--incorrect-text);
+    }
+
+    .results-card {
+      background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+      color: white;
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+    }
+
+    .score-display {
+      font-size: 3rem;
+      font-weight: 800;
+      margin: 15px 0 5px;
+    }
+
+    .cefr-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .cefr-description {
+      font-size: 1rem;
+      margin-bottom: 25px;
+      opacity: 0.95;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cambridge-btn {
+      display: inline-block;
+      background-color: #ffffff;
+      color: var(--primary-color);
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .cambridge-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .expressions-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 25px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+
+    .expressions-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    @media (min-width: 650px) {
+      .expressions-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .expression-item {
+      background-color: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent-blue);
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .expression-term {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--accent-blue);
+      margin-bottom: 4px;
+    }
+
+    .expression-def {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .expression-example {
+      font-size: 0.92rem;
+      font-style: italic;
+      background-color: #ffffff;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>English Learning Masterclass & Assessment</h1>
+      <p>Watch the video, test your skills across 4 key areas, and check your estimated CEFR level!</p>
+    </header>
+
+    <!-- Embedded YouTube Video -->
+    <div class="video-card">
+      <div class="video-title">This is the *Only* Method to Become Fluent</div>
+      <div class="video-meta">Published July 22, 2026 • Easy English With Cat</div>
+      <div class="video-wrapper">
+        <iframe 
+          src="https://www.youtube.com/embed/hdslWrRg9M4" 
+          title="This is the *Only* Method to Become Fluent - Easy English With Cat"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Quiz Form -->
+    <div id="quiz-container">
+
+      <!-- Section 1: Video Comprehension -->
+      <div class="quiz-section">
+        <h2 class="section-title">
+          <span>📺</span> Section 1: Video Comprehension
+        </h2>
+        <div id="section-1-questions"></div>
+      </div>
+
+      <!-- Section 2: Pronunciation & IPA Word Recognition -->
+      <div class="quiz-section">
+        <h2 class="section-title">
+          <span>🗣️</span> Section 2: Pronunciation & IPA Recognition
+        </h2>
+        <div id="section-2-questions"></div>
+      </div>
+
+      <!-- Section 3: Vocabulary & Expressions -->
+      <div class="quiz-section">
+        <h2 class="section-title">
+          <span>📚</span> Section 3: Video Vocabulary
+        </h2>
+        <div id="section-3-questions"></div>
+      </div>
+
+      <!-- Section 4: Contextual Grammar -->
+      <div class="quiz-section">
+        <h2 class="section-title">
+          <span>✍️</span> Section 4: Contextual Grammar
+        </h2>
+        <div id="section-4-questions"></div>
+      </div>
+
+    </div>
+
+    <!-- Results & CEFR Evaluation Card -->
+    <div class="results-card" id="results-card">
+      <h2>Your Assessment Summary</h2>
+      <div class="score-display" id="final-score">0 / 20</div>
+      <div class="cefr-badge" id="cefr-level">Level: A1</div>
+      <p class="cefr-description" id="cefr-desc">Complete all questions above to receive your personalized CEFR evaluation.</p>
+      
+      <a href="https://www.cambridgeenglish.org/test-your-english/general-english/" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="cambridge-btn">
+        Take Official Cambridge English Test ↗
+      </a>
+    </div>
+
+    <!-- Everyday Useful Expressions Section -->
+    <div class="expressions-card">
+      <h2 class="section-title">
+        <span>💡</span> Top 10 Everyday Expressions from the Video
+      </h2>
+      <p>Here are 10 highly practical phrases used by Cat that you can immediately start using in your everyday English conversations:</p>
+      
+      <div class="expressions-grid">
+        
+        <div class="expression-item">
+          <div class="expression-term">1. Bridge the gap</div>
+          <div class="expression-def">To connect or reduce the difference between two distinct stages or ideas.</div>
+          <div class="expression-example">"Daily conversation practice helped me bridge the gap between knowing English grammar and actually speaking fluently."</div>
+        </div>
+
+        <div class="expression-item">
+          <div class="expression-term">2. Tackle a task / problem</div>
+          <div class="expression-def">To start dealing with or solving a challenging task with energy and focus.</div>
+          <div class="expression-example">"Let me grab a coffee first, and then I'll tackle the most difficult emails on my list."</div>
+        </div>
+
+        <div class="expression-item">
+          <div class="expression-term">3. Lighten the load</div>
+          <div class="expression-def">To make work, effort, or stress easier and less overwhelming to manage.</div>
+          <div class="expression-example">"Delegating some administrative tasks to the assistant really helped lighten my load this week."</div>
+        </div>
+
+        <div class="expression-item">
+          <div class="expression-term">4. Keep track of (something)</div>
+          <div class="expression-def">To stay informed or maintain continuous records about something over time.</div>
+          <div class="expression-example">"I use a mobile app to keep track of my monthly expenses and budget."</div>
+        </div>
+
+        <div class="expression-item">
+          <div class="expression-term">5. Get a feel for (something)</div>
+          <div class="expression-def">To develop an intuitive understanding or familiarity with a process or environment.</div>
+          <div class="expression-example">"After working in the new office for a few days, I finally got a feel for how the team operates."</div>
+        </div>
+
+        <div class="expression-item">
+          <div class="expression-term">6. Backwards</div>
+          <div class="expression-def">Doing or approaching something in the reverse or wrong order.</div>
+          <div class="expression-example">"Buying expensive furniture before measuring the living room space was completely backwards!"</div>
+        </div>
+
+        <div class="expression-item">
+          <div class="expression-term">7. Seasoned (professional / learner)</div>
+          <div class="expression-def">Having extensive experience, skill, and practice in a specific activity.</div>
+          <div class="expression-example">"As a seasoned traveler, she always packs light and arrives at the airport two hours early."</div>
+        </div>
+
+        <div class="expression-item">
+          <div class="expression-term">8. Daunting task</div>
+          <div class="expression-def">A job or challenge that appears intimidating, overwhelming, or difficult at first.</div>
+          <div class="expression-example">"Writing a 50-page dissertation seemed like a daunting task, but breaking it down by chapter made it manageable."</div>
+        </div>
+
+        <div class="expression-item">
+          <div class="expression-term">9. Build on (something)</div>
+          <div class="expression-def">To use existing progress or knowledge as a foundation for further achievement.</div>
+          <div class="expression-example">"Once you master basic vocabulary, you can build on that foundation by reading native articles."</div>
+        </div>
+
+        <div class="expression-item">
+          <div class="expression-term">10. All in one</div>
+          <div class="expression-def">Combining multiple useful features or tools together into a single place or product.</div>
+          <div class="expression-example">"This productivity platform gives you calendars, notes, and task management all in one place."</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Quiz Questions Data Structure
+    const quizData = [
+      // Section 1: Comprehension
+      {
+        section: 1,
+        id: "s1q1",
+        question: "1. What main flaw does Cat identify in traditional language teaching in schools?",
+        options: [
+          "A) Teaching listening skills before reading skills",
+          "B) Focusing heavily on grammar charts and conjugations before vocabulary",
+          "C) Not requiring students to speak aloud on the very first day",
+          "D) Relying too heavily on digital apps instead of paper textbooks"
+        ],
+        correct: 1,
+        explanation: "Cat emphasizes that schools teach in 'backwards' order by prioritizing grammar tables and verb conjugations before building a functional vocabulary base."
+      },
+      {
+        section: 1,
+        id: "s1q2",
+        question: "2. How many high-frequency words does Cat recommend targeting first for core fluency?",
+        options: [
+          "A) 500 words",
+          "B) 1,000 words",
+          "C) 10,000 words",
+          "D) 50,000 words"
+        ],
+        correct: 2,
+        explanation: "Cat highlights that building a massive bank of the top 10,000 most common words accelerates fluency much faster than memorizing rules."
+      },
+      {
+        section: 1,
+        id: "s1q3",
+        question: "3. According to Cat, roughly how many times must you encounter a word before truly knowing it?",
+        options: [
+          "A) About 3 times",
+          "B) About 7 times",
+          "C) About 15 times",
+          "D) About 25 times"
+        ],
+        correct: 1,
+        explanation: "Cat notes that research indicates it takes about 7 distinct exposures to a word in different contexts to lock it into memory."
+      },
+      {
+        section: 1,
+        id: "s1q4",
+        question: "4. How does Cat recommend integrating language immersion into your lifestyle?",
+        options: [
+          "A) Moving abroad to a foreign country immediately",
+          "B) Replacing existing daily activities (cooking, running, Netflix) with target language input",
+          "C) Hiring a tutor for 5 hours of intensive grammar drills every day",
+          "D) Memorizing physical dictionary pages cover-to-cover"
+        ],
+        correct: 1,
+        explanation: "Cat advises taking tasks you already do in daily life (like reading recipes, listening to music, or watching videos) and doing them in your target language."
+      },
+      {
+        section: 1,
+        id: "s1q5",
+        question: "5. What primary benefit does Cat praise about using the Lingua Verbum platform?",
+        options: [
+          "A) It automatically writes essays for your homework",
+          "B) It automates progress tracking and allows word learning inside real text/media contexts",
+          "C) It completely eliminates the need to ever practice speaking",
+          "D) It guarantees total native fluency within 7 days"
+        ],
+        correct: 1,
+        explanation: "Cat likes that it automates tracking progress (from blue to orange to purple to black) while keeping words in natural context."
+      },
+
+      // Section 2: Pronunciation & IPA
+      {
+        section: 2,
+        id: "s2q1",
+        question: "1. Which word from the video matches the IPA phonetic transcription /ˈdɔːntɪŋ/?",
+        options: [
+          "A) Dancing",
+          "B) Daunting",
+          "C) Doubting",
+          "D) Drafting"
+        ],
+        correct: 1,
+        explanation: "/ˈdɔːntɪŋ/ is the phonetic transcription for 'daunting' (intimidating or overwhelming)."
+      },
+      {
+        section: 2,
+        id: "s2q2",
+        question: "2. Which word from the video matches the IPA phonetic transcription /ɪˈmɜːrʒn/?",
+        options: [
+          "A) Emotion",
+          "B) Emergency",
+          "C) Immersion",
+          "D) Impression"
+        ],
+        correct: 2,
+        explanation: "/ɪˈmɜːrʒn/ corresponds to 'immersion', surrounding yourself with the target language."
+      },
+      {
+        section: 2,
+        id: "s2q3",
+        question: "3. Which word from the video matches the IPA phonetic transcription /ɪˈfɪʃntli/?",
+        options: [
+          "A) Efficiently",
+          "B) Effectively",
+          "C) Efficient",
+          "D) Officially"
+        ],
+        correct: 0,
+        explanation: "/ɪˈfɪʃntli/ is the adverb 'efficiently', meaning doing something without wasting time or energy."
+      },
+      {
+        section: 2,
+        id: "s2q4",
+        question: "4. Which word from the video matches the IPA phonetic transcription /ˌkɒnjʊˈɡeɪʃn/?",
+        options: [
+          "A) Congestion",
+          "B) Conjugation",
+          "C) Conversation",
+          "D) Configuration"
+        ],
+        correct: 1,
+        explanation: "/ˌkɒnjʊˈɡeɪʃn/ is 'conjugation', the variation of the form of a verb."
+      },
+      {
+        section: 2,
+        id: "s2q5",
+        question: "5. Which word from the video matches the IPA phonetic transcription /ˈmætərɪəl/?",
+        options: [
+          "A) Massive",
+          "B) Material",
+          "C) Memorial",
+          "D) Matrix"
+        ],
+        correct: 1,
+        explanation: "/ˈmætərɪəl/ is 'material' (learning resources such as articles, videos, or podcasts)."
+      },
+
+      // Section 3: Vocabulary
+      {
+        section: 3,
+        id: "s3q1",
+        question: "1. What does the expression 'bridge the gap' mean in the video?",
+        options: [
+          "A) To cross a physical bridge over a river",
+          "B) To connect or reduce the difference between two separate concepts",
+          "C) To abandon study and take a long rest",
+          "D) To memorize words without context"
+        ],
+        correct: 1,
+        explanation: "'Bridge the gap' means connecting two stages, like connecting raw vocabulary with actual real-world comprehension."
+      },
+      {
+        section: 3,
+        id: "s3q2",
+        question: "2. Cat describes herself as a 'seasoned language learner'. What does 'seasoned' mean here?",
+        options: [
+          "A) Added spices and salt to food",
+          "B) Inexperienced and young",
+          "C) Highly experienced and knowledgeable through practice over time",
+          "D) Easily confused by study methods"
+        ],
+        correct: 2,
+        explanation: "'Seasoned' describes someone who has accumulated extensive experience in a field or skill."
+      },
+      {
+        section: 3,
+        id: "s3q3",
+        question: "3. What does the verb 'tackle' mean when Cat speaks of 'tackling 10,000 words'?",
+        options: [
+          "A) To physically knock someone down",
+          "B) To undertake and deal with a challenging task decisively",
+          "C) To avoid doing work",
+          "D) To translate every word literally"
+        ],
+        correct: 1,
+        explanation: "'Tackle' means to confront and work energetically on a demanding objective."
+      },
+      {
+        section: 3,
+        id: "s3q4",
+        question: "4. What does the adjective 'daunting' mean?",
+        options: [
+          "A) Simple and effortless to do",
+          "B) Intimidating or seeming difficult to deal with",
+          "C) Extremely funny and entertaining",
+          "D) Repetitive and dull"
+        ],
+        correct: 1,
+        explanation: "'Daunting' describes something that causes feelings of apprehension or intimidation."
+      },
+      {
+        section: 3,
+        id: "s3q5",
+        question: "5. What does Cat mean when she says a tool can 'lighten the load'?",
+        options: [
+          "A) Reduce weight on a physical scale",
+          "B) Turn up the brightness in a study room",
+          "C) Make a heavy workload or task easier to handle",
+          "D) Throw away all textbooks"
+        ],
+        correct: 2,
+        explanation: "'Lighten the load' means reducing effort, burden, or administrative stress."
+      },
+
+      // Section 4: Contextual Grammar
+      {
+        section: 4,
+        id: "s4q1",
+        question: "1. Complete the sentence: 'If you know grammar and no vocabulary, you literally ______ get anything out.'",
+        options: [
+          "A) couldn't",
+          "B) can't",
+          "C) aren't",
+          "D) won't have"
+        ],
+        correct: 1,
+        explanation: "'Can't' is the present modal verb indicating absolute present inability."
+      },
+      {
+        section: 4,
+        id: "s4q2",
+        question: "2. Choose the correct zero conditional structure: 'If you ______ a word seven times, you ______ it better.'",
+        options: [
+          "A) encountered / will remember",
+          "B) encounter / remember",
+          "C) had encountered / remembered",
+          "D) encounter / would remembered"
+        ],
+        correct: 1,
+        explanation: "Zero conditional (If + Present Simple, Present Simple) expresses general facts and habits."
+      },
+      {
+        section: 4,
+        id: "s4q3",
+        question: "3. Choose the correct preposition: 'The platform helps you keep track ______ your progress.'",
+        options: [
+          "A) on",
+          "B) of",
+          "C) for",
+          "D) about"
+        ],
+        correct: 1,
+        explanation: "The standard idiomatic preposition is 'keep track of (something)'."
+      },
+      {
+        section: 4,
+        id: "s4q4",
+        question: "4. Select the correct modal for polite recommendations: 'This is a tool I ______ recommend to my previous self.'",
+        options: [
+          "A) would",
+          "B) must to",
+          "C) shall",
+          "D) ought"
+        ],
+        correct: 0,
+        explanation: "'Would recommend' is the standard conditional form used for giving personal recommendations."
+      },
+      {
+        section: 4,
+        id: "s4q5",
+        question: "5. Complete the structure: 'Instead of ______ hours memorizing rules, focus on active vocabulary acquisition.'",
+        options: [
+          "A) spend",
+          "B) to spend",
+          "C) spending",
+          "D) spent"
+        ],
+        correct: 2,
+        explanation: "Prepositions (such as 'instead of') are always followed by the gerund form (-ing)."
+      }
+    ];
+
+    // Track user answers
+    const userAnswers = {};
+    const totalQuestions = quizData.length;
+
+    // Render Quiz Questions
+    function renderQuiz() {
+      quizData.forEach((q, index) => {
+        const targetSection = document.getElementById(`section-${q.section}-questions`);
+        
+        const qBlock = document.createElement('div');
+        qBlock.className = 'question-block';
+        qBlock.id = `block-${q.id}`;
+
+        const qText = document.createElement('div');
+        qText.className = 'question-text';
+        qText.textContent = q.question;
+        qBlock.appendChild(qText);
+
+        const optionsGrid = document.createElement('div');
+        optionsGrid.className = 'options-grid';
+
+        q.options.forEach((optText, optIdx) => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.textContent = optText;
+          btn.onclick = () => handleAnswer(q.id, optIdx, btn);
+          optionsGrid.appendChild(btn);
+        });
+
+        qBlock.appendChild(optionsGrid);
+
+        const feedback = document.createElement('div');
+        feedback.className = 'feedback-box';
+        feedback.id = `feedback-${q.id}`;
+        qBlock.appendChild(feedback);
+
+        targetSection.appendChild(qBlock);
+      });
+    }
+
+    // Handle Option Selection
+    function handleAnswer(qId, selectedIdx, btnElement) {
+      if (userAnswers[qId] !== undefined) return; // Prevent changing answer
+
+      const qData = quizData.find(q => q.id === qId);
+      userAnswers[qId] = selectedIdx;
+
+      const qBlock = document.getElementById(`block-${qId}`);
+      const buttons = qBlock.querySelectorAll('.option-btn');
+      const feedbackBox = document.getElementById(`feedback-${qId}`);
+
+      // Disable all buttons for this question
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === qData.correct) {
+          btn.classList.add('show-correct');
+        }
+      });
+
+      if (selectedIdx === qData.correct) {
+        btnElement.classList.add('selected-correct');
+        feedbackBox.className = 'feedback-box correct';
+        feedbackBox.innerHTML = `<strong>✓ Correct!</strong> ${qData.explanation}`;
+      } else {
+        btnElement.classList.add('selected-incorrect');
+        feedbackBox.className = 'feedback-box incorrect';
+        feedbackBox.innerHTML = `<strong>✗ Incorrect.</strong> The correct answer was option <strong>${String.fromCharCode(65 + qData.correct)}</strong>.<br>${qData.explanation}`;
+      }
+
+      updateScoreAndCEFR();
+    }
+
+    // Calculate Score & CEFR Level
+    function updateScoreAndCEFR() {
+      let score = 0;
+      let answeredCount = 0;
+
+      quizData.forEach(q => {
+        if (userAnswers[q.id] !== undefined) {
+          answeredCount++;
+          if (userAnswers[q.id] === q.correct) {
+            score++;
+          }
+        }
+      });
+
+      const scoreDisplay = document.getElementById('final-score');
+      const cefrBadge = document.getElementById('cefr-level');
+      const cefrDesc = document.getElementById('cefr-desc');
+
+      scoreDisplay.textContent = `${score} / ${totalQuestions}`;
+
+      let level = "A1";
+      let desc = "";
+
+      if (score <= 5) {
+        level = "A1 / A2 (Basic User)";
+        desc = "You are laying down foundational English vocabulary. Keep building your core word bank!";
+      } else if (score <= 10) {
+        level = "B1 (Intermediate)";
+        desc = "Good general understanding of spoken concepts! Working on expanded vocabulary and IPA phonetics will help you advance.";
+      } else if (score <= 15) {
+        level = "B2 (Upper-Intermediate)";
+        desc = "Strong comprehension, grammar intuition, and vocabulary knowledge! You easily catch context and nuance.";
+      } else if (score <= 18) {
+        level = "C1 (Advanced)";
+        desc = "Excellent linguistic competence! You possess high sensitivity to phonetic structures, idiomatic phrases, and nuanced grammar.";
+      } else {
+        level = "C2 (Proficient / Master)";
+        desc = "Outstanding mastery! You have native-like linguistic precision, sharp IPA recognition, and flawless contextual comprehension.";
+      }
+
+      cefrBadge.textContent = `Estimated Level: ${level}`;
+      if (answeredCount < totalQuestions) {
+        cefrDesc.textContent = `Current progress: ${answeredCount}/${totalQuestions} questions answered. ${desc}`;
+      } else {
+        cefrDesc.textContent = `Quiz Complete! ${desc}`;
+      }
+    }
+
+    // Initialize Quiz on load
+    window.onload = () => {
+      renderQuiz();
+    };
+  </script>
+</body>
+</html>

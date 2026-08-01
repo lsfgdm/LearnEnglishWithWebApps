@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Lesson: I Speak English at Native Speed (English with Evie)</title>
+  <!-- Telegram WebApp SDK for seamless integration -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --correct: #16a34a;
+      --correct-bg: #dcfce7;
+      --incorrect: #dc2626;
+      --incorrect-bg: #fee2e2;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    /* Video Player */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Quiz Styling */
+    .quiz-section h2 {
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .category-title {
+      font-size: 1.3rem;
+      margin: 25px 0 15px 0;
+      color: var(--primary-color);
+    }
+
+    .question-block {
+      margin-bottom: 25px;
+      padding: 18px;
+      background-color: #fafafa;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 12px 15px;
+      border-radius: 6px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background-color: #f1f5f9;
+      border-color: var(--primary-color);
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-btn.selected-correct {
+      background-color: var(--correct-bg);
+      border-color: var(--correct);
+      color: #064e3b;
+      font-weight: bold;
+    }
+
+    .option-btn.selected-incorrect {
+      background-color: var(--incorrect-bg);
+      border-color: var(--incorrect);
+      color: #7f1d1d;
+    }
+
+    .option-btn.show-correct {
+      border-color: var(--correct);
+      background-color: #f0fdf4;
+    }
+
+    .feedback {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .feedback.visible {
+      display: block;
+    }
+
+    .feedback.correct {
+      background-color: var(--correct-bg);
+      color: #14532d;
+    }
+
+    .feedback.incorrect {
+      background-color: var(--incorrect-bg);
+      color: #7f1d1d;
+    }
+
+    /* Results */
+    #results-card {
+      display: none;
+      text-align: center;
+    }
+
+    #results-card.visible {
+      display: block;
+    }
+
+    .score-display {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    /* Useful Expressions */
+    .expressions-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .expression-card {
+      background: #f8fafc;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .expression-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 5px;
+    }
+
+    .expression-example {
+      font-style: italic;
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>I Speak English at Native Speed</h1>
+    <p>English with Evie • Listening Comprehension & Native Speech Analysis</p>
+  </header>
+
+  <!-- Video Section -->
+  <div class="card">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/cY_Eyw1br8I" title="I speak English at native speed" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Quiz Section -->
+  <div class="card quiz-section">
+    <h2>Multiple Choice Quiz (20 Questions)</h2>
+    <div id="quiz-container"></div>
+  </div>
+
+  <!-- Results Section -->
+  <div class="card" id="results-card">
+    <h2>Quiz Completed!</h2>
+    <div class="score-display">Your Score: <span id="final-score">0</span> / 20</div>
+    <p id="score-message"></p>
+  </div>
+
+  <!-- Expressions Section -->
+  <div class="card" id="expressions-section">
+    <h2>10 Useful Expressions Extracted from the Video</h2>
+    <p>Enhance your everyday English with these authentic phrases used by Evie in the video:</p>
+
+    <div class="expressions-grid">
+      <div class="expression-card">
+        <div class="expression-title">1. Mix it up</div>
+        <div><strong>Meaning:</strong> To change or vary the way you do something to keep it interesting.</div>
+        <div class="expression-example">"I usually study grammar, but today I decided to mix it up and practice listening instead."</div>
+      </div>
+      <div class="expression-card">
+        <div class="expression-title">2. Freaking cool</div>
+        <div><strong>Meaning:</strong> Extremely cool or impressive (an informal emphasis).</div>
+        <div class="expression-example">"Reaching 100,000 subscribers in just four months is freaking cool!"</div>
+      </div>
+      <div class="expression-card">
+        <div class="expression-title">3. Come across</div>
+        <div><strong>Meaning:</strong> To give a specific impression to others.</div>
+        <div class="expression-example">"She was nervous during her first speech, but in this video she comes across as relaxed and confident."</div>
+      </div>
+      <div class="expression-card">
+        <div class="expression-title">4. Take the piss (out of someone)</div>
+        <div><strong>Meaning:</strong> (British Informal) To make fun of or tease someone good-naturedly.</div>
+        <div class="expression-example">"Brits often take the piss out of their close friends to build rapport."</div>
+      </div>
+      <div class="expression-card">
+        <div class="expression-title">5. Pick up on</div>
+        <div><strong>Meaning:</strong> To notice, understand, or perceive subtle cues, jokes, or meanings.</div>
+        <div class="expression-example">"It takes time to pick up on cultural jokes when you move to a new country."</div>
+      </div>
+      <div class="expression-card">
+        <div class="expression-title">6. Know the drill</div>
+        <div><strong>Meaning:</strong> To already know the procedure, rules, or what is expected.</div>
+        <div class="expression-example">"Watch reality TV with no subtitles; you already know the drill!"</div>
+      </div>
+      <div class="expression-card">
+        <div class="expression-title">7. Go through the roof</div>
+        <div><strong>Meaning:</strong> To increase rapidly to a very high level.</div>
+        <div class="expression-example">"If you replace your daily habits with English habits, your fluency will go through the roof."</div>
+      </div>
+      <div class="expression-card">
+        <div class="expression-title">8. Pull off</div>
+        <div><strong>Meaning:</strong> To succeed in doing something difficult or ambitious.</div>
+        <div class="expression-example">"I have big plans for the channel, but I'm not sure if I can pull them off yet."</div>
+      </div>
+      <div class="expression-card">
+        <div class="expression-title">9. Mean a lot (to someone)</div>
+        <div><strong>Meaning:</strong> To be very valuable, important, or appreciated by someone.</div>
+        <div class="expression-example">"All of your comments and support really mean a lot to me."</div>
+      </div>
+      <div class="expression-card">
+        <div class="expression-title">10. Banter</div>
+        <div><strong>Meaning:</strong> Playful, witty, and lighthearted teasing remarks exchanged between people.</div>
+        <div class="expression-example">"British humor relies heavily on dry sarcasm and friendly banter."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Initialize Telegram WebApp SDK if available
+  if (window.Telegram && window.Telegram.WebApp) {
+    window.Telegram.WebApp.ready();
+    window.Telegram.WebApp.expand();
+  }
+
+  const quizData = [
+    // 1. Listening Comprehension (5 Questions)
+    {
+      category: "1. Listening Comprehension",
+      question: "Why did Evie decide to speak at normal native speed in this video?",
+      options: [
+        "She was too tired to slow down her speech.",
+        "She wanted to celebrate reaching 100,000 subscribers by mixing things up.",
+        "She was hosting a formal exam for advanced students.",
+        "Her video editing software forced her to speed up the audio."
+      ],
+      correct: 1,
+      explanation: "Evie mentions that reaching 100,000 subscribers felt like the perfect milestone to 'mix it up' and challenge viewers with native speed speech."
+    },
+    {
+      category: "1. Listening Comprehension",
+      question: "What primary adjustment does Evie make when speaking to an advanced English learner vs. a native speaker?",
+      options: [
+        "She speaks in a completely different foreign language.",
+        "She alters word choices, avoiding heavy slang, excessive sarcasm, and complex colloquialisms.",
+        "She exaggerates her accent to sound more academic.",
+        "She only speaks using written text on screen."
+      ],
+      correct: 1,
+      explanation: "Evie notes that speed isn't the primary difference; rather, she avoids heavy slang and sarcasm when speaking to advanced learners."
+    },
+    {
+      category: "1. Listening Comprehension",
+      question: "According to Evie, when do advanced learners often experience a significant drop in listening comprehension?",
+      options: [
+        "During one-on-one conversations in quiet rooms.",
+        "When reading English textbooks.",
+        "In group settings or social events surrounded by multiple native speakers.",
+        "When listening to formal news broadcasts."
+      ],
+      correct: 2,
+      explanation: "Evie points out that while 1-on-1 conversations are manageable, group environments with natives present a major hurdle due to fast cultural banter."
+    },
+    {
+      category: "1. Listening Comprehension",
+      question: "What specific type of content does Evie recommend watching to improve conversational banter?",
+      options: [
+        "Historical documentaries with subtitles.",
+        "Reality TV shows without subtitles.",
+        "Children's animated cartoons.",
+        "Academic lectures on English grammar."
+      ],
+      correct: 1,
+      explanation: "She recommends reality TV because it features unscripted, natural conversations and small talk between natives without simplified language."
+    },
+    {
+      category: "1. Listening Comprehension",
+      question: "What was Evie's main motivation for starting her YouTube channel?",
+      options: [
+        "To teach strict dictionary definitions and grammar rules.",
+        "To create accessible lifestyle/vlog content that learners actually enjoy watching after work.",
+        "To sell language textbooks across the UK.",
+        "To compete with university professors."
+      ],
+      correct: 1,
+      explanation: "Evie wanted to offer an alternative to purely educational videos by providing entertaining vlog/lifestyle content for natural immersion."
+    },
+
+    // 2. Pronunciation (5 Questions)
+    {
+      category: "2. Pronunciation",
+      question: "How is the phrase '100K' typically pronounced in native fast spoken English?",
+      options: [
+        "/wʌn hʌndrəd keɪ/",
+        "/wʌn hʌndrəd θaʊzənd/",
+        "/wʌn ˌkɪləʊˈɡræm/",
+        "/wʌn hʌndrəd kaɪ/"
+      ],
+      correct: 0,
+      explanation: "In modern informal English, 'K' represents thousand, pronounced as the letter name /keɪ/."
+    },
+    {
+      category: "2. Pronunciation",
+      question: "Which phonetic feature occurs when Evie blends 'going to' into 'gonna' or 'cuz' for 'because'?",
+      options: [
+        "Formal articulation",
+        "Connected speech and reduction",
+        "Silent letters",
+        "Stress reversal"
+      ],
+      correct: 1,
+      explanation: "Reductions like 'gonna' or 'cuz' are classic examples of connected speech in fast, informal native English."
+    },
+    {
+      category: "2. Pronunciation",
+      question: "Which of the following IPA transcriptions represents the British pronunciation of 'banter' /ˈbæntə/?",
+      options: [
+        "/ˈbæntər/",
+        "/ˈbæntə/",
+        "/ˈbɑːntə/",
+        "/ˈbeɪntər/"
+      ],
+      correct: 1,
+      explanation: "In standard British English (non-rhotic), final 'r' sounds in words like 'banter' are pronounced as a schwa /ə/."
+    },
+    {
+      category: "2. Pronunciation",
+      question: "What intonation pattern is commonly associated with British sarcasm as mentioned in the video?",
+      options: [
+        "Extremely high rising pitch at all times.",
+        "Dry, flat, or deadpan intonation.",
+        "Sing-song melodic tone.",
+        "Shouting the final word of every sentence."
+      ],
+      correct: 1,
+      explanation: "British sarcasm heavily relies on 'dry' delivery, characterized by a flat, deadpan intonation."
+    },
+    {
+      category: "2. Pronunciation",
+      question: "How does Evie pronounce 'freaking' in her relaxed speech?",
+      options: [
+        "With a strong glottal stop on the 'f'.",
+        "With the final 'g' dropped, sounding like /ˈfriːkɪn/.",
+        "By stressing the second syllable heavily.",
+        "By pronouncing it identically to 'freezing'."
+      ],
+      correct: 1,
+      explanation: "In informal casual speech, '-ing' endings are frequently reduced from /ɪŋ/ to /ɪn/ ('freakin')."
+    },
+
+    // 3. Vocabulary (5 Questions)
+    {
+      category: "3. Vocabulary",
+      question: "What does the informal British phrase 'take the piss out of someone' mean?",
+      options: [
+        "To get angry at someone.",
+        "To mock or tease someone playfully.",
+        "To lend money to a friend.",
+        "To invite someone for tea."
+      ],
+      correct: 1,
+      explanation: "'To take the piss' is a widely used British idiom meaning to make fun of or tease someone."
+    },
+    {
+      category: "3. Vocabulary",
+      question: "In the context of the video, what does 'banter' refer to?",
+      options: [
+        "Serious political debate.",
+        "Playful, witty, and teasing conversation.",
+        "Grammatical corrections made by teachers.",
+        "Formal business negotiations."
+      ],
+      correct: 1,
+      explanation: "'Banter' refers to lighthearted, friendly teasing and witty back-and-forth conversation."
+    },
+    {
+      category: "3. Vocabulary",
+      question: "What does the phrase 'go through the roof' mean when Evie discusses fluency?",
+      options: [
+        "To become damaged or broken.",
+        "To increase rapidly or reach a very high level.",
+        "To cause confusion.",
+        "To slowly decline over time."
+      ],
+      correct: 1,
+      explanation: "If something 'goes through the roof', it means it rises or improves significantly and quickly."
+    },
+    {
+      category: "3. Vocabulary",
+      question: "What does 'immersion' mean in the context of language learning?",
+      options: [
+        "Surrounding yourself completely with the target language in daily life.",
+        "Memorizing list of words before sleeping.",
+        "Translating every word into your native tongue.",
+        "Studying grammar rules for two hours every weekend."
+      ],
+      correct: 0,
+      explanation: "Language immersion involves integrating English into your everyday environment and daily routines."
+    },
+    {
+      category: "3. Vocabulary",
+      question: "What does it mean to 'pull off' ambitious plans?",
+      options: [
+        "To cancel or postpone them.",
+        "To succeed in executing something difficult.",
+        "To fail completely.",
+        "To discuss plans with strangers."
+      ],
+      correct: 1,
+      explanation: "To 'pull something off' means to successfully accomplish a task or plan despite challenges."
+    },
+
+    // 4. Grammar (5 Questions)
+    {
+      category: "4. Grammar",
+      question: "Evie says: 'I was so nervous that my voice was shaking.' Which structure is used here?",
+      options: [
+        "Past Continuous ('was shaking') to describe an ongoing state/action in the past.",
+        "Present Perfect Continuous.",
+        "Past Perfect Simple.",
+        "Future in the Past."
+      ],
+      correct: 0,
+      explanation: "'Was shaking' uses the Past Continuous tense (was/were + verb-ing) to describe an action in progress in the past."
+    },
+    {
+      category: "4. Grammar",
+      question: "Which sentence correctly uses the modal conditional structure heard in the video?",
+      options: [
+        "If you can get the joke, you going to be fine.",
+        "If you can get the joke, you're going to be fine.",
+        "If you will get the joke, you are fine.",
+        "If you getting the joke, you'll fine."
+      ],
+      correct: 1,
+      explanation: "The first conditional structure uses 'If + present simple/can, future with be going to/will' ('If you can get... you're going to be...')."
+    },
+    {
+      category: "4. Grammar",
+      question: "Identify the correct gerund structure after a preposition from the video: 'Thanks for ______ me.'",
+      options: [
+        "subscribe",
+        "subscribed",
+        "subscribing",
+        "to subscribe"
+      ],
+      correct: 2,
+      explanation: "Prepositions (like 'for') must be followed by a gerund (verb + '-ing')."
+    },
+    {
+      category: "4. Grammar",
+      question: "Evie says: 'I noticed that a lot of videos ... are very educational.' Why is 'are' used instead of 'is'?",
+      options: [
+        "'Videos' is a plural noun, requiring a plural verb agreement.",
+        "'Educational' is a collective noun.",
+        "'A lot' always takes a singular verb.",
+        "It is a grammatical error by the speaker."
+      ],
+      correct: 0,
+      explanation: "When 'a lot of' is followed by a plural countable noun ('videos'), the verb agrees with the plural noun ('are')."
+    },
+    {
+      category: "4. Grammar",
+      question: "Choose the correct relative clause structure: 'Content ______ you would actually want to sit and watch.'",
+      options: [
+        "where",
+        "that",
+        "who",
+        "whose"
+      ],
+      correct: 1,
+      explanation: "The relative pronoun 'that' (or 'which') is used to refer to things or concepts like 'content'."
+    }
+  ];
+
+  let currentScore = 0;
+  let questionsAnswered = 0;
+
+  function renderQuiz() {
+    const quizContainer = document.getElementById('quiz-container');
+    let currentCategory = "";
+
+    quizData.forEach((item, index) => {
+      if (item.category !== currentCategory) {
+        currentCategory = item.category;
+        const catHeader = document.createElement('h3');
+        catHeader.className = 'category-title';
+        catHeader.textContent = currentCategory;
+        quizContainer.appendChild(catHeader);
+      }
+
+      const qBlock = document.createElement('div');
+      qBlock.className = 'question-block';
+      qBlock.id = `q-block-${index}`;
+
+      const qText = document.createElement('div');
+      qText.className = 'question-text';
+      qText.textContent = `${index + 1}. ${item.question}`;
+      qBlock.appendChild(qText);
+
+      const optionsDiv = document.createElement('div');
+      optionsDiv.className = 'options';
+
+      item.options.forEach((opt, optIndex) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = opt;
+        btn.onclick = () => handleAnswer(index, optIndex);
+        optionsDiv.appendChild(btn);
+      });
+
+      qBlock.appendChild(optionsDiv);
+
+      const feedbackDiv = document.createElement('div');
+      feedbackDiv.className = 'feedback';
+      feedbackDiv.id = `feedback-${index}`;
+      qBlock.appendChild(feedbackDiv);
+
+      quizContainer.appendChild(qBlock);
+    });
+  }
+
+  function handleAnswer(questionIndex, selectedOptionIndex) {
+    const qData = quizData[questionIndex];
+    const qBlock = document.getElementById(`q-block-${questionIndex}`);
+    const buttons = qBlock.querySelectorAll('.option-btn');
+    const feedbackEl = document.getElementById(`feedback-${questionIndex}`);
+
+    // Disable buttons after answer selection
+    buttons.forEach(btn => btn.disabled = true);
+
+    const isCorrect = selectedOptionIndex === qData.correct;
+
+    if (isCorrect) {
+      currentScore++;
+      buttons[selectedOptionIndex].classList.add('selected-correct');
+      feedbackEl.classList.add('correct', 'visible');
+      feedbackEl.innerHTML = `<strong>Correct!</strong> ${qData.explanation}`;
+    } else {
+      buttons[selectedOptionIndex].classList.add('selected-incorrect');
+      buttons[qData.correct].classList.add('show-correct');
+      feedbackEl.classList.add('incorrect', 'visible');
+      feedbackEl.innerHTML = `<strong>Incorrect.</strong> ${qData.explanation}`;
+    }
+
+    questionsAnswered++;
+
+    if (questionsAnswered === quizData.length) {
+      displayResults();
+    }
+  }
+
+  function displayResults() {
+    const resultsCard = document.getElementById('results-card');
+    const finalScoreEl = document.getElementById('final-score');
+    const scoreMessageEl = document.getElementById('score-message');
+
+    finalScoreEl.textContent = currentScore;
+
+    if (currentScore >= 18) {
+      scoreMessageEl.textContent = "Outstanding listening comprehension and linguistic knowledge! You understand fast native speech with ease.";
+    } else if (currentScore >= 14) {
+      scoreMessageEl.textContent = "Great job! You have a strong grasp of spoken British English and colloquial expressions.";
+    } else if (currentScore >= 10) {
+      scoreMessageEl.textContent = "Good effort! Keep practicing with unscripted native content like reality TV to improve further.";
+    } else {
+      scoreMessageEl.textContent = "Keep practicing! Rewatch the video with and without subtitles to build your confidence.";
+    }
+
+    resultsCard.classList.add('visible');
+    resultsCard.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Render Quiz on Page Load
+  window.onload = renderQuiz;
+</script>
+
+</body>
+</html>

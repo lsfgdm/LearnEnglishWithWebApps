@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn How to Think In English - Interactive Lesson</title>
+  <!-- Telegram WebApp SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --correct: #16a34a;
+      --correct-bg: #dcfce7;
+      --incorrect: #dc2626;
+      --incorrect-bg: #fee2e2;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    /* Video Player */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Quiz Styling */
+    .quiz-section h2 {
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .category-title {
+      font-size: 1.3rem;
+      margin: 25px 0 15px 0;
+      color: var(--primary-color);
+    }
+
+    .question-block {
+      margin-bottom: 25px;
+      padding: 18px;
+      background-color: #fafafa;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 12px 15px;
+      border-radius: 6px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background-color: #f1f5f9;
+      border-color: var(--primary-color);
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-btn.selected-correct {
+      background-color: var(--correct-bg);
+      border-color: var(--correct);
+      color: #064e3b;
+      font-weight: bold;
+    }
+
+    .option-btn.selected-incorrect {
+      background-color: var(--incorrect-bg);
+      border-color: var(--incorrect);
+      color: #7f1d1d;
+    }
+
+    .option-btn.show-correct {
+      border-color: var(--correct);
+      background-color: #f0fdf4;
+    }
+
+    .feedback {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .feedback.visible {
+      display: block;
+    }
+
+    .feedback.correct {
+      background-color: var(--correct-bg);
+      color: #14532d;
+    }
+
+    .feedback.incorrect {
+      background-color: var(--incorrect-bg);
+      color: #7f1d1d;
+    }
+
+    /* Results */
+    #results-card {
+      display: none;
+      text-align: center;
+    }
+
+    #results-card.visible {
+      display: block;
+    }
+
+    .score-display {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    /* Useful Expressions with Images */
+    .expressions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .expression-card {
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .expression-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .expression-content {
+      padding: 18px;
+    }
+
+    .expression-title {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 6px;
+    }
+
+    .expression-meaning {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .expression-example {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      background: #f8fafc;
+      padding: 8px 12px;
+      border-left: 3px solid var(--primary-color);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Learn How to Think In English</h1>
+    <p>The English Class • Stop Translating in Your Head & Build Fluency</p>
+  </header>
+
+  <!-- Video Player Card -->
+  <div class="card">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/MpiWuR-yL9k" title="Learn How to Think In English" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Quiz Section Card -->
+  <div class="card quiz-section">
+    <h2>Multiple Choice Quiz (20 Questions)</h2>
+    <div id="quiz-container"></div>
+  </div>
+
+  <!-- Results Section Card -->
+  <div class="card" id="results-card">
+    <h2>Quiz Completed!</h2>
+    <div class="score-display">Your Score: <span id="final-score">0</span> / 20</div>
+    <p id="score-message"></p>
+  </div>
+
+  <!-- Useful Expressions Section -->
+  <div class="card" id="expressions-section">
+    <h2>10 Key Expressions & Concepts from the Lesson</h2>
+    <p>Incorporate these useful phrases and mindset concepts into your everyday routine:</p>
+
+    <div class="expressions-grid">
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=600&q=80" alt="Name objects around you" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">1. Name everything around you</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Looking at real objects in your immediate environment and identifying them directly in English.</div>
+          <div class="expression-example">"While sitting at my desk, I look around and say 'laptop, coffee mug, notebook' instead of thinking in my native language."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" alt="Talk to yourself" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">2. Talk to yourself in English</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Narrating your own actions or thoughts out loud when you are alone without fearing judgment.</div>
+          <div class="expression-example">"Every morning in the kitchen, I say to myself: 'I need to get out of bed and make a hot cup of tea.'"</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" alt="Visual learning" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">3. Connect words to pictures, not translations</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Associating new vocabulary directly with a mental picture or emotion rather than translating it.</div>
+          <div class="expression-example">"When I learn the word 'hungry', I picture a delicious steaming meal instead of looking up a dictionary translation."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="Listen and repeat" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">4. Listen and repeat immediately</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Pausing short audio or video clips after one sentence to mimic the speaker's intonation and speed instantly.</div>
+          <div class="expression-example">"I paused the podcast right after the host said 'I don't know what happened' and repeated it out loud."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=600&q=80" alt="Brushing teeth daily routine" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">5. Live small moments in English</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Choosing specific short daily routines (like cooking or brushing teeth) to think exclusively in English.</div>
+          <div class="expression-example">"While brushing my teeth, I dedicate two minutes to describing my actions entirely in English."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80" alt="Brain as a muscle" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">6. The brain works like a muscle</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> The concept that cognitive skills grow stronger through repeated daily practice.</div>
+          <div class="expression-example">"Just like going to the gym, exercising my English thinking every day makes my brain faster at forming sentences."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=600&q=80" alt="Peaceful morning feeling relaxed" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">7. Feel relaxed / No pressure</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Practicing language skills in low-stress environments to avoid feeling embarrassed or self-conscious.</div>
+          <div class="expression-example">"When practicing alone, there is no pressure, so my mind stays relaxed and I speak more naturally."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80" alt="Consistency" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">8. Consistency changes your English over time</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Small daily habits lead to dramatic long-term progress compared to sporadic intense studying.</div>
+          <div class="expression-example">"Practicing five minutes every day provides true consistency, which slowly transforms how fluently I communicate."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=600&q=80" alt="Simplicity over complexity" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">9. Simple English spoken daily</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Focusing on using clear, basic vocabulary routinely rather than memorizing complex words you never use.</div>
+          <div class="expression-example">"Simple English spoken daily builds genuine confidence far better than memorizing advanced vocabulary lists."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Path to fluency" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">10. Thinking in English is the path to fluency</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Treating direct mental practice as the method to achieve fluency, not just the final result.</div>
+          <div class="expression-example">"I realized that thinking in English is not just the end goal—it is the exact path that leads me to true fluency."</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // Initialize Telegram WebApp SDK if available
+  if (window.Telegram && window.Telegram.WebApp) {
+    window.Telegram.WebApp.ready();
+    window.Telegram.WebApp.expand();
+  }
+
+  const quizData = [
+    // 1. Listening Comprehension (5 Questions)
+    {
+      category: "1. Listening Comprehension",
+      question: "What is Exercise 1 recommended by the speaker to start thinking in English?",
+      options: [
+        "Translate news articles line by line.",
+        "Look around and name objects in your environment directly in English.",
+        "Memorize a list of 50 new nouns every day.",
+        "Write down descriptions in a grammar workbook."
+      ],
+      correct: 1,
+      explanation: "Exercise 1 is 'Name everything around you', which trains your brain to connect real-world objects directly to English words without translating."
+    },
+    {
+      category: "1. Listening Comprehension",
+      question: "Why does talking to yourself out loud (Exercise 2) help build confidence?",
+      options: [
+        "Because a teacher is present to correct your grammar mistakes immediately.",
+        "Because you practice in a low-pressure environment without feeling embarrassed.",
+        "Because it proves you have mastered advanced technical vocabulary.",
+        "Because it forces you to speak faster than native speakers."
+      ],
+      correct: 1,
+      explanation: "When you talk to yourself alone, there is no pressure or embarrassment, allowing your brain to stay relaxed and form sentences naturally."
+    },
+    {
+      category: "1. Listening Comprehension",
+      question: "How does the speaker advise learning new vocabulary in Exercise 3?",
+      options: [
+        "Translate each new word into your native language dictionary.",
+        "Connect the word directly to a picture, action, or feeling in your mind.",
+        "Write the word 10 times in a notebook.",
+        "Memorize the phonetic spelling rules of the word."
+      ],
+      correct: 1,
+      explanation: "Exercise 3 recommends associating new words directly with mental images, scenes, or feelings so your brain understands concepts without translating."
+    },
+    {
+      category: "1. Listening Comprehension",
+      question: "What caution does the speaker give when choosing listening materials for Exercise 4?",
+      options: [
+        "Avoid short YouTube videos or podcasts.",
+        "Do not use materials that are too difficult or contain overwhelming vocabulary.",
+        "Only listen to fast action movies with formal accents.",
+        "Never pause the audio while practicing."
+      ],
+      correct: 1,
+      explanation: "The speaker emphasizes choosing easy English content because difficult content causes disappointment, whereas manageable material builds confidence and consistency."
+    },
+    {
+      category: "1. Listening Comprehension",
+      question: "According to the speaker, how does the brain behave regarding language habits?",
+      options: [
+        "The brain works like a muscle: practicing translation makes you translate faster, while practicing direct thinking makes you think in English.",
+        "The brain cannot learn to think directly in a second language after childhood.",
+        "The brain must master formal grammar rules before attempting to speak.",
+        "The brain forgets simple words if you do not use advanced vocabulary."
+      ],
+      correct: 0,
+      explanation: "The speaker uses the muscle analogy: whatever habit you practice daily (translating vs. direct thinking) is the skill your brain gets stronger at doing."
+    },
+
+    // 2. Vocabulary (5 Questions)
+    {
+      category: "2. Vocabulary",
+      question: "In the video, what does the term 'consistency' refer to?",
+      options: [
+        "Studying intensively for 10 hours once a month.",
+        "Maintaining small, regular daily habits over a long period of time.",
+        "Speaking continuously without stopping for breath.",
+        "Memorizing dictionary definitions in alphabetical order."
+      ],
+      correct: 1,
+      explanation: "'Consistency' means practicing regularly every day, which the speaker highlights as the key driver of long-term progress."
+    },
+    {
+      category: "2. Vocabulary",
+      question: "What does the phrase 'feel embarrassed' mean in the context of speaking English?",
+      options: [
+        "Feeling proud of your accent.",
+        "Feeling self-conscious, awkward, or worried about making mistakes in front of others.",
+        "Feeling overly tired after a long exam.",
+        "Feeling energetic and eager to speak."
+      ],
+      correct: 1,
+      explanation: "Feeling embarrassed means worrying about others judging your mistakes, which creates anxiety when speaking."
+    },
+    {
+      category: "2. Vocabulary",
+      question: "What is the meaning of 'small natural sentences' as used in Exercise 1?",
+      options: [
+        "Complex academic clauses with passive voice.",
+        "Simple, real-life descriptions like 'My phone is on the table.'",
+        "Short one-word answers used in formal exams.",
+        "Slang expressions used in poetry."
+      ],
+      correct: 1,
+      explanation: "Small natural sentences are straightforward, practical statements about everyday life and surrounding objects."
+    },
+    {
+      category: "2. Vocabulary",
+      question: "In Exercise 5, what does 'live small moments in English' mean?",
+      options: [
+        "Move permanently to an English-speaking country.",
+        "Dedicate brief daily routines (like brushing teeth or eating) entirely to thinking in English.",
+        "Watch short 5-second video clips online.",
+        "Take a short 10-minute quiz every afternoon."
+      ],
+      correct: 1,
+      explanation: "'Living small moments' means picking specific routine parts of your day and committing to thinking solely in English during those activities."
+    },
+    {
+      category: "2. Vocabulary",
+      question: "What does the expression 'delay progress' mean in the video?",
+      options: [
+        "To speed up your learning curve.",
+        "To slow down or postpone your development toward fluency.",
+        "To review previous lessons effectively.",
+        "To finish a goal earlier than expected."
+      ],
+      correct: 1,
+      explanation: "Believing you must master all grammar rules before speaking 'delays progress'—it holds you back from advancing naturally."
+    },
+
+    // 3. Pronunciation (5 Questions)
+    {
+      category: "3. Pronunciation",
+      question: "When practicing Exercise 4 ('Listen and Repeat'), what three elements should you copy from the speaker?",
+      options: [
+        "Spelling, grammar, and writing style.",
+        "Pronunciation, speed, and emotion/intonation.",
+        "Accent origin, pitch height, and volume level.",
+        "Word count, breathing pattern, and pause duration."
+      ],
+      correct: 1,
+      explanation: "The speaker instructs learners to copy the speaker's pronunciation, natural speed, and emotional tone as closely as possible."
+    },
+    {
+      category: "3. Pronunciation",
+      question: "How is the contraction 'I don't know' often pronounced in natural, casual spoken English?",
+      options: [
+        "With distinct, heavy pauses between every single word (/aɪ/ /doʊnt/ /noʊ/).",
+        "Connected smoothly as /aɪ doʊnoʊ/ or /I duno/ in informal speech.",
+        "With a silent 'I' sound.",
+        "Pronounced identically to 'I do not know' with formal emphasis."
+      ],
+      correct: 1,
+      explanation: "In natural spoken English, 'I don't know' connects smoothly and is frequently reduced to casual forms like /duno/."
+    },
+    {
+      category: "3. Pronunciation",
+      question: "Which syllable carries the primary stress in the word 'consistency' /kənˈsɪstənsi/?",
+      options: [
+        "The first syllable ('con-').",
+        "The second syllable ('-sis-').",
+        "The third syllable ('-ten-').",
+        "The fourth syllable ('-cy')."
+      ],
+      correct: 1,
+      explanation: "The main stress in 'consistency' falls on the second syllable: con-SIS-ten-cy."
+    },
+    {
+      category: "3. Pronunciation",
+      question: "What sound reduction commonly occurs in the spoken phrase 'need to' ('I need to get out of bed')?",
+      options: [
+        "It changes to 'need a'.",
+        "It blends into 'needa' (/niːdə/) in fast connected speech.",
+        "The 'd' becomes completely silent.",
+        "The 't' is pronounced with a sharp trill."
+      ],
+      correct: 1,
+      explanation: "In relaxed connected speech, 'need to' often blends into 'needa' (/niːdə/)."
+    },
+    {
+      category: "3. Pronunciation",
+      question: "What phonetic phenomenon occurs in the phrase 'look at' (/lʊk æt/) when spoken naturally?",
+      options: [
+        "Linking: the final consonant /k/ attaches to the following vowel sound (/lʊ-kæt/).",
+        "Vowel dropping: the 'a' sound disappears completely.",
+        "Glottalization: the 'l' sound is dropped.",
+        "Nasalization: both words are spoken through the nose."
+      ],
+      correct: 0,
+      explanation: "Consonant-to-vowel linking causes the /k/ at the end of 'look' to link directly to 'at' (/lʊ-kæt/)."
+    },
+
+    // 4. Grammar (5 Questions)
+    {
+      category: "4. Grammar",
+      question: "Consider the sentence: 'If you practice them every day, you will slowly notice progress.' What grammar structure is this?",
+      options: [
+        "Zero Conditional.",
+        "First Conditional (If + Present Simple, Will + Verb).",
+        "Second Conditional.",
+        "Past Perfect Continuous."
+      ],
+      correct: 1,
+      explanation: "The First Conditional structure ('If + present simple... will + infinitive') expresses real future results based on present conditions."
+    },
+    {
+      category: "4. Grammar",
+      question: "In the phrase 'while making tea or coffee', what grammatical form is 'making'?",
+      options: [
+        "A past participle.",
+        "A participle clause acting after the conjunction 'while'.",
+        "An infinitive of purpose.",
+        "A modal auxiliary verb."
+      ],
+      correct: 1,
+      explanation: "'While making...' is an abbreviated participle clause shortened from 'while you are making...'"
+    },
+    {
+      category: "4. Grammar",
+      question: "Identify the correct imperative form used to give instructions in the video:",
+      options: [
+        "You should to name everything around you.",
+        "Name everything around you.",
+        "To name everything around you.",
+        "Naming everything around you."
+      ],
+      correct: 1,
+      explanation: "Imperative sentences give direct instructions or commands using the base form of the verb without a subject ('Name...')."
+    },
+    {
+      category: "4. Grammar",
+      question: "Choose the correct sentence featuring present continuous for ongoing actions during the day:",
+      options: [
+        "The water gets hot right now.",
+        "The water is getting hot right now.",
+        "The water got hot tomorrow.",
+        "The water will getting hot."
+      ],
+      correct: 1,
+      explanation: "The Present Continuous tense ('is getting') describes actions or changes happening right now at the moment of speaking."
+    },
+    {
+      category: "4. Grammar",
+      question: "Why is 'much more powerful' used instead of 'more powerfuler' in the sentence: 'Simple English is much more powerful'?",
+      options: [
+        "Adjectives with three or more syllables use 'more' for comparative degree, and 'much' adds emphasis.",
+        "'Powerful' is an irregular verb.",
+        "Comparative adjectives never accept modifying adverbs.",
+        "Double comparatives are required in spoken English."
+      ],
+      correct: 0,
+      explanation: "Multi-syllable adjectives form comparatives with 'more' (not '-er'), and 'much' is used to intensify the comparison."
+    }
+  ];
+
+  let currentScore = 0;
+  let questionsAnswered = 0;
+
+  function renderQuiz() {
+    const quizContainer = document.getElementById('quiz-container');
+    let currentCategory = "";
+
+    quizData.forEach((item, index) => {
+      if (item.category !== currentCategory) {
+        currentCategory = item.category;
+        const catHeader = document.createElement('h3');
+        catHeader.className = 'category-title';
+        catHeader.textContent = currentCategory;
+        quizContainer.appendChild(catHeader);
+      }
+
+      const qBlock = document.createElement('div');
+      qBlock.className = 'question-block';
+      qBlock.id = `q-block-${index}`;
+
+      const qText = document.createElement('div');
+      qText.className = 'question-text';
+      qText.textContent = `${index + 1}. ${item.question}`;
+      qBlock.appendChild(qText);
+
+      const optionsDiv = document.createElement('div');
+      optionsDiv.className = 'options';
+
+      item.options.forEach((opt, optIndex) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = opt;
+        btn.onclick = () => handleAnswer(index, optIndex);
+        optionsDiv.appendChild(btn);
+      });
+
+      qBlock.appendChild(optionsDiv);
+
+      const feedbackDiv = document.createElement('div');
+      feedbackDiv.className = 'feedback';
+      feedbackDiv.id = `feedback-${index}`;
+      qBlock.appendChild(feedbackDiv);
+
+      quizContainer.appendChild(qBlock);
+    });
+  }
+
+  function handleAnswer(questionIndex, selectedOptionIndex) {
+    const qData = quizData[questionIndex];
+    const qBlock = document.getElementById(`q-block-${questionIndex}`);
+    const buttons = qBlock.querySelectorAll('.option-btn');
+    const feedbackEl = document.getElementById(`feedback-${questionIndex}`);
+
+    // Disable buttons after answer selection
+    buttons.forEach(btn => btn.disabled = true);
+
+    const isCorrect = selectedOptionIndex === qData.correct;
+
+    if (isCorrect) {
+      currentScore++;
+      buttons[selectedOptionIndex].classList.add('selected-correct');
+      feedbackEl.classList.add('correct', 'visible');
+      feedbackEl.innerHTML = `<strong>Correct!</strong> ${qData.explanation}`;
+    } else {
+      buttons[selectedOptionIndex].classList.add('selected-incorrect');
+      buttons[qData.correct].classList.add('show-correct');
+      feedbackEl.classList.add('incorrect', 'visible');
+      feedbackEl.innerHTML = `<strong>Incorrect.</strong> ${qData.explanation}`;
+    }
+
+    questionsAnswered++;
+
+    if (questionsAnswered === quizData.length) {
+      displayResults();
+    }
+  }
+
+  function displayResults() {
+    const resultsCard = document.getElementById('results-card');
+    const finalScoreEl = document.getElementById('final-score');
+    const scoreMessageEl = document.getElementById('score-message');
+
+    finalScoreEl.textContent = currentScore;
+
+    if (currentScore >= 18) {
+      scoreMessageEl.textContent = "Fantastic score! You clearly understand how to retrain your mind to think directly in English.";
+    } else if (currentScore >= 14) {
+      scoreMessageEl.textContent = "Great job! You have a strong grasp of the exercises, vocabulary, and grammar concepts.";
+    } else if (currentScore >= 10) {
+      scoreMessageEl.textContent = "Good effort! Review the video again and put these daily exercises into practice.";
+    } else {
+      scoreMessageEl.textContent = "Keep practicing! Consistency is key. Re-watch the video and attempt the exercises daily.";
+    }
+
+    resultsCard.classList.add('visible');
+    resultsCard.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Render Quiz on Page Load
+  window.onload = renderQuiz;
+</script>
+
+</body>
+</html>

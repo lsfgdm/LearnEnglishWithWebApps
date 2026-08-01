@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mastering Light Verbs for English Fluency</title>
-  <!-- Telegram Web App SDK -->
+  <title>English Learning Hub</title>
+  <!-- Telegram WebApp SDK for seamless integration -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     :root {
@@ -14,12 +14,9 @@
       --card-bg: #ffffff;
       --text-main: #0f172a;
       --text-muted: #475569;
-      --correct: #16a34a;
-      --correct-bg: #dcfce7;
-      --incorrect: #dc2626;
-      --incorrect-bg: #fee2e2;
       --border: #e2e8f0;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
 
     * {
@@ -33,261 +30,148 @@
       background-color: var(--bg-color);
       color: var(--text-main);
       line-height: 1.6;
-      padding: 20px;
+      padding: 60px 20px;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 800px;
       margin: 0 auto;
     }
 
     header {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     header h1 {
-      font-size: 2.2rem;
+      font-size: 2.5rem;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Search Bar Styling */
+    .search-box {
+      margin-bottom: 35px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 18px 24px;
+      font-size: 1.15rem;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      outline: none;
+      background-color: var(--card-bg);
+      color: var(--text-main);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+    }
+
+    /* Lessons Grid */
+    .lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+    }
+
+    .lesson-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: inherit;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--primary-color);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      align-self: flex-start;
+    }
+
+    .badge-grammar {
+      background-color: #dbeafe;
+      color: #1e40af;
+    }
+
+    .badge-listening {
+      background-color: #fce7f3;
+      color: #9d174d;
+    }
+
+    .lesson-title {
+      font-size: 1.4rem;
+      font-weight: 700;
       margin-bottom: 10px;
       color: var(--text-main);
     }
 
-    header p {
+    .lesson-description {
       color: var(--text-muted);
-      font-size: 1.1rem;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 30px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-    }
-
-    /* Video Section */
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-      height: 0;
-      overflow: hidden;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    /* Summary Section */
-    .summary h2 {
-      margin-bottom: 15px;
-      color: var(--primary-color);
-    }
-
-    .verb-groups {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      margin-top: 15px;
-    }
-
-    .verb-group-item {
-      background: #f1f5f9;
-      padding: 15px;
-      border-radius: 8px;
-      border-left: 4px solid var(--primary-color);
-    }
-
-    .verb-group-item h4 {
-      margin-bottom: 5px;
-    }
-
-    .method-steps {
-      list-style-type: none;
-      margin-top: 10px;
-    }
-
-    .method-steps li {
-      margin-bottom: 8px;
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .method-steps li::before {
-      content: "•";
-      color: var(--primary-color);
-      font-weight: bold;
-      position: absolute;
-      left: 0;
-    }
-
-    /* Quiz Styling */
-    .quiz-section h2 {
-      margin-bottom: 20px;
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 10px;
-    }
-
-    .category-title {
-      font-size: 1.3rem;
-      margin: 25px 0 15px 0;
-      color: var(--primary-color);
-    }
-
-    .question-block {
-      margin-bottom: 25px;
-      padding: 15px;
-      background-color: #fafafa;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-    }
-
-    .question-text {
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .option-btn {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      padding: 10px 15px;
-      border-radius: 6px;
-      text-align: left;
-      cursor: pointer;
       font-size: 0.95rem;
-      transition: background-color 0.2s, border-color 0.2s;
+      margin-bottom: 20px;
+      flex-grow: 1;
     }
 
-    .option-btn:hover:not(:disabled) {
-      background-color: #f1f5f9;
-      border-color: var(--primary-color);
-    }
-
-    .option-btn:disabled {
-      cursor: default;
-    }
-
-    .option-btn.selected-correct {
-      background-color: var(--correct-bg);
-      border-color: var(--correct);
-      color: #064e3b;
-      font-weight: bold;
-    }
-
-    .option-btn.selected-incorrect {
-      background-color: var(--incorrect-bg);
-      border-color: var(--incorrect);
-      color: #7f1d1d;
-    }
-
-    .option-btn.show-correct {
-      border-color: var(--correct);
-      background-color: #f0fdf4;
-    }
-
-    .feedback {
-      margin-top: 10px;
-      padding: 10px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      display: none;
-    }
-
-    .feedback.visible {
-      display: block;
-    }
-
-    .feedback.correct {
-      background-color: var(--correct-bg);
-      color: #14532d;
-    }
-
-    .feedback.incorrect {
-      background-color: var(--incorrect-bg);
-      color: #7f1d1d;
-    }
-
-    /* Results Section */
-    #results-card {
-      display: none;
-      text-align: center;
-    }
-
-    #results-card.visible {
-      display: block;
-    }
-
-    .score-display {
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin: 15px 0;
-    }
-
-    .cefr-badge {
-      display: inline-block;
-      background: var(--primary-color);
-      color: white;
-      font-size: 1.5rem;
-      font-weight: bold;
-      padding: 8px 20px;
-      border-radius: 50px;
-      margin: 10px 0 20px 0;
-    }
-
-    .btn-action {
-      display: inline-block;
-      background: var(--primary-color);
-      color: white;
-      text-decoration: none;
-      padding: 12px 24px;
-      border-radius: 6px;
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 15px;
       font-weight: 600;
-      transition: background 0.2s;
-    }
-
-    .btn-action:hover {
-      background: var(--primary-hover);
-    }
-
-    /* Expressions Section */
-    .expressions-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 15px;
-      margin-top: 15px;
-    }
-
-    .expression-card {
-      background: #f8fafc;
-      padding: 15px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-    }
-
-    .expression-title {
-      font-size: 1.1rem;
-      font-weight: bold;
       color: var(--primary-color);
-      margin-bottom: 5px;
     }
 
-    .expression-example {
-      font-style: italic;
+    .arrow-icon {
+      transition: transform 0.2s ease;
+    }
+
+    .lesson-card:hover .arrow-icon {
+      transform: translateX(5px);
+    }
+
+    .no-results {
+      text-align: center;
       color: var(--text-muted);
-      margin-top: 5px;
+      padding: 30px 0;
+      font-size: 1.1rem;
+      display: none;
     }
   </style>
 </head>
@@ -295,459 +179,119 @@
 
 <div class="container">
   <header>
-    <h1>You Only Need 9 Verbs to Speak Fluent English</h1>
-    <p>English with Astrojoc • Light Verbs Strategy</p>
+    <h1>English Learning Hub</h1>
+    <p>Type a title or keyword below to find your review lesson.</p>
   </header>
 
-  <!-- Video Section -->
-  <div class="card">
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/fa8S0Y3F_L4" title="You Only Need 9 Verbs to Speak Fluent English" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+  <!-- Dynamic Search Input -->
+  <div class="search-box">
+    <input 
+      type="text" 
+      id="search-input" 
+      class="search-input" 
+      placeholder="Enter the title of the lesson you want to review..." 
+      autocomplete="off"
+    >
   </div>
 
-  <!-- Summary Section -->
-  <div class="card summary">
-    <h2>Overview & Strategy Summary</h2>
-    <p>Achieving fluency in English does not require memorizing thousands of rare verbs. Instead, by mastering <strong>9 key "light verbs"</strong>, you can form structural foundations for the vast majority of daily conversations. This reduces mental load and allows for natural, fluid speaking.</p>
+  <!-- Container for Dynamic Lesson Cards -->
+  <main class="lessons-grid" id="lessons-grid"></main>
 
-    <h3 style="margin-top:20px;">The 9 Light Verbs by Category</h3>
-    <div class="verb-groups">
-      <div class="verb-group-item">
-        <h4>1. Make & Do (02:44)</h4>
-        <p><strong>Make:</strong> Used for creating results or outcomes (e.g., <em>make a decision</em>).</p>
-        <p><strong>Do:</strong> Used for activities, tasks, or actions (e.g., <em>do research</em>).</p>
-      </div>
-      <div class="verb-group-item">
-        <h4>2. Take & Get (03:47)</h4>
-        <p><strong>Take:</strong> Expresses deliberate action.</p>
-        <p><strong>Get:</strong> Expresses change of state or result (the most versatile light verb).</p>
-      </div>
-      <div class="verb-group-item">
-        <h4>3. Have & Give (04:55)</h4>
-        <p><strong>Have:</strong> Expresses experience or possession.</p>
-        <p><strong>Give:</strong> Marks interaction and contribution.</p>
-      </div>
-      <div class="verb-group-item">
-        <h4>4. Put, Set & Go (05:30)</h4>
-        <p><strong>Put:</strong> Used to position or place.</p>
-        <p><strong>Set:</strong> Used to establish conditions.</p>
-        <p><strong>Go:</strong> Expresses movement or change.</p>
-      </div>
-    </div>
-
-    <h3 style="margin-top:20px;">Training Method: "Hear, Map, Fire" (07:57)</h3>
-    <ul class="method-steps">
-      <li><strong>Hear:</strong> Spot these natural light-verb combinations in real conversations.</li>
-      <li><strong>Map:</strong> Associate the combination directly with a scenario or context, avoiding direct translation.</li>
-      <li><strong>Fire:</strong> Speak the phrase aloud to pre-load your muscle memory before you need it in real situations (e.g., meetings or discussions).</li>
-    </ul>
-  </div>
-
-  <!-- Quiz Section -->
-  <div class="card quiz-section">
-    <h2>Test Your Understanding</h2>
-    <div id="quiz-container"></div>
-  </div>
-
-  <!-- Results Section -->
-  <div class="card" id="results-card">
-    <h2>Quiz Completed!</h2>
-    <div class="score-display">Your Score: <span id="final-score">0</span> / 20</div>
-    <p>Estimated CEFR English Level:</p>
-    <div class="cefr-badge" id="cefr-level">A2</div>
-    <p style="margin-bottom: 20px; color: var(--text-muted);" id="cefr-desc"></p>
-    <a href="https://www.cambridgeenglish.org/test-your-english/general-english/" target="_blank" rel="noopener noreferrer" class="btn-action">Take the Official Cambridge English Test</a>
-  </div>
-
-  <!-- Useful Expressions Section -->
-  <div class="card">
-    <h2>10 Daily Expressions from the Video</h2>
-    <p>Here are key expressions inspired by light verbs and concepts from the video that you can immediately apply in everyday situations:</p>
-
-    <div class="expressions-grid">
-      <div class="expression-card">
-        <div class="expression-title">1. Make a decision</div>
-        <div>To come to a conclusion or choice after thinking.</div>
-        <div class="expression-example">"We need to make a decision on the project before Friday."</div>
-      </div>
-      <div class="expression-card">
-        <div class="expression-title">2. Do research</div>
-        <div>To gather information or investigate a topic.</div>
-        <div class="expression-example">"Before buying a new car, I always do some research online."</div>
-      </div>
-      <div class="expression-card">
-        <div class="expression-title">3. Get ready</div>
-        <div>To prepare yourself for an event or action (change of state).</div>
-        <div class="expression-example">"Give me ten minutes to get ready and we can leave."</div>
-      </div>
-      <div class="expression-card">
-        <div class="expression-title">4. Take action</div>
-        <div>To start doing something to achieve a goal or solve a problem.</div>
-        <div class="expression-example">"If we want to hit our targets, we need to take action immediately."</div>
-      </div>
-      <div class="expression-card">
-        <div class="expression-title">5. Have a look</div>
-        <div>To check, inspect, or examine something briefly.</div>
-        <div class="expression-example">"Could you have a look at my document and give me feedback?"</div>
-      </div>
-      <div class="expression-card">
-        <div class="expression-title">6. Give thought to</div>
-        <div>To consider or reflect on something carefully.</div>
-        <div class="expression-example">"I'll give some thought to your proposal and email you tomorrow."</div>
-      </div>
-      <div class="expression-card">
-        <div class="expression-title">7. Put pressure on</div>
-        <div>To attempt to force someone to do something.</div>
-        <div class="expression-example">"Don't put too much pressure on yourself before the exam."</div>
-      </div>
-      <div class="expression-card">
-        <div class="expression-title">8. Set boundaries</div>
-        <div>To establish clear limits for personal or professional relationships.</div>
-        <div class="expression-example">"It's healthy to set boundaries between work and home life."</div>
-      </div>
-      <div class="expression-card">
-        <div class="expression-title">9. Go wrong</div>
-        <div>To fail, make a mistake, or turn into a bad outcome.</div>
-        <div class="expression-example">"If anything goes wrong, don't hesitate to call customer support."</div>
-      </div>
-      <div class="expression-card">
-        <div class="expression-title">10. Lighten the cognitive load</div>
-        <div>To make mental processing easier by simplifying structural patterns.</div>
-        <div class="expression-example">"Using fixed phrases helps lighten the cognitive load when speaking live."</div>
-      </div>
-    </div>
+  <!-- Empty state message -->
+  <div id="no-results" class="no-results">
+    No lessons found matching your keyword.
   </div>
 </div>
 
 <script>
-  // Initialize Telegram WebApp
+  // Initialize Telegram WebApp SDK if available
   if (window.Telegram && window.Telegram.WebApp) {
     window.Telegram.WebApp.ready();
     window.Telegram.WebApp.expand();
   }
 
-  const quizData = [
-    // Category 1: Video Comprehension
+  // Database of available lessons
+  const lessons = [
     {
-      category: "1. Video Comprehension",
-      question: "What is the primary benefit of focusing on 'light verbs' according to the video?",
-      options: [
-        "It eliminates the need to study English grammar entirely.",
-        "It lightens cognitive load by using flexible structural units in speech.",
-        "It helps you memorize over 500 rare verbs quickly.",
-        "It automatically corrects your regional accent."
-      ],
-      correct: 1,
-      explanation: "Light verbs act as versatile structural anchors, reducing the mental effort required to generate fluent sentences on the spot."
+      title: "Mastering Light Verbs",
+      badgeText: "Grammar & Structure",
+      badgeClass: "badge-grammar",
+      description: "Learn how native speakers use common verbs like make, take, do, have, and give with nouns to sound more natural and fluid.",
+      url: "light-verbs.html"
     },
     {
-      category: "1. Video Comprehension",
-      question: "According to the video, how is 'make' distinct from 'do'?",
-      options: [
-        "'Make' is for actions and routines; 'do' is for physical objects.",
-        "'Make' is used exclusively for cooking and food preparation.",
-        "'Make' relates to creating outcomes/results, while 'do' relates to activities or tasks.",
-        "There is no difference; they are completely interchangeable."
-      ],
-      correct: 2,
-      explanation: "'Make' focuses on the end creation or result (e.g., make a decision), while 'do' focuses on performing an activity or task (e.g., do research)."
+      title: "I Speak English at Native Speed",
+      badgeText: "Listening & Native Speed",
+      badgeClass: "badge-listening",
+      description: "Practice your listening comprehension with Evie's video. Includes a 20-question quiz and key British English expressions.",
+      url: "evie-lesson.html"
     },
     {
-      category: "1. Video Comprehension",
-      question: "Which verb is described as the most versatile light verb representing a 'change of state'?",
-      options: ["Take", "Give", "Set", "Get"],
-      correct: 3,
-      explanation: "'Get' is highlighted as highly versatile, often denoting transitions or changes in condition (e.g., get ready, get tired)."
+      title: "This is the *Only* Method to Become Fluent",
+      badgeText: "Fluency & Method",
+      badgeClass: "badge-fluency",
+      description: "Acquire vocabulary first.",
+      url: "cat-lesson.html"
     },
     {
-      category: "1. Video Comprehension",
-      question: "What does the 'Fire' step represent in the 'Hear, Map, Fire' protocol?",
-      options: [
-        "Writing down new vocabulary in a notebook.",
-        "Practicing the phrase aloud to pre-load it into your brain before real use.",
-        "Deleting translated words from your memory.",
-        "Testing your speed by reading paragraphs rapidly."
-      ],
-      correct: 1,
-      explanation: "'Fire' means actively pronouncing the phrase aloud so that your motor memory is prepared prior to real-world conversations."
-    },
-    {
-      category: "1. Video Comprehension",
-      question: "Why does the author advocate mapping phrases to contexts instead of translating?",
-      options: [
-        "Translation takes too much time and creates a bottleneck in spontaneous speech.",
-        "Direct translation is prohibited by Cambridge English rules.",
-        "English words have no equivalent in any other language.",
-        "Mapping requires expensive software that automates speech."
-      ],
-      correct: 0,
-      explanation: "Translating word-for-word adds cognitive lag. Associating phrases directly with situations enables faster, direct access in speech."
-    },
-
-    // Category 2: Pronunciation (IPA Recognition)
-    {
-      category: "2. Pronunciation (IPA)",
-      question: "Which word from the video corresponds to the IPA transcription /'fluːənsi/?",
-      options: ["Fluency", "Frequency", "Flexibility", "Fluidity"],
-      correct: 0,
-      explanation: "/'fluːənsi/ is the phonetic transcription for 'Fluency'."
-    },
-    {
-      category: "2. Pronunciation (IPA)",
-      question: "Identify the correct IPA transcription for the word 'Decision':",
-      options: ["/dɪ'sɪʃən/", "/dɪ'sɪʒən/", "/de'saɪzən/", "/dɪ'sɪzən/"],
-      correct: 1,
-      explanation: "'Decision' is pronounced /dɪ'sɪʒən/ with a voiced postalveolar fricative /ʒ/ sound."
-    },
-    {
-      category: "2. Pronunciation (IPA)",
-      question: "What word is represented by the phonetic transcription /'kɒɡnɪtɪv/?",
-      options: ["Cognitive", "Recognition", "Comparative", "Connecting"],
-      correct: 0,
-      explanation: "/'kɒɡnɪtɪv/ translates to 'Cognitive', as in 'cognitive load'."
-    },
-    {
-      category: "2. Pronunciation (IPA)",
-      question: "Which of the following is the correct transcription for 'Structure' /'strʌktʃər/?",
-      options: ["Stricture", "Structure", "Strategy", "Stretch"],
-      correct: 1,
-      explanation: "/'strʌktʃər/ corresponds to 'Structure'."
-    },
-    {
-      category: "2. Pronunciation (IPA)",
-      question: "Identify the word corresponding to the phonetic form /'vɜːsətaɪl/ (or /'vɜːrsət\n/):",
-      options: ["Vertical", "Versatile", "Variable", "Virtue"],
-      correct: 1,
-      explanation: "/'vɜːsətaɪl/ represents 'Versatile' (adaptable to many functions)."
-    },
-
-    // Category 3: Vocabulary
-    {
-      category: "3. Vocabulary",
-      question: "In the context of language acquisition, what is 'Cognitive Load'?",
-      options: [
-        "The total weight of textbooks carried by students.",
-        "The amount of working memory resources used during mental processing.",
-        "The speed at which a speaker can articulate consonants.",
-        "The difficulty level of a standardized language test."
-      ],
-      correct: 1,
-      explanation: "'Cognitive load' refers to the amount of mental effort required to process information during communication."
-    },
-    {
-      category: "3. Vocabulary",
-      question: "What does the term 'Collocation' mean?",
-      options: [
-        "A group of words that translated literally into another language.",
-        "Words that frequently co-occur naturally in speech (e.g., 'make a choice').",
-        "A grammatical error involving incorrect prepositions.",
-        "The formal phonetic system used in dictionaries."
-      ],
-      correct: 1,
-      explanation: "Collocations are combinations of words that naturally and habitually go together in English."
-    },
-    {
-      category: "3. Vocabulary",
-      question: "What is the meaning of 'Versatile' when describing light verbs?",
-      options: [
-        "Extremely rare and difficult to pronounce.",
-        "Able to adapt or be used in many different contexts.",
-        "Strictly limited to written academic papers.",
-        "Invariable and unable to change tenses."
-      ],
-      correct: 1,
-      explanation: "'Versatile' means having high adaptability across various communicative settings."
-    },
-    {
-      category: "3. Vocabulary",
-      question: "In the 'Hear, Map, Fire' method, what does 'Pre-load' mean?",
-      options: [
-        "To charge your electronic devices before studying.",
-        "To practice a phrase beforehand so it can be retrieved effortlessly.",
-        "To download subtitles prior to watching a video.",
-        "To read a dictionary cover-to-cover before speaking."
-      ],
-      correct: 1,
-      explanation: "Pre-loading refers to rehearsing patterns in advance so they are readily accessible during real-time speech."
-    },
-    {
-      category: "3. Vocabulary",
-      question: "What does 'Spontaneous speech' refer to?",
-      options: [
-        "Unplanned, natural communication produced on the spot.",
-        "A speech read directly from a pre-written script.",
-        "Formal public speaking rehearsed for weeks.",
-        "Silent mental translation between languages."
-      ],
-      correct: 0,
-      explanation: "Spontaneous speech is natural, unrehearsed conversation happening in real time."
-    },
-
-    // Category 4: Grammar
-    {
-      category: "4. Grammar",
-      question: "Which of the following collocations correctly uses a light verb?",
-      options: [
-        "She made a research on climate change.",
-        "She did a decision regarding her career.",
-        "She did research on climate change.",
-        "She set research on climate change."
-      ],
-      correct: 2,
-      explanation: "'Research' pairs naturally with 'do' (do research), whereas 'decision' pairs with 'make' (make a decision)."
-    },
-    {
-      category: "4. Grammar",
-      question: "Choose the grammatically correct sentence using 'get' to show a change of state:",
-      options: [
-        "I am getting tired after working all day.",
-        "I am making tired after working all day.",
-        "I am doing tired after working all day.",
-        "I am putting tired after working all day."
-      ],
-      correct: 0,
-      explanation: "'Get' + adjective (get tired) indicates a transformation or transition in state."
-    },
-    {
-      category: "4. Grammar",
-      question: "Complete the sentence correctly: 'We need to ______ boundaries to protect our time.'",
-      options: ["make", "set", "do", "go"],
-      correct: 1,
-      explanation: "The natural collocation for establishing limits is 'set boundaries'."
-    },
-    {
-      category: "4. Grammar",
-      question: "Which sentence uses 'have' as a light verb to express an action/experience?",
-      options: [
-        "I have two cars parked outside.",
-        "Let's have a discussion about the budget.",
-        "They have a large house near the lake.",
-        "She has three brothers."
-      ],
-      correct: 1,
-      explanation: "In 'have a discussion', 'have' functions as a light verb carrying the action of discussing, rather than indicating physical possession."
-    },
-    {
-      category: "4. Grammar",
-      question: "Identify the correct light verb structure: 'If anything ______ wrong, let me know.'",
-      options: ["makes", "does", "goes", "puts"],
-      correct: 2,
-      explanation: "The established phrase for unexpected failure or problems is 'go wrong'."
+      title: "Learn How to Think In English ( Stop Translating in Your Head )",
+      badgeText: "Daily & Easy",
+      badgeClass: "badge-daily",
+      description: "5 Concrete Exercises you can put in practice daily.",
+      url: "english-class.html"
     }
+
   ];
 
-  let currentScore = 0;
-  let questionsAnswered = 0;
+  const searchInput = document.getElementById('search-input');
+  const lessonsGrid = document.getElementById('lessons-grid');
+  const noResults = document.getElementById('no-results');
 
-  function renderQuiz() {
-    const quizContainer = document.getElementById('quiz-container');
-    let currentCategory = "";
+  function filterLessons(query) {
+    lessonsGrid.innerHTML = '';
+    const cleanQuery = query.toLowerCase().trim();
 
-    quizData.forEach((item, index) => {
-      if (item.category !== currentCategory) {
-        currentCategory = item.category;
-        const catHeader = document.createElement('h3');
-        catHeader.className = 'category-title';
-        catHeader.textContent = currentCategory;
-        quizContainer.appendChild(catHeader);
-      }
+    // If search box is empty, clear results completely
+    if (cleanQuery === '') {
+      noResults.style.display = 'none';
+      return;
+    }
 
-      const qBlock = document.createElement('div');
-      qBlock.className = 'question-block';
-      qBlock.id = `q-block-${index}`;
+    const filteredLessons = lessons.filter(lesson => 
+      lesson.title.toLowerCase().includes(cleanQuery) || 
+      lesson.description.toLowerCase().includes(cleanQuery) ||
+      lesson.badgeText.toLowerCase().includes(cleanQuery)
+    );
 
-      const qText = document.createElement('div');
-      qText.className = 'question-text';
-      qText.textContent = `${index + 1}. ${item.question}`;
-      qBlock.appendChild(qText);
-
-      const optionsDiv = document.createElement('div');
-      optionsDiv.className = 'options';
-
-      item.options.forEach((opt, optIndex) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.textContent = opt;
-        btn.onclick = () => handleAnswer(index, optIndex);
-        optionsDiv.appendChild(btn);
-      });
-
-      qBlock.appendChild(optionsDiv);
-
-      const feedbackDiv = document.createElement('div');
-      feedbackDiv.className = 'feedback';
-      feedbackDiv.id = `feedback-${index}`;
-      qBlock.appendChild(feedbackDiv);
-
-      quizContainer.appendChild(qBlock);
-    });
-  }
-
-  function handleAnswer(questionIndex, selectedOptionIndex) {
-    const qData = quizData[questionIndex];
-    const qBlock = document.getElementById(`q-block-${questionIndex}`);
-    const buttons = qBlock.querySelectorAll('.option-btn');
-    const feedbackEl = document.getElementById(`feedback-${questionIndex}`);
-
-    // Disable all buttons for this question
-    buttons.forEach(btn => btn.disabled = true);
-
-    const isCorrect = selectedOptionIndex === qData.correct;
-
-    if (isCorrect) {
-      currentScore++;
-      buttons[selectedOptionIndex].classList.add('selected-correct');
-      feedbackEl.classList.add('correct', 'visible');
-      feedbackEl.innerHTML = `<strong>Correct!</strong> ${qData.explanation}`;
+    if (filteredLessons.length === 0) {
+      noResults.style.display = 'block';
     } else {
-      buttons[selectedOptionIndex].classList.add('selected-incorrect');
-      buttons[qData.correct].classList.add('show-correct');
-      feedbackEl.classList.add('incorrect', 'visible');
-      feedbackEl.innerHTML = `<strong>Incorrect.</strong> ${qData.explanation}`;
-    }
+      noResults.style.display = 'none';
+      filteredLessons.forEach(lesson => {
+        const card = document.createElement('a');
+        card.href = lesson.url;
+        card.className = 'lesson-card';
 
-    questionsAnswered++;
-
-    if (questionsAnswered === quizData.length) {
-      displayResults();
+        card.innerHTML = `
+          <div>
+            <span class="badge ${lesson.badgeClass}">${lesson.badgeText}</span>
+            <h2 class="lesson-title">${lesson.title}</h2>
+            <p class="lesson-description">${lesson.description}</p>
+          </div>
+          <div class="card-footer">
+            <span>Start Lesson</span>
+            <span class="arrow-icon">&rarr;</span>
+          </div>
+        `;
+        lessonsGrid.appendChild(card);
+      });
     }
   }
 
-  function displayResults() {
-    const resultsCard = document.getElementById('results-card');
-    const finalScoreEl = document.getElementById('final-score');
-    const cefrLevelEl = document.getElementById('cefr-level');
-    const cefrDescEl = document.getElementById('cefr-desc');
-
-    finalScoreEl.textContent = currentScore;
-
-    let level = "A1";
-    let desc = "Basic User: You can understand basic phrases and simple sentences.";
-
-    if (currentScore >= 18) {
-      level = "C1 / C2";
-      desc = "Proficient User: You possess high operational command of English structural concepts, vocabulary, and grammar.";
-    } else if (currentScore >= 14) {
-      level = "B2";
-      desc = "Vantage / Upper-Intermediate: You understand complex ideas, collocations, and communicative strategies well.";
-    } else if (currentScore >= 10) {
-      level = "B1";
-      desc = "Threshold / Intermediate: You understand main points and basic light verb mechanics, but require further practice.";
-    } else if (currentScore >= 6) {
-      level = "A2";
-      desc = "Elementary: You recognize fundamental concepts but need to strengthen your vocabulary and collocations.";
-    }
-
-    cefrLevelEl.textContent = level;
-    cefrDescEl.textContent = desc;
-
-    resultsCard.classList.add('visible');
-    resultsCard.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  // Initialize Quiz on load
-  window.onload = renderQuiz;
+  // Event listener for active typing
+  searchInput.addEventListener('input', (e) => {
+    filterLessons(e.target.value);
+  });
 </script>
 
 </body>

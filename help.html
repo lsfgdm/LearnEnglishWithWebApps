@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn English with The Beatles - Help!</title>
+    <style>
+        :root {
+            --primary-color: #dc2626;
+            --secondary-color: #991b1b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --correct-color: #16a34a;
+            --wrong-color: #dc2626;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+
+        h3 {
+            margin-top: 25px;
+            color: var(--primary-color);
+        }
+
+        .question-card {
+            background-color: #f1f5f9;
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .question-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background-color: #e2e8f0;
+        }
+
+        .option-btn.correct {
+            background-color: #dcfce7;
+            border-color: var(--correct-color);
+            color: #14532d;
+            font-weight: bold;
+        }
+
+        .option-btn.wrong {
+            background-color: #fee2e2;
+            border-color: var(--wrong-color);
+            color: #7f1d1d;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .feedback.visible {
+            display: block;
+        }
+
+        .feedback.correct-bg {
+            background-color: #dcfce7;
+            color: #14532d;
+        }
+
+        .feedback.wrong-bg {
+            background-color: #fee2e2;
+            color: #7f1d1d;
+        }
+
+        .expression-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .expression-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .expression-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .expression-body {
+            padding: 15px;
+            flex-grow: 1;
+        }
+
+        .expression-term {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .expression-trans {
+            font-style: italic;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .expression-example {
+            background: #f8fafc;
+            padding: 10px;
+            border-left: 3px solid var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .song-overview {
+            background-color: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>The Beatles – Help!</h1>
+        <p>Improve your English skills with this classic song by The Beatles</p>
+    </header>
+
+    <!-- YouTube Video -->
+    <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Po5ti70U0bc?si=2WDD_1pxaBPlYE6l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <!-- Quiz Section -->
+    <section class="section-card">
+        <h2>Language & Comprehension Quiz</h2>
+        <div id="quiz-container"></div>
+    </section>
+
+    <!-- Expressions Section -->
+    <section class="section-card">
+        <h2>10 Key Expressions from the Song</h2>
+        <div class="expression-grid" id="expressions-container"></div>
+    </section>
+
+    <!-- Song Overview Section -->
+    <section class="section-card">
+        <h2>Song Overview & Meaning</h2>
+        <div class="song-overview">
+            <p><strong>Song Theme:</strong> Written primarily by John Lennon, <em>Help!</em> reflects the emotional stress and pressure caused by sudden international stardom. Beneath its upbeat tempo, Lennon looks back at a time when he was younger, independent, and self-assured, contrasting it with his present state of vulnerability and need for support.</p>
+            <p><em>Selected Chorus Quote:</em><br>
+            "Help me if you can, I'm feeling down<br>
+            And I do appreciate you being 'round<br>
+            Help me get my feet back on the ground<br>
+            Won't you please, please help me" — <em>The Beatles</em></p>
+        </div>
+    </section>
+</div>
+
+<script>
+const quizData = [
+    // 5 Listening Comprehension Questions
+    {
+        category: "Comprehension",
+        question: "1. How did the singer feel when he was younger?",
+        options: ["Sad and isolated", "Independent and in no need of help", "Incapable of making decisions", "Anxious about his career"],
+        answer: 1,
+        explanation: "The lyrics state: 'I never needed anybody's help in any way'."
+    },
+    {
+        category: "Comprehension",
+        question: "2. What imagery is used to describe the loss of independence?",
+        options: ["It vanishes in the haze", "It flies away with the wind", "It burns like fire", "It sinks to the bottom of the ocean"],
+        answer: 0,
+        explanation: "The singer mentions: 'My independence seems to vanish in the haze'."
+    },
+    {
+        category: "Comprehension",
+        question: "3. What specific request does the singer make in the chorus?",
+        options: ["To be left alone", "To get his feet back on the ground", "To receive financial support", "To go on a long trip"],
+        answer: 1,
+        explanation: "The core line in the chorus is: 'Help me get my feet back on the ground'."
+    },
+    {
+        category: "Comprehension",
+        question: "4. What feeling does the singer experience 'every now and then'?",
+        options: ["A sense of insecurity", "Extreme anger", "Overwhelming joy", "Boredom"],
+        answer: 0,
+        explanation: "He sings: 'But every now and then I feel so insecure'."
+    },
+    {
+        category: "Comprehension",
+        question: "5. How does the singer view the presence of the person he addresses?",
+        options: ["He finds it useless", "He appreciates them being around", "He feels suffocated by them", "He ignores them"],
+        answer: 1,
+        explanation: "The singer explicitly states: 'And I do appreciate you being 'round'."
+    },
+
+    // 5 Vocabulary Questions
+    {
+        category: "Vocabulary",
+        question: "6. What does the expression 'feeling down' mean?",
+        options: ["Jumping with joy", "Feeling depressed or sad", "Feeling physically hot", "Being in a hurry"],
+        answer: 1,
+        explanation: "'Feeling down' means feeling low in spirits, sad, or depressed."
+    },
+    {
+        category: "Vocabulary",
+        question: "7. What is the meaning of 'self-assured'?",
+        options: ["Anxious", "Confident in oneself", "Shy", "Insured against accidents"],
+        answer: 1,
+        explanation: "'Self-assured' describes a person who has confidence in their own abilities."
+    },
+    {
+        category: "Vocabulary",
+        question: "8. What does the verb 'to vanish' mean?",
+        options: ["To appear", "To disappear suddenly", "To shine brightly", "To grow larger"],
+        answer: 1,
+        explanation: "'Vanish' means to pass out of sight or disappear completely."
+    },
+    {
+        category: "Vocabulary",
+        question: "9. Which phrase is synonymous with 'every now and then'?",
+        options: ["All the time", "Never", "From time to time / Occasionally", "Immediately"],
+        answer: 2,
+        explanation: "'Every now and then' refers to something that happens occasionally."
+    },
+    {
+        category: "Vocabulary",
+        question: "10. In this context, what does 'insecure' mean?",
+        options: ["Dangerous", "Lacking confidence or assurance", "Fully protected", "Arrogant"],
+        answer: 1,
+        explanation: "When applied to personal feelings, 'insecure' means lacking self-confidence."
+    },
+
+    // 5 Grammar Questions
+    {
+        category: "Grammar",
+        question: "11. In the line 'I find I've changed my mind', what verb tense is 'have changed'?",
+        options: ["Simple Past", "Present Perfect", "Past Perfect", "Present Continuous"],
+        answer: 1,
+        explanation: "'Have changed' uses have/has + past participle, forming the Present Perfect."
+    },
+    {
+        category: "Grammar",
+        question: "12. What function does 'do' serve in 'I do appreciate'?",
+        options: ["Forming a question", "Adding emphasis to the statement", "Making the sentence negative", "Indicating a past action"],
+        answer: 1,
+        explanation: "Adding the auxiliary 'do' before an affirmative verb provides emphatic stress."
+    },
+    {
+        category: "Grammar",
+        question: "13. Which verb form correctly follows 'appreciate' in the chorus?",
+        options: ["Appreciate you to be", "Appreciate you being", "Appreciate you be", "Appreciate your to be"],
+        answer: 1,
+        explanation: "The verb 'appreciate' takes an object + gerund (-ing form)."
+    },
+    {
+        category: "Grammar",
+        question: "14. In 'When I was younger', the word 'younger' represents:",
+        options: ["A superlative adjective", "A comparative adjective", "An adverb", "A noun"],
+        answer: 1,
+        explanation: "'Younger' is the comparative form of the short adjective 'young'."
+    },
+    {
+        category: "Grammar",
+        question: "15. Complete the past negative statement: 'I _____ needed anybody's help.'",
+        options: ["never", "don't", "not", "haven't"],
+        answer: 0,
+        explanation: "The lyric uses the frequency adverb 'never' to express past negation: 'I never needed'."
+    },
+
+    // 5 Pronunciation Questions
+    {
+        category: "Pronunciation",
+        question: "16. How is the past tense ending '-ed' pronounced in the word 'changed'?",
+        options: ["As an extra syllable /ɪd/", "As a voiced /d/ sound", "As an unvoiced /t/ sound", "It remains completely silent"],
+        answer: 1,
+        explanation: "Following the voiced sound /ʒ/, the '-ed' suffix is pronounced as /d/."
+    },
+    {
+        category: "Pronunciation",
+        question: "17. What phonetic feature occurs in the continuous speech of 'opened up'?",
+        options: ["The final /d/ of 'opened' links directly to 'up'", "The word 'up' is silenced", "A pause is introduced between words", "The consonant /p/ is dropped"],
+        answer: 0,
+        explanation: "In connected speech, the final consonant /d/ links smoothly to the initial vowel of 'up'."
+    },
+    {
+        category: "Pronunciation",
+        question: "18. Where is the primary syllable stress located in 'independence'?",
+        options: ["First syllable (IN-dependence)", "Third syllable (inde-PEN-dence)", "Fourth syllable (depend-ENCE)", "Second syllable (in-DEP-endence)"],
+        answer: 1,
+        explanation: "The primary stress in 'independence' falls on the third syllable: /ˌɪn.dɪˈpen.dəns/."
+    },
+    {
+        category: "Pronunciation",
+        question: "19. Which vowel sound is present in the word 'haze' (/heɪz/)?",
+        options: ["Short vowel /æ/ as in 'cat'", "Diphthong /eɪ/ as in 'day'", "Long vowel /iː/ as in 'see'", "Diphthong /aɪ/ as in 'my'"],
+        answer: 1,
+        explanation: "The word 'haze' features the diphthong vowel sound /eɪ/."
+    },
+    {
+        category: "Pronunciation",
+        question: "20. What is the correct IPA transcription for 'appreciate'?",
+        options: ["/əˈpriː.ʃi.eɪt/", "/æp.re.ka.te/", "/əˈpre.si.at/", "/ɑː.priː.keɪt/"],
+        answer: 0,
+        explanation: "The standard phonetic representation for 'appreciate' is /əˈpriː.ʃi.eɪt/."
+    }
+];
+
+const expressionsData = [
+    {
+        term: "Feeling down",
+        translation: "Avoir le moral dans les chaussettes / Déprimer",
+        example: "Whenever I'm feeling down, I listen to my favorite music.",
+        image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Get my feet back on the ground",
+        translation: "Garder / Retrouver les pieds sur terre",
+        example: "After all that success, he needed time to get his feet back on the ground.",
+        image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Change one's mind",
+        translation: "Changer d'avis",
+        example: "I was going to stay home, but I changed my mind and went out.",
+        image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Self-assured",
+        translation: "Sûr de soi / Confiant",
+        example: "She walked into the job interview feeling calm and self-assured.",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Vanish in the haze",
+        translation: "S'évaporer dans la brume / Disparaître",
+        example: "All our worries seemed to vanish in the haze during vacation.",
+        image: "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Every now and then",
+        translation: "De temps en temps",
+        example: "Every now and then, I like to take a long walk in the forest.",
+        image: "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Appreciate (someone) being 'round",
+        translation: "Apprécier la présence de quelqu'un",
+        example: "I really appreciate you being 'round when things get tough.",
+        image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "In any way",
+        translation: "De quelque manière que ce soit / En aucun cas",
+        example: "This decision does not affect our friendship in any way.",
+        image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Open up the doors",
+        translation: "S'ouvrir aux autres / Ouvrir de nouvelles perspectives",
+        example: "Learning a new language opens up the doors to many opportunities.",
+        image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Won't you please...",
+        translation: "S'il te plaît, ne voudrais-tu pas...",
+        example: "Won't you please turn down the volume a little bit?",
+        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"
+    }
+];
+
+// Render Quiz
+function renderQuiz() {
+    const quizContainer = document.getElementById('quiz-container');
+    let currentCategory = "";
+
+    quizData.forEach((q) => {
+        if (q.category !== currentCategory) {
+            currentCategory = q.category;
+            const catHeader = document.createElement('h3');
+            catHeader.textContent = currentCategory;
+            quizContainer.appendChild(catHeader);
+        }
+
+        const card = document.createElement('div');
+        card.className = 'question-card';
+
+        const qTitle = document.createElement('div');
+        qTitle.className = 'question-title';
+        qTitle.textContent = q.question;
+        card.appendChild(qTitle);
+
+        const optionsList = document.createElement('ul');
+        optionsList.className = 'options-list';
+
+        const feedback = document.createElement('div');
+        feedback.className = 'feedback';
+
+        q.options.forEach((opt, optIdx) => {
+            const li = document.createElement('li');
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = opt;
+
+            btn.onclick = () => {
+                const allBtns = optionsList.querySelectorAll('.option-btn');
+                allBtns.forEach(b => b.disabled = true);
+
+                if (optIdx === q.answer) {
+                    btn.classList.add('correct');
+                    feedback.textContent = `Correct! ${q.explanation}`;
+                    feedback.classList.add('visible', 'correct-bg');
+                } else {
+                    btn.classList.add('wrong');
+                    allBtns[q.answer].classList.add('correct');
+                    feedback.textContent = `Incorrect. ${q.explanation}`;
+                    feedback.classList.add('visible', 'wrong-bg');
+                }
+            };
+
+            li.appendChild(btn);
+            optionsList.appendChild(li);
+        });
+
+        card.appendChild(optionsList);
+        card.appendChild(feedback);
+        quizContainer.appendChild(card);
+    });
+}
+
+// Render Expressions
+function renderExpressions() {
+    const container = document.getElementById('expressions-container');
+    expressionsData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'expression-card';
+
+        card.innerHTML = `
+            <img class="expression-img" src="${item.image}" alt="${item.term}">
+            <div class="expression-body">
+                <div class="expression-term">${item.term}</div>
+                <div class="expression-trans">🇫🇷 ${item.translation}</div>
+                <div class="expression-example"><strong>Example:</strong> "${item.example}"</div>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+window.onload = () => {
+    renderQuiz();
+    renderExpressions();
+};
+</script>
+
+</body>
+</html>

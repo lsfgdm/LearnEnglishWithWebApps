@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Learn a Language Fast and Effortlessly - TEDx Talk</title>
+  <!-- Telegram WebApp SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --correct: #16a34a;
+      --correct-bg: #dcfce7;
+      --incorrect: #dc2626;
+      --incorrect-bg: #fee2e2;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    /* Video Player */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Quiz Styling */
+    .quiz-section h2 {
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .category-title {
+      font-size: 1.3rem;
+      margin: 25px 0 15px 0;
+      color: var(--primary-color);
+    }
+
+    .question-block {
+      margin-bottom: 25px;
+      padding: 18px;
+      background-color: #fafafa;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 12px 15px;
+      border-radius: 6px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background-color: #f1f5f9;
+      border-color: var(--primary-color);
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-btn.selected-correct {
+      background-color: var(--correct-bg);
+      border-color: var(--correct);
+      color: #064e3b;
+      font-weight: bold;
+    }
+
+    .option-btn.selected-incorrect {
+      background-color: var(--incorrect-bg);
+      border-color: var(--incorrect);
+      color: #7f1d1d;
+    }
+
+    .option-btn.show-correct {
+      border-color: var(--correct);
+      background-color: #f0fdf4;
+    }
+
+    .feedback {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .feedback.visible {
+      display: block;
+    }
+
+    .feedback.correct {
+      background-color: var(--correct-bg);
+      color: #14532d;
+    }
+
+    .feedback.incorrect {
+      background-color: var(--incorrect-bg);
+      color: #7f1d1d;
+    }
+
+    /* Results */
+    #results-card {
+      display: none;
+      text-align: center;
+    }
+
+    #results-card.visible {
+      display: block;
+    }
+
+    .score-display {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    /* Expressions Section Grid */
+    .expressions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .expression-card {
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .expression-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .expression-content {
+      padding: 18px;
+    }
+
+    .expression-title {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 6px;
+    }
+
+    .expression-meaning {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .expression-example {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      background: #f8fafc;
+      padding: 8px 12px;
+      border-left: 3px solid var(--primary-color);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>How to Learn a Language Fast and Effortlessly</h1>
+    <p>TEDx Talk by Victoria Obiageli • Natural Acquisition vs. Traditional Study</p>
+  </header>
+
+  <!-- Video Player Card -->
+  <div class="card">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/OZU7HMV4fNA" title="TEDx Talk by Victoria Obiageli" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Quiz Section Card -->
+  <div class="card quiz-section">
+    <h2>Multiple Choice Quiz (20 Questions)</h2>
+    <div id="quiz-container"></div>
+  </div>
+
+  <!-- Results Section Card -->
+  <div class="card" id="results-card">
+    <h2>Quiz Completed!</h2>
+    <div class="score-display">Your Score: <span id="final-score">0</span> / 20</div>
+    <p id="score-message"></p>
+  </div>
+
+  <!-- Useful Expressions Section -->
+  <div class="card" id="expressions-section">
+    <h2>10 Key Expressions & Concepts from the TEDx Talk</h2>
+    <p>Here are key vocabulary items and phrases used by Victoria Obiageli, illustrated in everyday contexts:</p>
+
+    <div class="expressions-grid">
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80" alt="Textbook study" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">1. Traditional study methods</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Conventional school approaches reliant on textbooks, grammar rules, and mechanical memorization.</div>
+          <div class="expression-example">"Despite relying on traditional study methods for three years in French class, she couldn't hold a simple conversation."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" alt="Natural language acquisition" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">2. Acquire a language</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Absorbing a language naturally and largely unconsciously through real immersion rather than deliberate study.</div>
+          <div class="expression-example">"Instead of memorizing vocabulary, children acquire their native language by surrounding themselves with spoken words."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Comprehensible Input" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">3. Comprehensible input</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Target language content that is slightly above your current level, allowing you to understand the main idea while acquiring new patterns.</div>
+          <div class="expression-example">"Watching cartoons in Spanish provided excellent comprehensible input because the visuals helped explain unknown words."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=600&q=80" alt="Phone social media" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">4. Turn unproductive habits into productive ones</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Repurposing daily routines (like scrolling social media) into language practice opportunities.</div>
+          <div class="expression-example">"By changing her phone language and following Italian creators, she turned her unproductive scrolling habit into productive practice."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" alt="Authentic communication" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">5. Express yourself authentically</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Communicating genuine personal thoughts and feelings rather than reciting textbook dialogue.</div>
+          <div class="expression-example">"Practicing with native speakers allows you to express yourself authentically and build real relationships."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=600&q=80" alt="Taking up a challenge" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">6. Take up a challenge</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Deciding to start a new, demanding task or goal.</div>
+          <div class="expression-example">"After reaching fluency in Korean, she decided to take up another challenge and started learning Mandarin Chinese."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80" alt="Sentence structure" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">7. Familiar with the sentence structure</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Having a basic understanding of how words order and fit together in a target language.</div>
+          <div class="expression-example">"Once you become familiar with the basic sentence structure, you can stop formal grammar lessons."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=600&q=80" alt="Comfortable in a language" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">8. Become comfortable in the language</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Feeling at ease when listening or speaking without feeling anxious about mistakes.</div>
+          <div class="expression-example">"Connecting English with topics you love helps you become comfortable in the language faster."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80" alt="Opening new doors" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">9. Open new doors</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> Creating new opportunities for personal growth, friendships, and career opportunities.</div>
+          <div class="expression-example">"Learning foreign languages opens new doors by allowing you to connect deeply with people from different cultures."</div>
+        </div>
+      </div>
+
+      <div class="expression-card">
+        <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=600&q=80" alt="Target language" class="expression-img">
+        <div class="expression-content">
+          <div class="expression-title">10. Target language</div>
+          <div class="expression-meaning"><strong>Meaning:</strong> The foreign language that a person is currently aiming to learn or acquire.</div>
+          <div class="expression-example">"Watching movies in your target language with matching subtitles accelerates word recognition."</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // Initialize Telegram WebApp SDK if available
+  if (window.Telegram && window.Telegram.WebApp) {
+    window.Telegram.WebApp.ready();
+    window.Telegram.WebApp.expand();
+  }
+
+  // Quiz Data with rotating correct answer positions (0=A, 3=D, 1=B, 2=C)
+  const quizData = [
+    // 1. Listening Comprehension
+    {
+      category: "1. Listening Comprehension",
+      question: "What primary obstacle prevented Victoria from progressing in French and German during her school years?",
+      options: [
+        "She relied solely on traditional textbook study, memorization, and lacked personal motivation.",
+        "She was too young to understand basic linguistic principles.",
+        "She didn't have access to an internet connection or video tools.",
+        "Her teachers refused to assign homework exercises."
+      ],
+      correct: 0, // Position 1 (A)
+      explanation: "Victoria explains that mechanical textbook drills, memorizing grammar without real motivation, and lack of real immersion left her French and German knowledge near zero."
+    },
+    {
+      category: "1. Listening Comprehension",
+      question: "According to the speaker, what is the best initial step when starting a brand new language?",
+      options: [
+        "Memorize a 500-page dictionary of common nouns.",
+        "Hire a professional private tutor for daily grammar drills.",
+        "Enroll in an intensive university literature course.",
+        "Watch beginner YouTube videos to learn basic greetings, simple phrases, and sound pronunciation."
+      ],
+      correct: 3, // Position 4 (D)
+      explanation: "Victoria recommends using platforms like YouTube during the brief initial stage to get familiar with basic greetings, core vocabulary, and sounds."
+    },
+    {
+      category: "1. Listening Comprehension",
+      question: "What defines 'comprehensible input' as explained in the presentation?",
+      options: [
+        "Listening to fast-paced news broadcasts where you understand 10% of the vocabulary.",
+        "Target language content that is slightly above your current level, keeping you challenged while remaining understandable.",
+        "Writing down translated grammar rules fifty times in a notebook.",
+        "Reading advanced legal documents in your native language."
+      ],
+      correct: 1, // Position 2 (B)
+      explanation: "Comprehensible input is language content slightly above your proficiency level, allowing your brain to process context while absorbing new patterns."
+    },
+    {
+      category: "1. Listening Comprehension",
+      question: "How does the speaker suggest overcoming fear or lack of native conversation partners?",
+      options: [
+        "Avoid speaking entirely until you reach native fluency.",
+        "Hire an expensive translator to review your daily thoughts.",
+        "Practice thinking in the target language and engage with online native speakers.",
+        "Repeat grammatical tables out loud in an empty classroom."
+      ],
+      correct: 2, // Position 3 (C)
+      explanation: "Victoria points out that switching your thoughts into the target language and chatting with people online helps build confidence effortlessly."
+    },
+    {
+      category: "1. Listening Comprehension",
+      question: "What essential element does Victoria identify as required to learn a language effectively?",
+      options: [
+        "A little motivation and an internet connection.",
+        "A degree in foreign literature and linguistics.",
+        "A physical textbook written by academic professors.",
+        "Passing standardized grammar examinations every semester."
+      ],
+      correct: 0, // Position 1 (A)
+      explanation: "As stated in her conclusion, you don't need a teacher or textbook—just motivation and an internet connection to access content."
+    },
+
+    // 2. Pronunciation
+    {
+      category: "2. Pronunciation",
+      question: "How is the suffix '-lessly' pronounced in the word 'effortlessly' /ˈef.ət.ləs.li/?",
+      options: [
+        "With heavy emphasis on the final vowel sound.",
+        "Pronounced with full stress on '-less-'.",
+        "With a silent 'e' and a quick, unstressed schwa /ləs.li/.",
+        "Identically to the word 'lesser'."
+      ],
+      correct: 2, // Position 3 (C)
+      explanation: "The suffix '-lessly' contains unstressed weak vowels /ləs.li/, maintaining primary stress on the first syllable 'EF-fort-lessly'."
+    },
+    {
+      category: "2. Pronunciation",
+      question: "Where is the primary stress located in the word 'comprehensible' /ˌkɒm.prɪˈhen.sə.bəl/?",
+      options: [
+        "On the third syllable ('-hen-').",
+        "On the first syllable ('com-').",
+        "On the second syllable ('-pre-').",
+        "On the final syllable ('-ble')."
+      ],
+      correct: 0, // Position 1 (A)
+      explanation: "In 'comprehensible', the main primary stress falls on the third syllable: com-pre-HEN-si-ble."
+    },
+    {
+      category: "2. Pronunciation",
+      question: "What sound reduction commonly occurs in the phrase 'kind of' or 'type of' in casual speech?",
+      options: [
+        "The 'of' becomes fully stressed.",
+        "The 'f' sound shifts to a sharp 'p' sound.",
+        "The vowel in 'of' changes to an 'i' sound.",
+        "The phrase links smoothly, reducing 'of' to a weak schwa /ə/."
+      ],
+      correct: 3, // Position 4 (D)
+      explanation: "In fast natural English, 'of' is reduced to /ə/ (e.g., 'kinda', 'sorta')."
+    },
+    {
+      category: "2. Pronunciation",
+      question: "Which syllable receives the main stress in 'unconscious' /ʌnˈkɒn.ʃəs/?",
+      options: [
+        "On the prefix ('un-').",
+        "On the second syllable ('-scious' /kɒn/).",
+        "On the ending ('-ness').",
+        "Both syllables receive equal stress."
+      ],
+      correct: 1, // Position 2 (B)
+      explanation: "Primary stress falls on the middle syllable: un-CON-scious."
+    },
+    {
+      category: "2. Pronunciation",
+      question: "What linking feature occurs in 'an internet connection' (/ən ˈɪn.tə.net/)?",
+      options: [
+        "A long pause is inserted between 'an' and 'internet'.",
+        "The 't' sound in 'an' is pronounced twice.",
+        "The final consonant /n/ in 'an' connects smoothly to the initial vowel /ɪ/ of 'internet'.",
+        "The word 'an' becomes completely silent."
+      ],
+      correct: 2, // Position 3 (C)
+      explanation: "Consonant-to-vowel linking naturally connects the 'n' in 'an' to the starting vowel in 'internet' (/ə-nɪn-ter-net/)."
+    },
+
+    // 3. Vocabulary
+    {
+      category: "3. Vocabulary",
+      question: "What is the meaning of the phrasal verb 'take up' in the phrase 'take up another challenge'?",
+      options: [
+        "To start or begin a new hobby, activity, or challenge.",
+        "To lift an object off the ground physically.",
+        "To surrender or give up on a task.",
+        "To reduce the size of a piece of clothing."
+      ],
+      correct: 0, // Position 1 (A)
+      explanation: "'Take up' means to begin or engage in a new study, hobby, or challenge."
+    },
+    {
+      category: "3. Vocabulary",
+      question: "What does the phrase 'spawn in your head' mean as used in Victoria's talk?",
+      options: [
+        "To memorize words through deliberate mechanical drills.",
+        "To feel as if knowledge appeared automatically and effortlessly without conscious study.",
+        "To forget a language due to lack of practice.",
+        "To translate every sentence directly into your native language."
+      ],
+      correct: 1, // Position 2 (B)
+      explanation: "The informal expression 'spawn in your head' describes feeling like language fluency appeared spontaneously from natural immersion."
+    },
+    {
+      category: "3. Vocabulary",
+      question: "In the presentation, what does 'unproductive habit' refer to?",
+      options: [
+        "Exercising regularly in the morning.",
+        "Reading academic books every day.",
+        "Time spent passively scrolling social media without learning value.",
+        "Attending formal language classes."
+      ],
+      correct: 2, // Position 3 (C)
+      explanation: "Victoria contrasts unproductive habits (like mindless social media scrolling) with turning that same screen time into language exposure."
+    },
+    {
+      category: "3. Vocabulary",
+      question: "What is the definition of 'proficiency' in language learning?",
+      options: [
+        "The speed at which you can type on a foreign keyboard.",
+        "The exact number of pages in a language textbook.",
+        "The price of taking a language proficiency exam.",
+        "A person's level of skill and competence in using a language."
+      ],
+      correct: 3, // Position 4 (D)
+      explanation: "Proficiency measures an individual's operational ability and skill level in comprehending and producing a language."
+    },
+    {
+      category: "3. Vocabulary",
+      question: "What does 'mother tongue' mean?",
+      options: [
+        "A person's native language learned from early childhood.",
+        "A formal language spoken only by older generations.",
+        "A second language acquired during university studies.",
+        "A dialect used exclusively in technical professions."
+      ],
+      correct: 0, // Position 1 (A)
+      explanation: "'Mother tongue' refers to a person's first or native language."
+    },
+
+    // 4. Grammar
+    {
+      category: "4. Grammar",
+      question: "Identify the tense used in: 'I had started only because I enjoyed listening to Korean music.'",
+      options: [
+        "Present Perfect Continuous.",
+        "Future Perfect.",
+        "Past Perfect ('had started') combined with Past Simple ('enjoyed').",
+        "Simple Present."
+      ],
+      correct: 2, // Position 3 (C)
+      explanation: "'Had started' is the Past Perfect tense, indicating an action completed prior to another past event ('enjoyed')."
+    },
+    {
+      category: "4. Grammar",
+      question: "Which relative pronoun correctly completes the sentence: 'The reason _____ I saw lots of improvement was because I learned differently.'?",
+      options: [
+        "why",
+        "which",
+        "who",
+        "whose"
+      ],
+      correct: 0, // Position 1 (A)
+      explanation: "'Why' is the relative adverb used to refer to reasons ('The reason why...')."
+    },
+    {
+      category: "4. Grammar",
+      question: "In 'by listening to how native speakers express themselves', what is 'listening'?",
+      options: [
+        "A gerund acting as the object of the preposition 'by'.",
+        "An infinitive verb.",
+        "A past participle adjective.",
+        "A modal verb."
+      ],
+      correct: 0, // Position 1 (A)
+      explanation: "Prepositions (like 'by') are followed by gerunds (-ing forms) when introducing an action."
+    },
+    {
+      category: "4. Grammar",
+      question: "Choose the correct modal verb sentence expressing absence of necessity:",
+      options: [
+        "You mustn't to learn grammar rules.",
+        "You don't need to study textbooks once you know the basics.",
+        "You should not needing internet access.",
+        "You couldn't study without a teacher."
+      ],
+      correct: 1, // Position 2 (B)
+      explanation: "'Don't need to' correctly conveys that something is not necessary."
+    },
+    {
+      category: "4. Grammar",
+      question: "Identify the conditional structure in: 'The more you listen to the language, the faster you will acquire it.'",
+      options: [
+        "Third Conditional.",
+        "Zero Conditional.",
+        "Comparative proportional structure ('The [more]..., the [faster]...').",
+        "Past Continuous conditional."
+      ],
+      correct: 2, // Position 3 (C)
+      explanation: "The structure 'The + comparative..., the + comparative...' expresses a proportional relationship between two actions."
+    }
+  ];
+
+  let currentScore = 0;
+  let questionsAnswered = 0;
+
+  function renderQuiz() {
+    const quizContainer = document.getElementById('quiz-container');
+    let currentCategory = "";
+
+    quizData.forEach((item, index) => {
+      if (item.category !== currentCategory) {
+        currentCategory = item.category;
+        const catHeader = document.createElement('h3');
+        catHeader.className = 'category-title';
+        catHeader.textContent = currentCategory;
+        quizContainer.appendChild(catHeader);
+      }
+
+      const qBlock = document.createElement('div');
+      qBlock.className = 'question-block';
+      qBlock.id = `q-block-${index}`;
+
+      const qText = document.createElement('div');
+      qText.className = 'question-text';
+      qText.textContent = `${index + 1}. ${item.question}`;
+      qBlock.appendChild(qText);
+
+      const optionsDiv = document.createElement('div');
+      optionsDiv.className = 'options';
+
+      item.options.forEach((opt, optIndex) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = opt;
+        btn.onclick = () => handleAnswer(index, optIndex);
+        optionsDiv.appendChild(btn);
+      });
+
+      qBlock.appendChild(optionsDiv);
+
+      const feedbackDiv = document.createElement('div');
+      feedbackDiv.className = 'feedback';
+      feedbackDiv.id = `feedback-${index}`;
+      qBlock.appendChild(feedbackDiv);
+
+      quizContainer.appendChild(qBlock);
+    });
+  }
+
+  function handleAnswer(questionIndex, selectedOptionIndex) {
+    const qData = quizData[questionIndex];
+    const qBlock = document.getElementById(`q-block-${questionIndex}`);
+    const buttons = qBlock.querySelectorAll('.option-btn');
+    const feedbackEl = document.getElementById(`feedback-${questionIndex}`);
+
+    buttons.forEach(btn => btn.disabled = true);
+
+    const isCorrect = selectedOptionIndex === qData.correct;
+
+    if (isCorrect) {
+      currentScore++;
+      buttons[selectedOptionIndex].classList.add('selected-correct');
+      feedbackEl.classList.add('correct', 'visible');
+      feedbackEl.innerHTML = `<strong>Correct!</strong> ${qData.explanation}`;
+    } else {
+      buttons[selectedOptionIndex].classList.add('selected-incorrect');
+      buttons[qData.correct].classList.add('show-correct');
+      feedbackEl.classList.add('incorrect', 'visible');
+      feedbackEl.innerHTML = `<strong>Incorrect.</strong> ${qData.explanation}`;
+    }
+
+    questionsAnswered++;
+
+    if (questionsAnswered === quizData.length) {
+      displayResults();
+    }
+  }
+
+  function displayResults() {
+    const resultsCard = document.getElementById('results-card');
+    const finalScoreEl = document.getElementById('final-score');
+    const scoreMessageEl = document.getElementById('score-message');
+
+    finalScoreEl.textContent = currentScore;
+
+    if (currentScore >= 18) {
+      scoreMessageEl.textContent = "Outstanding result! You have thoroughly mastered the concepts of natural language acquisition.";
+    } else if (currentScore >= 14) {
+      scoreMessageEl.textContent = "Great job! You have a strong grasp of the presentation's core ideas, vocabulary, and grammar.";
+    } else if (currentScore >= 10) {
+      scoreMessageEl.textContent = "Good effort! Review the video again to solidify key phrases and concepts.";
+    } else {
+      scoreMessageEl.textContent = "Keep going! Re-watch the TEDx talk and try practicing immersion daily.";
+    }
+
+    resultsCard.classList.add('visible');
+    resultsCard.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  window.onload = renderQuiz;
+</script>
+
+</body>
+</html>

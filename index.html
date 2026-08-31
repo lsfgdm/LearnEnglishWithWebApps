@@ -124,6 +124,11 @@
       align-self: flex-start;
     }
 
+    .badge-acquisition {
+      background-color: #e0e7ff; /* Bleu indigo très doux */
+      color: #3730a3;
+    }
+
     .badge-grammar {
       background-color: #dbeafe;
       color: #1e40af;
@@ -132,6 +137,16 @@
     .badge-listening {
       background-color: #fce7f3;
       color: #9d174d;
+    }
+
+    .badge-fluency {
+        background-color: #fef3c7; /* Jaune/Ambré doux */
+        color: #92400e;
+    }
+    
+    .badge-daily {
+        background-color: #dcfce7; /* Vert clair doux */
+        color: #166534;
     }
 
     .lesson-title {
@@ -220,6 +235,13 @@
       url: "light-verbs.html"
     },
     {
+      title: "How to Practice Speaking English by Yourself",
+      badgeText: "Fluency & Routine",
+      badgeClass: "badge-fluency",
+      description: "Discover Katy's 5-5-5 daily morning routine (15 mins) to start thinking and speaking directly in English.",
+      url: "how2practice.html"
+    },
+    {
       title: "I Speak English at Native Speed",
       badgeText: "Listening & Native Speed",
       badgeClass: "badge-listening",
@@ -239,8 +261,14 @@
       badgeClass: "badge-daily",
       description: "5 Concrete Exercises you can put in practice daily.",
       url: "english-class.html"
+    },
+    {
+      title: "How to learn a language fast and effortlessly | TEDx",
+      badgeText: "Acquisition & Immersion",
+      badgeClass: "badge-acquisition",
+      description: "Discover Victoria Obiageli's method of natural language acquisition through comprehensible input rather than traditional study. Includes 20 quiz questions.",
+      url: "tedx-acquisition.html"
     }
-
   ];
 
   const searchInput = document.getElementById('search-input');

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaking Practice: The 5-5-5 Method with KatyEnglish</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --correct-color: #16a34a;
+            --wrong-color: #dc2626;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .quiz-section, .expressions-section {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+
+        h3 {
+            margin-top: 25px;
+            color: var(--primary-color);
+        }
+
+        .question-card {
+            background-color: #f1f5f9;
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .question-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background-color: #e2e8f0;
+        }
+
+        .option-btn.correct {
+            background-color: #dcfce7;
+            border-color: var(--correct-color);
+            color: #14532d;
+            font-weight: bold;
+        }
+
+        .option-btn.wrong {
+            background-color: #fee2e2;
+            border-color: var(--wrong-color);
+            color: #7f1d1d;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .feedback.visible {
+            display: block;
+        }
+
+        .feedback.correct-bg {
+            background-color: #dcfce7;
+            color: #14532d;
+        }
+
+        .feedback.wrong-bg {
+            background-color: #fee2e2;
+            color: #7f1d1d;
+        }
+
+        .expression-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .expression-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .expression-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .expression-body {
+            padding: 15px;
+            flex-grow: 1;
+        }
+
+        .expression-term {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .expression-trans {
+            font-style: italic;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .expression-example {
+            background: #f8fafc;
+            padding: 10px;
+            border-left: 3px solid var(--primary-color);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Speaking Practice: The 5-5-5 Method</h1>
+        <p>Learn how to practice speaking English by yourself using KatyEnglish's video.</p>
+    </header>
+
+    <!-- Embedded YouTube Video -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/C3iRgq1sU4I" title="How to Practice Speaking English by Yourself" allowfullscreen></iframe>
+    </div>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+        <h2>Comprehension Quiz</h2>
+        <div id="quiz-container"></div>
+    </section>
+
+    <!-- Expressions Section -->
+    <section class="expressions-section">
+        <h2>10 Key Expressions from the Video</h2>
+        <p>Use these phrasal verbs and expressions to articulate your thoughts naturally while speaking.</p>
+        <div class="expression-grid" id="expressions-container"></div>
+    </section>
+</div>
+
+<script>
+const quizData = [
+    // 5 Listening Comprehension Questions
+    {
+        category: "Video Comprehension",
+        question: "1. How long is Katy's recommended daily speaking routine?",
+        options: ["10 minutes", "15 minutes", "30 minutes", "45 minutes"],
+        answer: 1,
+        explanation: "The method is split into three 5-minute steps, totaling 15 minutes a day."
+    },
+    {
+        category: "Video Comprehension",
+        question: "2. What is rule #1 regarding when you should perform this exercise?",
+        options: ["Right before going to bed", "During your lunch break", "In the morning right after waking up, before checking your phone", "Right after an English class"],
+        answer: 2,
+        explanation: "Katy highlights doing this exercise first thing in the morning before checking your phone or using your native language."
+    },
+    {
+        category: "Video Comprehension",
+        question: "3. What should you do during the first 5 minutes ('Raw Material')?",
+        options: ["Take detailed notes on every sentence", "Watch a short YouTube video and note 4 to 5 useful words/expressions", "Memorize a script word for word", "Write an essay"],
+        answer: 1,
+        explanation: "In the first 5 minutes, watch a short video for main ideas and pick 4-5 practical vocabulary items."
+    },
+    {
+        category: "Video Comprehension",
+        question: "4. Who should you pretend to talk to during the third step ('Use It')?",
+        options: ["Your teacher", "An imaginary friend", "Yourself in front of a mirror", "A group of classmates"],
+        answer: 1,
+        explanation: "Katy suggests imagining you are telling an imaginary friend what the video was about and sharing your opinion."
+    },
+    {
+        category: "Video Comprehension",
+        question: "5. According to Katy, roughly how many words will you acquire in 3 months with this routine?",
+        options: ["100 words", "250 words", "Nearly 500 words", "Over 2000 words"],
+        answer: 2,
+        explanation: "Learning 4 to 5 words daily over 90 days adds up to almost 500 new words in context."
+    },
+
+    // 5 Vocabulary Questions
+    {
+        category: "Vocabulary",
+        question: "6. What does the phrasal verb 'cut down on something' mean?",
+        options: ["To stop something completely", "To reduce the amount or consumption of something", "To multiply something", "To slice an object into pieces"],
+        answer: 1,
+        explanation: "'Cut down on' means to decrease how much you consume or do something (e.g., coffee, sugar)."
+    },
+    {
+        category: "Vocabulary",
+        question: "7. What does 'raw material' refer to in the context of step 1?",
+        options: ["Physical construction supplies", "The original content/audio that feeds your brain with ideas", "Theoretical grammar rules", "A list of translated words"],
+        answer: 1,
+        explanation: "'Raw material' refers to the video or audio input providing language models and ideas."
+    },
+    {
+        category: "Vocabulary",
+        question: "8. Which term best matches 'target language'?",
+        options: ["Native language", "The language you are aiming to learn", "Universal language", "A forgotten foreign language"],
+        answer: 1,
+        explanation: "Your 'target language' is the language you are studying and trying to master."
+    },
+    {
+        category: "Vocabulary",
+        question: "9. What is the meaning of 'let's get straight into it'?",
+        options: ["To walk in a straight line", "To start doing something immediately without delay", "To postpone a topic", "To beat around the bush"],
+        answer: 1,
+        explanation: "'Get straight into it' means to dive into the main task right away."
+    },
+    {
+        category: "Vocabulary",
+        question: "10. What does 'tremendously' mean in 'your listening skills will improve tremendously'?",
+        options: ["Slightly", "Slowly", "Greatly / Enormously", "Not at all"],
+        answer: 2,
+        explanation: "'Tremendously' is an adverb meaning to a very great extent."
+    },
+
+    // 5 Grammar Questions
+    {
+        category: "Grammar",
+        question: "11. Choose the correct preposition: 'I want to cut down _____ drinking coffee late at night.'",
+        options: ["in", "on", "at", "for"],
+        answer: 1,
+        explanation: "The correct preposition for this phrasal verb is 'cut down ON'."
+    },
+    {
+        category: "Grammar",
+        question: "12. Which verb form follows the verb of perception 'notice' in 'you notice native speakers using it'?",
+        options: ["To use", "Using (Participle / Gerund)", "Used", "Uses"],
+        answer: 1,
+        explanation: "Perception verbs (notice, hear, see) take a verb + -ing to indicate observing an ongoing action."
+    },
+    {
+        category: "Grammar",
+        question: "13. Complete the conditional sentence: 'If you _____ this exercise every day, your English will improve.'",
+        options: ["do", "will do", "did", "have done"],
+        answer: 0,
+        explanation: "In the first conditional, we use the simple present ('do') in the 'if' clause."
+    },
+    {
+        category: "Grammar",
+        question: "14. Which structure expresses a past habit or routine: 'I ______ think in my native language.'",
+        options: ["used to", "was used to", "use to", "am used to"],
+        answer: 0,
+        explanation: "'Used to + base verb' expresses a past habit or state that is no longer true."
+    },
+    {
+        category: "Grammar",
+        question: "15. Complete the sentence: 'Before _____ your phone, practice 15 minutes of speaking.'",
+        options: ["check", "checking", "to check", "checked"],
+        answer: 1,
+        explanation: "Verbs following prepositions such as 'before' must be in the '-ing' form."
+    },
+
+    // 5 Pronunciation Questions
+    {
+        category: "Pronunciation",
+        question: "16. Which vowel sound is heard in the word 'raw' (/rɔː/)?",
+        options: ["A short vowel sound like in 'cat'", "A long vowel sound like in 'law' or 'door'", "An 'ee' sound like in 'see'", "An 'oo' sound like in 'too'"],
+        answer: 1,
+        explanation: "The word 'raw' is pronounced with the long vowel sound /ɔː/, matching 'law' or 'saw'."
+    },
+    {
+        category: "Pronunciation",
+        question: "17. How does linking occur when pronouncing 'cut down on' smoothly?",
+        options: ["Each word is separated by a clear pause", "The 'n' at the end of 'down' links directly to the vowel 'o' in 'on'", "The word 'on' is silent", "Only the word 'down' is stressed"],
+        answer: 1,
+        explanation: "In natural connected speech, the final consonant 'n' of 'down' links to the initial vowel of 'on' (/daʊ.nɒn/)."
+    },
+    {
+        category: "Pronunciation",
+        question: "18. Where is the primary stress located in the word 'tremendously'?",
+        options: ["On the 1st syllable (TRE-mendously)", "On the 2nd syllable (tre-MEN-dously)", "On the 3rd syllable (tremen-DOUS-ly)", "On the last syllable (tremendous-LY)"],
+        answer: 1,
+        explanation: "The primary stress falls on the second syllable: /trɪˈmen.dəst.li/."
+    },
+    {
+        category: "Pronunciation",
+        question: "19. How is the past tense ending '-ed' pronounced in 'watched' (/wɒtʃt/)?",
+        options: ["/ɪd/ (as an extra syllable)", "As a unvoiced /t/ sound", "As a voiced /d/ sound", "It is completely silent"],
+        answer: 1,
+        explanation: "After unvoiced consonant sounds like /tʃ/ ('ch'), the regular past tense suffix '-ed' is pronounced as /t/."
+    },
+    {
+        category: "Pronunciation",
+        question: "20. What is the initial vowel sound in the word 'language'?",
+        options: ["/æ/ as in 'cat'", "/eɪ/ as in 'pay'", "/ɑː/ as in 'car'", "/ə/ schwa sound"],
+        answer: 0,
+        explanation: "The word 'language' begins with the short vowel sound /æ/ (/ˈlæŋ.ɡwɪdʒ/)."
+    }
+];
+
+const expressionsData = [
+    {
+        term: "Cut down on (something)",
+        translation: "Réduire sa consommation de quelque chose",
+        example: "I need to cut down on sugar because I eat too much cake.",
+        image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Get straight into it",
+        translation: "Entrer directement dans le vif du sujet",
+        example: "We don't have much time today, so let's get straight into the lesson.",
+        image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Raw material",
+        translation: "Matière première / Matériau brut",
+        example: "Listening to podcasts provides great raw material for vocabulary practice.",
+        image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Target language",
+        translation: "Langue cible",
+        example: "Try to think directly in your target language rather than translating.",
+        image: "https://images.unsplash.com/photo-1451289013842-27ba39fb042c?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Pick (something) up",
+        translation: "Saisir / Capturer au passage (mots, idées)",
+        example: "While watching the movie, I picked up a few interesting slang words.",
+        image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Look up (a word)",
+        translation: "Chercher (un mot dans un dictionnaire)",
+        example: "If you don't understand the meaning, look it up in a dictionary.",
+        image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Bring together",
+        translation: "Rassembler / Synthétiser",
+        example: "The final step of the exercise brings together listening and speaking.",
+        image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "No excuses",
+        translation: "Pas d'excuses",
+        example: "Practice for just 15 minutes every morning, no excuses!",
+        image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Genuinely interested",
+        translation: "Sincèrement / Véritablement intéressé",
+        example: "Choose a video on a topic you are genuinely interested in.",
+        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Kick in",
+        translation: "Faire effet / Se mettre en marche",
+        example: "I practice English early in the morning before my native language kicks in.",
+        image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=400&q=80"
+    }
+];
+
+// Render Quiz Questions
+function renderQuiz() {
+    const quizContainer = document.getElementById('quiz-container');
+    let currentCategory = "";
+
+    quizData.forEach((q, index) => {
+        if (q.category !== currentCategory) {
+            currentCategory = q.category;
+            const catHeader = document.createElement('h3');
+            catHeader.textContent = currentCategory;
+            quizContainer.appendChild(catHeader);
+        }
+
+        const card = document.createElement('div');
+        card.className = 'question-card';
+
+        const qTitle = document.createElement('div');
+        qTitle.className = 'question-title';
+        qTitle.textContent = q.question;
+        card.appendChild(qTitle);
+
+        const optionsList = document.createElement('ul');
+        optionsList.className = 'options-list';
+
+        const feedback = document.createElement('div');
+        feedback.className = 'feedback';
+
+        q.options.forEach((opt, optIdx) => {
+            const li = document.createElement('li');
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = opt;
+
+            btn.onclick = () => {
+                const allBtns = optionsList.querySelectorAll('.option-btn');
+                allBtns.forEach(b => b.disabled = true);
+
+                if (optIdx === q.answer) {
+                    btn.classList.add('correct');
+                    feedback.textContent = `Correct! ${q.explanation}`;
+                    feedback.classList.add('visible', 'correct-bg');
+                } else {
+                    btn.classList.add('wrong');
+                    allBtns[q.answer].classList.add('correct');
+                    feedback.textContent = `Incorrect. ${q.explanation}`;
+                    feedback.classList.add('visible', 'wrong-bg');
+                }
+            };
+
+            li.appendChild(btn);
+            optionsList.appendChild(li);
+        });
+
+        card.appendChild(optionsList);
+        card.appendChild(feedback);
+        quizContainer.appendChild(card);
+    });
+}
+
+// Render Expressions Cards
+function renderExpressions() {
+    const container = document.getElementById('expressions-container');
+    expressionsData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'expression-card';
+
+        card.innerHTML = `
+            <img class="expression-img" src="${item.image}" alt="${item.term}">
+            <div class="expression-body">
+                <div class="expression-term">${item.term}</div>
+                <div class="expression-trans">🇫🇷 ${item.translation}</div>
+                <div class="expression-example"><strong>Example:</strong> "${item.example}"</div>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+window.onload = () => {
+    renderQuiz();
+    renderExpressions();
+};
+</script>
+
+</body>
+</html>

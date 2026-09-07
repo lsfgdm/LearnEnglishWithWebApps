@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn English with "I Get Around" - The Beach Boys</title>
+    <style>
+        :root {
+            --primary: #0077B6;
+            --secondary: #00B4D8;
+            --accent: #FFB703;
+            --dark: #1D3557;
+            --light: #F8F9FA;
+            --success-bg: #D1E7DD;
+            --success-color: #0F5132;
+            --error-bg: #F8D7DA;
+            --error-color: #842029;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #F4F6F8;
+            color: var(--dark);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: white;
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        section h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* QCM Styling */
+        .qcm-category {
+            margin-bottom: 25px;
+        }
+
+        .qcm-category h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        .question-card {
+            background: var(--light);
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 10px 12px;
+            border: 1px solid #CBD5E1;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-label:hover {
+            background: #E2E8F0;
+        }
+
+        .option-label input {
+            margin-right: 12px;
+        }
+
+        .explanation-box {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        /* Expressions Grid */
+        .expressions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .expression-card {
+            background: var(--light);
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .expression-card h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .expression-card .meaning {
+            font-style: italic;
+            color: #475569;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .expression-card .example {
+            background: white;
+            padding: 8px;
+            border-left: 3px solid var(--secondary);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .expression-card .translation {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        /* Lyrics / Translation Styling */
+        .lyrics-container {
+            margin-top: 20px;
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #E2E8F0;
+        }
+
+        .lyric-line {
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .lyric-en {
+            font-weight: bold;
+            color: var(--dark);
+            font-size: 1.05rem;
+        }
+
+        .lyric-fr {
+            color: #555;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Learn English with The Beach Boys</h1>
+        <p>Interactive Lesson based on the classic hit <em>"I Get Around"</em></p>
+    </header>
+
+    <div class="container">
+
+        <!-- 1. ORIGINAL VIDEO -->
+        <section>
+            <h2>1. Original Music Video</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/ruKCw797JM4" title="The Beach Boys - I Get Around Original Video" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- 2. QUIZ WITH IMMEDIATE FEEDBACK -->
+        <section>
+            <h2>2. Interactive Quiz (Instant Feedback)</h2>
+            <p style="margin-bottom: 20px; color: #555;">Select your answer for each question. The correct answer and explanation will appear immediately upon clicking.</p>
+            
+            <form id="qcm-form">
+                
+                <!-- COMPREHENSION -->
+                <div class="qcm-category">
+                    <h3>🎯 Reading & Listening Comprehension</h3>
+                    
+                    <div class="question-card" id="q1-box">
+                        <p class="question-text">1. What is the speaker's main complaint about his current routine?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q1" value="A" onclick="checkInstant('q1', 'B', 'The speaker mentions he is bored of driving up and down the same old strip every night.')"> A) He doesn't have enough money.</label>
+                            <label class="option-label"><input type="radio" name="q1" value="B" onclick="checkInstant('q1', 'B', 'The speaker mentions he is bored of driving up and down the same old strip every night.')"> B) He is tired of driving up and down the same old strip.</label>
+                            <label class="option-label"><input type="radio" name="q1" value="C" onclick="checkInstant('q1', 'B', 'The speaker mentions he is bored of driving up and down the same old strip every night.')"> C) He doesn't like his friends.</label>
+                            <label class="option-label"><input type="radio" name="q1" value="D" onclick="checkInstant('q1', 'B', 'The speaker mentions he is bored of driving up and down the same old strip every night.')"> D) His car is constantly breaking down.</label>
+                        </div>
+                        <div class="explanation-box" id="q1-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q2-box">
+                        <p class="question-text">2. Where does the narrator want to go?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q2" value="A" onclick="checkInstant('q2', 'C', 'The lyrics explicitly state: \'I gotta find a new place where the kids are hip\'.')"> A) To another country.</label>
+                            <label class="option-label"><input type="radio" name="q2" value="B" onclick="checkInstant('q2', 'C', 'The lyrics explicitly state: \'I gotta find a new place where the kids are hip\'.')"> B) Back to his high school.</label>
+                            <label class="option-label"><input type="radio" name="q2" value="C" onclick="checkInstant('q2', 'C', 'The lyrics explicitly state: \'I gotta find a new place where the kids are hip\'.')"> C) To a new place where the kids are hip.</label>
+                            <label class="option-label"><input type="radio" name="q2" value="D" onclick="checkInstant('q2', 'C', 'The lyrics explicitly state: \'I gotta find a new place where the kids are hip\'.')"> D) To a quiet beach alone.</label>
+                        </div>
+                        <div class="explanation-box" id="q2-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q3-box">
+                        <p class="question-text">3. Why don't the bad guys bother the narrator and his friends?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q3" value="A" onclick="checkInstant('q3', 'A', 'The lyrics mention: \'The bad guys know us and they leave us alone\', meaning they respect or fear their group.')"> A) They are well-known and respected/feared.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="B" onclick="checkInstant('q3', 'A', 'The lyrics mention: \'The bad guys know us and they leave us alone\', meaning they respect or fear their group.')"> B) They stay indoors all night.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="C" onclick="checkInstant('q3', 'A', 'The lyrics mention: \'The bad guys know us and they leave us alone\', meaning they respect or fear their group.')"> C) They carry weapons.</label>
+                            <label class="option-label"><input type="radio" name="q3" value="D" onclick="checkInstant('q3', 'A', 'The lyrics mention: \'The bad guys know us and they leave us alone\', meaning they respect or fear their group.')"> D) They pay for protection.</label>
+                        </div>
+                        <div class="explanation-box" id="q3-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q4-box">
+                        <p class="question-text">4. Whose car do they always take when going out?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q4" value="A" onclick="checkInstant('q4', 'C', 'The song states: \'We always take my car \'cause it\'s never been beat\'.')"> A) His buddy's car.</label>
+                            <label class="option-label"><input type="radio" name="q4" value="B" onclick="checkInstant('q4', 'C', 'The song states: \'We always take my car \'cause it\'s never been beat\'.')"> B) His parents' car.</label>
+                            <label class="option-label"><input type="radio" name="q4" value="C" onclick="checkInstant('q4', 'C', 'The song states: \'We always take my car \'cause it\'s never been beat\'.')"> C) The narrator's car.</label>
+                            <label class="option-label"><input type="radio" name="q4" value="D" onclick="checkInstant('q4', 'C', 'The song states: \'We always take my car \'cause it\'s never been beat\'.')"> D) They take a taxi.</label>
+                        </div>
+                        <div class="explanation-box" id="q4-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q5-box">
+                        <p class="question-text">5. Why don't any of the guys "go steady"?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q5" value="A" onclick="checkInstant('q5', 'B', 'The song lyrics explain: \'None of the guys go steady \'cause it wouldn\'t be right to leave their best girl home on a Saturday night\'.')"> A) They don't have enough time for relationships.</label>
+                            <label class="option-label"><input type="radio" name="q5" value="B" onclick="checkInstant('q5', 'B', 'The song lyrics explain: \'None of the guys go steady \'cause it wouldn\'t be right to leave their best girl home on a Saturday night\'.')"> B) It wouldn't be right to leave their best girl home on a Saturday night.</label>
+                            <label class="option-label"><input type="radio" name="q5" value="C" onclick="checkInstant('q5', 'B', 'The song lyrics explain: \'None of the guys go steady \'cause it wouldn\'t be right to leave their best girl home on a Saturday night\'.')"> C) They prefer to travel alone.</label>
+                            <label class="option-label"><input type="radio" name="q5" value="D" onclick="checkInstant('q5', 'B', 'The song lyrics explain: \'None of the guys go steady \'cause it wouldn\'t be right to leave their best girl home on a Saturday night\'.')"> D) Girls don't like their group.</label>
+                        </div>
+                        <div class="explanation-box" id="q5-exp"></div>
+                    </div>
+                </div>
+
+                <!-- VOCABULARY -->
+                <div class="qcm-category">
+                    <h3>🔤 Vocabulary & Slang</h3>
+
+                    <div class="question-card" id="q6-box">
+                        <p class="question-text">6. What does the slang term "bread" mean in the line "I'm makin' real good bread"?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q6" value="A" onclick="checkInstant('q6', 'C', '\'Bread\' is classic 1960s American slang for money.')"> A) Bakery items</label>
+                            <label class="option-label"><input type="radio" name="q6" value="B" onclick="checkInstant('q6', 'C', '\'Bread\' is classic 1960s American slang for money.')"> B) Food</label>
+                            <label class="option-label"><input type="radio" name="q6" value="C" onclick="checkInstant('q6', 'C', '\'Bread\' is classic 1960s American slang for money.')"> C) Money</label>
+                            <label class="option-label"><input type="radio" name="q6" value="D" onclick="checkInstant('q6', 'C', '\'Bread\' is classic 1960s American slang for money.')"> D) Good news</label>
+                        </div>
+                        <div class="explanation-box" id="q6-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q7-box">
+                        <p class="question-text">7. In 1960s slang, what does it mean to be "hip"?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q7" value="A" onclick="checkInstant('q7', 'B', '\'Hip\' means stylish, cool, or up to date with modern trends.')"> A) Having large hips</label>
+                            <label class="option-label"><input type="radio" name="q7" value="B" onclick="checkInstant('q7', 'B', '\'Hip\' means stylish, cool, or up to date with modern trends.')"> B) Cool, trendy, or knowledgeable</label>
+                            <label class="option-label"><input type="radio" name="q7" value="C" onclick="checkInstant('q7', 'B', '\'Hip\' means stylish, cool, or up to date with modern trends.')"> C) Tired and slow</label>
+                            <label class="option-label"><input type="radio" name="q7" value="D" onclick="checkInstant('q7', 'B', '\'Hip\' means stylish, cool, or up to date with modern trends.')"> D) Loud and rowdy</label>
+                        </div>
+                        <div class="explanation-box" id="q7-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q8-box">
+                        <p class="question-text">8. What does "I'm getting bugged" mean?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q8" value="A" onclick="checkInstant('q8', 'B', '\'To be bugged\' means to be annoyed, irritated, or frustrated.')"> A) I am infected by an insect.</label>
+                            <label class="option-label"><input type="radio" name="q8" value="B" onclick="checkInstant('q8', 'B', '\'To be bugged\' means to be annoyed, irritated, or frustrated.')"> B) I am getting annoyed or bored.</label>
+                            <label class="option-label"><input type="radio" name="q8" value="C" onclick="checkInstant('q8', 'B', '\'To be bugged\' means to be annoyed, irritated, or frustrated.')"> C) I am getting sick.</label>
+                            <label class="option-label"><input type="radio" name="q8" value="D" onclick="checkInstant('q8', 'B', '\'To be bugged\' means to be annoyed, irritated, or frustrated.')"> D) I am being recorded.</label>
+                        </div>
+                        <div class="explanation-box" id="q8-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q9-box">
+                        <p class="question-text">9. What is a "strip" in "driving up and down the same old strip"?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q9" value="A" onclick="checkInstant('q9', 'B', 'A \'strip\' refers to a main road or boulevard lined with shops and places to hangout.')"> A) A piece of paper</label>
+                            <label class="option-label"><input type="radio" name="q9" value="B" onclick="checkInstant('q9', 'B', 'A \'strip\' refers to a main road or boulevard lined with shops and places to hangout.')"> B) A main street or boulevard where people drive around</label>
+                            <label class="option-label"><input type="radio" name="q9" value="C" onclick="checkInstant('q9', 'B', 'A \'strip\' refers to a main road or boulevard lined with shops and places to hangout.')"> C) A clothing item</label>
+                            <label class="option-label"><input type="radio" name="q9" value="D" onclick="checkInstant('q9', 'B', 'A \'strip\' refers to a main road or boulevard lined with shops and places to hangout.')"> D) A race track</label>
+                        </div>
+                        <div class="explanation-box" id="q9-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q10-box">
+                        <p class="question-text">10. What does "buddies" refer to?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q10" value="A" onclick="checkInstant('q10', 'B', '\'Buddies\' is an informal term for close friends or pals.')"> A) Family members</label>
+                            <label class="option-label"><input type="radio" name="q10" value="B" onclick="checkInstant('q10', 'B', '\'Buddies\' is an informal term for close friends or pals.')"> B) Close friends</label>
+                            <label class="option-label"><input type="radio" name="q10" value="C" onclick="checkInstant('q10', 'B', '\'Buddies\' is an informal term for close friends or pals.')"> C) Teachers</label>
+                            <label class="option-label"><input type="radio" name="q10" value="D" onclick="checkInstant('q10', 'B', '\'Buddies\' is an informal term for close friends or pals.')"> D) Rivals</label>
+                        </div>
+                        <div class="explanation-box" id="q10-exp"></div>
+                    </div>
+                </div>
+
+                <!-- GRAMMAR -->
+                <div class="qcm-category">
+                    <h3>📝 Grammar Structure</h3>
+
+                    <div class="question-card" id="q11-box">
+                        <p class="question-text">11. Complete the sentence: "We always take my car 'cause it ________ been beat."</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q11" value="A" onclick="checkInstant('q11', 'C', '\'Has never\' fits the Present Perfect tense correctly here (\'has never been beat\').')"> A) don't</label>
+                            <label class="option-label"><input type="radio" name="q11" value="B" onclick="checkInstant('q11', 'C', '\'Has never\' fits the Present Perfect tense correctly here (\'has never been beat\').')"> B) hasn't</label>
+                            <label class="option-label"><input type="radio" name="q11" value="C" onclick="checkInstant('q11', 'C', '\'Has never\' fits the Present Perfect tense correctly here (\'has never been beat\').')"> C) has never</label>
+                            <label class="option-label"><input type="radio" name="q11" value="D" onclick="checkInstant('q11', 'C', '\'Has never\' fits the Present Perfect tense correctly here (\'has never been beat\').')"> D) isn't</label>
+                        </div>
+                        <div class="explanation-box" id="q11-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q12-box">
+                        <p class="question-text">12. In informal spoken English, "gonna" or "I'm a" stands for:</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q12" value="A" onclick="checkInstant('q12', 'A', '\'Gonna\' or \'I\'m a\' is a casual spoken reduction of \'I am going to\'.')"> A) I am going to</label>
+                            <label class="option-label"><input type="radio" name="q12" value="B" onclick="checkInstant('q12', 'A', '\'Gonna\' or \'I\'m a\' is a casual spoken reduction of \'I am going to\'.')"> B) I am wanting to</label>
+                            <label class="option-label"><input type="radio" name="q12" value="C" onclick="checkInstant('q12', 'A', '\'Gonna\' or \'I\'m a\' is a casual spoken reduction of \'I am going to\'.')"> C) I am able to</label>
+                            <label class="option-label"><input type="radio" name="q12" value="D" onclick="checkInstant('q12', 'A', '\'Gonna\' or \'I\'m a\' is a casual spoken reduction of \'I am going to\'.')"> D) I am supposed to</label>
+                        </div>
+                        <div class="explanation-box" id="q12-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q13-box">
+                        <p class="question-text">13. What form is the phrase in "I gotta find a new place"?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q13" value="A" onclick="checkInstant('q13', 'B', '\'Gotta\' is an informal oral contraction for \'have got to\', expressing necessity.')"> A) Present Perfect continuous</label>
+                            <label class="option-label"><input type="radio" name="q13" value="B" onclick="checkInstant('q13', 'B', '\'Gotta\' is an informal oral contraction for \'have got to\', expressing necessity.')"> B) Informal contraction for "have got to" (must)</label>
+                            <label class="option-label"><input type="radio" name="q13" value="C" onclick="checkInstant('q13', 'B', '\'Gotta\' is an informal oral contraction for \'have got to\', expressing necessity.')"> C) Past Simple</label>
+                            <label class="option-label"><input type="radio" name="q13" value="D" onclick="checkInstant('q13', 'B', '\'Gotta\' is an informal oral contraction for \'have got to\', expressing necessity.')"> D) Passive voice</label>
+                        </div>
+                        <div class="explanation-box" id="q13-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q14-box">
+                        <p class="question-text">14. Identify the correct relative pronoun: "Where the kids ________ are hip."</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q14" value="A" onclick="checkInstant('q14', 'B', '\'Who\' is used as a subject relative pronoun referring to people (\'kids\').')"> A) which</label>
+                            <label class="option-label"><input type="radio" name="q14" value="B" onclick="checkInstant('q14', 'B', '\'Who\' is used as a subject relative pronoun referring to people (\'kids\').')"> B) who</label>
+                            <label class="option-label"><input type="radio" name="q14" value="C" onclick="checkInstant('q14', 'B', '\'Who\' is used as a subject relative pronoun referring to people (\'kids\').')"> C) whose</label>
+                            <label class="option-label"><input type="radio" name="q14" value="D" onclick="checkInstant('q14', 'B', '\'Who\' is used as a subject relative pronoun referring to people (\'kids\').')"> D) whom</label>
+                        </div>
+                        <div class="explanation-box" id="q14-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q15-box">
+                        <p class="question-text">15. "None of the guys go steady" uses "none" to indicate:</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q15" value="A" onclick="checkInstant('q15', 'B', '\'None\' means not one or zero people in the group.')"> A) Every single one</label>
+                            <label class="option-label"><input type="radio" name="q15" value="B" onclick="checkInstant('q15', 'B', '\'None\' means not one or zero people in the group.')"> B) Not one / zero of them</label>
+                            <label class="option-label"><input type="radio" name="q15" value="C" onclick="checkInstant('q15', 'B', '\'None\' means not one or zero people in the group.')"> C) Most of them</label>
+                            <label class="option-label"><input type="radio" name="q15" value="D" onclick="checkInstant('q15', 'B', '\'None\' means not one or zero people in the group.')"> D) A few of them</label>
+                        </div>
+                        <div class="explanation-box" id="q15-exp"></div>
+                    </div>
+                </div>
+
+                <!-- PRONUNCIATION -->
+                <div class="qcm-category">
+                    <h3>🗣️ Pronunciation & Phonetics</h3>
+
+                    <div class="question-card" id="q16-box">
+                        <p class="question-text">16. How is the word "cause" pronounced when used as a short form of "because"?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q16" value="A" onclick="checkInstant('q16', 'A', 'It is reduced to /kɔːz/ or /kəz/ in rapid casual English.')"> A) /kɔːz/ or /kəz/</label>
+                            <label class="option-label"><input type="radio" name="q16" value="B" onclick="checkInstant('q16', 'A', 'It is reduced to /kɔːz/ or /kəz/ in rapid casual English.')"> B) /kaʊz/</label>
+                            <label class="option-label"><input type="radio" name="q16" value="C" onclick="checkInstant('q16', 'A', 'It is reduced to /kɔːz/ or /kəz/ in rapid casual English.')"> C) /kæz/</label>
+                            <label class="option-label"><input type="radio" name="q16" value="D" onclick="checkInstant('q16', 'A', 'It is reduced to /kɔːz/ or /kəz/ in rapid casual English.')"> D) /kʊz/</label>
+                        </div>
+                        <div class="explanation-box" id="q16-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q17-box">
+                        <p class="question-text">17. In "makin' real good bread", the dropped "g" in "makin'" reflects:</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q17" value="A" onclick="checkInstant('q17', 'B', 'Dropping the final \'g\' sound in \'-ing\' verbs is common in relaxed informal speech.')"> A) A British accent</label>
+                            <label class="option-label"><input type="radio" name="q17" value="B" onclick="checkInstant('q17', 'B', 'Dropping the final \'g\' sound in \'-ing\' verbs is common in relaxed informal speech.')"> B) Informal fast speech / elision of the final nasal consonant</label>
+                            <label class="option-label"><input type="radio" name="q17" value="C" onclick="checkInstant('q17', 'B', 'Dropping the final \'g\' sound in \'-ing\' verbs is common in relaxed informal speech.')"> C) A spelling mistake</label>
+                            <label class="option-label"><input type="radio" name="q17" value="D" onclick="checkInstant('q17', 'B', 'Dropping the final \'g\' sound in \'-ing\' verbs is common in relaxed informal speech.')"> D) An old English form</label>
+                        </div>
+                        <div class="explanation-box" id="q17-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q18-box">
+                        <p class="question-text">18. What rhyming pattern is present in: "I'm a real cool head / I'm makin' real good bread"?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q18" value="A" onclick="checkInstant('q18', 'B', '\'Head\' (/hɛd/) and \'bread\' (/brɛd/) form a perfect end rhyme.')"> A) ABAB</label>
+                            <label class="option-label"><input type="radio" name="q18" value="B" onclick="checkInstant('q18', 'B', '\'Head\' (/hɛd/) and \'bread\' (/brɛd/) form a perfect end rhyme.')"> B) Perfect rhyme between "head" and "bread"</label>
+                            <label class="option-label"><input type="radio" name="q18" value="C" onclick="checkInstant('q18', 'B', '\'Head\' (/hɛd/) and \'bread\' (/brɛd/) form a perfect end rhyme.')"> C) Slant rhyme</label>
+                            <label class="option-label"><input type="radio" name="q18" value="D" onclick="checkInstant('q18', 'B', '\'Head\' (/hɛd/) and \'bread\' (/brɛd/) form a perfect end rhyme.')"> D) No rhyme</label>
+                        </div>
+                        <div class="explanation-box" id="q18-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q19-box">
+                        <p class="question-text">19. How is "gotta" pronounced in fast American speech?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q19" value="A" onclick="checkInstant('q19', 'A', 'In American accent, the double \'tt\' sounds like a quick flap \'d\' sound (/ˈɡɑː.t̬ə/).')"> A) /ˈɡɒt.ə/ or /ˈɡɑː.t̬ə/ with a flap 't' sound</label>
+                            <label class="option-label"><input type="radio" name="q19" value="B" onclick="checkInstant('q19', 'A', 'In American accent, the double \'tt\' sounds like a quick flap \'d\' sound (/ˈɡɑː.t̬ə/).')"> B) /ˈɡoʊ.tɑː/</label>
+                            <label class="option-label"><input type="radio" name="q19" value="C" onclick="checkInstant('q19', 'A', 'In American accent, the double \'tt\' sounds like a quick flap \'d\' sound (/ˈɡɑː.t̬ə/).')"> C) /ˈɡɛt.ə/</label>
+                            <label class="option-label"><input type="radio" name="q19" value="D" onclick="checkInstant('q19', 'A', 'In American accent, the double \'tt\' sounds like a quick flap \'d\' sound (/ˈɡɑː.t̬ə/).')"> D) /ˈɡʊd.tə/</label>
+                        </div>
+                        <div class="explanation-box" id="q19-exp"></div>
+                    </div>
+
+                    <div class="question-card" id="q20-box">
+                        <p class="question-text">20. Which syllable is stressed in the word "around"?</p>
+                        <div class="options-group">
+                            <label class="option-label"><input type="radio" name="q20" value="A" onclick="checkInstant('q20', 'B', 'The stress falls on the second syllable: a-ROUND.')"> A) First syllable (A-round)</label>
+                            <label class="option-label"><input type="radio" name="q20" value="B" onclick="checkInstant('q20', 'B', 'The stress falls on the second syllable: a-ROUND.')"> B) Second syllable (a-ROUND)</label>
+                            <label class="option-label"><input type="radio" name="q20" value="C" onclick="checkInstant('q20', 'B', 'The stress falls on the second syllable: a-ROUND.')"> C) Both equally</label>
+                            <label class="option-label"><input type="radio" name="q20" value="D" onclick="checkInstant('q20', 'B', 'The stress falls on the second syllable: a-ROUND.')"> D) Neither</label>
+                        </div>
+                        <div class="explanation-box" id="q20-exp"></div>
+                    </div>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- 3. LYRIC VIDEO -->
+        <section>
+            <h2>3. Lyric Video</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/xzDNsg8VbIU" title="The Beach Boys - I Get Around Lyric Video" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- 4. KEY EXPRESSIONS -->
+        <section>
+            <h2>4. 10 Useful Everyday Expressions</h2>
+            <div class="expressions-grid">
+                
+                <div class="expression-card">
+                    <h4>1. To get around</h4>
+                    <p class="meaning">To travel frequently, move from place to place.</p>
+                    <div class="example">"He manages to get around using public transport."</div>
+                    <p class="translation">👉 Traduction : Se déplacer / Bouger</p>
+                </div>
+
+                <div class="expression-card">
+                    <h4>2. To get bugged</h4>
+                    <p class="meaning">To get annoyed, bored, or frustrated.</p>
+                    <div class="example">"Stop making that noise, I'm getting bugged!"</div>
+                    <p class="translation">👉 Traduction : Être agacé / En avoir marre</p>
+                </div>
+
+                <div class="expression-card">
+                    <h4>3. The same old strip</h4>
+                    <p class="meaning">The main road or street in a town where people hang out.</p>
+                    <div class="example">"On Friday nights, teens drive down the strip."</div>
+                    <p class="translation">👉 Traduction : La même grande rue habituelle</p>
+                </div>
+
+                <div class="expression-card">
+                    <h4>4. To be hip</h4>
+                    <p class="meaning">To be cool, trendy, and stylish.</p>
+                    <div class="example">"She knows all the newest bands; she's really hip."</div>
+                    <p class="translation">👉 Traduction : Être branché / Cool</p>
+                </div>
+
+                <div class="expression-card">
+                    <h4>5. To make good bread</h4>
+                    <p class="meaning">To earn a good amount of money (slang).</p>
+                    <div class="example">"After his promotion, he's making real good bread."</div>
+                    <p class="translation">👉 Traduction : Gagner du bon fric</p>
+                </div>
+
+                <div class="expression-card">
+                    <h4>6. To be a cool head</h4>
+                    <p class="meaning">To stay calm and composed under pressure.</p>
+                    <div class="example">"During an emergency, Sarah remains a cool head."</div>
+                    <p class="translation">👉 Traduction : Garder son sang-froid</p>
+                </div>
+
+                <div class="expression-card">
+                    <h4>7. To go steady</h4>
+                    <p class="meaning">To date someone exclusively (vintage expression).</p>
+                    <div class="example">"Are Tom and Lisa going steady now?"</div>
+                    <p class="translation">👉 Traduction : Être en relation sérieuse</p>
+                </div>
+
+                <div class="expression-card">
+                    <h4>8. My buddies and me</h4>
+                    <p class="meaning">A friendly, informal way to refer to your friends.</p>
+                    <div class="example">"My buddies and me are planning a trip."</div>
+                    <p class="translation">👉 Traduction : Mes potes et moi</p>
+                </div>
+
+                <div class="expression-card">
+                    <h4>9. Leave (someone) alone</h4>
+                    <p class="meaning">To stop bothering or interrupting someone.</p>
+                    <div class="example">"Please leave me alone, I need to focus."</div>
+                    <p class="translation">👉 Traduction : Laisser tranquille</p>
+                </div>
+
+                <div class="expression-card">
+                    <h4>10. I gotta</h4>
+                    <p class="meaning">Informal contraction for "I have got to" (I must).</p>
+                    <div class="example">"I gotta go now, my bus is coming!"</div>
+                    <p class="translation">👉 Traduction : Je dois / Il faut que je...</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. KARAOKE VIDEO & LYRICS WITH TRANSLATION -->
+        <section>
+            <h2>5. Karaoke Track & Bilingual Lyrics</h2>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/A3bMKzqzvDQ?si=ENJ3eb8XLK4me6tb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <h3 style="margin-top: 25px; color: var(--primary);">Full Lyrics with French Translation</h3>
+            <div class="lyrics-container">
+                
+                <div class="lyric-line">
+                    <div class="lyric-en">Round, round, get around, I get around</div>
+                    <div class="lyric-fr">Tourne, tourne, je bouge partout, je bouge pas mal</div>
+                </div>
+
+                <div class="lyric-line">
+                    <div class="lyric-en">From town to town, I'm a real cool head</div>
+                    <div class="lyric-fr">De ville en ville, je suis un type vraiment calme</div>
+                </div>
+
+                <div class="lyric-line">
+                    <div class="lyric-en">I'm makin' real good bread</div>
+                    <div class="lyric-fr">Je gagne du très bon fric</div>
+                </div>
+
+                <div class="lyric-line">
+                    <div class="lyric-en">I'm gettin' bugged drivin' up and down the same old strip</div>
+                    <div class="lyric-fr">Ça me saoule de rouler de long en large sur la même grande rue</div>
+                </div>
+
+                <div class="lyric-line">
+                    <div class="lyric-en">I gotta find a new place where the kids are hip</div>
+                    <div class="lyric-fr">Il faut que je trouve un nouveau coin où les jeunes sont branchés</div>
+                </div>
+
+                <div class="lyric-line">
+                    <div class="lyric-en">My buddies and me are gettin' real well known</div>
+                    <div class="lyric-fr">Mes potes et moi commençons à être vraiment très connus</div>
+                </div>
+
+                <div class="lyric-line">
+                    <div class="lyric-en">Yeah, the bad guys know us and they leave us alone</div>
+                    <div class="lyric-fr">Ouais, les voyous nous connaissent et nous laissent tranquilles</div>
+                </div>
+
+                <div class="lyric-line">
+                    <div class="lyric-en">We always take my car 'cause it's never been beat</div>
+                    <div class="lyric-fr">On prend toujours ma voiture parce qu'elle n'a jamais été battue</div>
+                </div>
+
+                <div class="lyric-line">
+                    <div class="lyric-en">And we've never missed a shot with the girls we meet</div>
+                    <div class="lyric-fr">Et on ne rate jamais notre coup avec les filles qu'on rencontre</div>
+                </div>
+
+                <div class="lyric-line">
+                    <div class="lyric-en">None of the guys go steady 'cause it wouldn't be right</div>
+                    <div class="lyric-fr">Aucun des gars n'est en couple fixe parce ce ne serait pas bien</div>
+                </div>
+
+                <div class="lyric-line">
+                    <div class="lyric-en">To leave their best girl home on a Saturday night</div>
+                    <div class="lyric-fr">De laisser sa copine officielle à la maison un samedi soir</div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function checkInstant(qKey, correctAnswer, explanation) {
+            const selected = document.querySelector(`input[name="${qKey}"]:checked`);
+            const qBox = document.getElementById(`${qKey}-box`);
+            const expBox = document.getElementById(`${qKey}-exp`);
+
+            if (!selected) return;
+
+            expBox.style.display = "block";
+
+            if (selected.value === correctAnswer) {
+                qBox.style.backgroundColor = "var(--success-bg)";
+                qBox.style.borderColor = "#0F5132";
+                expBox.style.backgroundColor = "#B1DFBB";
+                expBox.style.color = "var(--success-color)";
+                expBox.innerHTML = `<strong>Correct (${selected.value})!</strong> ${explanation}`;
+            } else {
+                qBox.style.backgroundColor = "var(--error-bg)";
+                qBox.style.borderColor = "#842029";
+                expBox.style.backgroundColor = "#F5C6CB";
+                expBox.style.color = "var(--error-color)";
+                expBox.innerHTML = `<strong>Incorrect (${selected.value}).</strong> Correct Answer is <strong>${correctAnswer}</strong>.<br>${explanation}`;
+            }
+        }
+    </script>
+</body>
+</html>

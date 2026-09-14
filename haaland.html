@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haaland: The Goalscoring Machine | CBS Sports Golazo Interactive</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --accent-color: #1f6feb;
+            --accent-hover: #388bfd;
+            --text-main: #c9d1d9;
+            --text-heading: #f0f6fc;
+            --correct-bg: #238636;
+            --correct-border: #2ea043;
+            --wrong-bg: #da3633;
+            --wrong-border: #f85149;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            color: var(--text-heading);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            color: #8b949e;
+            font-size: 1.1rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 40px;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .section-title {
+            color: var(--text-heading);
+            font-size: 1.8rem;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        /* Quiz Styling */
+        .quiz-category {
+            margin-bottom: 30px;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            color: var(--accent-hover);
+            margin-bottom: 15px;
+            background: #21262d;
+            padding: 8px 15px;
+            border-radius: 6px;
+        }
+
+        .question-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-heading);
+            margin-bottom: 15px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        @media(min-width: 600px) {
+            .options-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .option-btn {
+            background-color: #21262d;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 12px 15px;
+            border-radius: 6px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background-color: #30363d;
+            border-color: #8b949e;
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+        }
+
+        .option-btn.correct {
+            background-color: var(--correct-bg) !important;
+            border-color: var(--correct-border) !important;
+            color: #ffffff !important;
+        }
+
+        .option-btn.wrong {
+            background-color: var(--wrong-bg) !important;
+            border-color: var(--wrong-border) !important;
+            color: #ffffff !important;
+        }
+
+        .feedback-box {
+            margin-top: 15px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            display: none;
+            font-size: 0.95rem;
+        }
+
+        .feedback-box.show {
+            display: block;
+        }
+
+        .feedback-box.correct {
+            background-color: rgba(35, 134, 54, 0.2);
+            border: 1px solid var(--correct-border);
+            color: #7ee787;
+        }
+
+        .feedback-box.wrong {
+            background-color: rgba(218, 54, 51, 0.2);
+            border: 1px solid var(--wrong-border);
+            color: #ff7b72;
+        }
+
+        /* Expressions Grid Styling */
+        .expressions-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        @media(min-width: 768px) {
+            .expressions-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .expression-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .expression-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .expression-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .expression-term {
+            font-size: 1.2rem;
+            color: var(--accent-hover);
+            font-weight: bold;
+        }
+
+        .expression-trans {
+            font-style: italic;
+            color: #8b949e;
+            font-size: 0.95rem;
+        }
+
+        .expression-def {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .expression-example {
+            background-color: #0d1117;
+            padding: 10px 12px;
+            border-left: 3px solid var(--accent-color);
+            border-radius: 0 4px 4px 0;
+            font-size: 0.9rem;
+            color: #8b949e;
+        }
+
+        .expression-example strong {
+            color: var(--text-heading);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Haaland To Be Greatest Goalscorer EVER?</h1>
+        <p class="subtitle">Analysis with Thierry Henry, Jamie Carragher & Micah Richards (CBS Sports Golazo)</p>
+    </header>
+
+    <!-- Embedded YouTube Video -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/8gICYe-YzpY" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <!-- QUIZ SECTION -->
+    <h2 class="section-title">Interactive Video Quiz</h2>
+
+    <div id="quiz-container">
+        <!-- 1. Comprehension -->
+        <div class="quiz-category">
+            <h3 class="category-title">1. Comprehension Questions</h3>
+
+            <div class="question-card" id="q1">
+                <p class="question-text">1. What was the final score of Manchester City's match against Porto?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q1', 0, false)">A) 3-0 away win</button>
+                    <button class="option-btn" onclick="checkAnswer('q1', 1, true)">B) 2-0 away win</button>
+                    <button class="option-btn" onclick="checkAnswer('q1', 2, false)">C) 2-1 home win</button>
+                    <button class="option-btn" onclick="checkAnswer('q1', 3, false)">D) 1-0 home win</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q2">
+                <p class="question-text">2. Which player did Micah Richards highlight as bringing great structural stability to the midfield?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q2', 0, false)">A) Rodri</button>
+                    <button class="option-btn" onclick="checkAnswer('q2', 1, false)">B) Bernardo Silva</button>
+                    <button class="option-btn" onclick="checkAnswer('q2', 2, true)">C) Bardi</button>
+                    <button class="option-btn" onclick="checkAnswer('q2', 3, false)">D) Kevin De Bruyne</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q3">
+                <p class="question-text">3. Which legendary strikers did Thierry Henry and Jamie Carragher compare Haaland to?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q3', 0, true)">A) Gerd Müller and Filippo Inzaghi</button>
+                    <button class="option-btn" onclick="checkAnswer('q3', 1, false)">B) Ronaldo Nazário and Marco van Basten</button>
+                    <button class="option-btn" onclick="checkAnswer('q3', 2, false)">C) Alan Shearer and Wayne Rooney</button>
+                    <button class="option-btn" onclick="checkAnswer('q3', 3, false)">D) Didier Drogba and Samuel Eto'o</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q4">
+                <p class="question-text">4. What tactical improvement in Haaland's movement did the analysts discuss?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q4', 0, false)">A) Dropping into midfield to play as a No. 10</button>
+                    <button class="option-btn" onclick="checkAnswer('q4', 1, true)">B) Varying his runs to the first post instead of only the back post</button>
+                    <button class="option-btn" onclick="checkAnswer('q4', 2, false)">C) Moving out to the left wing on counterattacks</button>
+                    <button class="option-btn" onclick="checkAnswer('q4', 3, false)">D) Staying completely static inside the 6-yard box</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q5">
+                <p class="question-text">5. What key stat was highlighted regarding Haaland's Champions League record during the discussion?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q5', 0, false)">A) 100 goals in 80 games</button>
+                    <button class="option-btn" onclick="checkAnswer('q5', 1, false)">B) 30 goals in 40 games</button>
+                    <button class="option-btn" onclick="checkAnswer('q5', 2, true)">C) 59 goals in 59 games</button>
+                    <button class="option-btn" onclick="checkAnswer('q5', 3, false)">D) 45 goals in 50 games</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+        </div>
+
+        <!-- 2. Vocabulary -->
+        <div class="quiz-category">
+            <h3 class="category-title">2. Vocabulary Questions</h3>
+
+            <div class="question-card" id="q6">
+                <p class="question-text">6. What does the term "hold-up play" refer to in football?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q6', 0, false)">A) Delaying taking a penalty kick</button>
+                    <button class="option-btn" onclick="checkAnswer('q6', 1, true)">B) A striker shielding the ball with back to goal to allow teammates to join</button>
+                    <button class="option-btn" onclick="checkAnswer('q6', 2, false)">C) Time-wasting near the corner flag</button>
+                    <button class="option-btn" onclick="checkAnswer('q6', 3, false)">D) Committing fouls in midfield to break the opponent's momentum</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q7">
+                <p class="question-text">7. When the pundits say a team is "knocking on the door," what do they mean?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q7', 0, false)">A) Asking the referee for a review</button>
+                    <button class="option-btn" onclick="checkAnswer('q7', 1, false)">B) Defending very deep in their own penalty area</button>
+                    <button class="option-btn" onclick="checkAnswer('q7', 2, true)">C) Creating repeated scoring chances and being close to scoring</button>
+                    <button class="option-btn" onclick="checkAnswer('q7', 3, false)">D) Entering the stadium locker room</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q8">
+                <p class="question-text">8. What is the meaning of the idiom "cherry on the cake"?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q8', 0, true)">A) An extra good detail that makes something already great even better</button>
+                    <button class="option-btn" onclick="checkAnswer('q8', 1, false)">B) A lucky mistake that turns out well</button>
+                    <button class="option-btn" onclick="checkAnswer('q8', 2, false)">C) The final goal scored by the losing team</button>
+                    <button class="option-btn" onclick="checkAnswer('q8', 3, false)">D) A sweet celebration performed by players</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q9">
+                <p class="question-text">9. What does it mean to "put someone on the spot"?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q9', 0, false)">A) To pass the ball directly to a player's feet</button>
+                    <button class="option-btn" onclick="checkAnswer('q9', 1, true)">B) To force someone to answer a difficult question or make a quick decision</button>
+                    <button class="option-btn" onclick="checkAnswer('q9', 2, false)">C) To assign a defender to mark a specific attacker</button>
+                    <button class="option-btn" onclick="checkAnswer('q9', 3, false)">D) To spot talent in a young player</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q10">
+                <p class="question-text">10. In sports commentary, what does the word "phenomenal" describe?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q10', 0, true)">A) Extraordinary, remarkable, or exceptional</button>
+                    <button class="option-btn" onclick="checkAnswer('q10', 1, false)">B) Average or expected performance</button>
+                    <button class="option-btn" onclick="checkAnswer('q10', 2, false)">C) Unpredictable and dangerous weather</button>
+                    <button class="option-btn" onclick="checkAnswer('q10', 3, false)">D) Physically aggressive play</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+        </div>
+
+        <!-- 3. Grammar -->
+        <div class="quiz-category">
+            <h3 class="category-title">3. Grammar Questions</h3>
+
+            <div class="question-card" id="q11">
+                <p class="question-text">11. Choose the correct modal phrase used to express strong probability in hindsight: "He _____ scored a few more tonight."</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q11', 0, false)">A) must score</button>
+                    <button class="option-btn" onclick="checkAnswer('q11', 1, true)">B) could have</button>
+                    <button class="option-btn" onclick="checkAnswer('q11', 2, false)">C) should to</button>
+                    <button class="option-btn" onclick="checkAnswer('q11', 3, false)">D) can have</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q12">
+                <p class="question-text">12. Identify the correct conditional structure: "On another day, he _____ that chance."</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q12', 0, false)">A) scores</button>
+                    <button class="option-btn" onclick="checkAnswer('q12', 1, true)">B) would have scored</button>
+                    <button class="option-btn" onclick="checkAnswer('q12', 2, false)">C) will score</button>
+                    <button class="option-btn" onclick="checkAnswer('q12', 3, false)">D) was scoring</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q13">
+                <p class="question-text">13. In the sentence "I was nervous going into the game," what grammatical form is "going"?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q13', 0, false)">A) Infinitive verb</button>
+                    <button class="option-btn" onclick="checkAnswer('q13', 1, true)">B) Present participle acting as an adverbial modifier</button>
+                    <button class="option-btn" onclick="checkAnswer('q13', 2, false)">C) Past tense verb</button>
+                    <button class="option-btn" onclick="checkAnswer('q13', 3, false)">D) Noun</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q14">
+                <p class="question-text">14. What is the correct relative pronoun in: "Strikers _____ only want to score goals"?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q14', 0, true)">A) who</button>
+                    <button class="option-btn" onclick="checkAnswer('q14', 1, false)">B) which</button>
+                    <button class="option-btn" onclick="checkAnswer('q14', 2, false)">C) whom</button>
+                    <button class="option-btn" onclick="checkAnswer('q14', 3, false)">D) where</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q15">
+                <p class="question-text">15. Complete the sentence correctly: "I can't see him not _____ the greatest goalscorer."</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q15', 0, false)">A) became</button>
+                    <button class="option-btn" onclick="checkAnswer('q15', 1, false)">B) become</button>
+                    <button class="option-btn" onclick="checkAnswer('q15', 2, true)">C) becoming</button>
+                    <button class="option-btn" onclick="checkAnswer('q15', 3, false)">D) to become</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+        </div>
+
+        <!-- 4. Pronunciation -->
+        <div class="quiz-category">
+            <h3 class="category-title">4. Pronunciation & Connected Speech</h3>
+
+            <div class="question-card" id="q16">
+                <p class="question-text">16. In spoken fast British English, how is "could have" usually pronounced phonetically?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q16', 0, true)">A) /kʊdə/ ("coulda")</button>
+                    <button class="option-btn" onclick="checkAnswer('q16', 1, false)">B) /kʊd hæv/ ("could-HAV")</button>
+                    <button class="option-btn" onclick="checkAnswer('q16', 2, false)">C) /kʊd ɒf/ ("could-off")</button>
+                    <button class="option-btn" onclick="checkAnswer('q16', 3, false)">D) /kəʊldv/ ("cold-ve")</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q17">
+                <p class="question-text">17. Which syllable carries the primary stress in the word "PHENOMENAL"?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q17', 0, false)">A) PHE-nom-e-nal (1st)</button>
+                    <button class="option-btn" onclick="checkAnswer('q17', 1, true)">B) phe-NOM-e-nal (2nd)</button>
+                    <button class="option-btn" onclick="checkAnswer('q17', 2, false)">C) phe-nom-E-nal (3rd)</button>
+                    <button class="option-btn" onclick="checkAnswer('q17', 3, false)">D) phe-nom-e-NAL (4th)</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q18">
+                <p class="question-text">18. In Northern/Liverpool English (as spoken by Jamie Carragher), how is the word "look" often pronounced?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q18', 0, false)">A) With a silent 'k'</button>
+                    <button class="option-btn" onclick="checkAnswer('q18', 1, true)">B) With a long /uː/ vowel sound like "luke"</button>
+                    <button class="option-btn" onclick="checkAnswer('q18', 2, false)">C) Rhyming with "lock"</button>
+                    <button class="option-btn" onclick="checkAnswer('q18', 3, false)">D) Pronounced as "lack"</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q19">
+                <p class="question-text">19. What happens to the final /t/ sound in "out" in fast casual speech ("outstanding")?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q19', 0, true)">A) It is often replaced by a glottal stop /ʔ/</button>
+                    <button class="option-btn" onclick="checkAnswer('q19', 1, false)">B) It is pronounced twice</button>
+                    <button class="option-btn" onclick="checkAnswer('q19', 2, false)">C) It turns into an 's' sound</button>
+                    <button class="option-btn" onclick="checkAnswer('q19', 3, false)">D) It is heavily aspirated with strong air flow</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+
+            <div class="question-card" id="q20">
+                <p class="question-text">20. Where is the main stress placed in the compound noun "COUNTERATTACK"?</p>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="checkAnswer('q20', 0, true)">A) COUNTER-attack (1st part)</button>
+                    <button class="option-btn" onclick="checkAnswer('q20', 1, false)">B) counter-AT-tack (2nd syllable)</button>
+                    <button class="option-btn" onclick="checkAnswer('q20', 2, false)">C) counter-at-TACK (last syllable)</button>
+                    <button class="option-btn" onclick="checkAnswer('q20', 3, false)">D) Equal stress on all syllables</button>
+                </div>
+                <div class="feedback-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VISUAL EXPRESSIONS SECTION -->
+    <h2 class="section-title">10 Key Expressions from the Video</h2>
+    
+    <div class="expressions-grid">
+
+        <!-- Expression 1 -->
+        <div class="expression-card">
+            <img src="" alt="Turn around the corner" class="expression-img">
+            <div class="expression-content">
+                <div class="expression-term">1. Around the corner</div>
+                <div class="expression-trans">Traduction : En une touche déviée / Rapide et fluide</div>
+                <div class="expression-def">In football, playing a quick one-touch pass behind a defender. In everyday life, it means something happening very soon or very close by.</div>
+                <div class="expression-example"><strong>Everyday Example:</strong> "Don't worry, the local supermarket is just around the corner."</div>
+            </div>
+        </div>
+
+        <!-- Expression 2 -->
+        <div class="expression-card">
+            <img src="" alt="Hold-up play" class="expression-img">
+            <div class="expression-content">
+                <div class="expression-term">2. Hold-up play</div>
+                <div class="expression-trans">Traduction : Jeu en pivot / Jeu dos au but</div>
+                <div class="expression-def">The ability of an attacker to retain the ball under pressure until teammates arrive. Metaphorically, holding your ground while waiting for support.</div>
+                <div class="expression-example"><strong>Everyday Example:</strong> "His excellent hold-up play under pressure gave the team time to reorganize."</div>
+            </div>
+        </div>
+
+        <!-- Expression 3 -->
+        <div class="expression-card">
+            <img src="" alt="At the back post" class="expression-img">
+            <div class="expression-content">
+                <div class="expression-term">3. Back post / Far post</div>
+                <div class="expression-trans">Traduction : Au second poteau</div>
+                <div class="expression-def">The goalpost furthest from where the ball is being crossed or passed.</div>
+                <div class="expression-example"><strong>Everyday Example:</strong> "The cross was precise, and the winger was waiting at the back post to tap it in."</div>
+            </div>
+        </div>
+
+        <!-- Expression 4 -->
+        <div class="expression-card">
+            <img src="" alt="Cherry on the cake" class="expression-img">
+            <div class="expression-content">
+                <div class="expression-term">4. The cherry on the cake</div>
+                <div class="expression-trans">Traduction : La cerise sur le gâteau</div>
+                <div class="expression-def">An additional benefit that makes an already good situation complete or outstanding.</div>
+                <div class="expression-example"><strong>Everyday Example:</strong> "We won the championship, and getting a bonus was just the cherry on the cake."</div>
+            </div>
+        </div>
+
+        <!-- Expression 5 -->
+        <div class="expression-card">
+            <img src="watermarked_img_4110944771214383725.jpg" alt="Knocking on the door" class="expression-img">
+            <div class="expression-content">
+                <div class="expression-term">5. Knocking on the door</div>
+                <div class="expression-trans">Traduction : Taper à la porte / Être tout près de réussir</div>
+                <div class="expression-def">Creating continuous pressure or approaching a major achievement.</div>
+                <div class="expression-example"><strong>Everyday Example:</strong> "She has been knocking on the door of a promotion for two years."</div>
+            </div>
+        </div>
+
+        <!-- Expression 6 -->
+        <div class="expression-card">
+            <img src="watermarked_img_4516025649534651867.jpg" alt="Put on the spot" class="expression-img">
+            <div class="expression-content">
+                <div class="expression-term">6. Put someone on the spot</div>
+                <div class="expression-trans">Traduction : Mettre quelqu'un au pied du mur / Mettre dans l'embarras</div>
+                <div class="expression-def">To force someone to answer a difficult question unexpectedly.</div>
+                <div class="expression-example"><strong>Everyday Example:</strong> "The manager put me on the spot during the meeting by asking for exact numbers."</div>
+            </div>
+        </div>
+
+        <!-- Expression 7 -->
+        <div class="expression-card">
+            <img src="watermarked_img_3480889226836247994.jpg" alt="Take for granted" class="expression-img">
+            <div class="expression-content">
+                <div class="expression-term">7. Take something for granted</div>
+                <div class="expression-trans">Traduction : Prendre pour acquis</div>
+                <div class="expression-def">To fail to appreciate something because you are so accustomed to it.</div>
+                <div class="expression-example"><strong>Everyday Example:</strong> "We often take good health for granted until we get sick."</div>
+            </div>
+        </div>
+
+        <!-- Expression 8 -->
+        <div class="expression-card">
+            <img src="watermarked_img_16095054138895825327.jpg" alt="Right place right time" class="expression-img">
+            <div class="expression-content">
+                <div class="expression-term">8. Right place at the right time</div>
+                <div class="expression-trans">Traduction : Au bon endroit au bon moment</div>
+                <div class="expression-def">Positioned perfectly by instinct or luck to take advantage of an opportunity.</div>
+                <div class="expression-example"><strong>Everyday Example:</strong> "I met my new business partner just by being in the right place at the right time."</div>
+            </div>
+        </div>
+
+        <!-- Expression 9 -->
+        <div class="expression-card">
+            <img src="watermarked_img_4110944771214383725.jpg" alt="Off the mark" class="expression-img">
+            <div class="expression-content">
+                <div class="expression-term">9. Off the mark</div>
+                <div class="expression-trans">Traduction : Débloquer son compteur / Démarrer</div>
+                <div class="expression-def">To get started, score the first points, or make initial progress.</div>
+                <div class="expression-example"><strong>Everyday Example:</strong> "The sales team got off the mark with three deals on Monday."</div>
+            </div>
+        </div>
+
+        <!-- Expression 10 -->
+        <div class="expression-card">
+            <img src="watermarked_img_4516025649534651867.jpg" alt="Change up" class="expression-img">
+            <div class="expression-content">
+                <div class="expression-term">10. Change up (one's game)</div>
+                <div class="expression-trans">Traduction : Varier son jeu / Adapter sa stratégie</div>
+                <div class="expression-def">To vary tactics or methods to stay unpredictable and overcome obstacles.</div>
+                <div class="expression-example"><strong>Everyday Example:</strong> "If your current marketing plan isn't working, you need to change it up."</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    const quizExplanations = {
+        q1: "Correct! Manchester City secured a 2-0 victory away against Porto.",
+        q2: "Correct! Micah Richards emphasized that Bardi added great structure and composure in midfield.",
+        q3: "Correct! Jamie Carragher and Thierry Henry compared Haaland's ruthless positioning to Gerd Müller and Filippo Inzaghi.",
+        q4: "Correct! Pundits noted Haaland is now attacking the first post more often rather than relying exclusively on back-post runs.",
+        q5: "Correct! The panel highlighted his incredible stat line of 59 goals in 59 Champions League appearances.",
+        q6: "Correct! 'Hold-up play' refers to a striker protecting the ball with their body while team members move forward.",
+        q7: "Correct! 'Knocking on the door' means persistently pressuring and creating opportunities to score.",
+        q8: "Correct! The 'cherry on the cake' refers to an added perfection to an already great performance.",
+        q9: "Correct! To 'put someone on the spot' means asking them something directly without warning.",
+        q10: "Correct! 'Phenomenal' means extraordinary or remarkably impressive.",
+        q11: "Correct! 'Could have' + past participle is used to express past possibility.",
+        q12: "Correct! Third conditional structure uses 'would have' + past participle for hypothetical past situations.",
+        q13: "Correct! 'Going' serves as a present participle describing the circumstance of being nervous.",
+        q14: "Correct! 'Who' is the subject relative pronoun used for people (strikers).",
+        q15: "Correct! The verb 'see' in this context takes a gerund object ('becoming').",
+        q16: "Correct! In fast spoken English, 'could have' reduces to 'coulda' (/kʊdə/).",
+        q17: "Correct! The stress falls on the second syllable: phe-NOM-e-nal.",
+        q18: "Correct! The Scouse accent (Liverpool) features a long /uː/ sound in words like 'look' (/luːk/).",
+        q19: "Correct! Fast casual speech in British English frequently uses glottal stops /ʔ/ for final /t/ sounds.",
+        q20: "Correct! Compound nouns typically place primary stress on the first element ('COUN-ter-attack')."
+    };
+
+    function checkAnswer(questionId, selectedIdx, isCorrect) {
+        const card = document.getElementById(questionId);
+        const buttons = card.querySelectorAll('.option-btn');
+        const feedback = card.querySelector('.feedback-box');
+
+        // Disable all buttons in this card
+        buttons.forEach((btn, idx) => {
+            btn.disabled = true;
+        });
+
+        // Highlight chosen option
+        if (isCorrect) {
+            buttons[selectedIdx].classList.add('correct');
+            feedback.className = "feedback-box show correct";
+            feedback.innerHTML = "<strong>Correct!</strong> " + quizExplanations[questionId];
+        } else {
+            buttons[selectedIdx].classList.add('wrong');
+            feedback.className = "feedback-box show wrong";
+            feedback.innerHTML = "<strong>Incorrect.</strong> " + quizExplanations[questionId];
+        }
+    }
+</script>
+
+</body>
+</html>

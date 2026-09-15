@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manchester United Analysis - Vizeh Video Lesson</title>
+    <style>
+        :root {
+            --primary-color: #da291c; /* Manchester United Red */
+            --secondary-color: #000000;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --correct-color: #16a34a;
+            --wrong-color: #dc2626;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 8px;
+            color: var(--secondary-color);
+            margin-top: 0;
+        }
+
+        h3 {
+            margin-top: 25px;
+            color: var(--primary-color);
+        }
+
+        .question-card {
+            background-color: #f1f5f9;
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .question-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background-color: #e2e8f0;
+        }
+
+        .option-btn.correct {
+            background-color: #dcfce7;
+            border-color: var(--correct-color);
+            color: #14532d;
+            font-weight: bold;
+        }
+
+        .option-btn.wrong {
+            background-color: #fee2e2;
+            border-color: var(--wrong-color);
+            color: #7f1d1d;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .feedback.visible {
+            display: block;
+        }
+
+        .feedback.correct-bg {
+            background-color: #dcfce7;
+            color: #14532d;
+        }
+
+        .feedback.wrong-bg {
+            background-color: #fee2e2;
+            color: #7f1d1d;
+        }
+
+        .expression-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .expression-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .expression-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .expression-body {
+            padding: 15px;
+            flex-grow: 1;
+        }
+
+        .expression-term {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .expression-trans {
+            font-style: italic;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .expression-example {
+            background: #f8fafc;
+            padding: 10px;
+            border-left: 3px solid var(--primary-color);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Manchester United Are STILL Going Nowhere...</h1>
+        <p>Improve your English with Vizeh's tactical review of Manchester United</p>
+    </header>
+
+    <!-- Embedded YouTube Video -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/UkL1nkv9_78" title="Manchester United Are STILL Going Nowhere..." allowfullscreen></iframe>
+    </div>
+
+    <!-- Quiz Section -->
+    <section class="section-card">
+        <h2>Interactive Quiz (20 Questions)</h2>
+        <div id="quiz-container"></div>
+    </section>
+
+    <!-- Expressions Section -->
+    <section class="section-card">
+        <h2>10 Essential Expressions & Phrasal Verbs from the Video</h2>
+        <div class="expression-grid" id="expressions-container"></div>
+    </section>
+</div>
+
+<script>
+const quizData = [
+    // 5 Listening / Video Comprehension Questions
+    {
+        category: "Comprehension",
+        question: "1. What was the final score of the derby against Manchester City at Old Trafford?",
+        options: [
+            "A 2-1 victory for Manchester United",
+            "A 1-0 loss for Manchester United against a 10-man City",
+            "A 0-0 goalless draw",
+            "A 3-0 defeat at home"
+        ],
+        answer: 1,
+        explanation: "The video analyzes Manchester United's frustrating 1-0 loss to a 10-man Manchester City side at Old Trafford."
+    },
+    {
+        category: "Comprehension",
+        question: "2. What stat is highlighted regarding Manchester United's expected goals (xG) between the 7th and 95th minute?",
+        options: [
+            "An extremely low 0.04 xG",
+            "A solid 2.15 xG",
+            "An average 1.10 xG",
+            "Zero shots recorded"
+        ],
+        answer: 0,
+        explanation: "Vizeh points out that Manchester United generated a dismal 0.04 xG during that long stretch of the match."
+    },
+    {
+        category: "Comprehension",
+        question: "3. What tactical weakness is pointed out regarding Bruno Fernandes' role in creative output?",
+        options: [
+            "He refuses to shoot from distance",
+            "The creative play relies heavily on his high-risk passes, which often fail to connect",
+            "He plays too close to his own defenders",
+            "He rarely takes set pieces"
+        ],
+        answer: 1,
+        explanation: "The team depends heavily on Bruno Fernandes attempting high-risk, low-percentage passes that frequently get intercepted."
+    },
+    {
+        category: "Comprehension",
+        question: "4. What main criticism is made regarding manager Michael Carrick's game management?",
+        options: [
+            "He changes the formation every 10 minutes",
+            "He is too aggressive with attacking substitutions",
+            "He is often too reactive and slow to make necessary tactical substitutions",
+            "He refuses to give post-match press conferences"
+        ],
+        answer: 2,
+        explanation: "While credited with stabilizing the squad, Carrick is criticized for being too slow and reactive when making substitutions during matches."
+    },
+    {
+        category: "Comprehension",
+        question: "5. Why does Manchester United struggle against teams that sit back defensively?",
+        options: [
+            "They lack a reliable 'Plan B' and prefer chaotic, end-to-end transition moments",
+            "Their players are physically exhausted",
+            "The stadium pitch is too small",
+            "They refuse to pass sideways"
+        ],
+        answer: 0,
+        explanation: "United excel in open transitions but lack the tactical structure or 'Plan B' needed to unlock deep defensive blocks."
+    },
+
+    // 5 Vocabulary Questions
+    {
+        category: "Vocabulary",
+        question: "6. What does the phrase 'going nowhere' mean in the video title?",
+        options: [
+            "Traveling to an unknown destination",
+            "Failing to make any real progress or improvement",
+            "Moving to a new stadium",
+            "Winning back-to-back trophies"
+        ],
+        answer: 1,
+        explanation: "'Going nowhere' indicates stagnation and a complete lack of meaningful development."
+    },
+    {
+        category: "Vocabulary",
+        question: "7. What does the term 'expected goals' (xG) measure in football analytics?",
+        options: [
+            "The total number of goals a team scored last season",
+            "The quality of a scoring chance based on historical data and probability",
+            "The number of tickets sold for a match",
+            "The percentage of ball possession in midfield"
+        ],
+        answer: 1,
+        explanation: "xG measures the likelihood of a given shot resulting in a goal based on position, angle, and situation."
+    },
+    {
+        category: "Vocabulary",
+        question: "8. What does 'mediocrity' mean when describing the club's state?",
+        options: [
+            "The state of being average or ordinary without high quality",
+            "Achieving absolute perfection",
+            "Experiencing financial bankruptcy",
+            "Demonstrating world-class excellence"
+        ],
+        answer: 0,
+        explanation: "'Mediocrity' refers to a persistent level of moderate, unimpressive quality."
+    },
+
+    {
+        category: "Vocabulary",
+        question: "9. What does 'prone to' mean in 'prone to making costly errors'?",
+        options: [
+            "Incapable of making mistakes",
+            "Likely or inclined to suffer from/do something negative",
+            "Extremely resistant to failure",
+            "Forced by the referee"
+        ],
+        answer: 1,
+        explanation: "Being 'prone to' something means having a natural tendency or vulnerability toward it."
+    },
+    {
+        category: "Vocabulary",
+        question: "10. What does 'break down' mean when talking about an opposing defense?",
+        options: ["To start crying on the pitch", "To dismantle or penetrate a defensive structure", "To repair a broken goalpost", "To commit a red-card foul"],
+        answer: 1,
+        explanation: "To 'break down a defense' means finding ways to pass through a organized defensive shape."
+    },
+
+    // 5 Grammar Questions
+    {
+        category: "Grammar",
+        question: "11. Identify the tense in: 'Manchester United have been struggling to maintain clean sheets.'",
+        options: [
+            "Present Simple",
+            "Present Perfect Continuous",
+            "Past Continuous",
+            "Future Perfect"
+        ],
+        answer: 1,
+        explanation: "'Have been struggling' is formed with have + been + verb-ing (Present Perfect Continuous)."
+    },
+    {
+        category: "Grammar",
+        question: "12. Choose the correct modal verb: 'If United don't adapt, they _____ face another difficult season.'",
+        options: [
+            "will",
+            "would have",
+            "ought",
+            "must to"
+        ],
+        answer: 0,
+        explanation: "In a real future conditional (Type 1), 'will' expresses the likely consequence in the main clause."
+    },
+    {
+        category: "Grammar",
+        question: "13. Complete the sentence correctly: 'The manager was criticized for _____ too slow with substitutions.'",
+        options: [
+            "be",
+            "being",
+            "to be",
+            "been"
+        ],
+        answer: 1,
+        explanation: "Prepositions (here, 'for') must be followed by a gerund (-ing form)."
+    },
+    {
+        category: "Grammar",
+        question: "14. What type of cause clause is present: 'Despite playing against 10 men, they failed to score.'",
+        options: [
+            "Concession clause (expressing contrast)",
+            "Time clause",
+            "Relative clause",
+            "Passive voice comparison"
+        ],
+        answer: 0,
+        explanation: "'Despite' introduces a contrast/concession between two facts."
+    },
+    {
+        category: "Grammar",
+        question: "15. Select the correct passive voice sentence:",
+        options: [
+            "The match was lost by Manchester United.",
+            "Manchester United lost the match.",
+            "The match losing Manchester United.",
+            "Manchester United was lose the match."
+        ],
+        answer: 0,
+        explanation: "'The match was lost by Manchester United' correctly uses was + past participle (passive)."
+    },
+
+    // 5 Pronunciation Questions
+    {
+        category: "Pronunciation",
+        question: "16. Where is the primary stress located in the word 'MEDIOCRITY'?",
+        options: [
+            "ME-diocrity (1st)",
+            "me-DI-ocrity (2nd)",
+            "medio-CRI-ty (3rd)",
+            "mediocri-TY (4th)"
+        ],
+        answer: 2,
+        explanation: "The primary stress falls on the third syllable: /ˌmiː.diˈɒk.rə.ti/."
+    },
+    {
+        category: "Pronunciation",
+        question: "17. How is the '-ed' suffix pronounced in the verb 'conceded'?",
+        options: [
+            "As an extra syllable /ɪd/",
+            "As a unvoiced /t/ sound",
+            "As a single /d/ sound",
+            "It is completely silent"
+        ],
+        answer: 0,
+        explanation: "Verbs ending in 'd' or 't' sounds take an additional syllable /ɪd/ in the past tense (/kənˈsiː.dɪd/)."
+    },
+    {
+        category: "Pronunciation",
+        question: "18. What connected speech phenomenon occurs when saying 'sit back' smoothly?",
+        options: [
+            "The final /t/ in 'sit' often becomes a glottal stop or links directly to the /b/",
+            "The 's' sound disappears",
+            "The word 'back' is pronounced as 'pack'",
+            "A long vowel is added between the words"
+        ],
+        answer: 0,
+        explanation: "In rapid British English, final /t/ before a consonant often glottalizes or assimilates."
+    },
+    {
+        category: "Pronunciation",
+        question: "19. Which vowel sound is heard in the word 'drought' (e.g. goal drought)?",
+        options: [
+            "Diphthong /aʊ/ as in 'out' or 'house'",
+            "Long /uː/ as in 'too'",
+            "Short /ɒ/ as in 'hot'",
+            "Diphthong /əʊ/ as in 'go'"
+        ],
+        answer: 0,
+        explanation: "'Drought' is pronounced /draʊt/ with the same vowel sound as 'shout' or 'now'."
+    },
+    {
+        category: "Pronunciation",
+        question: "20. What is the correct IPA transcription for the word 'FRAGILITY'?",
+        options: [
+            "/frəˈdʒɪl.ə.ti/",
+            "/fræɡ.ɪ.lɪ.ti/",
+            "/frɑː.dʒiː.laɪ.ti/",
+            "/frəˈɡɪl.ɪ.ti/"
+        ],
+        answer: 0,
+        explanation: "The standard phonetic transcription for 'fragility' is /frəˈdʒɪl.ə.ti/ with a soft 'g' sound."
+    }
+];
+
+const expressionsData = [
+    {
+        term: "Go nowhere",
+        translation: "Faire du surplace / Ne pas progresser",
+        example: "If you don't set clear goals, your career will end up going nowhere.",
+        image: "https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Prone to (errors)",
+        translation: "Sujet à / Enclin à faire des erreurs",
+        example: "When tired, drivers are much more prone to making silly mistakes on the road.",
+        image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Sit back",
+        translation: "Se cantonner en défense / Rester passif",
+        example: "Instead of taking action, he decided to sit back and watch what happened.",
+        image: "https://images.unsplash.com/photo-1541199249251-f713e6145474?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Break down (a defense)",
+        translation: "Démanteler / Contourner un bloc défensif",
+        example: "The engineers worked tirelessly to break down the complex problem into simple steps.",
+        image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Stuck in a cycle",
+        translation: "Coincé dans un cercle vicieux",
+        example: "Without proper training, people can get stuck in a cycle of low-paying jobs.",
+        image: "https://images.unsplash.com/photo-1509021436468-d510090e3963?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Plan B",
+        translation: "Solution de secours / Plan de rechange",
+        example: "It rained heavily on our wedding day, so we had to execute our indoor Plan B.",
+        image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "High-risk, high-reward",
+        translation: "À haut risque, très gratifiant",
+        example: "Investing in new tech startups is a high-risk, high-reward financial strategy.",
+        image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Clean sheet",
+        translation: "Match sans encaisser de but / Bilan vierge",
+        example: "The young accountant kept a clean sheet throughout the entire annual financial audit.",
+        image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "Game management",
+        translation: "Gestion tactique de match",
+        example: "Good project management requires adaptability when deadlines change suddenly.",
+        image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        term: "End-to-end",
+        translation: "D'un bout à l'autre / Très animé",
+        example: "The basketball game was an end-to-end thrill with non-stop scoring action.",
+        image: "https://images.unsplash.com/photo-1519766304817-4f37bda74a29?auto=format&fit=crop&w=400&q=80"
+    }
+];
+
+// Function to render Quiz
+function renderQuiz() {
+    const quizContainer = document.getElementById('quiz-container');
+    let currentCategory = "";
+
+    quizData.forEach((q) => {
+        if (q.category !== currentCategory) {
+            currentCategory = q.category;
+            const catHeader = document.createElement('h3');
+            catHeader.textContent = currentCategory;
+            quizContainer.appendChild(catHeader);
+        }
+
+        const card = document.createElement('div');
+        card.className = 'question-card';
+
+        const qTitle = document.createElement('div');
+        qTitle.className = 'question-title';
+        qTitle.textContent = q.question;
+        card.appendChild(qTitle);
+
+        const optionsList = document.createElement('ul');
+        optionsList.className = 'options-list';
+
+        const feedback = document.createElement('div');
+        feedback.className = 'feedback';
+
+        q.options.forEach((opt, optIdx) => {
+            const li = document.createElement('li');
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = opt;
+
+            btn.onclick = () => {
+                const allBtns = optionsList.querySelectorAll('.option-btn');
+                allBtns.forEach(b => b.disabled = true);
+
+                if (optIdx === q.answer) {
+                    btn.classList.add('correct');
+                    feedback.textContent = `Correct! ${q.explanation}`;
+                    feedback.classList.add('visible', 'correct-bg');
+                } else {
+                    btn.classList.add('wrong');
+                    allBtns[q.answer].classList.add('correct');
+                    feedback.textContent = `Incorrect. ${q.explanation}`;
+                    feedback.classList.add('visible', 'wrong-bg');
+                }
+            };
+
+            li.appendChild(btn);
+            optionsList.appendChild(li);
+        });
+
+        card.appendChild(optionsList);
+        card.appendChild(feedback);
+        quizContainer.appendChild(card);
+    });
+}
+
+// Function to render Expressions
+function renderExpressions() {
+    const container = document.getElementById('expressions-container');
+    expressionsData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'expression-card';
+
+        card.innerHTML = `
+            <img class="expression-img" src="${item.image}" alt="${item.term}">
+            <div class="expression-body">
+                <div class="expression-term">${item.term}</div>
+                <div class="expression-trans">🇫🇷 ${item.translation}</div>
+                <div class="expression-example"><strong>Example:</strong> "${item.example}"</div>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+window.onload = () => {
+    renderQuiz();
+    renderExpressions();
+};
+</script>
+
+</body>
+</html>

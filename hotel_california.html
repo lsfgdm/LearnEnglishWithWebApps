@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn English with "Hotel California" - Eagles</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amberCustom: '#d97706',
+                        desertDark: '#1c1917',
+                        desertCard: '#262626',
+                        sunsetOrange: '#f97316',
+                        goldAccent: '#fbbf24',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #f59e0b;
+            color: #fbbf24;
+            background-color: rgba(245, 158, 11, 0.1);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-white">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-stone-900 via-amber-950 to-stone-900 border-b border-amber-900/40 sticky top-0 z-50 backdrop-blur-md bg-opacity-90">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-amber-500/20 text-amber-400 rounded-lg border border-amber-500/30">
+                    <i class="fa-solid font-bold fa-music text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-serif font-bold tracking-wide text-amber-200">Hotel California</h1>
+                    <p class="text-xs md:text-sm text-stone-400">Master English through Classic Rock with The Eagles</p>
+                </div>
+            </div>
+            <nav class="flex flex-wrap gap-2 text-xs md:text-sm font-medium">
+                <a href="#live-video" class="px-3 py-1.5 rounded-lg hover:bg-amber-900/40 text-stone-300 hover:text-amber-300 transition">Live Video</a>
+                <a href="#quiz-section" class="px-3 py-1.5 rounded-lg hover:bg-amber-900/40 text-stone-300 hover:text-amber-300 transition">Interactive Quiz</a>
+                <a href="#lyrics-video" class="px-3 py-1.5 rounded-lg hover:bg-amber-900/40 text-stone-300 hover:text-amber-300 transition">Lyrics Video</a>
+                <a href="#expressions" class="px-3 py-1.5 rounded-lg hover:bg-amber-900/40 text-stone-300 hover:text-amber-300 transition">10 Key Expressions</a>
+                <a href="#karaoke" class="px-3 py-1.5 rounded-lg hover:bg-amber-900/40 text-stone-300 hover:text-amber-300 transition">Karaoke</a>
+                <a href="#themes" class="px-3 py-1.5 rounded-lg hover:bg-amber-900/40 text-stone-300 hover:text-amber-300 transition">Themes & Analysis</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-8 space-y-16 flex-grow">
+
+        <!-- SECTION 1: LIVE VIDEO -->
+        <section id="live-video" class="scroll-mt-24 space-y-4">
+            <div class="bg-stone-900/80 p-6 rounded-2xl border border-stone-800 shadow-xl">
+                <div class="mb-4">
+                    <span class="inline-block px-3 py-1 bg-amber-500/10 text-amber-400 text-xs font-semibold uppercase tracking-wider rounded-full border border-amber-500/20 mb-2">
+                        Step 1: Watch & Listen
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-stone-100 flex items-center gap-2">
+                        <i class="fa-solid fa-guitar text-amber-500"></i> Hotel California - Live (1977)
+                    </h2>
+                    <p class="text-stone-400 text-sm mt-1">
+                        Watch the legendary live performance by the Eagles. Listen closely to the narrative storytelling, pronunciation, and rhythm of the song.
+                    </p>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube-nocookie.com/embed/09839DpTctU" title="Eagles - Hotel California Live 1977" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: QUIZ SECTION -->
+        <section id="quiz-section" class="scroll-mt-24 space-y-6">
+            <div class="bg-stone-900/90 p-6 md:p-8 rounded-2xl border border-amber-900/30 shadow-2xl">
+                <div class="flex flex-col md:flex-row justify-between md:items-center gap-4 pb-6 border-b border-stone-800">
+                    <div>
+                        <span class="inline-block px-3 py-1 bg-amber-500/10 text-amber-400 text-xs font-semibold uppercase tracking-wider rounded-full border border-amber-500/20 mb-2">
+                            Step 2: Test Your Skills
+                        </span>
+                        <h2 class="text-2xl md:text-3xl font-serif font-bold text-stone-100 flex items-center gap-2">
+                            <i class="fa-solid fa-graduation-cap text-amber-500"></i> Interactive English Quiz
+                        </h2>
+                        <p class="text-stone-400 text-sm mt-1">Answer 20 questions in 4 categories. Select an option to see instant feedback and grammatical explanations.</p>
+                    </div>
+                    <div class="bg-stone-800 px-4 py-2 rounded-xl border border-stone-700 text-center min-w-[120px]">
+                        <span class="text-xs text-stone-400 block uppercase font-bold">Your Score</span>
+                        <span id="quiz-score" class="text-2xl font-bold text-amber-400">0 / 20</span>
+                    </div>
+                </div>
+
+                <!-- Quiz Category Tabs -->
+                <div class="flex flex-wrap gap-2 pt-4" id="category-tabs">
+                    <button onclick="switchCategory('comprehension')" id="tab-comprehension" class="tab-btn active px-4 py-2 rounded-xl text-sm font-semibold transition flex items-center gap-2 text-stone-300">
+                        <i class="fa-solid fa-brain"></i> Comprehension (5)
+                    </button>
+                    <button onclick="switchCategory('vocabulary')" id="tab-vocabulary" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition flex items-center gap-2 text-stone-300">
+                        <i class="fa-solid fa-book"></i> Vocabulary (5)
+                    </button>
+                    <button onclick="switchCategory('grammar')" id="tab-grammar" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition flex items-center gap-2 text-stone-300">
+                        <i class="fa-solid fa-spell-check"></i> Grammar (5)
+                    </button>
+                    <button onclick="switchCategory('pronunciation')" id="tab-pronunciation" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition flex items-center gap-2 text-stone-300">
+                        <i class="fa-solid fa-headphones"></i> Pronunciation (5)
+                    </button>
+                </div>
+
+                <!-- Quiz Container -->
+                <div id="quiz-container" class="mt-6 space-y-6">
+                    <!-- Questions will be dynamically inserted here via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: LYRICS VIDEO -->
+        <section id="lyrics-video" class="scroll-mt-24 space-y-4">
+            <div class="bg-stone-900/80 p-6 rounded-2xl border border-stone-800 shadow-xl">
+                <div class="mb-4">
+                    <span class="inline-block px-3 py-1 bg-amber-500/10 text-amber-400 text-xs font-semibold uppercase tracking-wider rounded-full border border-amber-500/20 mb-2">
+                        Step 3: Read & Follow Along
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-stone-100 flex items-center gap-2">
+                        <i class="fa-solid fa-closed-captioning text-amber-500"></i> Video with Lyrics
+                    </h2>
+                    <p class="text-stone-400 text-sm mt-1">
+                        Watch this lyric video to match the spoken/sung words with written English. Observe word linking and reduced vowels.
+                    </p>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube-nocookie.com/embed/8y7WGPWYsa0" title="Hotel California with Lyrics" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: 10 EVERYDAY EXPRESSIONS -->
+        <section id="expressions" class="scroll-mt-24 space-y-6">
+            <div class="bg-stone-900/90 p-6 md:p-8 rounded-2xl border border-amber-900/30 shadow-xl">
+                <div class="mb-6 pb-4 border-b border-stone-800">
+                    <span class="inline-block px-3 py-1 bg-amber-500/10 text-amber-400 text-xs font-semibold uppercase tracking-wider rounded-full border border-amber-500/20 mb-2">
+                        Step 4: Real-World Vocabulary
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-stone-100 flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb text-amber-500"></i> 10 Everyday Idiomatic Expressions
+                    </h2>
+                    <p class="text-stone-400 text-sm mt-1">
+                        Learn key expressions inspired by the song, complete with real-life daily context and French translations.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="expressions-grid">
+                    <!-- Javascript will populate 10 expression cards -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: KARAOKE VIDEO -->
+        <section id="karaoke" class="scroll-mt-24 space-y-4">
+            <div class="bg-stone-900/80 p-6 rounded-2xl border border-stone-800 shadow-xl">
+                <div class="mb-4">
+                    <span class="inline-block px-3 py-1 bg-amber-500/10 text-amber-400 text-xs font-semibold uppercase tracking-wider rounded-full border border-amber-500/20 mb-2">
+                        Step 5: Practice Speaking
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-stone-100 flex items-center gap-2">
+                        <i class="fa-solid fa-microphone-lines text-amber-500"></i> Karaoke Track
+                    </h2>
+                    <p class="text-stone-400 text-sm mt-1">
+                        Now it's your turn! Sing along with the instrumental backing track to build fluency, intonation, and rhythm.
+                    </p>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube-nocookie.com/embed/sSTjIvLIWise0" title="Hotel California Karaoke" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: THEMES, ANALYSIS & QUOTES (FRENCH TRANSLATIONS) -->
+        <section id="themes" class="scroll-mt-24 space-y-6">
+            <div class="bg-stone-900/90 p-6 md:p-8 rounded-2xl border border-amber-900/30 shadow-xl space-y-8">
+                <div class="border-b border-stone-800 pb-4">
+                    <span class="inline-block px-3 py-1 bg-amber-500/10 text-amber-400 text-xs font-semibold uppercase tracking-wider rounded-full border border-amber-500/20 mb-2">
+                        Step 6: Song Meaning & French Guides
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-stone-100 flex items-center gap-2">
+                        <i class="fa-solid fa-book-open text-amber-500"></i> Song Themes, Story Overview & Key Lines
+                    </h2>
+                    <p class="text-stone-400 text-sm mt-1">
+                        A narrative analysis and stanza-by-stanza breakdown with French explanations to deepen your comprehension.
+                    </p>
+                </div>
+
+                <!-- Central Themes -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-amber-300 flex items-center gap-2">
+                        <i class="fa-solid fa-compass"></i> Major Themes / Thèmes Principaux
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-stone-800/60 p-4 rounded-xl border border-stone-700/50">
+                            <h4 class="font-bold text-amber-400 mb-1">1. Materialism & Excess</h4>
+                            <p class="text-xs text-stone-300">The song critiques the hedonism, materialism, and superficial luxury of Southern California culture during the late 1970s.</p>
+                            <p class="text-xs text-stone-400 mt-2 font-italic">Une critique de l'excès de matérialisme et du mode de vie hédoniste en Californie du Sud.</p>
+                        </div>
+                        <div class="bg-stone-800/60 p-4 rounded-xl border border-stone-700/50">
+                            <h4 class="font-bold text-amber-400 mb-1">2. Illusion of Freedom</h4>
+                            <p class="text-xs text-stone-300">What seems like a welcoming, luxurious paradise turns into a metaphorical trap from which the traveler cannot escape.</p>
+                            <p class="text-xs text-stone-400 mt-2 font-italic">L'illusion du paradis qui se transforme en une prison psychologique ou comportementale.</p>
+                        </div>
+                        <div class="bg-stone-800/60 p-4 rounded-xl border border-stone-700/50">
+                            <h4 class="font-bold text-amber-400 mb-1">3. Addiction & Habits</h4>
+                            <p class="text-xs text-stone-300">The imagery of being "prisoners here of our own device" reflects how self-indulgence and addiction create self-made prisons.</p>
+                            <p class="text-xs text-stone-400 mt-2 font-italic">La métaphore des addictions et des mauvaises habitudes créées par nous-mêmes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stanza Narrative Breakdown -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-amber-300 flex items-center gap-2">
+                        <i class="fa-solid fa-list-ol"></i> Stanza Narrative Breakdown & Selected Quotes
+                    </h3>
+                    
+                    <div class="space-y-4" id="stanza-accordion">
+                        <!-- Stanza 1 -->
+                        <div class="bg-stone-800/40 p-4 rounded-xl border border-stone-700">
+                            <h4 class="font-bold text-stone-200 text-base mb-1">Part 1: The Arrival on the Desert Highway</h4>
+                            <p class="text-xs text-amber-200/90 italic mb-2">Quote: "On a dark desert highway, cool wind in my hair..." (Eagles)</p>
+                            <div class="text-xs text-stone-300 space-y-1">
+                                <p><strong>English Story:</strong> A tired traveler is driving at night on a quiet desert road. Feeling exhausted, he spots a shimmering light in the distance and stops at an isolated hotel looking for rest.</p>
+                                <p class="text-stone-400"><strong>Explication en français:</strong> Un voyageur fatigué roule de nuit sur une route désertique. Apercevant une lumière au loin, il décide de s'arrêter dans un hôtel isolé pour y passer la nuit.</p>
+                            </div>
+                        </div>
+
+                        <!-- Stanza 2 -->
+                        <div class="bg-stone-800/40 p-4 rounded-xl border border-stone-700">
+                            <h4 class="font-bold text-stone-200 text-base mb-1">Part 2: The Mysterious Welcome & Chorus</h4>
+                            <p class="text-xs text-amber-200/90 italic mb-2">Quote: "Welcome to the Hotel California / Such a lovely place..." (Eagles)</p>
+                            <div class="text-xs text-stone-300 space-y-1">
+                                <p><strong>English Story:</strong> A mysterious woman greets him at the door. Church bells ring, leaving him wondering if this destination is heaven or hell. The chorus introduces the grand, inviting facade of Hotel California.</p>
+                                <p class="text-stone-400"><strong>Explication en français:</strong> Une femme mystérieuse l'accueille. Une cloche sonne et le narrateur hésite entre le paradis et l'enfer. Le refrain présente l'hôtel comme un lieu magnifique et chaleureux en apparence.</p>
+                            </div>
+                        </div>
+
+                        <!-- Stanza 3 -->
+                        <div class="bg-stone-800/40 p-4 rounded-xl border border-stone-700">
+                            <h4 class="font-bold text-stone-200 text-base mb-1">Part 3: Wealth, Luxury, and the Banquet</h4>
+                            <p class="text-xs text-amber-200/90 italic mb-2">Quote: "Her mind is Tiffany-twisted, she got the Mercedes bends..." (Eagles)</p>
+                            <div class="text-xs text-stone-300 space-y-1">
+                                <p><strong>English Story:</strong> The host is obsessed with luxury brands and wealth. Handsome guests dance in the courtyard. In the master's chambers, they gather for a feast, attempting to kill a beast with steel knives but failing.</p>
+                                <p class="text-stone-400"><strong>Explication en français:</strong> L'hôte est obsédée par le luxe et l'argent. Des invités élégants dansent dans la cour. Lors d'un grand banquet, ils essaient de tuer la « bête » avec leurs couteaux, sans y parvenir.</p>
+                            </div>
+                        </div>
+
+                        <!-- Stanza 4 -->
+                        <div class="bg-stone-800/40 p-4 rounded-xl border border-stone-700">
+                            <h4 class="font-bold text-stone-200 text-base mb-1">Part 4: Realization & The Trap</h4>
+                            <p class="text-xs text-amber-200/90 italic mb-2">Quote: "You can check out any time you like, but you can never leave!" (Eagles)</p>
+                            <div class="text-xs text-stone-300 space-y-1">
+                                <p><strong>English Story:</strong> Panicking, the traveler runs for the door, desperate to find the way back to his previous life. The night man delivers the chilling final line: you can physically process a checkout, but psychologically, you can never escape.</p>
+                                <p class="text-stone-400"><strong>Explication en français:</strong> Pris de panique, le voyageur cherche la sortie pour s'enfuir. Le veilleur de nuit lui annonce la terrible conclusion : on peut régler sa note, mais on ne peut jamais vraiment quitter ce lieu.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lyrics Finding Notice -->
+                <div class="bg-amber-950/40 p-4 rounded-xl border border-amber-800/50 text-center text-xs text-amber-200/80">
+                    <i class="fa-solid fa-circle-info mr-1"></i> To read the full, uninterrupted licensed song lyrics, you can search for <a href="https://www.google.com/search?q=Eagles+Hotel+California+lyrics" target="_blank" rel="noopener noreferrer" class="underline font-bold hover:text-amber-300">"Hotel California lyrics" on Google</a>.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-950 border-t border-stone-800 py-8 text-center text-stone-500 text-xs">
+        <div class="max-w-5xl mx-auto px-4 space-y-2">
+            <p>Hotel California Interactive English Learning Platform &copy; 2026</p>
+            <p class="text-stone-600">Educational resource designed for ESL students and music lovers worldwide.</p>
+        </div>
+    </footer>
+
+    <script>
+        // QUIZ DATA STRUCTURE (20 Questions across 4 categories)
+        const quizData = {
+            comprehension: [
+                {
+                    id: 'c1',
+                    question: "Where is the narrator traveling when the song begins?",
+                    options: [
+                        "On a busy city street in Los Angeles",
+                        "On a dark desert highway",
+                        "On a crowded tropical beach",
+                        "Through a cold mountain pass"
+                    ],
+                    correct: 1,
+                    explanation: "The opening line states: 'On a dark desert highway, cool wind in my hair', establishing the desert setting."
+                },
+                {
+                    id: 'c2',
+                    question: "Why does the narrator decide to stop at the Hotel California?",
+                    options: [
+                        "His car ran out of gasoline",
+                        "He had a business meeting there",
+                        "He grew tired and his sight grew dim",
+                        "He was invited to a party"
+                    ],
+                    correct: 2,
+                    explanation: "The narrator sings: 'My head grew heavy and my sight grew dim, I had to stop for the night.'"
+                },
+                {
+                    id: 'c3',
+                    question: "What does the line 'We are all just prisoners here of our own device' imply?",
+                    options: [
+                        "The hotel is a real government prison",
+                        "People are trapped by their own habits, desires, or choices",
+                        "The hotel guests are locked inside by the night man",
+                        "Electronics and phones are controlling everyone"
+                    ],
+                    correct: 1,
+                    explanation: "'Of our own device' means created by ourselves. It means people become trapped by their own choices and addictions."
+                },
+                {
+                    id: 'c4',
+                    question: "What happens when they try to kill the beast in the master's chambers?",
+                    options: [
+                        "They successfully defeat the monster",
+                        "The beast escapes into the desert",
+                        "They hit it with steel knives, but they just can't kill the beast",
+                        "The guest runs away in terror immediately"
+                    ],
+                    correct: 2,
+                    explanation: "The lyrics say: 'They stab it with their steely knives, but they just can't kill the beast.'"
+                },
+                {
+                    id: 'c5',
+                    question: "What warning does the 'night man' give at the end of the song?",
+                    options: [
+                        "Breakfast is served until 10:00 AM",
+                        "You must pay your bill in cash only",
+                        "You can check out any time you like, but you can never leave",
+                        "The main road is closed due to a storm"
+                    ],
+                    correct: 2,
+                    explanation: "The famous final line is: 'You can check out any time you like, but you can never leave!'"
+                }
+            ],
+            vocabulary: [
+                {
+                    id: 'v1',
+                    question: "In the lyric 'Warm smell of colitas', what does 'colitas' mean in Mexican Spanish slang?",
+                    options: [
+                        "Little columns",
+                        "Little tails (referring to cannabis buds)",
+                        "Cold drinks",
+                        "Sweet pastries"
+                    ],
+                    correct: 1,
+                    explanation: "'Colitas' is a Mexican Spanish word meaning 'little tails', used informally to refer to the tips of cannabis plants."
+                },
+                {
+                    id: 'v2',
+                    question: "What does the word 'shimmering' mean in 'I saw a shimmering light'?",
+                    options: [
+                        "Shining with a soft, slightly shaking light",
+                        "Extremely loud and deafening",
+                        "Completely dark and shadow-filled",
+                        "Fading away into cold air"
+                    ],
+                    correct: 0,
+                    explanation: "'Shimmering' describes something shining with a soft, wavering or flickering light."
+                },
+                {
+                    id: 'v3',
+                    question: "What does 'Tiffany-twisted' mean when describing the woman?",
+                    options: [
+                        "Her name is Tiffany and she is confused",
+                        "She is twisted from dancing all night",
+                        "Her mindset is obsessed with luxury jewelry and wealth",
+                        "She wears clothing made of silver metal"
+                    ],
+                    correct: 2,
+                    explanation: "Referring to Tiffany & Co., 'Tiffany-twisted' means having a mind corrupted or obsessed by expensive luxury items."
+                },
+                {
+                    id: 'v4',
+                    question: "What is the meaning of 'dim' in 'my sight grew dim'?",
+                    options: [
+                        "Extremely sharp and clear",
+                        "Not bright; faint or blurred",
+                        "Filled with bright colors",
+                        "Painful and stinging"
+                    ],
+                    correct: 1,
+                    explanation: "'Dim' means lacking brightness or clarity. As he grew sleepy, his vision became blurred/faint."
+                },
+                {
+                    id: 'v5',
+                    question: "What does 'courtyard' refer to in the song?",
+                    options: [
+                        "An indoor bathroom",
+                        "An open area surrounded by walls or buildings",
+                        "A underground parking lot",
+                        "A high tower balcony"
+                    ],
+                    correct: 1,
+                    explanation: "A 'courtyard' is an unroofed outdoor area enclosed by walls or adjacent buildings."
+                }
+            ],
+            grammar: [
+                {
+                    id: 'g1',
+                    question: "Identify the tense in: 'Her mind IS Tiffany-twisted, she HAS the Mercedes bends.'",
+                    options: [
+                        "Simple Past",
+                        "Simple Present",
+                        "Present Perfect",
+                        "Future Simple"
+                    ],
+                    correct: 1,
+                    explanation: "'Is' and 'has' are present tense verbs used to describe states and possessions in the present."
+                },
+                {
+                    id: 'g2',
+                    question: "In 'Up ahead in the distance, I saw a shimmering light', what part of speech is 'shimmering'?",
+                    options: [
+                        "A main verb",
+                        "A participle functioning as an adjective",
+                        "An adverb",
+                        "A preposition"
+                    ],
+                    correct: 1,
+                    explanation: "'Shimmering' is a present participle (-ing form) modifying the noun 'light' as an adjective."
+                },
+                {
+                    id: 'g3',
+                    question: "Which modal verb in 'You CAN check out' expresses permission or ability?",
+                    options: [
+                        "Must",
+                        "Should",
+                        "Can",
+                        "Would"
+                    ],
+                    correct: 2,
+                    explanation: "'Can' is used here to denote physical possibility or permission."
+                },
+                {
+                    id: 'g4',
+                    question: "In 'My head GREW heavy', what type of verb is 'grew'?",
+                    options: [
+                        "Linking verb (connecting subject to adjective state)",
+                        "Auxiliary verb",
+                        "Transitive action verb with a direct object",
+                        "Passive verb"
+                    ],
+                    correct: 0,
+                    explanation: "'Grew' functions as a linking verb here, similar to 'became', connecting 'head' to the adjective 'heavy'."
+                },
+                {
+                    id: 'g5',
+                    question: "Complete the conditional meaning of 'I had to stop... or I wouldn't make it':",
+                    options: [
+                        "Necessity in the past",
+                        "Future obligation",
+                        "Present request",
+                        "Unlikely future possibility"
+                    ],
+                    correct: 0,
+                    explanation: "'Had to' is the past form of 'must/have to', expressing past necessity."
+                }
+            ],
+            pronunciation: [
+                {
+                    id: 'p1',
+                    question: "How is the '-ed' ending pronounced in the word 'twisted'?",
+                    options: [
+                        "/t/ (like 'walked')",
+                        "/d/ (like 'played')",
+                        "/ɪd/ or /əd/ (extra syllable)",
+                        "It is completely silent"
+                    ],
+                    correct: 2,
+                    explanation: "When a verb root ends in /t/ or /d/ (like 'twist'), the '-ed' suffix is pronounced as an extra syllable /ɪd/."
+                },
+                {
+                    id: 'p2',
+                    question: "When singing 'Cool wind in my hair', how are 'wind' and 'in' connected in fluent speech?",
+                    options: [
+                        "With a long pause between words",
+                        "Catenation (linking the final 'd' of wind to the vowel 'i' in in -> 'win-din')",
+                        "The letter 'd' is completely deleted",
+                        "The word 'in' changes sound to 'on'"
+                    ],
+                    correct: 1,
+                    explanation: "In natural spoken English, consonant-to-vowel linking connects 'win<d> <i interpretations>n' smoothly."
+                },
+                {
+                    id: 'p3',
+                    question: "Where is the primary stress in the word 'California'?",
+                    options: [
+                        "CAL-i-for-nia (first syllable)",
+                        "cal-I-for-nia (second syllable)",
+                        "cal-i-FOR-nia (third syllable)",
+                        "cal-i-for-NIA (fourth syllable)"
+                    ],
+                    correct: 2,
+                    explanation: "The primary accent in 'California' falls on the third syllable: /ˌkæl.əˈfɔːrn.jə/ (FOR)."
+                },
+                {
+                    id: 'p4',
+                    question: "In fast casual speech, how is 'kind of' often pronounced in song lyrics?",
+                    options: [
+                        "Kin-doff",
+                        "Kinda (/ˈkaɪndə/)",
+                        "Kinned",
+                        "Key-nd of"
+                    ],
+                    correct: 1,
+                    explanation: "'Kind of' is frequently reduced in spoken English and lyrics to 'kinda'."
+                },
+                {
+                    id: 'p5',
+                    question: "Which of these words rhymes with 'sight' in 'my sight grew dim'?",
+                    options: [
+                        "Night",
+                        "State",
+                        "Seat",
+                        "Suit"
+                    ],
+                    correct: 0,
+                    explanation: "'Sight' /saɪt/ and 'night' /naɪt/ share the exact same vowel diphthong /aɪ/ and ending sound."
+                }
+            ]
+        };
+
+        // 10 EVERYDAY EXPRESSIONS DATA WITH UNSPLASH IMAGES & FRENCH TRANSLATION
+        const expressionsData = [
+            {
+                phrase: "On a dark desert highway",
+                meaning: "Driving on a quiet, remote road at night.",
+                french: "Sur une autoroute sombre du désert",
+                example: "We were driving on a dark desert highway with no streetlights in sight.",
+                frenchEx: "Nous roulions sur une autoroute sombre du désert sans aucun lampadaire en vue.",
+                image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                phrase: "Cool wind in my hair",
+                meaning: "Experiencing a refreshing breeze while outdoors or driving.",
+                french: "Un vent frais dans mes cheveux",
+                example: "She opened the convertible top and felt the cool wind in her hair.",
+                frenchEx: "Elle a ouvert le toit de la décapotable et a senti le vent frais dans ses cheveux.",
+                image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                phrase: "My head grew heavy",
+                meaning: "Feeling extremely tired or sleepy.",
+                french: "Ma tête est devenue lourde / Je m'endormais",
+                example: "After studying for ten hours, my head grew heavy and I couldn't keep my eyes open.",
+                frenchEx: "Après avoir étudié pendant dix heures, ma tête est devenue lourde et je ne pouvais plus garder les yeux ouverts.",
+                image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                phrase: "Up ahead in the distance",
+                meaning: "Farther down the path or road in front of you.",
+                french: "Là-bas au loin",
+                example: "Up ahead in the distance, we could see the bright lights of Las Vegas.",
+                frenchEx: "Là-bas au loin, nous pouvions voir les lumières brillantes de Las Vegas.",
+                image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                phrase: "What a nice surprise",
+                meaning: "An unexpected pleasant event or meeting.",
+                french: "Quelle bonne surprise !",
+                example: "Running into my childhood friend at the airport was such a nice surprise!",
+                frenchEx: "Croiser mon ami d'enfance à l'aéroport a été une très bonne surprise !",
+                image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                phrase: "Living it up",
+                meaning: "Enjoying an extravagant, fun, or luxurious lifestyle.",
+                french: "Mener la grande vie / S'en donner à cœur joie",
+                example: "They spent the entire weekend living it up at a five-star luxury resort.",
+                frenchEx: "Ils ont passé tout le week-end à mener la grande vie dans un complexe hôtelier cinq étoiles.",
+                image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                phrase: "Prisoners of our own device",
+                meaning: "Trapped by our own habits, choices, or mental limitations.",
+                french: "Prisonniers de nos propres choix / pièges",
+                example: "By refusing to change his bad habits, he became a prisoner of his own device.",
+                frenchEx: "En refusant de changer ses mauvaises habitudes, il est devenu prisonnier de ses propres choix.",
+                image: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                phrase: "Relax, said the night man",
+                meaning: "A phrase used to tell someone to calm down or take it easy.",
+                french: "Détendez-vous, a dit le veilleur de nuit",
+                example: "When I started worrying about the project deadline, my boss said, 'Relax, we have plenty of time.'",
+                frenchEx: "Quand je me suis inquiété pour la date limite du projet, mon patron m'a dit : 'Détends-toi, nous avons tout notre temps.'",
+                image: "https://images.unsplash.com/photo-1563911302283-d2bc129e7570?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                phrase: "We are programmed to receive",
+                meaning: "To be conditioned or set up to accept something automatically.",
+                french: "Nous sommes programmés pour recevoir / accepter",
+                example: "In modern society, we are almost programmed to receive constant notifications on our phones.",
+                frenchEx: "Dans la société moderne, nous sommes presque programmés pour recevoir des notifications constantes sur nos téléphones.",
+                image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                phrase: "You can check out anytime you like...",
+                meaning: "You can attempt to leave a situation, but you remain emotionally bound.",
+                french: "Vous pouvez régler votre note quand vous voulez...",
+                example: "You can quit this corporate job, but the work ethic stays with you forever.",
+                frenchEx: "Vous pouvez quitter cet emploi de bureau, mais cette éthique de travail vous suivra toujours.",
+                image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // QUIZ STATE
+        let currentCategory = 'comprehension';
+        let userAnswers = {}; // key: question id, value: selected index
+        let totalScore = 0;
+
+        // INITIALIZATION
+        window.onload = function() {
+            renderQuiz('comprehension');
+            renderExpressions();
+        };
+
+        function switchCategory(cat) {
+            currentCategory = cat;
+            
+            // Update tab styles
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`tab-${cat}`).classList.add('active');
+
+            renderQuiz(cat);
+        }
+
+        function renderQuiz(cat) {
+            const container = document.getElementById('quiz-container');
+            const questions = quizData[cat];
+
+            let html = '';
+            questions.forEach((q, index) => {
+                const isAnswered = userAnswers[q.id] !== undefined;
+                const selectedIdx = userAnswers[q.id];
+
+                html += `
+                    <div class="bg-stone-800/60 p-5 rounded-xl border border-stone-700 space-y-4">
+                        <div class="flex justify-between items-start gap-2">
+                            <h3 class="font-semibold text-stone-100 text-base md:text-lg">
+                                <span class="text-amber-400 font-bold mr-1">Q${index + 1}.</span> ${q.question}
+                            </h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                `;
+
+                q.options.forEach((opt, optIdx) => {
+                    let btnStyle = "bg-stone-700/50 hover:bg-stone-700 text-stone-200 border-stone-600";
+                    let iconHtml = '';
+
+                    if (isAnswered) {
+                        if (optIdx === q.correct) {
+                            btnStyle = "bg-emerald-950/80 border-emerald-500 text-emerald-200 font-medium";
+                            iconHtml = '<i class="fa-solid fa-circle-check text-emerald-400 ml-auto"></i>';
+                        } else if (optIdx === selectedIdx) {
+                            btnStyle = "bg-rose-950/80 border-rose-500 text-rose-200";
+                            iconHtml = '<i class="fa-solid fa-circle-xmark text-rose-400 ml-auto"></i>';
+                        } else {
+                            btnStyle = "bg-stone-800/40 text-stone-500 border-stone-800 opacity-60";
+                        }
+                    }
+
+                    html += `
+                        <button 
+                            onclick="selectAnswer('${q.id}', ${optIdx})" 
+                            ${isAnswered ? 'disabled' : ''}
+                            class="w-full text-left p-3 rounded-lg border text-xs md:text-sm transition flex items-center justify-between ${btnStyle}">
+                            <span><strong class="uppercase mr-1">${String.fromCharCode(65 + optIdx)}.</strong> ${opt}</span>
+                            ${iconHtml}
+                        </button>
+                    `;
+                });
+
+                html += `</div>`;
+
+                // Show Explanation if answered
+                if (isAnswered) {
+                    const isCorrect = selectedIdx === q.correct;
+                    html += `
+                        <div class="mt-3 p-3 rounded-lg text-xs md:text-sm ${isCorrect ? 'bg-emerald-900/30 border border-emerald-800/50 text-emerald-200' : 'bg-rose-900/30 border border-rose-800/50 text-rose-200'}">
+                            <p class="font-bold mb-1">
+                                ${isCorrect ? '✓ Correct!' : '✗ Incorrect'}
+                            </p>
+                            <p class="text-stone-300">${q.explanation}</p>
+                        </div>
+                    `;
+                }
+
+                html += `</div>`;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function selectAnswer(qId, selectedIndex) {
+            if (userAnswers[qId] !== undefined) return; // Prevent re-answering
+
+            userAnswers[qId] = selectedIndex;
+
+            // Find question in dataset
+            let found = null;
+            Object.keys(quizData).forEach(cat => {
+                const item = quizData[cat].find(q => q.id === qId);
+                if (item) found = item;
+            });
+
+            if (found && selectedIndex === found.correct) {
+                totalScore++;
+            }
+
+            // Update score display
+            document.getElementById('quiz-score').textContent = `${totalScore} / 20`;
+
+            // Re-render current tab
+            renderQuiz(currentCategory);
+        }
+
+        function renderExpressions() {
+            const grid = document.getElementById('expressions-grid');
+            let html = '';
+
+            expressionsData.forEach((exp, idx) => {
+                html += `
+                    <div class="bg-stone-800/70 rounded-xl overflow-hidden border border-stone-700/80 shadow-md flex flex-col justify-between hover:border-amber-500/40 transition">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="${exp.image}" alt="${exp.phrase}" class="w-full h-full object-cover transform hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/1c1917/fbbf24?text=Hotel+California'">
+                            <div class="absolute top-2 left-2 bg-stone-900/80 backdrop-blur-md text-amber-400 font-bold text-xs px-2.5 py-1 rounded-md border border-stone-700">
+                                Expression #${idx + 1}
+                            </div>
+                        </div>
+                        <div class="p-5 flex-grow space-y-3">
+                            <h3 class="text-lg font-bold text-amber-300 font-serif">"${exp.phrase}"</h3>
+                            
+                            <div class="space-y-1">
+                                <p class="text-xs font-semibold text-stone-300"><i class="fa-solid fa-circle-dot text-amber-500 mr-1"></i> Meaning (English):</p>
+                                <p class="text-xs text-stone-400 pl-4">${exp.meaning}</p>
+                            </div>
+
+                            <div class="space-y-1 pt-1 border-t border-stone-700/50">
+                                <p class="text-xs font-semibold text-amber-400/90"><i class="fa-solid fa-language text-amber-500 mr-1"></i> Traduction (Français):</p>
+                                <p class="text-xs text-stone-300 pl-4 italic">${exp.french}</p>
+                            </div>
+
+                            <div class="space-y-1 pt-2 border-t border-stone-700/50">
+                                <p class="text-xs font-semibold text-stone-200"><i class="fa-solid fa-comment text-amber-500 mr-1"></i> Daily Life Example:</p>
+                                <p class="text-xs text-stone-300 pl-4">"${exp.example}"</p>
+                                <p class="text-xs text-stone-400 pl-4 italic mt-0.5">Ex: "${exp.frenchEx}"</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            grid.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn English with Sophie Maclean - AI & Mathematics</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <header class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-slate-900 text-white shadow-xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center">
+            <div class="flex items-center space-x-3 mb-3 sm:mb-0">
+                <div class="bg-indigo-600 p-2.5 rounded-xl shadow-inner text-white text-xl">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-tight">English Mastery Hub</h1>
+                    <p class="text-xs text-indigo-200">Based on Sophie Maclean's video: "I am sad about AI in maths"</p>
+                </div>
+            </div>
+            <nav class="flex space-x-2 sm:space-x-4">
+                <a href="#video-section" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-indigo-800/80 hover:bg-indigo-700 transition">Video</a>
+                <a href="#quiz-section" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-indigo-800/80 hover:bg-indigo-700 transition">QCM Quiz</a>
+                <a href="#expressions-section" class="px-3 py-1.5 rounded-lg text-sm font-medium bg-indigo-800/80 hover:bg-indigo-700 transition">Expressions</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+        <section id="video-section" class="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+            <div class="p-6 sm:p-8 bg-gradient-to-b from-slate-50 to-white border-b border-slate-100">
+                <div class="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold tracking-wide uppercase mb-3">Featured Video & Context</div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">"I am sad about AI in maths"</h2>
+                <p class="mt-2 text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Math communicator and PhD student Sophie Maclean expresses her personal feelings of grief and anxiety regarding recent AI advancements solving complex mathematical problems. Use this resource to improve your English comprehension, expand your academic vocabulary, review core grammar, and fine-tune your pronunciation!
+                </p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 sm:p-8 items-center bg-slate-900/5">
+                <div class="lg:col-span-7 rounded-xl overflow-hidden shadow-2xl bg-black aspect-video relative flex items-center justify-center">
+                    <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/IoW8bozMzik" title="I am sad about AI in maths" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-md font-bold text-slate-900 mb-2 flex items-center">
+                            <i class="fa-solid fa-compass text-indigo-600 mr-2"></i> Key Video Themes
+                        </h3>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 font-bold mr-2">•</span>
+                                <span><strong>Career Insecurity:</strong> PhD anxieties regarding the academic job market.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 font-bold mr-2">•</span>
+                                <span><strong>Value of Process:</strong> Math as a creative human journey, not just raw output.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 font-bold mr-2">•</span>
+                                <span><strong>Human Effort:</strong> Comparing automated puzzle solving to human triumphs.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz-section" class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 sm:p-10">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <div class="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold tracking-wide uppercase mb-3">Interactive QCM</div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Test Your Knowledge</h2>
+                <p class="mt-2 text-slate-600 text-sm">Select one correct option out of four for each question. Receive instant feedback and explanations!</p>
+                
+                <!-- Score & Progress Tracker -->
+                <div class="mt-6 inline-flex items-center space-x-6 bg-slate-100 px-5 py-2.5 rounded-full text-sm font-medium text-slate-700 shadow-inner">
+                    <span>Score: <strong id="score-val" class="text-indigo-600">0</strong> / 20</span>
+                    <span>Answered: <strong id="answered-val" class="text-slate-900">0</strong> / 20</span>
+                    <button onclick="resetQuiz()" class="text-xs bg-white text-rose-600 hover:bg-rose-50 font-semibold px-3 py-1 rounded-full border border-rose-200 transition shadow-sm">Reset Quiz</button>
+                </div>
+            </div>
+
+            <!-- Quiz Category Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8 border-b border-slate-200 pb-4">
+                <button onclick="switchTab('comprehension')" id="tab-btn-comprehension" class="quiz-tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition bg-indigo-600 text-white shadow-md">
+                    <i class="fa-solid fa-brain mr-2"></i>Comprehension (5)
+                </button>
+                <button onclick="switchTab('vocabulary')" id="tab-btn-vocabulary" class="quiz-tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition bg-slate-200 text-slate-700 hover:bg-slate-300">
+                    <i class="fa-solid fa-book-open mr-2"></i>Vocabulary (5)
+                </button>
+                <button onclick="switchTab('grammar')" id="tab-btn-grammar" class="quiz-tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition bg-slate-200 text-slate-700 hover:bg-slate-300">
+                    <i class="fa-solid fa-pen-nib mr-2"></i>Grammar (5)
+                </button>
+                <button onclick="switchTab('pronunciation')" id="tab-btn-pronunciation" class="quiz-tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition bg-slate-200 text-slate-700 hover:bg-slate-300">
+                    <i class="fa-solid fa-microphone-lines mr-2"></i>Pronunciation (5)
+                </button>
+            </div>
+
+            <!-- Quiz Containers -->
+            <div id="quiz-container">
+                <!-- Comprehension Tab Content -->
+                <div id="tab-comprehension" class="quiz-tab-content space-y-8"></div>
+                <!-- Vocabulary Tab Content -->
+                <div id="tab-vocabulary" class="quiz-tab-content space-y-8 hidden"></div>
+                <!-- Grammar Tab Content -->
+                <div id="tab-grammar" class="quiz-tab-content space-y-8 hidden"></div>
+                <!-- Pronunciation Tab Content -->
+                <div id="tab-pronunciation" class="quiz-tab-content space-y-8 hidden"></div>
+            </div>
+        </section>
+
+        <section id="expressions-section" class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 sm:p-10">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <div class="inline-block px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-semibold tracking-wide uppercase mb-3">Vocabulary Showcase</div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Useful Expressions from the Video</h2>
+                <p class="mt-2 text-slate-600 text-sm">Master everyday professional and academic idioms used by Sophie Maclean, complete with French translations and concrete examples.</p>
+            </div>
+
+            <div id="expressions-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Expression Cards will be dynamically injected via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-10 mt-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm">
+            <p>&copy; 2026 English Mastery Hub. Designed for interactive English learning.</p>
+            <p class="mt-3 sm:mt-0 flex items-center space-x-1">
+                <span>Inspired by Sophie Maclean's math community video</span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz Data Bank (20 questions: 5 comprehension, 5 vocabulary, 5 grammar, 5 pronunciation)
+        const quizData = {
+            comprehension: [
+                {
+                    id: 'c1',
+                    question: "What is Sophie Maclean's primary role and professional status discussed in the video?",
+                    options: [
+                        "A tenured professor in artificial intelligence at Oxford",
+                        "A final-year PhD student and math communicator",
+                        "A software engineer building AI mathematics solvers",
+                        "A high school mathematics teacher and textbook author"
+                    ],
+                    answer: 1,
+                    explanation: "Sophie identifies herself as a final-year PhD student and math communicator reflecting on her career path."
+                },
+                {
+                    id: 'c2',
+                    question: "How did senior academics with permanent positions generally react to OpenAI's math breakthroughs compared to Sophie?",
+                    options: [
+                        "Senior academics felt deeply depressed and resigned immediately.",
+                        "Senior academics shared the exact same career panic as students.",
+                        "Senior academics viewed the advancements with excitement, unlike insecure students.",
+                        "Senior academics ignored the news entirely."
+                    ],
+                    answer: 2,
+                    explanation: "Sophie notes that senior academics with secure jobs view AI milestones with excitement, whereas young researchers face career uncertainty."
+                },
+                {
+                    id: 'c3',
+                    question: "According to Sophie, why do many mathematicians value mathematics beyond simply getting the final result?",
+                    options: [
+                        "Because results do not matter at all in modern science.",
+                        "Because mathematics is valued as a creative journey, vocation, and struggle.",
+                        "Because computers are incapable of outputting numbers.",
+                        "Because publishing papers is financially rewarding."
+                    ],
+                    answer: 1,
+                    explanation: "Sophie emphasizes that math is cherished as a creative journey and human vocation, not just a product."
+                },
+                {
+                    id: 'c4',
+                    question: "What analogy does Sophie use to illustrate the redundancy of repeated automated solving?",
+                    options: [
+                        "A machine repeatedly playing chess against itself with no fans.",
+                        "A Sudoku puzzle being solved over and over again by a machine.",
+                        "A calculator performing simple multiplication instantly.",
+                        "A printing press producing thousands of identical novels."
+                    ],
+                    answer: 1,
+                    explanation: "She compares it to a Sudoku puzzle solved endlessly by a machine, stripping away human thrill."
+                },
+                {
+                    id: 'c5',
+                    question: "Despite her personal feelings of sadness, what is Sophie's ultimate commitment as a communicator?",
+                    options: [
+                        "To stop studying mathematics entirely and switch to literature.",
+                        "To campaign against OpenAI and lobby governments.",
+                        "To continue her work focusing on the human aspects of math that she loves.",
+                        "To build an alternative AI model specifically for students."
+                    ],
+                    answer: 2,
+                    explanation: "She reaffirms her commitment to celebrating the human aspects of mathematics through her communication work."
+                }
+            ],
+            vocabulary: [
+                {
+                    id: 'v1',
+                    question: "What does the phrase 'career insecurity' mean in Sophie's context?",
+                    options: [
+                        "Confidence in getting a promotion every year",
+                        "Uncertainty and instability regarding future employment in one's profession",
+                        "A secure pension plan for retired scientists",
+                        "Fear of public speaking at academic conferences"
+                    ],
+                    answer: 1,
+                    explanation: "'Career insecurity' refers to anxiety about job stability and future prospects in the job market."
+                },
+                {
+                    id: 'v2',
+                    question: "In the sentence 'AI systems strip away the joy of discovery', what does 'strip away' mean?",
+                    options: [
+                        "To add decorative elements or ornaments",
+                        "To remove or deprive something gradually",
+                        "To clean thoroughly with industrial solvents",
+                        "To accelerate forward at high speed"
+                    ],
+                    answer: 1,
+                    explanation: "'To strip away' means to remove layers or qualities, leaving something bare."
+                },
+                {
+                    id: 'v3',
+                    question: "What is the best synonym for 'vocation' as used when describing mathematics?",
+                    options: [
+                        "A temporary summer job or side hustle",
+                        "A strong feeling of suitability for a particular career or calling",
+                        "An annoying obligation or legal requirement",
+                        "A mathematical formula with multiple variables"
+                    ],
+                    answer: 1,
+                    explanation: "A 'vocation' is a calling or profession to which someone feels deeply dedicated."
+                },
+                {
+                    id: 'v4',
+                    question: "What does 'human endeavor' signify in discussions about scientific progress?",
+                    options: [
+                        "An effort or undertaking carried out by human beings",
+                        "A mechanical robot operating autonomously in a factory",
+                        "A biological virus mutating in a laboratory",
+                        "An astronomical event occurring in deep space"
+                    ],
+                    answer: 0,
+                    explanation: "'Human endeavor' refers to purposeful activities and achievements driven by human creativity and labor."
+                },
+                {
+                    id: 'v5',
+                    question: "If someone is experiencing 'anxiety' about the job market, how do they feel?",
+                    options: [
+                        "Extremely relaxed and carefree",
+                        "Indifferent and bored",
+                        "Worried, nervous, or uneasy about what is to come",
+                        "Angry and aggressive toward colleagues"
+                    ],
+                    answer: 2,
+                    explanation: "'Anxiety' is a feeling of worry, nervousness, or unease about an uncertain future."
+                }
+            ],
+            grammar: [
+                {
+                    id: 'g1',
+                    question: "Choose the correct modal verb: 'As a PhD student, she _____ feel uncertain about her future academic prospects.'",
+                    options: [
+                        "might",
+                        "ought",
+                        "must to",
+                        "will to"
+                    ],
+                    answer: 0,
+                    explanation: "'Might' expresses possibility in the present or future. ('Ought to' and 'must' do not take 'to' in that structure)."
+                },
+                {
+                    id: 'g2',
+                    question: "Identify the correct relative clause: 'The mathematician _____ solved the theorem received international acclaim.'",
+                    options: [
+                        "whom",
+                        "whose",
+                        "who",
+                        "which"
+                    ],
+                    answer: 2,
+                    explanation: "'Who' is the subject relative pronoun used for people ('the mathematician who solved...')."
+                },
+                {
+                    id: 'g3',
+                    question: "Select the correct gerund or infinitive form: 'Sophie enjoys _____ math puzzles with her online audience.'",
+                    options: [
+                        "to share",
+                        "shared",
+                        "sharing",
+                        "share"
+                    ],
+                    answer: 2,
+                    explanation: "The verb 'enjoy' is always followed by a gerund (-ing form), hence 'enjoy sharing'."
+                },
+                {
+                    id: 'g4',
+                    question: "Which sentence uses the correct present perfect tense to express an action with ongoing relevance?",
+                    options: [
+                        "AI has solved many mathematical problems recently.",
+                        "AI solved many mathematical problems tomorrow.",
+                        "AI is solve mathematical problems every day.",
+                        "AI will has solved mathematical problems last year."
+                    ],
+                    answer: 0,
+                    explanation: "The present perfect ('has solved') with 'recently' correctly links past actions to the present."
+                },
+                {
+                    id: 'g5',
+                    question: "Choose the correct conditional sentence structure regarding AI advancements:",
+                    options: [
+                        "If AI solves every problem, mathematicians will feel redundant.",
+                        "If AI solved every problem, mathematicians feel redundant.",
+                        "If AI will solve every problem, mathematicians felt redundant.",
+                        "If AI solves every problem, mathematicians felt redundant."
+                    ],
+                    answer: 0,
+                    explanation: "First conditional structure: If + present simple ('solves'), future simple ('will feel')."
+                }
+            ],
+            pronunciation: [
+                {
+                    id: 'p1',
+                    question: "In the word 'mathematics' /ˌmæθəˈmætɪks/, which syllable carries the primary stress?",
+                    options: [
+                        "1st syllable (MA-)",
+                        "2nd syllable (-the-)",
+                        "3rd syllable (-MA-)",
+                        "4th syllable (-ti-)"
+                    ],
+                    answer: 2,
+                    explanation: "The primary stress in mathematics is on the third syllable: math-e-MA-tics."
+                },
+                {
+                    id: 'p2',
+                    question: "Which word features the silent letter 'b' in its standard pronunciation?",
+                    options: [
+                        "Breakthrough",
+                        "Subtle",
+                        "Abstract",
+                        "Problem"
+                    ],
+                    answer: 1,
+                    explanation: "In 'subtle' /ˈsʌt.əl/, the 'b' is completely silent."
+                },
+                {
+                    id: 'p3',
+                    question: "What is the correct pronunciation of the 'th' sound in the word 'thought'?",
+                    options: [
+                        "Voiced /ð/ (like in 'this')",
+                        "Voiceless /θ/ (like in 'think')",
+                        "Hard /t/ (like in 'tot')",
+                        "Soft /s/ (like in 'sat')"
+                    ],
+                    answer: 1,
+                    explanation: "'Thought' uses the voiceless dental fricative /θ/, exactly like 'think'."
+                },
+                {
+                    id: 'p4',
+                    question: "How is the past tense ending '-ed' pronounced in the word 'solved'?",
+                    options: [
+                        "/t/ sound (solvt)",
+                        "/ɪd/ sound (solv-id)",
+                        "/d/ sound (solvd)",
+                        "/tʃ/ sound (solvch)"
+                    ],
+                    answer: 2,
+                    explanation: "After the voiced /v/ consonant sound, '-ed' sounds like a voiced /d/."
+                },
+                {
+                    id: 'p5',
+                    question: "In the compound word 'breakthrough', where does the primary stress fall?",
+                    options: [
+                        "On the second part ('through')",
+                        "Equally on both parts",
+                        "On the first part ('break')",
+                        "There is no stress"
+                    ],
+                    answer: 2,
+                    explanation: "Compound nouns in English like 'breakthrough' typically have primary stress on the first element."
+                }
+            ]
+        };
+
+        // Useful Expressions Data (10 expressions with English definition, French translation, and concrete everyday example)
+        const expressionsData = [
+            {
+                term: "Career insecurity",
+                icon: "fa-user-clock",
+                definition: "The state of feeling uncertain and anxious about your future employment and stability in your profession.",
+                translation: "Précarité professionnelle / Insécurité de carrière",
+                example: "Many young researchers suffer from career insecurity when temporary university contracts are about to expire."
+            },
+            {
+                term: "To strip away",
+                icon: "fa-layer-group",
+                definition: "To remove layers, covering, or essential characteristics from something.",
+                translation: "Supprimer / Retirer / Épouvanter de",
+                example: "Automated systems can strip away the trial-and-error joy of solving a complex puzzle by instantly giving the answer."
+            },
+            {
+                term: "Vocation",
+                icon: "fa-heart",
+                definition: "A strong feeling of suitability for a particular career or occupation, often viewed as a calling.",
+                translation: "Vocation / Appel / Mission",
+                example: "Teaching isn't just a 9-to-5 job for her; it is a true vocation driven by passion."
+            },
+            {
+                term: "Creative journey",
+                icon: "fa-paintbrush",
+                definition: "The ongoing, imaginative process of exploring ideas and creating something new, rather than just focusing on the final destination.",
+                translation: "Parcours créatif / Voyage créatif",
+                example: "Writing a novel is a creative journey full of unexpected plot twists and personal discoveries."
+            },
+            {
+                term: "Human endeavor",
+                icon: "fa-people-group",
+                definition: "An activity, undertaking, or enterprise pursued collectively or individually by human beings.",
+                translation: "Entreprise humaine / Effort humain",
+                example: "Space exploration is one of the most ambitious technological feats in human endeavor."
+            },
+            {
+                term: "Struggle with a problem",
+                icon: "fa-puzzle-piece",
+                definition: "To experience difficulty and exert sustained mental effort while attempting to solve a challenging issue.",
+                translation: "Se battre avec un problème / Lutter pour résoudre un problème",
+                example: "It is completely normal for students to struggle with a problem before experiencing the 'aha!' moment."
+            },
+            {
+                term: "Job market",
+                icon: "fa-briefcase",
+                definition: "The availability of jobs and the demand for workers within the current economy or specific industry.",
+                translation: "Marché du travail",
+                example: "Entering the job market as a recent graduate requires resilience and networking."
+            },
+            {
+                term: "Breakthrough",
+                icon: "fa-lightbulb",
+                definition: "A sudden, important advance, discovery, or development in science, technology, or knowledge.",
+                translation: "Percée / Avancée majeure",
+                example: "Medical researchers announced a major breakthrough in renewable energy storage."
+            },
+            {
+                term: "Thrill of discovery",
+                icon: "fa-sparkles",
+                definition: "An overwhelming feeling of excitement and joy when uncovering something new or solving a mystery.",
+                translation: "Le frisson de la découverte",
+                example: "Archaeologists live for the thrill of discovery when unearthing ancient artifacts."
+            },
+            {
+                term: "Permanent position",
+                icon: "fa-building-columns",
+                definition: "A stable job contract with long-term tenure and security, common among senior university faculty.",
+                translation: "Poste permanent / Titularisation",
+                example: "After years of adjunct teaching, she was finally offered a permanent position at the university."
+            }
+        ];
+
+        // Track user answers
+        const userAnswers = {};
+        let score = 0;
+        let answeredCount = 0;
+
+        // Initialize App on Load
+        window.onload = function() {
+            renderQuiz();
+            renderExpressions();
+        };
+
+        // Switch Quiz Tabs
+        function switchTab(category) {
+            document.querySelectorAll('.quiz-tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.quiz-tab-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-md');
+                btn.classList.add('bg-slate-200', 'text-slate-700', 'hover:bg-slate-300');
+            });
+
+            document.getElementById(`tab-${category}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-btn-${category}`);
+            activeBtn.classList.remove('bg-slate-200', 'text-slate-700', 'hover:bg-slate-300');
+            activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-md');
+        }
+
+        // Render Quiz Questions
+        function renderQuiz() {
+            const categories = ['comprehension', 'vocabulary', 'grammar', 'pronunciation'];
+            categories.forEach(cat => {
+                const container = document.getElementById(`tab-${cat}`);
+                let html = '';
+                quizData[cat].forEach((q, index) => {
+                    html += `
+                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm" id="question-card-${q.id}">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md">Question ${index + 1} of 5</span>
+                                <span id="badge-${q.id}" class="text-xs font-semibold px-2.5 py-0.5 rounded-full hidden"></span>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-semibold text-slate-900 mb-4">${q.question}</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="options-${q.id}">
+                    `;
+                    q.options.forEach((opt, optIndex) => {
+                        html += `
+                            <button onclick="selectOption('${q.id}', ${optIndex}, ${q.answer}, '${cat}')" 
+                                id="opt-${q.id}-${optIndex}"
+                                class="option-btn text-left p-3.5 rounded-xl border border-slate-200 bg-white hover:bg-indigo-50/50 hover:border-indigo-300 transition text-sm font-medium text-slate-700 flex items-start space-x-3 shadow-xs">
+                                <span class="inline-flex items-center justify-center bg-slate-100 text-slate-600 font-bold text-xs h-6 w-6 rounded-full shrink-0 mt-0.5">${String.fromCharCode(65 + optIndex)}</span>
+                                <span class="leading-snug">${opt}</span>
+                            </button>
+                        `;
+                    });
+                    html += `
+                            </div>
+                            <div id="explanation-${q.id}" class="mt-4 hidden p-4 rounded-xl text-sm border"></div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            });
+        }
+
+        // Handle Option Selection
+        function selectOption(questionId, selectedOptIndex, correctOptIndex, category) {
+            if (userAnswers[questionId] !== undefined) return; // Prevent changing answer once selected
+
+            userAnswers[questionId] = selectedOptIndex;
+            answeredCount++;
+            document.getElementById('answered-val').innerText = answeredCount;
+
+            const qList = quizData[category];
+            const qObj = qList.find(item => item.id === questionId);
+            
+            // Disable all options for this question
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`opt-${questionId}-${i}`);
+                btn.disabled = true;
+                btn.classList.remove('hover:bg-indigo-50/50', 'hover:border-indigo-300');
+                
+                if (i === correctOptIndex) {
+                    btn.classList.remove('bg-white', 'border-slate-200', 'text-slate-700');
+                    btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900', 'font-semibold');
+                } else if (i === selectedOptIndex && selectedOptIndex !== correctOptIndex) {
+                    btn.classList.remove('bg-white', 'border-slate-200', 'text-slate-700');
+                    btn.classList.add('bg-rose-50', 'border-rose-400', 'text-rose-900');
+                } else {
+                    btn.classList.add('opacity-50');
+                }
+            }
+
+            // Badge & Score
+            const badge = document.getElementById(`badge-${questionId}`);
+            badge.classList.remove('hidden');
+            const explanationBox = document.getElementById(`explanation-${questionId}`);
+            explanationBox.classList.remove('hidden');
+
+            if (selectedOptIndex === correctOptIndex) {
+                score++;
+                document.getElementById('score-val').innerText = score;
+                badge.innerText = "Correct (+1)";
+                badge.className = "text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800";
+                
+                explanationBox.className = "mt-4 p-4 rounded-xl text-sm border bg-emerald-50 border-emerald-200 text-emerald-900";
+                explanationBox.innerHTML = `<strong>Correct!</strong> ${qObj.explanation}`;
+            } else {
+                badge.innerText = "Incorrect";
+                badge.className = "text-xs font-bold px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800";
+                
+                explanationBox.className = "mt-4 p-4 rounded-xl text-sm border bg-rose-50 border-rose-200 text-rose-900";
+                explanationBox.innerHTML = `<strong>Incorrect.</strong> The correct answer was <strong>Option ${String.fromCharCode(65 + correctOptIndex)}</strong>. ${qObj.explanation}`;
+            }
+        }
+
+        // Reset Quiz State
+        function resetQuiz() {
+            Object.keys(userAnswers).forEach(key => delete userAnswers[key]);
+            score = 0;
+            answeredCount = 0;
+            document.getElementById('score-val').innerText = 0;
+            document.getElementById('answered-val').innerText = 0;
+            renderQuiz();
+        }
+
+        // Render Useful Expressions
+        function renderExpressions() {
+            const grid = document.getElementById('expressions-grid');
+            let html = '';
+            expressionsData.forEach((item, idx) => {
+                html += `
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="bg-indigo-50 text-indigo-600 p-3 rounded-xl group-hover:bg-indigo-600 group-hover:text-white transition shadow-xs">
+                                    <i class="fa-solid ${item.icon} text-lg"></i>
+                                </div>
+                                <span class="text-xs font-bold text-slate-400">#${idx + 1}</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-1">${item.term}</h3>
+                            <p class="text-xs font-semibold text-indigo-700 bg-indigo-50/80 px-2.5 py-1 rounded-md inline-block mb-3">🇫🇷 ${item.translation}</p>
+                            <p class="text-slate-600 text-xs sm:text-sm mb-4 leading-relaxed">${item.definition}</p>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-3.5 text-xs text-slate-700">
+                            <span class="font-bold text-slate-900 block mb-1"><i class="fa-solid fa-quote-left text-indigo-500 mr-1.5"></i> Everyday Example:</span>
+                            <span class="italic text-slate-600">"${item.example}"</span>
+                        </div>
+                    </div>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

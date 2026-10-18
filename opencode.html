@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode Security Breach — Interactive English Learning App</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        cyber: {
+                            dark: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937',
+                            accent: '#06B6D4', // Cyan
+                            purple: '#8B5CF6',
+                            danger: '#EF4444',
+                            success: '#10B981',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0B0F19;
+            color: #F3F4F6;
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111827;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 3px;
+        }
+        .glow-accent {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);
+        }
+        .glow-danger {
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.25);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-cyber-dark/90 backdrop-blur-md border-b border-cyber-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-cyan-500/10 border border-cyan-500/30 rounded-lg text-cyan-400">
+                    <i class="fa-solid fa-shield-cat text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg text-white leading-tight">OpenCode Breach</h1>
+                    <p class="text-xs text-gray-400">Interactive English Learning Platform</p>
+                </div>
+            </div>
+
+            <!-- Tabs Navigation -->
+            <nav class="flex space-x-1 sm:space-x-2 bg-cyber-card p-1 rounded-xl border border-cyber-border">
+                <button onclick="switchTab('overview')" id="tab-overview" class="px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-lg transition-all text-cyan-400 bg-cyber-border/60">
+                    <i class="fa-solid fa-tv mr-1.5"></i>Overview
+                </button>
+                <button onclick="switchTab('quiz')" id="tab-quiz" class="px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-lg transition-all text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-list-check mr-1.5"></i>Quiz <span id="quiz-badge" class="ml-1 text-xs px-1.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300">0/20</span>
+                </button>
+                <button onclick="switchTab('expressions')" id="tab-expressions" class="px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-lg transition-all text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-book-bookmark mr-1.5"></i>Expressions
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- ================= OVERVIEW TAB ================= -->
+        <section id="section-overview" class="space-y-8">
+            <!-- Alert Banner -->
+            <div class="bg-red-500/10 border border-red-500/30 rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                    <div class="p-3 bg-red-500/20 rounded-xl text-red-400 shrink-0">
+                        <i class="fa-solid fa-triangle-exclamation text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-500/20 text-red-300 border border-red-500/30 mb-1">Incident Report • Oct 17-18, 2026</span>
+                        <h2 class="text-lg font-bold text-white">OpenCode Got Hacked BADLY ( Explained! )</h2>
+                        <p class="text-sm text-gray-300">Learn cybersecurity and tech English through the breakdown of the major OpenCode legacy console breach.</p>
+                    </div>
+                </div>
+                <button onclick="switchTab('quiz')" class="w-full sm:w-auto px-5 py-2.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-xl text-sm transition-all shadow-lg shadow-cyan-500/20 shrink-0">
+                    Start Learning Quiz <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Video Container (7 cols) -->
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="bg-cyber-card border border-cyber-border rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="aspect-video w-full bg-black">
+                            <iframe 
+                                class="w-full h-full"
+                                src="https://www.youtube.com/embed/oHVrI4Sfri8" 
+                                title="OpenCode Got Hacked BADLY"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-4 sm:p-5 flex items-center justify-between border-t border-cyber-border">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-brands fa-youtube text-red-500 text-2xl"></i>
+                                <div>
+                                    <h3 class="font-semibold text-sm text-white">OpenCode Security Breach Explanation</h3>
+                                    <p class="text-xs text-gray-400">Published October 18, 2026 • Security Breakdown</p>
+                                </div>
+                            </div>
+                            <span class="text-xs px-3 py-1 bg-cyber-border text-cyan-400 rounded-lg font-mono">B2-C1 Level English</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Summary & Timeline (5 cols) -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 space-y-5">
+                        <div class="flex items-center justify-between border-b border-cyber-border pb-3">
+                            <h3 class="font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-file-contract text-cyan-400"></i> Executive Incident Summary
+                            </h3>
+                            <span class="text-xs font-mono text-gray-400">00:00 - 08:50</span>
+                        </div>
+
+                        <ul class="space-y-3.5 text-xs sm:text-sm text-gray-300">
+                            <li class="flex items-start gap-3">
+                                <span class="p-1.5 bg-red-500/10 border border-red-500/30 rounded text-red-400 mt-0.5 text-xs"><i class="fa-solid fa-bug"></i></span>
+                                <div>
+                                    <strong class="text-white">The Attack:</strong> Attackers targeted a legacy OpenCode web system, extracting API keys (OpenAI, Anthropic, Google) saved by ~1.4% of users in the web console.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="p-1.5 bg-amber-500/10 border border-amber-500/30 rounded text-amber-400 mt-0.5 text-xs"><i class="fa-solid fa-brain"></i></span>
+                                <div>
+                                    <strong class="text-white">Model Distillation:</strong> Stolen API keys were leveraged to run massive queries, extracting knowledge from proprietary frontier models to train smaller open weights.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="p-1.5 bg-purple-500/10 border border-purple-500/30 rounded text-purple-400 mt-0.5 text-xs"><i class="fa-solid fa-dollar-sign"></i></span>
+                                <div>
+                                    <strong class="text-white">Financial Impact:</strong> Users suffered surprise charges ranging from hundreds to thousands of dollars; several cloud projects were suspended.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="p-1.5 bg-cyan-500/10 border border-cyan-500/30 rounded text-cyan-400 mt-0.5 text-xs"><i class="fa-solid fa-shield-halved"></i></span>
+                                <div>
+                                    <strong class="text-white">Official Response:</strong> Founder Dax Raad confirmed refunds are underway. Local terminal-based CLI apps remain safe and unaffected.
+                                </div>
+                            </li>
+                        </ul>
+
+                        <!-- Recommendations Card -->
+                        <div class="p-4 bg-slate-900/80 rounded-xl border border-cyan-500/20 space-y-2">
+                            <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-check"></i> Actionable Safety Rules
+                            </h4>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Revoke exposed API keys immediately, assign unique keys per app, enforce hard spending caps, and establish automated usage threshold alerts.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= QUIZ TAB ================= -->
+        <section id="section-quiz" class="hidden space-y-6">
+            <!-- Quiz Header Bar -->
+            <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap text-cyan-400"></i> Interactive Video Quiz
+                    </h2>
+                    <p class="text-sm text-gray-400">20 Questions (5 Comprehension, 5 Vocabulary, 5 Grammar, 5 Pronunciation)</p>
+                </div>
+
+                <!-- Category Filters & Score Counter -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="px-4 py-2 bg-cyber-dark border border-cyber-border rounded-xl text-xs font-medium text-gray-300">
+                        Score: <span id="score-display" class="font-bold text-cyan-400 text-sm">0 / 20</span>
+                    </div>
+                    <button onclick="resetQuiz()" class="px-3 py-2 bg-cyber-border hover:bg-gray-700 text-xs text-gray-300 rounded-xl transition">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Reset Quiz
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Category Selector Tabs -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <button onclick="filterQuizCategory('comprehension')" id="cat-btn-comprehension" class="quiz-cat-btn py-3 px-4 rounded-xl border border-cyan-500 bg-cyan-500/10 text-cyan-300 font-semibold text-xs sm:text-sm text-center transition">
+                    <i class="fa-solid fa-brain block text-lg mb-1"></i> Comprehension (5)
+                </button>
+                <button onclick="filterQuizCategory('vocabulary')" id="cat-btn-vocabulary" class="quiz-cat-btn py-3 px-4 rounded-xl border border-cyber-border bg-cyber-card text-gray-400 hover:text-white font-semibold text-xs sm:text-sm text-center transition">
+                    <i class="fa-solid fa-spell-check block text-lg mb-1"></i> Vocabulary (5)
+                </button>
+                <button onclick="filterQuizCategory('grammar')" id="cat-btn-grammar" class="quiz-cat-btn py-3 px-4 rounded-xl border border-cyber-border bg-cyber-card text-gray-400 hover:text-white font-semibold text-xs sm:text-sm text-center transition">
+                    <i class="fa-solid fa-code block text-lg mb-1"></i> Grammar (5)
+                </button>
+                <button onclick="filterQuizCategory('pronunciation')" id="cat-btn-pronunciation" class="quiz-cat-btn py-3 px-4 rounded-xl border border-cyber-border bg-cyber-card text-gray-400 hover:text-white font-semibold text-xs sm:text-sm text-center transition">
+                    <i class="fa-solid fa-volume-high block text-lg mb-1"></i> Pronunciation (5)
+                </button>
+            </div>
+
+            <!-- Quiz Container -->
+            <div id="quiz-questions-container" class="space-y-6">
+                <!-- Dynamically Populated Questions -->
+            </div>
+        </section>
+
+        <!-- ================= EXPRESSIONS TAB ================= -->
+        <section id="section-expressions" class="hidden space-y-6">
+            <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-book-open text-cyan-400"></i> 10 Essential Key Expressions
+                </h2>
+                <p class="text-sm text-gray-400">Key terminology extracted from the security incident video with French translations, English definitions, and real-life everyday contexts.</p>
+            </div>
+
+            <!-- Grid of 10 Expressions -->
+            <div id="expressions-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Dynamically Populated Expressions Cards -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-cyber-border bg-cyber-card py-6 mt-12 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>OpenCode Security Incident Educational App • English Learning Module</p>
+            <p class="mt-1">Content based on YouTube video published October 18, 2026. Designed for language learners & tech professionals.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Data Structures
+        const quizData = [
+            // COMPREHENSION (5 Questions)
+            {
+                id: 1,
+                category: 'comprehension',
+                question: 'Which specific component of OpenCode was compromised in the attack?',
+                options: [
+                    'The local terminal CLI application installed on user machines',
+                    'The legacy web console where approximately 1.4% of users saved API keys',
+                    'The main GitHub repository source code',
+                    'The primary database of Google Cloud'
+                ],
+                correct: 1,
+                explanation: 'As explained in the video (0:56 - 1:57), the breach only targeted OpenCode’s legacy web console where around 1.4% of users had stored their keys. The local terminal app remained unaffected.'
+            },
+            {
+                id: 2,
+                category: 'comprehension',
+                question: 'What primary motive drove the attackers during this breach?',
+                options: [
+                    'To delete all user repositories and destroy data permanently',
+                    'To execute a distillation attack by using stolen API keys to train smaller AI models',
+                    'To sell user email addresses on dark web forums',
+                    'To mine cryptocurrency directly on user laptops'
+                ],
+                correct: 1,
+                explanation: 'The video notes (3:47 - 4:16) that attackers executed a "distillation attack," querying powerful proprietary models (OpenAI, Anthropic) to extract training data for smaller, cheap AI models.'
+            },
+            {
+                id: 3,
+                category: 'comprehension',
+                question: 'What financial impact did affected OpenCode users report?',
+                options: [
+                    'Zero monetary loss as all requests were blocked automatically',
+                    'Unauthorized cloud charges ranging from hundreds to thousands of dollars',
+                    'A flat fee charge of $10 per account',
+                    'Loss of personal banking information'
+                ],
+                correct: 1,
+                explanation: 'Victims experienced substantial unauthorized usage fees ranging from hundreds to thousands of dollars, leading to some cloud accounts being suspended (6:22 - 7:10).'
+            },
+            {
+                id: 4,
+                category: 'comprehension',
+                question: 'What step did OpenCode founder Dax Raad confirm regarding user losses?',
+                options: [
+                    'OpenCode is shutting down completely',
+                    'Users must pay all bills themselves with no assistance',
+                    'Refunds are being processed and coordinated with AI providers',
+                    'Only enterprise accounts will be compensated'
+                ],
+                correct: 2,
+                explanation: 'Dax Raad confirmed that refunds are being processed and they are actively coordinating with major AI providers to assist victims (7:11 - 7:42).'
+            },
+            {
+                id: 5,
+                category: 'comprehension',
+                question: 'What preventative measure should users take immediately if their key was exposed?',
+                options: [
+                    'Format their personal computers entirely',
+                    'Revoke the exposed key on the provider dashboard and generate a new one',
+                    'Wait 30 days for the key to expire automatically',
+                    'Change their email address password'
+                ],
+                correct: 1,
+                explanation: 'Safety recommendations specify that users should immediately revoke exposed API keys on their provider dashboards (OpenAI, Anthropic, Google) and create new credentials (8:02 - 8:12).'
+            },
+
+            // VOCABULARY (5 Questions)
+            {
+                id: 6,
+                category: 'vocabulary',
+                question: 'What does the word "compromised" mean in the context of cybersecurity?',
+                options: [
+                    'Improved and updated to a newer software version',
+                    'Reached a peaceful agreement between two parties',
+                    'Breached, exposed, or no longer secure',
+                    'Restricted to paid premium subscribers only'
+                ],
+                correct: 2,
+                explanation: 'In security, "compromised" means that a system or credential has been exposed or breached by unauthorized parties.'
+            },
+            {
+                id: 7,
+                category: 'vocabulary',
+                question: 'What is a "legacy system"?',
+                options: [
+                    'An outdated system or software that is still in use',
+                    'A newly launched experimental software feature',
+                    'A high-priced subscription tier',
+                    'A system protected by quantum encryption'
+                ],
+                correct: 0,
+                explanation: '"Legacy" refers to older software or infrastructure that remains active, often carrying security vulnerabilities due to outdated maintenance.'
+            },
+            {
+                id: 8,
+                category: 'vocabulary',
+                question: 'What does it mean to "revoke" an API key?',
+                options: [
+                    'To share it with team members',
+                    'To cancel, invalidate, or deactivate its access permissions',
+                    'To duplicate it for multiple projects',
+                    'To encrypt it behind a secondary password'
+                ],
+                correct: 1,
+                explanation: 'To "revoke" a key means to permanently invalidate it so that anyone attempting to use it will be blocked.'
+            },
+            {
+                id: 9,
+                category: 'vocabulary',
+                question: 'In AI research, what does "model distillation" refer to?',
+                options: [
+                    'Purifying code to remove bugs',
+                    'Transferring knowledge from a large, complex AI model into a smaller, efficient model',
+                    'Deleting old AI models from cloud servers',
+                    'Compressing video files using neural networks'
+                ],
+                correct: 1,
+                explanation: 'Model distillation is a process where a smaller model is trained using the outputs generated by a larger model.'
+            },
+            {
+                id: 10,
+                category: 'vocabulary',
+                question: 'What is a "hard spending limit"?',
+                options: [
+                    'A flexible recommendation for monthly spending',
+                    'A strict threshold that automatically stops further charges or API access once reached',
+                    'A mandatory registration fee for API services',
+                    'A penalty fee for overusing bandwidth'
+                ],
+                correct: 1,
+                explanation: 'A "hard spending limit" is an absolute cap set in a billing dashboard that cuts off service immediately when reached to prevent excessive costs.'
+            },
+
+            // GRAMMAR (5 Questions)
+            {
+                id: 11,
+                category: 'grammar',
+                question: 'Which sentence correctly uses the passive voice to describe the incident?',
+                options: [
+                    'Attackers hack OpenCode yesterday.',
+                    'API keys were exposed by a vulnerability in the legacy web console.',
+                    'The console was expose keys to attackers.',
+                    'Exposing API keys were done from attackers.'
+                ],
+                correct: 1,
+                explanation: 'Sentence B correctly uses passive structure ("were exposed") to focus on the affected objects (API keys) rather than the agent.'
+            },
+            {
+                id: 12,
+                category: 'grammar',
+                question: 'Choose the sentence with the correct past conditional structure (Third Conditional):',
+                options: [
+                    'If users set hard spending limits, they would avoid all charges.',
+                    'If users had set hard spending limits, they would have avoided huge unauthorized bills.',
+                    'If users have set spending limits, they will avoid charges.',
+                    'If users set hard spending limits, they had avoided bills.'
+                ],
+                correct: 1,
+                explanation: 'The Third Conditional ("If + had + past participle, would have + past participle") expresses hypothetical past events and their unfulfilled outcomes.'
+            },
+            {
+                id: 13,
+                category: 'grammar',
+                question: 'Identify the sentence containing a modal verb of recommendation:',
+                options: [
+                    'Developers must revoked their API keys right now.',
+                    'Developers should revoke exposed credentials immediately to prevent further abuse.',
+                    'Developers can to revoke their keys whenever.',
+                    'Developers ought revoke their keys.'
+                ],
+                correct: 1,
+                explanation: '"Should" + base verb ("revoke") is the standard grammatical form for strong advice or recommendations.'
+            },
+            {
+                id: 14,
+                category: 'grammar',
+                question: 'Which verb tense correctly fills the blank? "OpenCode __________ refunds to affected users since yesterday."',
+                options: [
+                    'is processing',
+                    'has been processing',
+                    'processed',
+                    'was processed'
+                ],
+                correct: 1,
+                explanation: 'The Present Perfect Continuous ("has been processing") describes an action that started in the past and continues in the present.'
+            },
+            {
+                id: 15,
+                category: 'grammar',
+                question: 'Which sentence uses the correct cause-and-effect prepositional structure?',
+                options: [
+                    'Due to a legacy flaw, unauthorized charges occurred on several accounts.',
+                    'Because a legacy flaw, unauthorized charges occurred.',
+                    'Due of a legacy flaw, charges occurred.',
+                    'In reason to a legacy flaw, charges occurred.'
+                ],
+                correct: 0,
+                explanation: '"Due to" is followed by a noun phrase ("a legacy flaw"), whereas "because" requires a full clause with a subject and verb.'
+            },
+
+            // PRONUNCIATION (5 Questions)
+            {
+                id: 16,
+                category: 'pronunciation',
+                question: 'Where is the primary syllable stress in the word "UNAUTHORIZED"?',
+                options: [
+                    'un-AU-thor-ized (2nd syllable)',
+                    'un-au-THOR-ized (3rd syllable)',
+                    'un-au-thor-IZED (4th syllable)',
+                    'UN-au-thor-ized (1st syllable)'
+                ],
+                correct: 0,
+                explanation: 'In the word "unauthorized" (/ʌnˈɔː.θə.raɪzd/), the primary stress falls on the second syllable "AU" (/ˈɔː/).'
+            },
+            {
+                id: 17,
+                category: 'pronunciation',
+                question: 'Which word contains a SILENT letter?',
+                options: [
+                    'Breach',
+                    'Subtle',
+                    'Console',
+                    'Attack'
+                ],
+                correct: 1,
+                explanation: 'In "Subtle" (/ˈsʌt.əl/), the letter "b" is silent.'
+            },
+            {
+                id: 18,
+                category: 'pronunciation',
+                question: 'How is the final "-ed" pronounced in the word "HACKED" (/hækt/)?',
+                options: [
+                    'As a voiced /d/ sound (like in "played")',
+                    'As an extra syllable /ɪd/ (like in "wanted")',
+                    'As an unvoiced /t/ sound',
+                    'It is not pronounced at all'
+                ],
+                correct: 2,
+                explanation: 'When a regular verb ends in an unvoiced sound like /k/, the past tense "-ed" is pronounced as an unvoiced /t/ ("hacked" -> /hækt/).'
+            },
+            {
+                id: 19,
+                category: 'pronunciation',
+                question: 'Which pair of words has the SAME vowel vowel sound as "KEY" (/kiː/)?',
+                options: [
+                    'Breach / Threat',
+                    'Breach / Leak',
+                    'Threat / Leak',
+                    'Console / Code'
+                ],
+                correct: 1,
+                explanation: 'Both "Breach" (/briːtʃ/) and "Leak" (/liːk/) share the long /iː/ vowel sound found in "Key".'
+            },
+            {
+                id: 20,
+                category: 'pronunciation',
+                question: 'Where is the primary stress in the noun "VULNERABILITY"?',
+                options: [
+                    'vul-ner-a-BIL-i-ty (4th syllable)',
+                    'VUL-ner-a-bil-i-ty (1st syllable)',
+                    'vul-NER-a-bil-i-ty (2nd syllable)',
+                    'vul-ner-a-bil-i-TY (6th syllable)'
+                ],
+                correct: 0,
+                explanation: 'In "vulnerability" (/ˌvʌl.nər.əˈbɪl.ə.ti/), the primary stress is on "BIL" (4th syllable).'
+            }
+        ];
+
+        const expressionsData = [
+            {
+                id: 1,
+                expression: "Get hacked badly",
+                translation: "Être gravement piraté",
+                definition: "To suffer a severe security breach or unauthorized compromise of systems or credentials.",
+                example: "Our startup got hacked badly last night because we accidentally published database credentials in a public GitHub repository.",
+                svg: `<svg class="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`
+            },
+            {
+                id: 2,
+                expression: "A legacy system",
+                translation: "Un système hérité / ancien",
+                definition: "An outdated computer system, web application, or technology that remains in operation despite newer alternatives.",
+                example: "The bank still relies on a legacy system built in 1998, which makes it difficult to integrate modern biometric security.",
+                svg: `<svg class="w-10 h-10 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>`
+            },
+            {
+                id: 3,
+                expression: "Expose API keys",
+                translation: "Exposer des clés d'API",
+                definition: "To accidentally make private digital authentication tokens visible to unauthorized persons or public scrapers.",
+                example: "Never commit your secret file to GitHub, or you might expose API keys to automated malicious bots.",
+                svg: `<svg class="w-10 h-10 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 0121 9z"/></svg>`
+            },
+            {
+                id: 4,
+                expression: "Distillation attack",
+                translation: "Attaque par distillation / extraction",
+                definition: "A method where attackers send massive queries to expensive proprietary AI models to copy their intelligence into smaller models.",
+                example: "The company noticed millions of synthetic queries designed to perform a distillation attack on their flagship language model.",
+                svg: `<svg class="w-10 h-10 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>`
+            },
+            {
+                id: 5,
+                expression: "Unauthorized charges",
+                translation: "Frais non autorisés",
+                definition: "Financial billing transactions made on a credit card or cloud service account without the account owner's permission.",
+                example: "After her credit card was compromised online, she found $400 in unauthorized charges from overseas online stores.",
+                svg: `<svg class="w-10 h-10 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`
+            },
+            {
+                id: 6,
+                expression: "Revoke and replace",
+                translation: "Révoquer et remplacer",
+                definition: "The procedure of instantly disabling compromised access credentials and generating new, secure tokens.",
+                example: "When the lead developer left the company, security policy required us to revoke and replace all master database keys.",
+                svg: `<svg class="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>`
+            },
+            {
+                id: 7,
+                expression: "Hard spending limit",
+                translation: "Plafond de dépenses strict",
+                definition: "A firm monetary cap set on an automated account that halts all service once reached to avoid unexpected debt.",
+                example: "I set a hard spending limit of $50 per month on my cloud API account so I never get a surprise bill.",
+                svg: `<svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`
+            },
+            {
+                id: 8,
+                expression: "Catch unauthorized activity early",
+                translation: "Détecter rapidement toute activité suspecte",
+                definition: "To detect suspicious or illegal behavior on an account before major financial or operational damage occurs.",
+                example: "Enabling email SMS notifications helps you catch unauthorized activity early before hackers drain your account.",
+                svg: `<svg class="w-10 h-10 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>`
+            },
+            {
+                id: 9,
+                expression: "Cloud project account",
+                translation: "Compte de projet dans le cloud",
+                definition: "An online workspace account (e.g., AWS, Google Cloud) hosting web services, databases, and computational workloads.",
+                example: "Our entire mobile app backend runs inside a Google Cloud project account managed by our lead engineer.",
+                svg: `<svg class="w-10 h-10 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15a4 4 0 004 4h9a5 5 0 00-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z"/></svg>`
+            },
+            {
+                id: 10,
+                expression: "Process refunds",
+                translation: "Traiter des remboursements",
+                definition: "To issue financial returns or money reimbursements back to customers following erroneous charges or service errors.",
+                example: "Customer service promised to process refunds within 3 business days for everyone affected by the server outage.",
+                svg: `<svg class="w-10 h-10 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>`
+            }
+        ];
+
+        // User State
+        let userAnswers = {};
+        let activeCategory = 'comprehension';
+
+        // Navigation Switcher
+        function switchTab(tabName) {
+            document.getElementById('section-overview').classList.add('hidden');
+            document.getElementById('section-quiz').classList.add('hidden');
+            document.getElementById('section-expressions').classList.add('hidden');
+
+            document.getElementById('tab-overview').className = 'px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-lg transition-all text-gray-400 hover:text-white';
+            document.getElementById('tab-quiz').className = 'px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-lg transition-all text-gray-400 hover:text-white';
+            document.getElementById('tab-expressions').className = 'px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-lg transition-all text-gray-400 hover:text-white';
+
+            document.getElementById(`section-${tabName}`).classList.remove('hidden');
+            const activeTabBtn = document.getElementById(`tab-${tabName}`);
+            activeTabBtn.className = 'px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-lg transition-all text-cyan-400 bg-cyber-border/60';
+        }
+
+        // Render Quiz Questions
+        function renderQuiz() {
+            const container = document.getElementById('quiz-questions-container');
+            const filteredQuestions = quizData.filter(q => q.category === activeCategory);
+
+            container.innerHTML = filteredQuestions.map((q, idx) => {
+                const userChoice = userAnswers[q.id];
+                const isAnswered = userChoice !== undefined;
+
+                return `
+                    <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 transition-all space-y-4">
+                        <div class="flex items-start justify-between gap-4">
+                            <h3 class="font-bold text-white text-base sm:text-lg flex items-start gap-3">
+                                <span class="px-2.5 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-xs font-mono mt-1">
+                                    Q${q.id}
+                                </span>
+                                <span>${q.question}</span>
+                            </h3>
+                            <span class="text-xs px-2.5 py-1 bg-cyber-border text-gray-400 rounded-md capitalize shrink-0 font-mono">
+                                ${q.category}
+                            </span>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-2.5 pt-2">
+                            ${q.options.map((opt, optIdx) => {
+                                let btnStyle = "border-cyber-border bg-slate-900/60 hover:border-gray-500 text-gray-200";
+                                let icon = `<span class="w-5 h-5 rounded-full border border-gray-600 flex items-center justify-center text-xs text-gray-400 font-mono">${String.fromCharCode(65 + optIdx)}</span>`;
+
+                                if (isAnswered) {
+                                    if (optIdx === q.correct) {
+                                        btnStyle = "border-emerald-500/80 bg-emerald-500/10 text-emerald-300 font-semibold";
+                                        icon = `<i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>`;
+                                    } else if (userChoice === optIdx) {
+                                        btnStyle = "border-red-500/80 bg-red-500/10 text-red-300";
+                                        icon = `<i class="fa-solid fa-circle-xmark text-red-400 text-base"></i>`;
+                                    } else {
+                                        btnStyle = "border-cyber-border bg-slate-900/30 text-gray-500 opacity-60";
+                                    }
+                                }
+
+                                return `
+                                    <button 
+                                        onclick="handleAnswer(${q.id}, ${optIdx})" 
+                                        ${isAnswered ? 'disabled' : ''} 
+                                        class="w-full text-left p-3.5 rounded-xl border text-xs sm:text-sm flex items-center justify-between transition-all ${btnStyle}">
+                                        <div class="flex items-center space-x-3">
+                                            ${icon}
+                                            <span>${opt}</span>
+                                        </div>
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+
+                        ${isAnswered ? `
+                            <div class="p-4 rounded-xl ${userChoice === q.correct ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-200' : 'bg-red-500/10 border border-red-500/30 text-red-200'} text-xs sm:text-sm space-y-1">
+                                <div class="font-bold flex items-center gap-1.5">
+                                    <i class="${userChoice === q.correct ? 'fa-solid fa-circle-check text-emerald-400' : 'fa-solid fa-circle-exclamation text-red-400'}"></i>
+                                    ${userChoice === q.correct ? 'Correct Answer!' : 'Incorrect Choice'}
+                                </div>
+                                <p class="text-gray-300 text-xs leading-relaxed">${q.explanation}</p>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Handle Answer Selection
+        function handleAnswer(questionId, selectedIdx) {
+            userAnswers[questionId] = selectedIdx;
+            updateScore();
+            renderQuiz();
+        }
+
+        // Filter Quiz by Category
+        function filterQuizCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.quiz-cat-btn').forEach(btn => {
+                btn.className = 'quiz-cat-btn py-3 px-4 rounded-xl border border-cyber-border bg-cyber-card text-gray-400 hover:text-white font-semibold text-xs sm:text-sm text-center transition';
+            });
+            const activeBtn = document.getElementById(`cat-btn-${cat}`);
+            activeBtn.className = 'quiz-cat-btn py-3 px-4 rounded-xl border border-cyan-500 bg-cyan-500/10 text-cyan-300 font-semibold text-xs sm:text-sm text-center transition';
+
+            renderQuiz();
+        }
+
+        // Score Tracker
+        function updateScore() {
+            let correctCount = 0;
+            let answeredCount = Object.keys(userAnswers).length;
+
+            quizData.forEach(q => {
+                if (userAnswers[q.id] === q.correct) {
+                    correctCount++;
+                }
+            });
+
+            document.getElementById('score-display').textContent = `${correctCount} / 20`;
+            document.getElementById('quiz-badge').textContent = `${answeredCount}/20`;
+        }
+
+        // Reset Quiz
+        function resetQuiz() {
+            userAnswers = {};
+            updateScore();
+            renderQuiz();
+        }
+
+        // Render Expressions Grid
+        function renderExpressions() {
+            const container = document.getElementById('expressions-grid');
+            container.innerHTML = expressionsData.map(exp => `
+                <div class="bg-cyber-card border border-cyber-border rounded-2xl p-6 hover:border-cyan-500/40 transition-all flex flex-col justify-between space-y-4">
+                    <div class="space-y-3">
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="p-3 bg-slate-900 border border-cyber-border rounded-2xl">
+                                ${exp.svg}
+                            </div>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-mono">
+                                Expression #${exp.id}
+                            </span>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                ${exp.expression}
+                            </h3>
+                            <p class="text-xs font-semibold text-cyan-400 italic mt-0.5">
+                                Traduction: ${exp.translation}
+                            </p>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-cyber-border/60 pt-3">
+                            <strong class="text-gray-200">Meaning:</strong> ${exp.definition}
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-900/80 p-3.5 rounded-xl border border-cyber-border/80">
+                        <p class="text-xs text-gray-400">
+                            <strong class="text-cyan-400 uppercase text-[10px] tracking-wider block mb-1">Everyday Life Context:</strong>
+                            "${exp.example}"
+                        </p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize App on Page Load
+        window.onload = function() {
+            renderQuiz();
+            renderExpressions();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What If AI Was Never Invented? - Interactive Learning Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen selection:bg-indigo-500 selection:text-white">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-emerald-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg bg-gradient-to-r from-indigo-400 to-emerald-400 bg-clip-text text-transparent">AI Counterfactual Lab</h1>
+                    <p class="text-xs text-slate-400">Based on saienx's documentary</p>
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-300">
+                <a href="#video-section" class="hover:text-indigo-400 transition">Video</a>
+                <a href="#quiz-section" class="hover:text-indigo-400 transition">Interactive Quiz</a>
+                <a href="#idioms-section" class="hover:text-indigo-400 transition">Idioms & Expressions</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-20">
+
+        <!-- Section 1: Video & Context -->
+        <section id="video-section" class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                    Documentary Analysis & Learning Hub
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+                    What If AI Was Never Invented? Day Two: The Road to the Hospital
+                </h2>
+                <p class="text-slate-400 text-base sm:text-lg leading-relaxed">
+                    Explore this gripping alternative history narrative by <span class="text-indigo-400 font-semibold">saienx</span> examining a world where medical diagnostics lack artificial intelligence assistance. Dive into the tension of hospital wait times, diagnostic bottlenecks, and human vulnerability.
+                </p>
+            </div>
+
+            <!-- Responsive Video Wrapper -->
+            <div class="max-w-4xl mx-auto bg-slate-800/50 border border-slate-700/60 rounded-2xl p-2 sm:p-4 shadow-2xl backdrop-blur-sm">
+                <div class="relative w-full overflow-hidden rounded-xl shadow-inner" style="padding-top: 56.25%;">
+                    <iframe class="absolute top-0 left-0 w-full h-full rounded-lg" src="https://www.youtube.com/embed/4BDPlLe48is" title="What If AI Was Never Invented? Day Two: The Road to the Hospital" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Interactive QCM (Quiz) -->
+        <section id="quiz-section" class="space-y-10">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <h3 class="text-2xl sm:text-3xl font-bold text-white">Interactive Assessment QCM</h3>
+                <p class="text-slate-400 text-sm sm:text-base">Test your mastery across 4 distinct categories (20 questions total). Click an option to instantly verify your answer and read the explanation.</p>
+                <div class="inline-flex items-center gap-4 bg-slate-800/80 px-6 py-2.5 rounded-full border border-slate-700 text-sm font-medium">
+                    <span>Score: <strong id="score-display" class="text-emerald-400">0</strong> / <strong id="total-display">20</strong></span>
+                    <button onclick="resetQuiz()" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1 rounded-full transition shadow">Reset Quiz</button>
+                </div>
+            </div>
+
+            <!-- Quiz Category Navigation Tabs -->
+            <div class="flex flex-wrap justify-center gap-2" id="quiz-tabs">
+                <button onclick="switchTab('comprehension')" data-tab="comprehension" class="quiz-tab px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600 text-white shadow-lg transition">1. Comprehension (1-5)</button>
+                <button onclick="switchTab('vocabulary')" data-tab="vocabulary" class="quiz-tab px-4 py-2 rounded-xl text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">2. Vocabulary (6-10)</button>
+                <button onclick="switchTab('grammar')" data-tab="grammar" class="quiz-tab px-4 py-2 rounded-xl text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">3. Grammar (11-15)</button>
+                <button onclick="switchTab('pronunciation')" data-tab="pronunciation" class="quiz-tab px-4 py-2 rounded-xl text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">4. Pronunciation (16-20)</button>
+            </div>
+
+            <!-- Quiz Containers -->
+            <div class="max-w-4xl mx-auto bg-slate-800/40 border border-slate-700/60 rounded-2xl p-6 sm:p-8 backdrop-blur-sm shadow-xl">
+                <!-- Category 1: Comprehension -->
+                <div id="cat-comprehension" class="quiz-category space-y-8">
+                    <div class="border-b border-slate-700 pb-4">
+                        <h4 class="text-lg font-bold text-indigo-400">Part 1: Reading & Narrative Comprehension</h4>
+                        <p class="text-xs text-slate-400">Questions based directly on the video's plot, character actions, and medical setting.</p>
+                    </div>
+                    <div id="questions-comprehension" class="space-y-8"></div>
+                </div>
+
+                <!-- Category 2: Vocabulary -->
+                <div id="cat-vocabulary" class="quiz-category space-y-8 hidden">
+                    <div class="border-b border-slate-700 pb-4">
+                        <h4 class="text-lg font-bold text-indigo-400">Part 2: Advanced Vocabulary</h4>
+                        <p class="text-xs text-slate-400">Test your understanding of technical and narrative terms featured in the documentary.</p>
+                    </div>
+                    <div id="questions-vocabulary" class="space-y-8"></div>
+                </div>
+
+                <!-- Category 3: Grammar -->
+                <div id="cat-grammar" class="quiz-category space-y-8 hidden">
+                    <div class="border-b border-slate-700 pb-4">
+                        <h4 class="text-lg font-bold text-indigo-400">Part 3: English Grammar & Structures</h4>
+                        <p class="text-xs text-slate-400">Examine conditionals, modals, passives, and complex sentence patterns.</p>
+                    </div>
+                    <div id="questions-grammar" class="space-y-8"></div>
+                </div>
+
+                <!-- Category 4: Pronunciation -->
+                <div id="cat-pronunciation" class="quiz-category space-y-8 hidden">
+                    <div class="border-b border-slate-700 pb-4">
+                        <h4 class="text-lg font-bold text-indigo-400">Part 4: Pronunciation & Phonetics</h4>
+                        <p class="text-xs text-slate-400">Focus on syllable stress, difficult medical nomenclature, and phonetic articulation.</p>
+                    </div>
+                    <div id="questions-pronunciation" class="space-y-8"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Idioms & Expressions -->
+        <section id="idioms-section" class="space-y-10">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    Lexicon & Phraseology
+                </span>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white">Key Idioms & Everyday Expressions</h3>
+                <p class="text-slate-400 text-sm sm:text-base">10 impactful expressions from the video, complete with French translation, explanations, and daily life examples.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="idioms-grid">
+                <!-- Idioms injected via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 mt-20 py-8 text-center text-slate-500 text-sm">
+        <p>Created for English learners and video analysis enthusiasts. Inspired by saienx's "What If AI Was Never Invented?".</p>
+    </footer>
+
+    <!-- JavaScript Data & Logic -->
+    <script>
+        // Quiz Data: 20 Questions (5 per category)
+        const quizData = {
+            comprehension: [
+                {
+                    id: 1,
+                    question: "How does the video depict the mother's initial interaction with the medical system on Day Two?",
+                    options: [
+                        "A) She receives an instant telehealth diagnosis via smartphone.",
+                        "B) She makes repeated phone calls to the local clinic struggling with staff shortages.",
+                        "C) She uses an AI chatbot to schedule an immediate specialist scan.",
+                        "D) She bypasses all queues thanks to an automated emergency drone."
+                    ],
+                    correct: 1, // Index 1 (B)
+                    explanation: "Without AI triage automation, clinics face severe administrative bottlenecks, forcing patients to make repeated phone calls just to get through."
+                },
+                {
+                    id: 2,
+                    question: "What reference is made regarding the Swedish Marsai trial in the narrative?",
+                    options: [
+                        "O) A groundbreaking robotic surgery test.",
+                        "B) A major pilot study testing decentralized healthcare logistics without automated support.",
+                        "C) A historical medical trial comparing diagnostic speed between humans and machines.",
+                        "D) A regional transportation trial for medical drone delivery."
+                    ],
+                    correct: 2, // Index 2 (C) - wait, options are A,B,C,D. Let's make sure correct index matches. Array: 0,1,2,3. Index 2 is C.
+                    explanation: "The Swedish Marsai trial highlights historical and comparative diagnostic benchmarks where automated support systems drastically alter outcomes."
+                },
+                {
+                    id: 3,
+                    question: "How is map traffic prediction described during the family's rush to the hospital?",
+                    options: [
+                        "A) Completely flawless with real-time dynamic rerouting.",
+                        "B) Outdated and reactionary, leaving drivers stuck in unpredicted gridlocks.",
+                        "C) Managed entirely by municipal AI traffic lights.",
+                        "D) Supported by satellite traffic feeds updating every second."
+                    ],
+                    correct: 1, // Index 1 (B)
+                    explanation: "In an un-automated world, traffic prediction relies on static or delayed models, causing unexpected congestion on the road to the hospital."
+                },
+                {
+                    id: 4,
+                    question: "Who is Dr. Park in the context of the hospital redirect scenario?",
+                    options: [
+                        "A) The overworked chief radiologist managing an impossible backlog of scans.",
+                        "B) An artificial intelligence supervisor monitoring patient vitals.",
+                        "C) The emergency room receptionist who triages walk-ins.",
+                        "D) A visiting specialist from the Swedish Marsai team."
+                    ],
+                    correct: 0, // Index 0 (A)
+                    explanation: "Dr. Park represents the human face of burnout—an overworked radiologist overwhelmed by manual reviews without AI assistance."
+                },
+                {
+                    id: 5,
+                    question: "What is the final diagnostic result regarding the mother's medical concern?",
+                    options: [
+                        "A) An aggressive malignant tumor requiring emergency surgery.",
+                        "B) A completely benign cyst, though discovered only after agonizing waiting room anxiety.",
+                        "C) A false positive that required a second biopsy.",
+                        "D) An inconclusive scan requiring transfer to another city."
+                    ],
+                    correct: 1, // Index 1 (B)
+                    explanation: "After hours of harrowing anxiety in the waiting room, the scan ultimately reveals a benign cyst, emphasizing the psychological toll of delayed diagnostics."
+                }
+            ],
+            vocabulary: [
+                {
+                    id: 6,
+                    question: "What does the term 'shortfall' mean in the context of hospital staffing?",
+                    options: [
+                        "A) A financial surplus used for bonuses.",
+                        "B) A deficit or failure to reach a required amount or supply.",
+                        "C) A scheduled reduction in operating hours.",
+                        "D) A sudden increase in patient satisfaction."
+                    ],
+                    correct: 1,
+                    explanation: "'Shortfall' refers to a deficiency or lack of something needed, such as doctors or nurses available for duty."
+                },
+                {
+                    id: 7,
+                    question: "In medical terminology, what does 'benign' signify?",
+                    options: [
+                        "A) Highly aggressive and life-threatening.",
+                        "B) Contagious and easily transmissible.",
+                        "C) Not harmful in effect; harmless (e.g., a non-cancerous tumor).",
+                        "D) Requiring immediate surgical intervention."
+                    ],
+                    correct: 2,
+                    explanation: "'Benign' describes a condition, tumor, or growth that is harmless and non-cancerous."
+                },
+                {
+                    id: 8,
+                    question: "What is a 'causeway' in geographical or logistical terms?",
+                    options: [
+                        "A) A raised road or track across low or wet ground.",
+                        "B) A high-speed underground subway tunnel.",
+                        "C) A medical emergency hotline routing system.",
+                        "D) A digital pathway for data transfer."
+                    ],
+                    correct: 0,
+                    explanation: "A causeway is an elevated roadway built across water, marshland, or low terrain."
+                },
+                {
+                    id: 9,
+                    question: "What does 'forecast' mean when discussing medical resource planning?",
+                    options: [
+                        "A) Reviewing past errors in a ledger.",
+                        "B) Predicting or estimating future events or trends based on data.",
+                        "C) Canceling appointments due to bad weather.",
+                        "D) Allocating immediate emergency funding."
+                    ],
+                    correct: 1,
+                    explanation: "To forecast means to calculate or predict future conditions based on historical patterns and statistical models."
+                },
+                {
+                    id: 10,
+                    question: "What is an 'advisory' in official communications?",
+                    options: [
+                        "A) A binding legal court verdict.",
+                        "B) A formal announcement or warning providing guidance on a situation.",
+                        "C) A personal recommendation between friends.",
+                        "D) An advertisement for medical equipment."
+                    ],
+                    correct: 1,
+                    explanation: "An advisory is an official report or warning that gives information and recommendations regarding potential hazards."
+                }
+            ],
+            grammar: [
+                {
+                    id: 11,
+                    question: "Identify the correct third conditional structure describing the video's premise: 'If AI ___ invented, healthcare systems ___ overwhelmed.'",
+                    options: [
+                        "A) was / will be",
+                        "B) had never been / would not have been",
+                        "C) had never been / would have been",
+                        "D) is / are"
+                    ],
+                    correct: 2,
+                    explanation: "Third conditional uses 'If + past perfect' (had never been) in the condition clause and 'would have + past participle' (would have been) in the result clause."
+                },
+                {
+                    id: 12,
+                    question: "Which modal verb expresses strong logical deduction in the past about Dr. Park's fatigue? 'Dr. Park ___ extremely tired after reviewing hundreds of manual scans.'",
+                    options: [
+                        "A) must have been",
+                        "B) can be",
+                        "C) should be",
+                        "D) might not"
+                    ],
+                    correct: 0,
+                    explanation: "'Must have been' expresses a high degree of certainty about a past deduction."
+                },
+                {
+                    id: 13,
+                    question: "Choose the correct passive voice transformation of: 'The clinic staff processed the patient files manually.'",
+                    options: [
+                        "A) The patient files are processed manually by the clinic staff.",
+                        "B) The patient files were processed manually by the clinic staff.",
+                        "C) The patient files have been processed manually.",
+                        "D) The clinic staff was processed by the patient files."
+                    ],
+                    correct: 1,
+                    explanation: "In the past simple active ('processed'), the passive voice requires 'were + past participle' ('were processed')."
+                },
+                {
+                    id: 14,
+                    question: "Select the correct relative pronoun for: 'The hospital ___ Dr. Park worked was facing severe staff shortages.'",
+                    options: [
+                        "A) which",
+                        "B) where",
+                        "C) who",
+                        "D) whose"
+                    ],
+                    correct: 1,
+                    explanation: "'Where' is the correct relative adverb used to refer to a place or location (the hospital)."
+                },
+                {
+                    id: 15,
+                    question: "Which sentence correctly employs a past modal of missed opportunity or regret regarding faster diagnostics?",
+                    options: [
+                        "A) They should have automated the triage system years ago.",
+                        "B) They must automate the triage system tomorrow.",
+                        "C) They can automate the triage system now.",
+                        "D) They will automate the triage system soon."
+                    ],
+                    correct: 0,
+                    explanation: "'Should have + past participle' expresses criticism or regret about an action that wasn't done in the past."
+                }
+            ],
+            pronunciation: [
+                {
+                    id: 16,
+                    question: "Where is the primary syllable stress located in the word 'radiologist'?",
+                    options: [
+                        "A) RA-di-o-lo-gist (1st syllable)",
+                        "B) ra-DI-o-lo-gist (2nd syllable)",
+                        "C) ra-di-O-lo-gist (3rd syllable)",
+                        "D) ra-di-o-lo-GIST (4th syllable)"
+                    ],
+                    correct: 2,
+                    explanation: "The primary stress in radiologist falls on the third syllable: ra-di-O-lo-gist (/ˌreɪdiˈɒlədʒɪst/)."
+                },
+                {
+                    id: 17,
+                    question: "Which phonetic feature is notable when pronouncing 'mammogram'?",
+                    options: [
+                        "A) The first 'm' is completely silent.",
+                        "B) Double consonant 'mm' with stress on the first syllable (MAM-mo-gram).",
+                        "C) Pronounced with a French nasal ending.",
+                        "D) The letter 'g' sounds like a soft 'j'."
+                    ],
+                    correct: 1,
+                    explanation: "'Mammogram' is stressed on the initial syllable (MAM-mo-gram) with clear bilabial plosives."
+                },
+                {
+                    id: 18,
+                    question: "How is the suffix '-cial' pronounced in 'artificial'?",
+                    options: [
+                        "A) /-siːəl/",
+                        "B) /-ʃəl/ (shuhl)",
+                        "C) /-kəl/",
+                        "D) /-ziəl/"
+                    ],
+                    correct: 1,
+                    explanation: "In words ending in -cial or -tial like artificial, the ending is pronounced as the sh-sound plus schwa (/ -ʃəl /)."
+                },
+                {
+                    id: 19,
+                    question: "In the word 'diagnostic', which syllable carries the primary stress?",
+                    options: [
+                        "A) di-ag-NOS-tic (3rd syllable)",
+                        "B) DI-ag-nos-tic (1st syllable)",
+                        "C) di-AG-nos-tic (2nd syllable)",
+                        "D) diag-nos-TIC (4th syllable)"
+                    ],
+                    correct: 0,
+                    explanation: "The primary stress in diagnostic is on the third syllable: di-ag-NOS-tic."
+                },
+                {
+                    id: 20,
+                    question: "Which sound represents the vowel in the stressed syllable of 'emergency'?",
+                    options: [
+                        "A) /uː/ as in 'too'",
+                        "B) /ɜː/ as in 'bird'",
+                        "C) /ɪ/ as in 'sit' or /ɜː/ depending on dialect, with primary stress on 'mer'",
+                        "D) /ɑː/ as in 'father'"
+                    ],
+                    correct: 2,
+                    explanation: "The second syllable 'mer' in emergency carries primary or secondary stress, featuring the central rhotic or front vowel sound."
+                }
+            ]
+        };
+
+        // Idioms Data (10 expressions)
+        const idiomsData = [
+            {
+                id: 1,
+                english: "Skip past",
+                french: "Passer outre / Sautant par-dessus",
+                explanation: "To bypass or move quickly past a procedural step or obstacle without proper examination.",
+                example: "Without automated triage, doctors cannot simply skip past preliminary paperwork without risking patient safety.",
+                icon: "⏩"
+            },
+            {
+                id: 2,
+                english: "Folds her arms",
+                french: "Croise les bras",
+                explanation: "A body language gesture indicating defensiveness, resistance, or resignation in a difficult situation.",
+                example: "When told the wait time would exceed four hours, she folds her arms in quiet frustration.",
+                icon: "🧘‍♀️"
+            },
+            {
+                id: 3,
+                english: "Steady hand",
+                french: "Main sûre / Sang-froid",
+                explanation: "Composure, reliability, and precision under pressure, especially in crisis management.",
+                example: "Dr. Park maintained a steady hand despite managing an overwhelming queue of anxious patients.",
+                icon: "🤝"
+            },
+            {
+                id: 4,
+                english: "Two times out of three",
+                french: "Deux fois sur trois",
+                explanation: "A statistical probability indicating a frequent occurrence or high likelihood.",
+                example: "Two times out of three, manual scheduling errors lead to misplaced medical files in busy clinics.",
+                icon: "📊"
+            },
+            {
+                id: 5,
+                english: "Hit like gravel",
+                french: "Frapper comme du gravier / S'abattre brutalement",
+                explanation: "Describing harsh, sudden, or stinging reality that impacts someone unexpectedly.",
+                example: "The realization of the multi-hour delay hit her like gravel as soon as she entered the lobby.",
+                icon: "⚡"
+            },
+            {
+                id: 6,
+                english: "Waiting room anxiety",
+                french: "L'anxiété de la salle d'attente",
+                explanation: "The psychological stress and nervous anticipation experienced while waiting for medical test results.",
+                example: "Hours of waiting room anxiety can take a severe emotional toll on patients and their families.",
+                icon: "⏳"
+            },
+            {
+                id: 7,
+                english: "Cut the lines",
+                french: "Couper les files / Saisir un raccourci",
+                explanation: "To bypass regular queues or bottlenecks, often made impossible when automation fails.",
+                example: "Patients wish they could cut the lines, but manual verification requires strict adherence to order.",
+                icon: "✂️"
+            },
+            {
+                id: 8,
+                english: "Not a statistic",
+                french: "Pas un simple chiffre / Pas une statistique",
+                explanation: "Emphasizing individual human worth and personal stories behind cold numerical data.",
+                example: "Every patient is a human being with a family, not just a statistic on a hospital spreadsheet.",
+                icon: "❤️"
+            },
+            {
+                id: 9,
+                english: "Rolling across the floor",
+                french: "Roulant sur le sol / Échappant à tout contrôle",
+                explanation: "A vivid metaphor for chaos spreading uncontrollably or paperwork/objects slipping away.",
+                example: "Without digital records, loose files ended up rolling across the floor in the frantic clinic office.",
+                icon: "🌀"
+            },
+            {
+                id: 10,
+                english: "The road not taken",
+                french: "Le chemin non pris / L'alternative ignorée",
+                explanation: "Reflecting on counterfactual paths, alternative choices, or a world where a different path was chosen.",
+                example: "Examining AI history is like exploring the road not taken in technological evolution.",
+                icon: "🛤️"
+            }
+        ];
+
+        // Track user score and answers
+        let userScore = 0;
+        let answeredQuestions = {};
+
+        // Initialize App on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderQuizQuestions();
+            renderIdioms();
+            updateScoreDisplay();
+        });
+
+        // Tab Switching Logic
+        function switchTab(category) {
+            document.querySelectorAll('.quiz-category').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`cat-${category}`).classList.remove('hidden');
+
+            document.querySelectorAll('.quiz-tab').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg');
+                btn.classList.add('bg-slate-800', 'text-slate-300');
+            });
+
+            const activeBtn = document.querySelector(`[data-tab="${category}"]`);
+            activeBtn.classList.remove('bg-slate-800', 'text-slate-300');
+            activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-lg');
+        }
+
+        // Render Quiz Questions
+        function renderQuizQuestions() {
+            for (const cat in quizData) {
+                const container = document.getElementById(`questions-${cat}`);
+                container.innerHTML = '';
+
+                quizData[cat].forEach((q, index) => {
+                    const qCard = document.createElement('div');
+                    qCard.className = 'bg-slate-900/60 border border-slate-700/80 rounded-xl p-5 space-y-4 shadow';
+                    
+                    let optionsHtml = '';
+                    q.options.forEach((opt, optIndex) => {
+                        optionsHtml += `
+                            <button onclick="handleAnswer('${cat}', ${q.id}, ${optIndex}, this)" 
+                                class="option-btn w-full text-left p-3 rounded-lg border border-slate-700 bg-slate-800/60 hover:bg-slate-700 text-sm text-slate-200 transition flex items-center justify-between">
+                                <span>${opt}</span>
+                            </button>
+                        `;
+                    });
+
+                    qCard.innerHTML = `
+                        <div class="flex items-start justify-between gap-4">
+                            <h5 class="font-semibold text-slate-100 text-sm sm:text-base"><span class="text-indigo-400 font-bold mr-2">Q${q.id}.</span>${q.question}</h5>
+                        </div>
+                        <div class="grid grid-cols-1 gap-2.5 options-container-${q.id}">
+                            ${optionsHtml}
+                        </div>
+                        <div id="feedback-${q.id}" class="hidden p-3 rounded-lg text-xs sm:text-sm mt-3 border"></div>
+                    `;
+                    container.appendChild(qCard);
+                });
+            }
+        }
+
+        // Handle Answer Selection
+        function handleAnswer(category, qId, selectedOptIndex, btnElement) {
+            if (answeredQuestions[qId]) return; // Prevent changing answer once selected
+            answeredQuestions[qId] = true;
+
+            const questionObj = quizData[category].find(q => q.id === qId);
+            const parentContainer = btnElement.parentElement;
+            const allBtns = parentContainer.querySelectorAll('button');
+            const feedbackDiv = document.getElementById(`feedback-${qId}`);
+
+            // Disable all options for this question
+            allBtns.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === questionObj.correct) {
+                    btn.classList.remove('bg-slate-800/60', 'border-slate-700');
+                    btn.classList.add('bg-emerald-600/30', 'border-emerald-500', 'text-emerald-200', 'font-medium');
+                } else if (idx === selectedOptIndex && idx !== questionObj.correct) {
+                    btn.classList.remove('bg-slate-800/60', 'border-slate-700');
+                    btn.classList.add('bg-rose-600/30', 'border-rose-500', 'text-rose-200');
+                } else {
+                    btn.classList.add('opacity-50');
+                }
+            });
+
+            // Check correctness
+            const isCorrect = (selectedOptIndex === questionObj.correct);
+            if (isCorrect) {
+                userScore++;
+                updateScoreDisplay();
+                feedbackDiv.className = "p-3 rounded-lg text-xs sm:text-sm mt-3 bg-emerald-950/60 border-emerald-800 text-emerald-300 block";
+                feedbackDiv.innerHTML = `<strong>Correct!</strong> ${questionObj.explanation}`;
+            } else {
+                feedbackDiv.className = "p-3 rounded-lg text-xs sm:text-sm mt-3 bg-rose-950/60 border-rose-800 text-rose-300 block";
+                feedbackDiv.innerHTML = `<strong>Incorrect.</strong> ${questionObj.explanation}`;
+            }
+        }
+
+        // Update Score Display
+        function updateScoreDisplay() {
+            document.getElementById('score-display').innerText = userScore;
+        }
+
+        // Reset Quiz
+        function resetQuiz() {
+            userScore = 0;
+            answeredQuestions = {};
+            updateScoreDisplay();
+            renderQuizQuestions();
+            // Scroll back to top of quiz
+            document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Render Idioms Section
+        function renderIdioms() {
+            const grid = document.getElementById('idioms-grid');
+            grid.innerHTML = '';
+
+            idiomsData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-800/50 border border-slate-700/60 rounded-2xl p-6 backdrop-blur-sm shadow-xl flex flex-col justify-between space-y-4 hover:border-indigo-500/50 transition group";
+                
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl p-2 bg-slate-900 rounded-xl shadow-inner group-hover:scale-110 transition">${item.icon}</span>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Français : ${item.french}</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white group-hover:text-indigo-400 transition">${item.english}</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">${item.explanation}</p>
+                    </div>
+                    <div class="bg-slate-900/80 border border-slate-700/50 rounded-xl p-3.5 text-xs sm:text-sm text-slate-300 space-y-1">
+                        <span class="text-indigo-400 font-semibold block">Everyday Example:</span>
+                        <p class="italic">"${item.example}"</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>

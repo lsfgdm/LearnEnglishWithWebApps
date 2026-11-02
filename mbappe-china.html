@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Learning Hub: The Mbappé-China Controversy</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .quiz-option {
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header & Navigation -->
+    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center">
+            <div class="flex items-center space-x-3 mb-2 sm:mb-0">
+                <div class="bg-indigo-600 p-2.5 rounded-xl text-white shadow-lg">
+                    <i class="fa-solid fa-globe text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight">Global English Academy</h1>
+                    <p class="text-xs text-slate-400">Current Events & Language Learning</p>
+                </div>
+            </div>
+            <nav class="flex space-x-4 text-sm font-medium">
+                <a href="#video-section" class="hover:text-indigo-400 transition">Video & Summary</a>
+                <a href="#quiz-section" class="hover:text-indigo-400 transition">Interactive Quizzes</a>
+                <a href="#expressions-section" class="hover:text-indigo-400 transition">Expressions & Idioms</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow">
+        
+        <!-- Hero & Video Section -->
+        <section id="video-section" class="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-3">Case Study & Lesson</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">The Mbappé-China Controversy Is Worse Than You Think…</h2>
+                    <p class="text-slate-300 text-base sm:text-lg">Explore the diplomatic fallout, corporate boycotts, and linguistic nuances behind the global headline.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Embedded Video Player -->
+                    <div class="lg:col-span-7 bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-700 aspect-video relative">
+                        <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/B1l3c9JcnAM" title="The Mbappé-China Controversy Is Worse Than You Think..." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+
+                    <!-- Video Summary Breakdown -->
+                    <div class="lg:col-span-5 bg-slate-800/80 backdrop-blur border border-slate-700/80 rounded-2xl p-6 shadow-xl">
+                        <h3 class="text-lg font-bold text-indigo-400 mb-4 flex items-center">
+                            <i class="fa-solid fa-file-lines mr-2"></i> Executive Summary
+                        </h3>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-check text-indigo-400 mt-1 mr-2 flex-shrink-0"></i>
+                                <span><strong>The Incident:</strong> Kylian Mbappé laughed at a viral meme depicting his face on Mao Zedong in April 2026 (*The Bridge*).</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-check text-indigo-400 mt-1 mr-2 flex-shrink-0"></i>
+                                <span><strong>Broadcasting Bans:</strong> CCTV stopped airing La Liga matches, and Migu removed upcoming fixtures.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-check text-indigo-400 mt-1 mr-2 flex-shrink-0"></i>
+                                <span><strong>Sponsorship Losses:</strong> Chinese brands like Dongpeng and Mengniu severed ties immediately.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-check text-indigo-400 mt-1 mr-2 flex-shrink-0"></i>
+                                <span><strong>Apologies & Fallout:</strong> Apologies issued by Mbappé, La Liga, and Real Madrid due to heavy reliance on the Chinese market.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Quizzes Section -->
+        <section id="quiz-section" class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold text-slate-900">Interactive Knowledge Quizzes</h2>
+                <p class="text-slate-600 mt-2">Test your understanding across four specialized categories. Click an option to see instant feedback and explanations.</p>
+                
+                <!-- Score Tracker Bar -->
+                <div class="mt-6 inline-flex items-center bg-white border border-slate-200 px-6 py-3 rounded-full shadow-sm space-x-6">
+                    <div>
+                        <span class="text-xs uppercase text-slate-400 font-bold block">Score</span>
+                        <span id="score-display" class="text-xl font-black text-indigo-600">0 / 20</span>
+                    </div>
+                    <div class="h-8 w-px bg-slate-200"></div>
+                    <div>
+                        <span class="text-xs uppercase text-slate-400 font-bold block">Progress</span>
+                        <span id="progress-display" class="text-xl font-black text-slate-700">0 answered</span>
+                    </div>
+                    <div class="h-8 w-px bg-slate-200"></div>
+                    <button onclick="resetQuizzes()" class="text-sm font-semibold text-rose-600 hover:text-rose-800 transition flex items-center">
+                        <i class="fa-solid fa-rotate-right mr-1.5"></i> Reset
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Category Navigation Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button onclick="switchTab('comprehension')" id="tab-comprehension" class="quiz-tab px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-indigo-600 text-white shadow-md">Comprehension</button>
+                <button onclick="switchTab('vocabulary')" id="tab-vocabulary" class="quiz-tab px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">Vocabulary</button>
+                <button onclick="switchTab('grammar')" id="tab-grammar" class="quiz-tab px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">Grammar</button>
+                <button onclick="switchTab('pronunciation')" id="tab-pronunciation" class="quiz-tab px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">Pronunciation / IPA</button>
+            </div>
+
+            <!-- Quiz Containers -->
+            <div id="quiz-container" class="space-y-6">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </section>
+
+        <!-- Common Expressions Section -->
+        <section id="expressions-section" class="bg-slate-100 py-16 px-4 sm:px-6 lg:px-8 border-t border-slate-200">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-3">Idioms & Phrasal Verbs</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mb-4">Key Expressions from the Video</h2>
+                    <p class="text-slate-600 text-base">Master these 10 common expressions used in political and corporate crisis reporting, complete with everyday examples and French translations.</p>
+                </div>
+
+                <div id="expressions-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dynamically populated via JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 px-4 text-center text-sm border-t border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+            <p>&copy; 2026 Global English Academy. Based on "The Mbappé-China Controversy Is Worse Than You Think…"</p>
+            <div class="flex space-x-6">
+                <a href="#video-section" class="hover:text-white transition">Back to Top</a>
+                <a href="#quiz-section" class="hover:text-white transition">Quizzes</a>
+                <a href="#expressions-section" class="hover:text-white transition">Expressions</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // --- QUIZ DATA ---
+        const quizData = {
+            comprehension: [
+                {
+                    id: 'c1',
+                    question: "When was the controversial clip of Kylian Mbappé originally filmed?",
+                    options: [
+                        "A) January 2026",
+                        "B) April 2026",
+                        "C) October 2026",
+                        "D) December 2025"
+                    ],
+                    correct: 1, // index 1 = B
+                    explanation: "The video was originally filmed in April 2026 for the French show *The Bridge* before surfacing widely later."
+                },
+                {
+                    id: 'c2',
+                    question: "What specific image caused the outrage in China?",
+                    options: [
+                        "A) A caricature mocking the Chinese national flag",
+                        "B) A meme depicting Mbappé's face on Mao Zedong",
+                        "C) A parody video about Chinese football teams",
+                        "D) An offensive poster displayed in Madrid's stadium"
+                    ],
+                    correct: 1,
+                    explanation: "Mbappé laughed at a viral internet meme that superimposed his face onto historical leader Mao Zedong."
+                },
+                {
+                    id: 'c3',
+                    question: "How did state broadcaster CCTV respond to the controversy?",
+                    options: [
+                        "A) They increased broadcasting fees for La Liga",
+                        "B) They stopped airing La Liga matches",
+                        "C) They interviewed Mbappé live for clarification",
+                        "D) They banned Real Madrid players permanently from Chinese tours"
+                    ],
+                    correct: 1,
+                    explanation: "CCTV swiftly retaliated by halting the broadcast of all La Liga matches across state channels."
+                },
+                {
+                    id: 'c4',
+                    question: "Which major Chinese brands terminated their partnerships with Mbappé?",
+                    options: [
+                        "A) Tencent and Alibaba",
+                        "B) Huawei and Xiaomi",
+                        "C) Dongpeng and Mengniu",
+                        "D) TikTok and Shein"
+                    ],
+                    correct: 2,
+                    explanation: "Major commercial sponsors including Dongpeng and Mengniu immediately severed sponsorship ties with the player."
+                },
+                {
+                    id: 'c5',
+                    question: "What historic incidents are compared to this controversy in the video?",
+                    options: [
+                        "A) Brexit trade negotiations and EU tariffs",
+                        "B) Incidents involving Daryl Morey (NBA), Mesut Özil, and John Cena",
+                        "C) Olympic boycotts from the Cold War era",
+                        "D) FIFA World Cup host country disputes"
+                    ],
+                    correct: 1,
+                    explanation: "The creator highlights similar high-profile political sensitivities involving Daryl Morey and the NBA, Mesut Özil, and John Cena."
+                }
+            ],
+            vocabulary: [
+                {
+                    id: 'v1',
+                    question: "What does the word 'backlash' mean in the context of public reaction?",
+                    options: [
+                        "A) A supportive campaign organized by fans",
+                        "B) A strong negative reaction by a large group of people",
+                        "C) A formal legal apology issued in court",
+                        "D) A financial investment in foreign markets"
+                    ],
+                    correct: 1,
+                    explanation: "A backlash is a strong, adverse public reaction against a political or social development or action."
+                },
+                {
+                    id: 'v2',
+                    question: "In trade and international relations, what are 'sanctions'?",
+                    options: [
+                        "A) Official approvals or permits for broadcasting",
+                        "B) Penalties or restrictive measures taken by a country",
+                        "C) Diplomatic awards given for cultural exchange",
+                        "D) Financial subsidies provided to foreign athletes"
+                    ],
+                    correct: 1,
+                    explanation: "Sanctions are authoritative restrictions or penalties imposed to force a country or entity to change behavior."
+                },
+                {
+                    id: 'v3',
+                    question: "What does it mean when someone or something is 'scrubbed' from media?",
+                    options: [
+                        "A) Carefully cleaned and promoted with high quality",
+                        "B) Thoroughly investigated by government auditors",
+                        "C) Completely removed, erased, or wiped out",
+                        "D) Translated into multiple regional dialects"
+                    ],
+                    correct: 2,
+                    explanation: "To 'scrub' in digital terms means to thoroughly delete or remove all traces of someone from online platforms and media."
+                },
+                {
+                    id: 'v4',
+                    question: "Define 'sponsorship' in professional sports.",
+                    options: [
+                        "A) Financial support given by a brand in exchange for publicity",
+                        "B) A government grant given to Olympic athletes",
+                        "C) Mandatory training supervised by league referees",
+                        "D) Charitable donations made to youth academies"
+                    ],
+                    correct: 0,
+                    explanation: "Sponsorship involves a brand funding an athlete or team in exchange for advertising exposure and endorsement."
+                },
+                {
+                    id: 'v5',
+                    question: "What does 'diplomatic' refer to in international disputes?",
+                    options: [
+                        "A) Related to legal court trials and prison sentences",
+                        "B) Related to managing relations between nations",
+                        "C) Associated exclusively with military defense strategies",
+                        "D) Pertaining to corporate accounting standards"
+                    ],
+                    correct: 1,
+                    explanation: "Diplomatic relations pertain to official interactions, negotiations, and diplomacy between sovereign states."
+                }
+            ],
+            grammar: [
+                {
+                    id: 'g1',
+                    question: "Identify the correct passive voice transformation of: 'China imposed swift sanctions on the player.'",
+                    options: [
+                        "A) Swift sanctions are imposing by China on the player.",
+                        "B) Swift sanctions were imposed on the player by China.",
+                        "C) The player was imposing swift sanctions on China.",
+                        "D) Swift sanctions have been imposing China."
+                    ],
+                    correct: 1,
+                    explanation: "In the passive voice, the object ('swift sanctions') becomes the subject, followed by past tense 'were imposed' and 'by China'."
+                },
+                {
+                    id: 'g2',
+                    question: "Choose the correct reported speech for: He said, 'The controversy shocked the sports world.'",
+                    options: [
+                        "A) He said that the controversy has shocked the sports world.",
+                        "B) He said that the controversy had shocked the sports world.",
+                        "C) He says that the controversy shocks the sports world.",
+                        "D) He told that the controversy shocks sports."
+                    ],
+                    correct: 1,
+                    explanation: "In reported speech, simple past tense ('shocked') typically backshifts to past perfect ('had shocked')."
+                },
+                {
+                    id: 'g3',
+                    question: "Which sentence correctly uses the past continuous tense?",
+                    options: [
+                        "A) Fans were watching the broadcast when the news broke.",
+                        "B) Fans watched the broadcast while news breaks.",
+                        "C) Fans have been watched the broadcast yesterday.",
+                        "D) Fans are watching the broadcasted video."
+                    ],
+                    correct: 0,
+                    explanation: "Past continuous ('were watching') describes an ongoing action interrupted by another action ('broke')."
+                },
+                {
+                    id: 'g4',
+                    question: "Select the grammatically correct conditional sentence:",
+                    options: [
+                        "A) If Mbappé would know the consequences, he didn't laugh.",
+                        "B) If Mbappé knew the consequences, he wouldn't have laughed.",
+                        "C) If Mbappé had known the consequences, he wouldn't have laughed.",
+                        "D) If Mbappé knows, he will laughed."
+                    ],
+                    correct: 2,
+                    explanation: "Third conditional structure ('If + past perfect, would have + past participle') is used for hypothetical past situations."
+                },
+                {
+                    id: 'g5',
+                    question: "Which sentence contains a correct relative clause?",
+                    options: [
+                        "A) The brand which sponsored Mbappé canceled the contract.",
+                        "B) The brand what sponsored Mbappé canceled the contract.",
+                        "C) The brand where sponsored Mbappé canceled the contract.",
+                        "D) The brand who sponsored Mbappé canceled the contract."
+                    ],
+                    correct: 0,
+                    explanation: "'Which' or 'that' is the correct relative pronoun for non-human subjects like 'brand'."
+                }
+            ],
+            pronunciation: [
+                {
+                    id: 'p1',
+                    question: "What is the correct International Phonetic Alphabet (IPA) transcription for 'controversy' (US pronunciation)?",
+                    options: [
+                        "A) /ˈkɑːntrəvɜːrsi/",
+                        "B) /kənˈtrɒvəsi/",
+                        "C) /ˈkɒntrəvɑːsi/",
+                        "D) /kɒntrəˈvɜːrsɪ/"
+                    ],
+                    correct: 0,
+                    explanation: "In American English, 'controversy' is primarily stressed on the first syllable: /ˈkɑːntrəvɜːrsi/."
+                },
+                {
+                    id: 'p2',
+                    question: "Which word has the primary stress on the second syllable?",
+                    options: [
+                        "A) Spon-sor-ship (/ˈspɒnsərʃɪp/)",
+                        "B) Di-plo-mat-ic (/ˌdɪpləˈmætɪk/ - primary stress on mat)",
+                        "C) Sanc-tion (/ˈsæŋkʃən/)",
+                        "D) Broad-cast (/ˈbrɔːdkæst/)"
+                    ],
+                    correct: 1,
+                    explanation: "In 'diplomatic', the primary stress falls on the suffix syllable '-mat-' (/ˌdɪpləˈmætɪk/)."
+                },
+                {
+                    id: 'p3',
+                    question: "How is the 'ch' sound in 'China' represented in IPA?",
+                    options: [
+                        "A) /ʃ/",
+                        "B) /tʃ/",
+                        "C) /k/",
+                        "D) /ʒ/"
+                    ],
+                    correct: 1,
+                    explanation: "The voiceless postalveolar affricate sound 'ch' in China is transcribed as /tʃ/."
+                },
+                {
+                    id: 'p4',
+                    question: "Which of the following words features a silent letter in standard English pronunciation?",
+                    options: [
+                        "A) Sponsor",
+                        "B) Broadcast",
+                        "C) Doubt",
+                        "D) Market"
+                    ],
+                    correct: 2,
+                    explanation: "The letter 'b' in 'doubt' (/daʊt/) is completely silent."
+                },
+                {
+                    id: 'p5',
+                    question: "Identify the correct syllable division and stress for 'broadcast' (/ˈbrɔːdkæst/):",
+                    options: [
+                        "A) broaD-CAST (stress on second)",
+                        "B) BROAD-cast (stress on first)",
+                        "C) broad-CAST (stress on second)",
+                        "D) broo-dcast (two syllables unequal)"
+                    ],
+                    correct: 1,
+                    explanation: "'Broadcast' is a compound noun/verb stressed on the first syllable: /ˈbrɔːdkæst/."
+                }
+            ]
+        };
+
+        // --- EXPRESSIONS DATA ---
+        const expressionsData = [
+            {
+                term: "Face the music",
+                french: "Assumer les conséquences",
+                definition: "To accept the unpleasant consequences of one's actions or mistakes.",
+                image: "https://placehold.co/600x400/4f46e5/ffffff?text=Face+The+Music",
+                exampleDialog: "<strong>Manager:</strong> \"Because of the viral video, we lost our main sponsor. You need to face the music and issue a formal apology.\""
+            },
+            {
+                term: "Blow over",
+                french: "Se tasser / Passer avec le temps",
+                definition: "To pass without leaving permanent damage; to subside.",
+                image: "https://placehold.co/600x400/0ea5e9/ffffff?text=Blow+Over",
+                exampleDialog: "<strong>PR Agent:</strong> \"Don't make any more public statements right now. Let's wait for the media storm to blow over.\""
+            },
+            {
+                term: "Sweep under the rug",
+                french: "Passer sous silence / Dissimuler",
+                definition: "To try to hide a problem or mistake rather than deal with it openly.",
+                image: "https://placehold.co/600x400/6366f1/ffffff?text=Sweep+Under+Rug",
+                exampleDialog: "<strong>Executive:</strong> \"We can't just sweep this controversy under the rug; millions of international fans demand an explanation.\""
+            },
+            {
+                term: "On thin ice",
+                french: "En sursis / Sur une mauvaise pente",
+                definition: "In a risky or precarious position where one more mistake will cause serious trouble.",
+                image: "https://placehold.co/600x400/f59e0b/ffffff?text=On+Thin+Ice",
+                exampleDialog: "<strong>Coach:</strong> \"After that disrespectful post, you are on thin ice with club management. One more misstep and you're benched.\""
+            },
+            {
+                term: "Make amends",
+                french: "Faire amende honorable / Réparer ses torts",
+                definition: "To do something to correct a mistake or show you are sorry for hurting someone.",
+                image: "https://placehold.co/600x400/10b981/ffffff?text=Make+Amends",
+                exampleDialog: "<strong>Player:</strong> \"I want to visit local youth fan clubs and make amends for my thoughtless mistake in the interview.\""
+            },
+            {
+                term: "Cut ties",
+                french: "Rompre les relations",
+                definition: "To end a relationship, partnership, or association with someone completely.",
+                image: "https://placehold.co/600x400/ef4444/ffffff?text=Cut+Ties",
+                exampleDialog: "<strong>Brand Director:</strong> \"Given the severe public backlash, our company has decided to cut ties with the athlete immediately.\""
+            },
+            {
+                term: "Step down",
+                french: "Démissionner",
+                definition: "To voluntarily leave a position of authority, leadership, or responsibility.",
+                image: "https://placehold.co/600x400/8b5cf6/ffffff?text=Step+Down",
+                exampleDialog: "<strong>Board Member:</strong> \"Facing immense pressure from international partners, the club president announced he would step down.\""
+            },
+            {
+                term: "Add fuel to the fire",
+                french: "Jeter de l'huile sur le feu",
+                definition: "To do or say something that makes a bad situation even worse.",
+                image: "https://placehold.co/600x400/dc2626/ffffff?text=Fuel+To+The+Fire",
+                exampleDialog: "<strong>Advisor:</strong> \"Posting sarcastic comments online right now will only add fuel to the fire. Stay off social media.\""
+            },
+            {
+                term: "Pay the price",
+                french: "Payer les pots cassés / En payer le prix",
+                definition: "To suffer the negative consequences of a bad decision or action.",
+                image: "https://placehold.co/600x400/3b82f6/ffffff?text=Pay+The+Price",
+                exampleGrid: "<strong>Analyst:</strong> \"When clubs ignore cultural sensitivities in Asian markets, they pay the price in lost revenue.\""
+            },
+            {
+                term: "Clear the air",
+                french: "Clarifier la situation / Crever l'abcès",
+                definition: "To remove doubts or tension by having an open, honest discussion.",
+                image: "https://placehold.co/600x400/14b8a6/ffffff?text=Clear+The+Air",
+                exampleDialog: "<strong>Spokesperson:</strong> \"The club executives flew to Beijing to meet with partners and clear the air after the misunderstanding.\""
+            }
+        ];
+
+        // --- STATE MANAGEMENT ---
+        let currentTab = 'comprehension';
+        let userAnswers = {}; // stores selected answers
+        let score = 0;
+        let answeredCount = 0;
+
+        // --- RENDER QUIZ ---
+        function switchTab(tab) {
+            currentTab = tab;
+            // Update Tab button styles
+            document.querySelectorAll('.quiz-tab').forEach(btn => {
+                btn.className = "quiz-tab px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100";
+            });
+            document.getElementById(`tab-${tab}`).className = "quiz-tab px-5 py-2.5 rounded-xl font-semibold text-sm transition bg-indigo-600 text-white shadow-md";
+            
+            renderQuizQuestions();
+        }
+
+        function renderQuizQuestions() {
+            const container = document.getElementById('quiz-container');
+            const questions = quizData[currentTab];
+            let html = '';
+
+            questions.forEach((q, qIndex) => {
+                const answered = userAnswers[q.id] !== undefined;
+                const selectedOption = userAnswers[q.id];
+
+                html += `
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">${currentTab} Q${qIndex + 1}</span>
+                            ${answered ? (selectedOption === q.correct ? '<span class="text-emerald-600 font-semibold text-sm flex items-center"><i class="fa-solid fa-check-circle mr-1"></i> Correct</span>' : '<span class="text-rose-600 font-semibold text-sm flex items-center"><i class="fa-solid fa-times-circle mr-1"></i> Incorrect</span>') : ''}
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-4">${q.question}</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                `;
+
+                q.options.forEach((opt, optIndex) => {
+                    let btnStyle = "border-slate-200 bg-white text-slate-700 hover:border-indigo-300 hover:bg-indigo-50/50";
+                    
+                    if (answered) {
+                        if (optIndex === q.correct) {
+                            btnStyle = "border-emerald-500 bg-emerald-50 text-emerald-900 font-semibold";
+                        } else if (selectedOption === optIndex) {
+                            btnStyle = "border-rose-500 bg-rose-50 text-rose-900 font-semibold";
+                        } else {
+                            btnStyle = "border-slate-200 bg-slate-50 text-slate-400 opacity-60";
+                        }
+                    }
+
+                    html += `
+                        <button onclick="handleAnswer('${q.id}', ${optIndex}, ${q.correct})" 
+                            ${answered ? 'disabled' : ''}
+                            class="quiz-option text-left p-3.5 rounded-xl border text-sm font-medium transition flex items-center justify-between ${btnStyle}">
+                            <span>${opt}</span>
+                        </button>
+                    `;
+                });
+
+                html += `</div>`;
+
+                if (answered) {
+                    html += `
+                        <div class="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-700 animate-fadeIn">
+                            <strong class="text-slate-900 block mb-1"><i class="fa-solid fa-circle-info text-indigo-600 mr-1"></i> Explanation:</strong>
+                            ${q.explanation}
+                        </div>
+                    `;
+                }
+
+                html += `</div>`;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function handleAnswer(questionId, selectedOpt, correctOpt) {
+            if (userAnswers[questionId] !== undefined) return; // already answered
+
+            userAnswers[questionId] = selectedOpt;
+            answeredCount++;
+
+            if (selectedOpt === correctOpt) {
+                score++;
+            }
+
+            updateScoreboard();
+            renderQuizQuestions();
+        }
+
+        function updateScoreboard() {
+            document.getElementById('score-display').innerText = `${score} / 20`;
+            document.getElementById('progress-display').innerText = `${answeredCount} answered`;
+        }
+
+        function resetQuizzes() {
+            userAnswers = {};
+            score = 0;
+            answeredCount = 0;
+            updateScoreboard();
+            renderQuizQuestions();
+        }
+
+        // --- RENDER EXPRESSIONS ---
+        function renderExpressions() {
+            const grid = document.getElementById('expressions-grid');
+            let html = '';
+
+            expressionsData.forEach((item, idx) => {
+                html += `
+                    <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 overflow-hidden relative bg-slate-200">
+                                <img src="${item.image}" alt="${item.term}" class="w-full h-full object-cover">
+                                <div class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
+                                    #${idx + 1} Idiom
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-xl font-bold text-slate-900">${item.term}</h3>
+                                    <span class="bg-indigo-50 text-indigo-700 text-xs font-bold px-2.5 py-1 rounded-lg">${item.french}</span>
+                                </div>
+                                <p class="text-slate-600 text-sm mb-4">${item.definition}</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-0">
+                            <div class="bg-slate-50 border border-slate-200/80 rounded-xl p-3.5 text-xs text-slate-700">
+                                <span class="font-semibold text-slate-900 block mb-1"><i class="fa-solid fa-comment-dots text-indigo-600 mr-1"></i> Everyday Example:</span>
+                                ${item.exampleDialog}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            grid.innerHTML = html;
+        }
+
+        // Initialize App on Load
+        window.onload = function() {
+            renderQuizQuestions();
+            renderExpressions();
+        };
+    </script>
+</body>
+</html>

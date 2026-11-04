@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kylian Mbappé: Running Out Of Time? - Interactive Learning App</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 16px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .video-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+      margin-bottom: 36px;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      background-color: #000;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .summary {
+      background: #eff6ff;
+      border-left: 4px solid var(--primary);
+      padding: 16px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.95rem;
+    }
+
+    .summary h3 {
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .summary ul {
+      padding-left: 20px;
+    }
+
+    .summary li {
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin: 36px 0 20px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    /* Quiz Styling */
+    .quiz-category {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .quiz-category h3 {
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+      margin-bottom: 18px;
+      border-left: 3px solid var(--primary);
+      padding-left: 10px;
+    }
+
+    .question-card {
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .question-card:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 12px;
+      font-size: 1.05rem;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 600px) {
+      .options-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .option-btn {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: var(--text);
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: #e2e8f0;
+      border-color: #cbd5e1;
+    }
+
+    .option-btn.correct {
+      background: #dcfce7 !important;
+      border-color: var(--success) !important;
+      color: #14532d !important;
+      font-weight: 600;
+    }
+
+    .option-btn.incorrect {
+      background: #fee2e2 !important;
+      border-color: var(--danger) !important;
+      color: #7f1d1d !important;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border-left: 3px solid var(--primary);
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    /* Expressions Section */
+    .expressions-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 650px) {
+      .expressions-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .expression-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .expression-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+    }
+
+    .expression-content {
+      padding: 16px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .expression-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .expression-meaning {
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .expression-example {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      background: #f8fafc;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: auto;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Is Kylian Mbappé Running Out Of Time?</h1>
+      <p class="subtitle">Analyze sports journalism, test your English skills, and master everyday idioms!</p>
+    </header>
+
+    <!-- Video & Summary Section -->
+    <div class="video-card">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/KhtZEXQOvWg" title="Is Kylian Mbappe Running Out Of Time?" allowfullscreen></iframe>
+      </div>
+      <div class="summary">
+        <h3>Video Summary:</h3>
+        <ul>
+          <li><strong>The 2026 Ballon d'Or:</strong> Mbappé missed out on the award to Harry Kane despite actively campaigning for it during a trophyless season at Real Madrid.</li>
+          <li><strong>Expectations vs. Career Reality:</strong> At age 27, despite holding the record for most World Cup goals, Mbappé is contrasted with Messi and Ronaldo, who had won multiple major club & individual honors by that age.</li>
+          <li><strong>Club Struggles:</strong> After moving to Real Madrid in 2024, the team failed to win major titles, while his former club PSG won consecutive Champions League titles right after his departure.</li>
+          <li><strong>The Trophy Debate:</strong> Raises the question of whether individual stats or collective silverware define true footballing greatness.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Quiz Section -->
+    <h2 class="section-title">Comprehension & Language Quiz</h2>
+    <div id="quiz-container"></div>
+
+    <!-- Common Expressions Section -->
+    <h2 class="section-title">10 Common Idiomatic Expressions</h2>
+    <div class="expressions-grid" id="expressions-container"></div>
+  </div>
+
+  <script>
+    // Quiz Data with varied correct answers (A, B, C, D)
+    const quizData = [
+      {
+        category: "1. Video Comprehension",
+        questions: [
+          {
+            q: "Who won the 2026 Ballon d'Or award highlighted at the beginning of the video?",
+            options: [
+              "Harry Kane",
+              "Kylian Mbappé",
+              "Lionel Messi",
+              "Ousmane Dembélé"
+            ],
+            answer: 0, // A
+            explain: "The video opens with Harry Kane receiving the 2026 Ballon d'Or honor while Mbappé watches."
+          },
+          {
+            q: "What ironic event happened to PSG after Mbappé left the club in 2024?",
+            options: [
+              "They were relegated to Ligue 2",
+              "They won consecutive Champions League titles without him",
+              "They stopped signing high-profile international players",
+              "They failed to win a single domestic trophy"
+            ],
+            answer: 1, // B
+            explain: "PSG won consecutive Champions League trophies as a collective unit shortly after Mbappé left for Real Madrid."
+          },
+          {
+            q: "At 27 years old, how is Mbappé contrasted with Messi and Cristiano Ronaldo?",
+            options: [
+              "He has scored significantly more goals than both of them combined",
+              "He retired earlier than both players did",
+              "Messi and Ronaldo had secured far more major club and individual honors by that age",
+              "He won more Champions League titles than both of them by age 27"
+            ],
+            answer: 2, // C
+            explain: "By age 27, Messi and Ronaldo had already collected multiple Ballon d'Ors and Champions League titles."
+          },
+          {
+            q: "What record does Mbappé hold according to the video narrative?",
+            options: [
+              "Most goals scored in La Liga single season",
+              "Most Champions League final assists",
+              "Fastest hat-trick in Premier League history",
+              "Most World Cup goals in football history"
+            ],
+            answer: 3, // D
+            explain: "Mbappé holds the record for the most goals scored in World Cup history."
+          },
+          {
+            q: "What central debate does the video raise regarding Mbappé's legacy?",
+            options: [
+              "Whether he should switch his international nationality",
+              "Whether individual talent or collective trophies should define a player's ultimate greatness",
+              "Whether he should immediately retire from club football",
+              "Whether he is physically faster than sprinter Usain Bolt"
+            ],
+            answer: 1, // B
+            explain: "The video questions whether massive individual scoring stats outweigh a lack of major club trophies when evaluating greatness."
+          }
+        ]
+      },
+      {
+        category: "2. Vocabulary",
+        questions: [
+          {
+            q: "What does the phrase 'career trajectory' refer to?",
+            options: [
+              "The speed at which an athlete runs on the pitch",
+              "The financial contract signed with a sports agency",
+              "The path, progression, or development of a person's professional life over time",
+              "The exact angle of a shot on goal"
+            ],
+            answer: 2, // C
+            explain: "'Career trajectory' describes the direction and progress of an individual's career path."
+          },
+          {
+            q: "What does the word 'trophyless' mean in a sports context?",
+            options: [
+              "Winning every single match of the season",
+              "Having a season or period without winning any trophies or titles",
+              "Refusing to accept medals during an award ceremony",
+              "Playing without an official team captain"
+            ],
+            answer: 1, // B
+            explain: "Suffix '-less' means 'without'. 'Trophyless' indicates failing to win any competitions or silverware."
+          },
+          {
+            q: "What is the meaning of the adjective 'prolific' (e.g., 'a prolific scorer')?",
+            options: [
+              "Producing a large amount or high quantity of something",
+              "Playing defensively rather than offensively",
+              "Slow to adapt to new team tactics",
+              "Inconsistent and unpredictable in big matches"
+            ],
+            answer: 0, // A
+            explain: "A 'prolific' scorer produces a high volume of goals consistently."
+          },
+          {
+            q: "What does 'silverware' mean in football terminology?",
+            options: [
+              "Special metallic studs on football boots",
+              "Trophies, cups, and medals won in competitions",
+              "The cutlery used in luxury stadium VIP boxes",
+              "Whistles used by match referees"
+            ],
+            answer: 1, // B
+            explain: "'Silverware' is a common sports idiom used to refer collectively to trophies and titles."
+          },
+          {
+            q: "What does 'to campaign for' an award mean?",
+            options: [
+              "To boycott an award ceremony in protest",
+              "To sponsor the financial prize of a competition",
+              "To actively work, promote, or persuade people to support a cause or win an honor",
+              "To criticize the organizers of a competition"
+            ],
+            answer: 2, // C
+            explain: "To 'campaign for' something means taking active steps to influence voters or decision-makers."
+          }
+        ]
+      },
+      {
+        category: "3. Grammar",
+        questions: [
+          {
+            q: "Identify the correct Present Perfect Continuous structure: 'Mbappé _____ at the highest level for a decade.'",
+            options: [
+              "has been playing",
+              "is play",
+              "had played continuous",
+              "will be played"
+            ],
+            answer: 0, // A
+            explain: "Present Perfect Continuous (has been + verb-ing) describes an action that started in the past and continues into the present."
+          },
+          {
+            q: "Select the correct sentence with a concession clause ('despite'):",
+            options: [
+              "Despite he scored many goals, they lost.",
+              "Despite of his scoring goals, they lost.",
+              "Despite his impressive individual stats, his team won no major trophies.",
+              "Despite he was tired, but he played."
+            ],
+            answer: 2, // C
+            explain: "'Despite' is followed directly by a noun phrase or gerund, not a full subject + verb clause or 'of'."
+          },
+          {
+            q: "Choose the correct past hypothetical conditional: 'If Real Madrid _____ the final, Mbappé would have won the award.'",
+            options: [
+              "won",
+              "has won",
+              "had won",
+              "would win"
+            ],
+            answer: 2, // C
+            explain: "Third conditional (past unreal): If + Past Perfect (had won), would have + Past Participle."
+          },
+          {
+            q: "Choose the correct passive voice sentence:",
+            options: [
+              "The Ballon d'Or was presented to Harry Kane.",
+              "The Ballon d'Or presented Harry Kane.",
+              "Harry Kane was present the Ballon d'Or.",
+              "The Ballon d'Or was present by Harry Kane."
+            ],
+            answer: 0, // A
+            explain: "Passive structure: Object + was/were + Past Participle + to/by + Agent."
+          },
+          {
+            q: "Complete with the correct comparative form: 'Messi won _____ trophies than Mbappé had at age 27.'",
+            options: [
+              "much",
+              "more",
+              "most",
+              "many"
+            ],
+            answer: 1, // B
+            explain: "For countable nouns ('trophies') in comparative sentences, we use 'more... than'."
+          }
+        ]
+      },
+      {
+        category: "4. Pronunciation & Phonetics",
+        questions: [
+          {
+            q: "Where is the primary stress in the word 'TRAJECTORY'?",
+            options: [
+              "tra-JEC-to-ry",
+              "TRA-jec-to-ry",
+              "tra-jec-TO-ry",
+              "tra-jec-to-RY"
+            ],
+            answer: 0, // A
+            explain: "The primary stress falls on the second syllable: /trəˈdʒɛktəri/."
+          },
+          {
+            q: "Which word features the same vowel sound as 'CROWN' (/aʊ/)?",
+            options: [
+              "Goal",
+              "Show",
+              "Doubt",
+              "Score"
+            ],
+            answer: 2, // C
+            explain: "'Doubt' contains the diphthong /aʊ/ (d-out), matching the sound in 'crown'."
+          },
+          {
+            q: "How is the '-ed' ending pronounced in the word 'EXPECTED' (/ɪkˈspɛktɪd/)?",
+            options: [
+              "/t/ sound",
+              "/d/ sound",
+              "/ɪd/ sound (an extra syllable)",
+              "It remains completely silent"
+            ],
+            answer: 2, // C
+            explain: "Verbs ending in 't' or 'd' sounds add an extra syllable pronounced as /ɪd/ when putting them in past tense."
+          },
+          {
+            q: "Where is the primary stress placed in 'INDIVIDUAL'?",
+            options: [
+              "IN-di-vi-du-al",
+              "in-di-VID-u-al",
+              "in-di-vi-DU-al",
+              "in-di-vi-du-AL"
+            ],
+            answer: 1, // B
+            explain: "The primary stress is on the third syllable 'VID': /ˌɪndɪˈvɪdʒuəl/."
+          },
+          {
+            q: "How many syllables are in the word 'COMPETITION'?",
+            options: [
+              "3 syllables",
+              "5 syllables",
+              "2 syllables",
+              "4 syllables (com-pe-ti-tion)"
+            ],
+            answer: 3, // D
+            explain: "The word 'com-pe-ti-tion' is pronounced with 4 distinct syllables."
+          }
+        ]
+      }
+    ];
+
+    // Expressions Data
+    const expressionsData = [
+      {
+        title: "Running out of time",
+        meaning: "Having very little time left to achieve a goal or finish a task.",
+        example: "With only five minutes left in the match, the team was running out of time to score.",
+        img: "https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        title: "Live up to expectations",
+        meaning: "To be as good or successful as people expected you to be.",
+        example: "The young striker worked hard every training session to live up to expectations.",
+        img: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        title: "In the shadow of (someone)",
+        meaning: "Receiving less attention or praise because someone else is more famous or successful.",
+        example: "He played brilliantly all season, yet remained in the shadow of his famous teammate.",
+        img: "https://images.unsplash.com/photo-1509114397022-ed747cca3f65?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        title: "Rise to the occasion",
+        meaning: "To perform remarkably well when facing a difficult challenge or big moment.",
+        example: "In the tournament final, the goalkeeper really rose to the occasion with five key saves.",
+        img: "https://images.unsplash.com/photo-1517649763962-0c623266010b?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        title: "Steal the show",
+        meaning: "To attract the most attention and praise in an event or performance.",
+        example: "Although the team lost, the rookie winger stole the show with a spectacular bicycle kick.",
+        img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        title: "Against all odds",
+        meaning: "Achieving success despite facing severe disadvantages or difficulties.",
+        example: "Against all odds, the underdog club managed to win the national championship.",
+        img: "https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        title: "Turn the tide",
+        meaning: "To reverse the direction or trend of a situation, especially from losing to winning.",
+        example: "Substituting their veteran playmaker early in the second half turned the tide of the match.",
+        img: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        title: "Pass the torch",
+        meaning: "To hand over responsibilities, leadership, or status to a younger successor.",
+        example: "After winning his last trophy, the veteran captain decided to pass the torch to the young star.",
+        img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        title: "A blessing in disguise",
+        meaning: "An event that seems bad or unlucky at first, but results in something good later.",
+        example: "Missing the mid-week game was a blessing in disguise as it allowed him to recover fully.",
+        img: "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=500&q=80"
+      },
+      {
+        title: "Leave no stone unturned",
+        meaning: "To do everything possible and explore every option to achieve an objective.",
+        example: "The coaching staff left no stone unturned while analyzing tactical footage before the derby.",
+        img: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=500&q=80"
+      }
+    ];
+
+    // Render Quiz
+    function renderQuiz() {
+      const container = document.getElementById('quiz-container');
+      
+      quizData.forEach((cat, catIdx) => {
+        const catDiv = document.createElement('div');
+        catDiv.className = 'quiz-category';
+        
+        let html = `<h3>${cat.category}</h3>`;
+        
+        cat.questions.forEach((q, qIdx) => {
+          html += `
+            <div class="question-card">
+              <div class="question-text">${q.q}</div>
+              <div class="options-grid">
+                ${q.options.map((opt, optIdx) => `
+                  <button class="option-btn" onclick="checkAnswer(${catIdx}, ${qIdx}, ${optIdx}, this)">
+                    ${String.fromCharCode(65 + optIdx)}. ${opt}
+                  </button>
+                `).join('')}
+              </div>
+              <div class="explanation" id="exp-${catIdx}-${qIdx}">
+                💡 <strong>Explanation:</strong> ${q.explain}
+              </div>
+            </div>
+          `;
+        });
+
+        catDiv.innerHTML = html;
+        container.appendChild(catDiv);
+      });
+    }
+
+    // Check Answer
+    function checkAnswer(catIdx, qIdx, selectedOpt, btn) {
+      const question = quizData[catIdx].questions[qIdx];
+      const parent = btn.parentElement;
+      const buttons = parent.querySelectorAll('.option-btn');
+      
+      buttons.forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === question.answer) {
+          b.classList.add('correct');
+        } else if (idx === selectedOpt) {
+          b.classList.add('incorrect');
+        }
+      });
+
+      const expDiv = document.getElementById(`exp-${catIdx}-${qIdx}`);
+      expDiv.classList.add('show');
+    }
+
+    // Render Expressions
+    function renderExpressions() {
+      const container = document.getElementById('expressions-container');
+      
+      expressionsData.forEach(exp => {
+        const card = document.createElement('div');
+        card.className = 'expression-card';
+        card.innerHTML = `
+          <img src="${exp.img}" alt="${exp.title}" loading="lazy">
+          <div class="expression-content">
+            <div class="expression-title">${exp.title}</div>
+            <div class="expression-meaning">${exp.meaning}</div>
+            <div class="expression-example">"${exp.example}"</div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+      renderQuiz();
+      renderExpressions();
+    });
+  </script>
+</body>
+</html>

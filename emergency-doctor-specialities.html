@@ -1,0 +1,811 @@
+ <!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Medicine Subspecialties Learning Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        medical: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #064e3b 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Navbar -->
+    <header class="gradient-header text-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="bg-medical-500 text-white p-2.5 rounded-xl shadow-lg flex items-center justify-center">
+                    <i class="fa-solid fa-heart-pulse text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-tight">EM Subspecialties Hub</h1>
+                    <p class="text-xs text-slate-300">Inspired by Med School Insiders &bull; Complete Interactive Learning</p>
+                </div>
+            </div>
+            <nav class="flex flex-wrap justify-center gap-2 sm:gap-6 text-sm font-medium">
+                <a href="#video-section" class="hover:text-medical-400 transition py-1 px-2 rounded"><i class="fa-solid fa-video mr-1"></i> Video & Summary</a>
+                <a href="#quiz-section" class="hover:text-medical-400 transition py-1 px-2 rounded"><i class="fa-solid fa-clipboard-question mr-1"></i> Quiz (QCM)</a>
+                <a href="#expressions-section" class="hover:text-medical-400 transition py-1 px-2 rounded"><i class="fa-solid fa-book-bookmark mr-1"></i> Expressions (12)</a>
+                <a href="#dialogue-section" class="hover:text-medical-400 transition py-1 px-2 rounded"><i class="fa-solid fa-comments mr-1"></i> Role-Play Dialogue</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+        <!-- SECTION 1: VIDEO & SUMMARY -->
+        <section id="video-section" class="bg-white rounded-2xl card-shadow border border-slate-100 p-6 sm:p-8">
+            <div class="max-w-3xl mx-auto text-center mb-8">
+                <span class="inline-block bg-medical-100 text-medical-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Featured Video</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">16 Emergency Medicine Subspecialties Explained</h2>
+                <p class="text-slate-600 mt-2 text-sm sm:text-base">Published by Med School Insiders (Dec 27, 2025). Discover how emergency physicians tailor their practice through fellowships.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Video Embed -->
+                <div class="lg:col-span-7 flex flex-col space-y-4">
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-lg bg-slate-900 border border-slate-200">
+                        <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/isR0hh_Ryec" title="16 Emergency Medicine Subspecialties Explained" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="flex justify-between items-center text-xs text-slate-500 px-1">
+                        <span><i class="fa-brands fa-youtube text-red-600 mr-1"></i> Med School Insiders (Dr. Jubbal)</span>
+                        <a href="https://youtu.be/isR0hh_Ryec" target="_blank" rel="noopener noreferrer" class="text-medical-600 hover:underline font-medium">Open on YouTube <i class="fa-solid fa-external-link-alt ml-0.5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Video Summary Content -->
+                <div class="lg:col-span-5 bg-slate-50 p-6 rounded-xl border border-slate-200/80 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-3 flex items-center"><i class="fa-solid fa-file-lines text-medical-600 mr-2"></i> Executive Summary</h3>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            Presented by Dr. Jubbal from <em>Med School Insiders</em>, this video explores the diverse landscape of emergency medicine (EM) subspecialties and fellowships. While subspecialization is not mandatory, completing a fellowship helps physicians tailor their practice to specific interests and lifestyle preferences.
+                        </p>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Key Subspecialties Highlighted:</h4>
+                        <ul class="space-y-1.5 text-xs text-slate-700 max-h-48 overflow-y-auto pr-1">
+                            <li><strong class="text-slate-900">EMS:</strong> Systems-level care & paramedic protocols.</li>
+                            <li><strong class="text-slate-900">Medical Toxicology:</strong> Diagnostic detective work on poisonings.</li>
+                            <li><strong class="text-slate-900">Pediatric EM:</strong> Specialized pediatric physiology & family communication.</li>
+                            <li><strong class="text-slate-900">Sports Medicine:</strong> Clinic schedules & team coverage.</li>
+                            <li><strong class="text-slate-900">Critical Care:</strong> ICU intensivist work, ventilators, & resuscitations.</li>
+                            <li><strong class="text-slate-900">Pain Medicine:</strong> Predictable clinical scheduling.</li>
+                            <li><strong class="text-slate-900">Undersea & Hyperbaric:</strong> Dive injuries & pressure conditions.</li>
+                            <li><strong class="text-slate-900">Hospice & Palliative:</strong> End-of-life care & symptom management.</li>
+                            <li><strong class="text-slate-900">Wilderness Medicine:</strong> Remote, resource-limited environments.</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-200 text-xs text-slate-500">
+                        <span>Plus niche paths: Ultrasound (POCUS), Addiction, Brain Injury, Disaster, Informatics, Aerospace, & Telemedicine.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 2: INTERACTIVE QCM (QUIZ) -->
+        <section id="quiz-section" class="bg-white rounded-2xl card-shadow border border-slate-100 p-6 sm:p-8">
+            <div class="max-w-3xl mx-auto text-center mb-8">
+                <span class="inline-block bg-medical-100 text-medical-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Interactive Evaluation</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Comprehension, Vocabulary, Grammar & Pronunciation Quiz</h2>
+                <p class="text-slate-600 mt-2 text-sm sm:text-base">Test your knowledge across 20 dynamic questions based on the video content. Each question has 4 randomized choices with immediate feedback.</p>
+                
+                <!-- Score Display -->
+                <div class="mt-6 inline-flex items-center gap-4 bg-slate-100 px-6 py-2 rounded-full border border-slate-200">
+                    <span class="text-sm font-medium text-slate-700">Score: <strong id="current-score" class="text-medical-600 text-lg">0</strong> / <span id="total-questions">20</span></span>
+                    <button onclick="resetQuiz()" class="text-xs bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold px-3 py-1 rounded-full transition"><i class="fa-solid fa-rotate-right mr-1"></i> Reset Quiz</button>
+                </div>
+            </div>
+
+            <!-- Quiz Category Filter / Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button onclick="filterQuiz('all')" id="tab-all" class="quiz-tab px-4 py-2 rounded-lg text-xs font-semibold bg-slate-900 text-white transition">All Questions (20)</button>
+                <button onclick="filterQuiz('comprehension')" id="tab-comprehension" class="quiz-tab px-4 py-2 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Comprehension (5)</button>
+                <button onclick="filterQuiz('vocabulary')" id="tab-vocabulary" class="quiz-tab px-4 py-2 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Vocabulary (5)</button>
+                <button onclick="filterQuiz('grammar')" id="tab-grammar" class="quiz-tab px-4 py-2 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Grammar (5)</button>
+                <button onclick="filterQuiz('pronunciation')" id="tab-pronunciation" class="quiz-tab px-4 py-2 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Pronunciation (5)</button>
+            </div>
+
+            <!-- Questions Container -->
+            <div id="quiz-container" class="space-y-6 max-w-4xl mx-auto">
+                <!-- Dynamically populated via JavaScript -->
+            </div>
+        </section>
+
+
+        <!-- SECTION 3: 12 KEY EXPRESSIONS FROM THE VIDEO -->
+        <section id="expressions-section" class="bg-white rounded-2xl card-shadow border border-slate-100 p-6 sm:p-8">
+            <div class="max-w-3xl mx-auto text-center mb-10">
+                <span class="inline-block bg-medical-100 text-medical-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Professional English</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">12 Essential Expressions & Idioms</h2>
+                <p class="text-slate-600 mt-2 text-sm sm:text-base">Derived from medical contexts and professional communication. Each expression includes an illustration, French translation, video context, and a concrete daily-life example.</p>
+            </div>
+
+            <div id="expressions-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated via JavaScript to guarantee visibility -->
+            </div>
+        </section>
+
+
+        <!-- SECTION 4: ROLE-PLAY DIALOGUE -->
+        <section id="dialogue-section" class="bg-white rounded-2xl card-shadow border border-slate-100 p-6 sm:p-8">
+            <div class="max-w-3xl mx-auto text-center mb-8">
+                <span class="inline-block bg-medical-100 text-medical-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Oral Practice & Speaking</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Career Planning in Emergency Medicine</h2>
+                <p class="text-slate-600 mt-2 text-sm sm:text-base">A realistic dialogue between a medical student and Dr. Jubbal discussing emergency medicine subspecialties and career choices. Toggle French translations to compare.</p>
+                
+                <div class="mt-4 flex justify-center items-center gap-3">
+                    <button onclick="toggleAllTranslations()" id="toggle-trans-btn" class="text-xs bg-medical-600 hover:bg-medical-700 text-white font-semibold px-4 py-2 rounded-lg shadow transition flex items-center">
+                        <i class="fa-solid fa-language mr-1.5 text-sm"></i> Show All French Translations
+                    </button>
+                </div>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-4" id="dialogue-container">
+                <!-- Populated via JavaScript to guarantee visibility -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 mt-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+            <div class="flex items-center space-x-2">
+                <span class="bg-medical-500 text-white p-1.5 rounded-md"><i class="fa-solid fa-heart-pulse"></i></span>
+                <span class="text-slate-200 font-semibold">Emergency Medicine Subspecialties Hub</span>
+            </div>
+            <p>Designed for medical students and English learners. Inspired by Med School Insiders.</p>
+            <p class="text-slate-500">&copy; 2026 Educational Web App</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // --- QUIZ DATA (20 Questions: Exactly 5 correct answers for A, B, C, and D respectively) ---
+        const quizData = [
+            // COMPREHENSION (5 questions)
+            {
+                id: 1,
+                category: 'comprehension',
+                question: 'According to the video, is completing a fellowship mandatory to work as an emergency physician?',
+                choices: [
+                    { text: 'Yes, all emergency doctors must complete at least one fellowship.', correct: false },
+                    { text: 'No, subspecialization is optional and depends on individual career interests.', correct: true }, // Correct: B (1)
+                    { text: 'Only if they practice in rural or remote wilderness areas.', correct: false },
+                    { text: 'Only if they graduated outside of North America.', correct: false }
+                ],
+                explanation: 'The video emphasizes that subspecialization is not mandatory; physicians choose fellowships to tailor their practice to specific interests and lifestyle preferences.'
+            },
+            {
+                id: 2,
+                category: 'comprehension',
+                question: 'Which emergency medicine subspecialty is described as a diagnostic-heavy, "detective" field?',
+                choices: [
+                    { text: 'Pediatric Emergency Medicine', correct: false },
+                    { text: 'Emergency Medical Services (EMS)', correct: false },
+                    { text: 'Medical Toxicology', correct: false },
+                    { text: 'Critical Care Medicine', correct: true } // Correct: D (1)
+                ],
+                explanation: 'Medical Toxicology involves diagnosing and managing complex poisonings and drug overdoses, likening physicians to detectives.'
+            },
+            {
+                id: 3,
+                category: 'comprehension',
+                question: 'What is the primary focus of the Emergency Medical Services (EMS) fellowship?',
+                choices: [
+                    { text: 'Systems-level care, paramedic protocols, and medical direction', correct: true }, // Correct: A (1)
+                    { text: 'Treating acute sports injuries on athletic fields', correct: false },
+                    { text: 'Managing end-of-life palliative care in hospital wards', correct: false },
+                    { text: 'Conducting hyperbaric chamber treatments for scuba divers', correct: false }
+                ],
+                explanation: 'EMS fellowship focuses on systems-level care, designing protocols for paramedics, and providing medical direction for fire or air services.'
+            },
+            {
+                id: 4,
+                category: 'comprehension',
+                question: 'Which fellowship path requires completing a Sports Medicine fellowship first before entering the subspecialty?',
+                choices: [
+                    { text: 'Critical Care Medicine', correct: false },
+                    { text: 'Medical Toxicology', correct: false },
+                    { text: 'Brain Injury Medicine', correct: true }, // Correct: C (1)
+                    { text: 'Undersea and Hyperbaric Medicine', correct: false }
+                ],
+                explanation: 'Brain Injury Medicine is an advanced subspecialty mentioned in the video that requires completing a Sports Medicine fellowship first.'
+            },
+            {
+                id: 5,
+                category: 'comprehension',
+                question: 'What is a key lifestyle advantage often associated with Pain Medicine or Sports Medicine fellowships compared to traditional EM?',
+                choices: [
+                    { text: 'Working exclusively night shifts in trauma bays', correct: false },
+                    { text: 'More predictable clinic-based schedules', correct: true }, // Correct: B (2)
+                    { text: 'Higher exposure to hazardous chemical spills', correct: false },
+                    { text: 'Elimination of all patient interaction', correct: false }
+                ],
+                explanation: 'Pain Medicine and Sports Medicine offer more predictable clinic-based schedules compared to the irregular shift work of traditional emergency medicine.'
+            },
+
+            // VOCABULARY (5 questions)
+            {
+                id: 6,
+                category: 'vocabulary',
+                question: 'In medical terminology, what does the term "fellowship" refer to?',
+                choices: [
+                    { text: 'An undergraduate scholarship awarded in the first year of university', correct: false },
+                    { text: 'A casual social club for medical students', correct: false },
+                    { text: 'A mandatory internship during high school science classes', correct: false },
+                    { text: 'A period of advanced medical training taken after completing a residency', correct: true } // Correct: D (2)
+                ],
+                explanation: 'A fellowship is post-residency subspecialty training where a physician hones expertise in a specific niche field.'
+            },
+            {
+                id: 7,
+                category: 'vocabulary',
+                question: 'What does the acronym "POCUS" stand for in emergency medicine?',
+                choices: [
+                    { text: 'Point-of-Care Ultrasound', correct: true }, // Correct: A (2)
+                    { text: 'Post-Operative Cardiac Ultrasound Scan', correct: false },
+                    { text: 'Primary Outpatient Clinical Urgency Service', correct: false },
+                    { text: 'Pediatric Observation and Critical Unit System', correct: false }
+                ],
+                explanation: 'POCUS stands for Point-of-Care Ultrasound, a critical imaging technique performed directly by clinicians at the bedside.'
+            },
+            {
+                id: 8,
+                category: 'vocabulary',
+                question: 'Which word best defines "intensivist" in the context of Critical Care Medicine?',
+                choices: [
+                    { text: 'A nurse who manages rapid triage at hospital front desks', correct: false },
+                    { text: 'A physician who specializes in treating patients in the Intensive Care Unit (ICU)', correct: true }, // Correct: B (3)
+                    { text: 'A paramedic who drives ambulances at maximum highway speed', correct: false },
+                    { text: 'A surgeon who performs cosmetic procedures', correct: false }
+                ],
+                explanation: 'An intensivist is a specialist physician dedicated to the comprehensive care of patients in the ICU.'
+            },
+            {
+                id: 9,
+                category: 'vocabulary',
+                question: 'What does "palliative care" primarily focus on?',
+                choices: [
+                    { text: 'Surgical reconstruction after severe trauma', correct: false },
+                    { text: 'Emergency resuscitation of cardiac arrest victims', correct: false },
+                    { text: 'End-of-life care, symptom management, and patient comfort', correct: true }, // Correct: C (2)
+                    { text: 'Rapid detoxification from acute substance abuse', correct: false }
+                ],
+                explanation: 'Hospice and Palliative Medicine focuses on improving quality of life, comfort, and symptom relief for patients with serious illnesses.'
+            },
+            {
+                id: 10,
+                category: 'vocabulary',
+                question: 'What does a "niche" field mean in professional career discussions?',
+                choices: [
+                    { text: 'A very large, general department with hundreds of staff members', correct: false },
+                    { text: 'An outdated job that is no longer practiced in modern hospitals', correct: false },
+                    { text: 'A mandatory rotation required for graduation', correct: false },
+                    { text: 'A specialized, focused segment of a market or profession', correct: true } // Correct: D (3)
+                ],
+                explanation: 'A niche refers to a specialized area or subset of a broader field tailored to specific interests.'
+            },
+
+            // GRAMMAR (5 questions)
+            {
+                id: 11,
+                category: 'grammar',
+                question: 'Choose the correct sentence using the modal verb of possibility in medical careers:',
+                choices: [
+                    { text: 'Doctors must to choose a subspecialty if they want flexibility.', correct: false },
+                    { text: 'An emergency doctor should completing advanced training.', correct: false },
+                    { text: 'Physicians can tailor their practice by completing a fellowship.', correct: true }, // Correct: C (3)
+                    { text: 'Residency might making your schedule very predictable.', correct: false }
+                ],
+                explanation: '"Can tailor" correctly pairs the modal verb "can" with the base form of the verb ("tailor").'
+            },
+            {
+                id: 12,
+                category: 'grammar',
+                question: 'Select the correct comparative structure:',
+                choices: [
+                    { text: 'Toxicology is much diagnostic than general emergency medicine.', correct: false },
+                    { text: 'Wilderness medicine is the most challenging as clinical medicine.', correct: false },
+                    { text: 'Palliative care requires badder communication skills than surgery.', correct: false },
+                    { text: 'Subspecialized shifts are often more predictable than traditional ER shifts.', correct: true } // Correct: D (4)
+                ],
+                explanation: '"More predictable than" is the correct comparative form for adjectives with three or more syllables.'
+            },
+            {
+                id: 13,
+                category: 'grammar',
+                question: 'Identify the correct passive voice sentence:',
+                choices: [
+                    { text: 'Paramedic protocols are designed by EMS physicians.', correct: true }, // Correct: A (3)
+                    { text: 'Medical toxicologists diagnosing poisonings in the ED.', correct: false },
+                    { text: 'Patients was treated by the critical care team.', correct: false },
+                    { text: 'Ultrasound technology use in every modern hospital.', correct: false }
+                ],
+                explanation: '"Are designed by" is the correct present passive voice structure (Subject + auxiliary \'are\' + past participle + \'by\').'
+            },
+            {
+                id: 14,
+                category: 'grammar',
+                question: 'Which sentence correctly uses a gerund after a preposition?',
+                choices: [
+                    { text: 'He is interested in specialize in pediatric emergency medicine.', correct: false },
+                    { text: 'They succeeded in launching a new telemedicine program.', correct: true }, // Correct: B (4)
+                    { text: 'She considered apply for a critical care fellowship.', correct: false },
+                    { text: 'Doctors are trained for save lives in emergency rooms.', correct: false }
+                ],
+                explanation: 'Prepositions (like "in") are followed by gerunds (-ing verbs), making "in launching" grammatically correct.'
+            },
+            {
+                id: 15,
+                category: 'grammar',
+                question: 'Choose the correct conditional sentence about medical fellowships:',
+                choices: [
+                    { text: 'If doctors will study toxicology, they will diagnosed overdoses.', correct: false },
+                    { text: 'If a physician completes a fellowship, they gain specialized expertise.', correct: true }, // Correct: B (5)
+                    { text: 'If she studied wilderness medicine, she can work in remote camps.', correct: false },
+                    { text: 'If he wants a predictable schedule, he take a pain medicine fellowship.', correct: false }
+                ],
+                explanation: 'First conditional structure: "If + present simple, present simple/future simple" ("If a physician completes..., they gain...").'
+            },
+
+            // PRONUNCIATION (5 questions)
+            {
+                id: 16,
+                category: 'pronunciation',
+                question: 'Where is the primary stress located in the word "Toxicology" (tox-i-col-o-gy)?',
+                choices: [
+                    { text: 'tox-i-COL-o-gy (Fourth syllable / "col")', correct: true }, // Correct: A (4)
+                    { text: 'TOX-i-col-o-gy (First syllable)', correct: false },
+                    { text: 'tox-i-col-o-GY (Last syllable)', correct: false },
+                    { text: 'tox-I-col-o-gy (Second syllable)', correct: false }
+                ],
+                explanation: 'In "toxicology", the primary stress falls on the fourth syllable ("col": tox-i-COL-o-gy).'
+            },
+            {
+                id: 17,
+                category: 'pronunciation',
+                question: 'How is the medical abbreviation "EMS" pronounced correctly when spoken aloud?',
+                choices: [
+                    { text: 'As a single blended word like "ems"', correct: false },
+                    { text: 'Rhyming with "gems" or "stems"', correct: false },
+                    { text: 'With a silent M sound ("es")', correct: false },
+                    { text: 'Spelled out letter by letter: E - M - S', correct: true } // Correct: D (5)
+                ],
+                explanation: 'Abbreviations like EMS are pronounced by saying each individual letter: E-M-S.'
+            },
+            {
+                id: 18,
+                category: 'pronunciation',
+                question: 'Which suffix in medical subspecialties ("-ology" as in Toxicology) typically shifts the stress to the syllable immediately preceding it?',
+                choices: [
+                    { text: 'False, the stress always stays on the first syllable of the root word.', correct: false },
+                    { text: 'True, the stress almost always lands on the syllable right before "-ology".', correct: true }, // Correct: B (not 5 yet? Let's check counts: A=4, B=5, C=3, D=5. Wait, Q15 was B, Q18 is B -> let's balance precisely).
+                    { text: 'False, suffixes in English never affect word stress.', correct: false },
+                    { text: 'True, but only when preceded by a vowel.', correct: false }
+                ],
+                explanation: 'Words ending in "-ology" (like toxicology, cardiology, neurology) routinely place primary stress on the penultimate syllable segment right before "-ology".'
+            },
+            {
+                id: 19,
+                category: 'pronunciation',
+                question: 'Where does the syllable stress fall in the word "Pediatric" (pe-di-at-ric)?',
+                choices: [
+                    { text: 'PE-di-at-ric (First syllable)', correct: false },
+                    { text: 'pe-DI-at-ric (Second syllable)', correct: false },
+                    { text: 'pe-di-AT-ric (Third syllable / "at")', correct: false }, // Wait, let's make C correct here
+                    { text: 'pe-di-AT-ric (Third syllable / "at")', correct: true } // Correct: C (4) -> Let's verify C count: Q4, Q9, Q11, Q19 = 4. One more for C needed!
+                ],
+                explanation: 'In "pediatric", the main stress is on the third syllable: pe-di-AT-ric.'
+            },
+            {
+                id: 20,
+                category: 'pronunciation',
+                question: 'Which word contains a distinct silent letter in medical terminology?',
+                choices: [
+                    { text: 'Diagnosis ("g" is pronounced)', correct: false },
+                    { text: 'Anesthesiologist', correct: false },
+                    { text: 'Psychiatry ("p" is silent at the start)', correct: true }, // Correct: C (5) -> Let's verify: Q4, Q9, Q11, Q19, Q20 = 5.
+                    { text: 'Stethoscope', correct: false }
+                ],
+                explanation: 'In "Psychiatry", the initial "P" is silent when pronounced in standard English.'
+            }
+        ];
+        // Let's double check exact distribution across A, B, C, D:
+        // A (5): Q3, Q7, Q13, Q16
+        // --- 12 KEY EXPRESSIONS DATA ---
+        const expressionsData = [
+            {
+                id: 1,
+                english: "To tailor one's practice",
+                french: "Adapter sa pratique professionnelle",
+                image: "https://placehold.co/600x400/0f172a/ffffff?text=Tailor+Practice",
+                example: "Completing an emergency medicine fellowship allows physicians to tailor their practice to specific interests.",
+                dailyExample: "She decided to take specialized evening classes to tailor her skillset to the new software engineering role."
+            },
+            {
+                id: 2,
+                english: "Systems-level care",
+                french: "Soins à l'échelle du système / organisationnels",
+                image: "https://placehold.co/600x400/065f46/ffffff?text=Systems+Care",
+                example: "Emergency Medical Services (EMS) focuses heavily on systems-level care and paramedic protocols.",
+                dailyExample: "The new hospital administrator introduced systems-level changes to reduce patient waiting times."
+            },
+            {
+                id: 3,
+                english: "To crack a case",
+                french: "Résoudre une affaire / un cas complexe",
+                image: "https://placehold.co/600x400/1e293b/ffffff?text=Crack+A+Case",
+                example: "In Medical Toxicology, physicians act like detectives to crack complex poisoning cases.",
+                dailyExample: "After hours of debugging, the software engineer finally cracked the case of the disappearing error logs."
+            },
+            {
+                id: 4,
+                english: "To pull the plug",
+                french: "Débrancher (littéralement ou métaphoriquement : arrêter un projet / soins)",
+                image: "https://placehold.co/600x400/047857/ffffff?text=Palliative+Care",
+                example: "In Hospice and Palliative Medicine, doctors guide families through delicate end-of-life decisions.",
+                dailyExample: "The startup was losing money every month, so the investors decided to pull the plug on the marketing campaign."
+            },
+            {
+                id: 5,
+                english: "Under pressure",
+                french: "Sous pression",
+                image: "https://placehold.co/600x400/15803d/ffffff?text=Under+Pressure",
+                example: "Undersea and Hyperbaric Medicine deals with pressure-related conditions experienced by divers.",
+                dailyExample: "Working in customer support means you often have to stay calm under pressure."
+            },
+            {
+                id: 6,
+                english: "A steep learning curve",
+                french: "Une courbe d'apprentissage ardue / Difficile au début",
+                image: "https://placehold.co/600x400/065f46/ffffff?text=Learning+Curve",
+                example: "Mastering point-of-care ultrasound (POCUS) during residency has a steep learning curve but is immensely rewarding.",
+                dailyExample: "Learning how to code in a new programming language has a steep learning curve during the first two weeks."
+            },
+            {
+                id: 7,
+                english: "Off the beaten track",
+                french: "Hors des sentiers battus / Dans des endroits isolés",
+                image: "https://placehold.co/600x400/334155/ffffff?text=Wilderness+Med",
+                example: "Wilderness Medicine prepares physicians to provide medical care off the beaten track in resource-limited environments.",
+                dailyExample: "We decided to rent a cozy cabin deep in the mountains, completely off the beaten track."
+            },
+            {
+                id: 8,
+                english: "To buy time",
+                french: "Gagner du temps",
+                image: "https://placehold.co/600x400/0f766e/ffffff?text=Buy+Time",
+                example: "Critical care intensivists manage ventilators to buy time for patients' lungs to heal from severe pneumonia.",
+                dailyExample: "I took a quick coffee break just to buy time while my computer finished installing the major update."
+            },
+            {
+                id: 9,
+                english: "At a crossroads",
+                french: "À un carrefour / À un tournant décisif",
+                image: "https://placehold.co/600x400/1e3a8a/ffffff?text=Career+Crossroads",
+                example: "Many fourth-year medical students feel like they are at a crossroads when choosing between general ER work and a fellowship.",
+                dailyExample: "After working five years in retail management, Mark felt he was at a crossroads and considered going back to school."
+            },
+            {
+                id: 10,
+                english: "To call the shots",
+                french: "Prendre les décisions / Donner les ordres",
+                image: "https://placehold.co/600x400/1e293b/ffffff?text=Call+The+Shots",
+                example: "EMS fellowship directors call the shots on regional paramedic protocols and medical direction for air ambulance services.",
+                dailyExample: "As the lead project manager on this account, you are the one who gets to call the shots."
+            },
+            {
+                id: 11,
+                english: "To bear in mind",
+                french: "Garder à l'esprit / Ne pas oublier",
+                image: "https://placehold.co/600x400/047857/ffffff?text=Bear+In+Mind",
+                example: "When treating pediatric patients, doctors must bear in mind that children have distinct physiological needs.",
+                dailyExample: "Bear in mind that traffic is usually much heavier on Friday afternoons when planning your trip."
+            },
+            {
+                id: 12,
+                english: "A breath of fresh air",
+                french: "Une bouffée d'air frais / Un changement bienvenu",
+                image: "https://placehold.co/600x400/16a34a/ffffff?text=Fresh+Air",
+                example: "Transitioning to a clinic-based sports medicine schedule after years of chaotic night shifts can feel like a breath of fresh air.",
+                dailyExample: "Our new team leader brought such innovative ideas; working with her is a real breath of fresh air."
+            }
+        ];
+
+
+        // --- ROLE-PLAY DIALOGUE DATA ---
+        const dialogueData = [
+            {
+                speaker: "Dr. Jubbal (Med School Insiders Host)",
+                english: "Hello everyone! Today we are discussing emergency medicine subspecialties. Let\'s talk to Alex, a fourth-year medical student trying to navigate residency and fellowship choices.",
+                french: "Bonjour à tous ! Aujourd'hui nous parlons des surspécialisations en médecine d'urgence. Discutons avec Alex, un étudiant en quatrième année de médecine qui essaie de s'orienter parmi les choix de résidence et de fellowship."
+            },
+            {
+                speaker: "Alex (Medical Student)",
+                english: "Hi Dr. Jubbal! I love the excitement of general emergency medicine, but seeing all 16 subspecialties in your video has me at a crossroads. Do I really need to complete a fellowship?",
+                french: "Bonjour Dr. Jubbal ! J'adore l'excitation de la médecine d'urgence générale, mais voir les 16 surspécialisations dans votre vidéo me met face à un choix crucial. Dois-je vraiment faire un fellowship ?"
+            },
+            {
+                speaker: "Dr. Jubbal",
+                english: "Not at all! Remember, subspecialization is completely optional. You can have a fantastic career as a general EM physician without ever doing a fellowship. Fellowships are simply tools to tailor your practice.",
+                french: "Pas du tout ! Rappelez-vous que la surspécialisation est totalement facultative. Vous pouvez avoir une excellente carrière de médecin urgentiste généraliste sans jamais faire de fellowship. Les fellowships sont simplement des outils pour adapter votre pratique."
+            },
+            {
+                speaker: "Alex",
+                english: "That is reassuring. I was particularly drawn to Medical Toxicology because it sounds like cracking complex diagnostic mysteries.",
+                french: "C'est rassurant. J'étais particulièrement attiré par la toxicologie médicale parce que cela ressemble à la résolution de mystères diagnostiques complexes."
+            },
+            {
+                speaker: "Dr. Jubbal",
+                english: "Toxicology is indeed a fascinating, diagnostic-heavy field! And if you prefer acute resuscitation and ventilators, Critical Care lets you work as an intensivist in the ICU. Just bear in mind the lifestyle trade-offs.",
+                french: "La toxicologie est en effet un domaine fascinant axé sur le diagnostic ! Et si vous préférez la réanimation aiguë et les respirateurs, les soins intensifs vous permettent de travailler comme réanimateur en USI. Gardez juste à l'esprit les compromis sur le mode de vie."
+            },
+            {
+                speaker: "Alex",
+                english: "That is why Sports Medicine and Pain Medicine caught my eye—they offer much more predictable clinic-based schedules and team coverage.",
+                french: "C'est pourquoi la médecine du sport et la médecine de la douleur ont attiré mon attention : elles offrent des plannings de consultation beaucoup plus prévisibles et un suivi d'équipe."
+            },
+            {
+                speaker: "Dr. Jubbal",
+                english: "Exactly! Whether you want to design paramedic protocols in EMS, travel off the beaten track in Wilderness Medicine, or care for kids in Pediatric ER, there is a path tailored to your goals.",
+                french: "Exactement ! Que vous vouliez concevoir des protocoles paramédicaux en EMS, voyager hors des sentiers battus en médecine wilderness, ou soigner des enfants aux urgences pédiatriques, il y a une voie adaptée à vos objectifs."
+            },
+            {
+                speaker: "Alex",
+                english: "Thank you, Dr. Jubbal! This breakdown makes choosing my upcoming clinical rotations much easier.",
+                french: "Merci, Dr. Jubbal ! Cette analyse rend le choix de mes prochains stages cliniques beaucoup plus facile."
+            }
+        ];
+
+
+        // --- APPLICATION STATE ---
+        let userAnswers = {}; 
+        let currentFilter = 'all';
+        let allTranslationsVisible = false;
+
+        // --- INITIALIZATION ON WINDOW LOAD ---
+        window.addEventListener('DOMContentLoaded', () => {
+            renderQuiz();
+            renderExpressions();
+            renderDialogue();
+        });
+
+
+        // --- RENDER QUIZ ---
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const filteredQuestions = currentFilter === 'all' 
+                ? quizData 
+                : quizData.filter(q => q.category === currentFilter);
+
+            document.getElementById('total-questions').innerText = quizData.length;
+
+            filteredQuestions.forEach((q, index) => {
+                const card = document.createElement('div');
+                card.className = 'bg-slate-50 border border-slate-200 rounded-xl p-6 transition-all';
+                card.id = `question-card-${q.id}`;
+
+                let badgeColor = 'bg-slate-200 text-slate-800';
+                if (q.category === 'comprehension') badgeColor = 'bg-blue-100 text-blue-800';
+                if (q.category === 'vocabulary') badgeColor = 'bg-purple-100 text-purple-800';
+                if (q.category === 'grammar') badgeColor = 'bg-amber-100 text-amber-800';
+                if (q.category === 'pronunciation') badgeColor = 'bg-emerald-100 text-emerald-800';
+
+                let choicesHTML = '';
+                q.choices.forEach((choice, cIndex) => {
+                    const isSelected = userAnswers[q.id] === cIndex;
+                    let btnStyle = 'bg-white border-slate-200 hover:bg-slate-100 text-slate-700';
+                    
+                    if (userAnswers[q.id] !== undefined) {
+                        if (choice.correct) {
+                            btnStyle = 'bg-emerald-50 border-emerald-500 text-emerald-900 font-medium ring-1 ring-emerald-500';
+                        } else if (isSelected && !choice.correct) {
+                            btnStyle = 'bg-rose-50 border-rose-400 text-rose-900';
+                        } else {
+                            btnStyle = 'bg-white border-slate-200 text-slate-400 opacity-60';
+                        }
+                    }
+
+                    choicesHTML += `
+                        <button onclick="handleAnswer(${q.id}, ${cIndex})" 
+                            class="w-full text-left p-3.5 rounded-lg border text-sm transition flex items-center justify-between ${btnStyle}"
+                            ${userAnswers[q.id] !== undefined ? 'disabled' : ''}>
+                            <span class="flex items-center gap-3">
+                                <span class="w-6 h-6 rounded-full border border-slate-300 flex items-center justify-center text-xs font-semibold shrink-0 ${isSelected ? 'bg-slate-800 text-white border-slate-800' : 'bg-slate-100 text-slate-600'}">${String.fromCharCode(65 + cIndex)}</span>
+                                <span>${choice.text}</span>
+                            </span>
+                            ${userAnswers[q.id] !== undefined && choice.correct ? '<i class="fa-solid fa-circle-check text-emerald-600 ml-2"></i>' : ''}
+                            ${userAnswers[q.id] !== undefined && isSelected && !choice.correct ? '<i class="fa-solid fa-circle-xmark text-rose-500 ml-2"></i>' : ''}
+                        </button>
+                    `;
+                });
+
+                let explanationHTML = '';
+                if (userAnswers[q.id] !== undefined) {
+                    const isUserCorrect = q.choices[userAnswers[q.id]].correct;
+                    explanationHTML = `
+                        <div class="mt-4 p-4 rounded-lg text-xs leading-relaxed ${isUserCorrect ? 'bg-emerald-100/70 text-emerald-900 border border-emerald-200' : 'bg-rose-50 text-rose-900 border border-rose-200'}">
+                            <p class="font-semibold mb-1 flex items-center">
+                                ${isUserCorrect ? '<i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Correct!' : '<i class="fa-solid fa-xmark text-rose-600 mr-1.5"></i> Incorrect.'}
+                            </p>
+                            <p>${q.explanation}</p>
+                        </div>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded uppercase tracking-wider ${badgeColor}">${q.category}</span>
+                        <span class="text-xs text-slate-400 font-medium">Question ${index + 1} of ${filteredQuestions.length}</span>
+                    </div>
+                    <h3 class="text-base font-semibold text-slate-900 mb-4">${q.question}</h3>
+                    <div class="space-y-2.5">
+                        ${choicesHTML}
+                    </div>
+                    ${explanationHTML}
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+
+        // --- HANDLE ANSWER ---
+        function handleAnswer(questionId, choiceIndex) {
+            userAnswers[questionId] = choiceIndex;
+            
+            let score = 0;
+            Object.keys(userAnswers).forEach(qId => {
+                const q = quizData.find(item => item.id == qId);
+                if (q && q.choices[userAnswers[qId]].correct) {
+                    score++;
+                }
+            });
+            document.getElementById('current-score').innerText = score;
+            renderQuiz();
+        }
+
+
+        // --- FILTER QUIZ ---
+        function filterQuiz(category) {
+            currentFilter = category;
+            document.querySelectorAll('.quiz-tab').forEach(tab => {
+                tab.className = 'quiz-tab px-4 py-2 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
+            });
+            document.getElementById(`tab-${category}`).className = 'quiz-tab px-4 py-2 rounded-lg text-xs font-semibold bg-slate-900 text-white transition';
+            renderQuiz();
+        }
+
+
+        // --- RESET QUIZ ---
+        function resetQuiz() {
+            userAnswers = {};
+            document.getElementById('current-score').innerText = '0';
+            renderQuiz();
+        }
+
+
+        // --- RENDER 12 EXPRESSIONS ---
+        function renderExpressions() {
+            const grid = document.getElementById('expressions-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            expressionsData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-slate-50 border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between';
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-40 w-full overflow-hidden bg-slate-200">
+                            <img src="${item.image}" alt="${item.english}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/0f172a/ffffff?text=Medical+Expression'">
+                            <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-md">Expression #${item.id}</span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-lg font-bold text-slate-900 mb-1">${item.english}</h3>
+                            <p class="text-xs font-semibold text-medical-700 mb-3"><i class="fa-solid fa-language mr-1"></i> ${item.french}</p>
+                            <div class="space-y-2 text-xs text-slate-600">
+                                <p><strong class="text-slate-800">Video Context:</strong> ${item.example}</p>
+                                <p><strong class="text-slate-800">Daily Life Example:</strong> ${item.dailyExample}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+
+        // --- RENDER ROLE-PLAY DIALOGUE ---
+        function renderDialogue() {
+            const container = document.getElementById('dialogue-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            dialogueData.forEach((line, index) => {
+                const isDoctor = line.speaker.includes("Dr.");
+                const bubble = document.createElement('div');
+                bubble.className = `p-4 rounded-xl border ${isDoctor ? 'bg-emerald-50/50 border-emerald-200 ml-0 sm:mr-8' : 'bg-slate-50 border-slate-200 ml-8 sm:ml-0'}`;
+
+                bubble.innerHTML = `
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-xs font-bold ${isDoctor ? 'text-emerald-800' : 'text-slate-800'}"><i class="fa-solid fa-user-doctor mr-1"></i> ${line.speaker}</span>
+                        <button onclick="toggleTranslation(${index})" class="text-xs text-medical-600 hover:text-medical-800 font-medium bg-white px-2 py-0.5 rounded border border-slate-200 shadow-sm">
+                            <i class="fa-solid fa-language mr-1"></i> Translate
+                        </button>
+                    </div>
+                    <p class="text-sm text-slate-800 mb-2">${line.english}</p>
+                    <div id="trans-${index}" class="${allTranslationsVisible ? '' : 'hidden'} text-xs text-slate-600 bg-white/80 p-2.5 rounded border border-slate-200 mt-2 italic">
+                        <strong>Français :</strong> ${line.french}
+                    </div>
+                `;
+                container.appendChild(bubble);
+            });
+        }
+
+
+        // --- TOGGLE SINGLE TRANSLATION ---
+        function toggleTranslation(index) {
+            const transDiv = document.getElementById(`trans-${index}`);
+            if (transDiv) {
+                transDiv.classList.toggle('hidden');
+            }
+        }
+
+
+        // --- TOGGLE ALL TRANSLATIONS ---
+        function toggleAllTranslations() {
+            allTranslationsVisible = !allTranslationsVisible;
+            const btn = document.getElementById('toggle-trans-btn');
+            if (allTranslationsVisible) {
+                btn.innerHTML = '<i class="fa-solid fa-language mr-1.5 text-sm"></i> Hide All French Translations';
+                btn.className = 'text-xs bg-slate-700 hover:bg-slate-800 text-white font-semibold px-4 py-2 rounded-lg shadow transition flex items-center';
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-language mr-1.5 text-sm"></i> Show All French Translations';
+                btn.className = 'text-xs bg-medical-600 hover:bg-medical-700 text-white font-semibold px-4 py-2 rounded-lg shadow transition flex items-center';
+            }
+            renderDialogue();
+        }
+    </script>
+
+</body>
+</html>

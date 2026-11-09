@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retired Statistician Solved a Famous Problem - Interactive Learning Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-indigo-200">
+                    <i class="fa-solid fa-square-root-variable"></i>
+                </div>
+                <div>
+                    <span class="font-bold text-lg text-slate-900 tracking-tight">Proof Checked</span>
+                    <span class="block text-xs text-slate-500 font-medium">The Thomas Royen Story Hub</span>
+                </div>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <a href="#video-section" class="hover:text-indigo-600 transition">Video & Summary</a>
+                <a href="#quiz-section" class="hover:text-indigo-600 transition">Interactive Quiz (QCM)</a>
+                <a href="#expressions-section" class="hover:text-indigo-600 transition">Key Expressions</a>
+                <a href="#dialogue-section" class="hover:text-indigo-600 transition">Roleplay Dialogue</a>
+            </nav>
+            <div class="flex items-center space-x-3">
+                <a href="#quiz-section" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-sm transition transform hover:-translate-y-0.5">
+                    Take Quiz <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section & Video Overview -->
+    <section id="video-section" class="py-12 md:py-20 bg-gradient-to-b from-indigo-50/50 via-white to-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700 mb-4">
+                    <i class="fa-solid fa-circle-play mr-1.5 text-indigo-500"></i> Proof Checked Documentary Analysis
+                </span>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+                    Retired Statistician Solved a Famous Problem in Microsoft Word. Experts Ignored It.
+                </h1>
+                <p class="text-lg text-slate-600">
+                    Explore the extraordinary true story of Thomas Royen, who cracked the 50-year-old Gaussian correlation inequality using elementary formulas and Microsoft Word, only to be overlooked by the academic elite.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Video Container -->
+                <div class="lg:col-span-7 bg-slate-900 rounded-2xl overflow-hidden shadow-2xl aspect-video relative flex items-center justify-center group">
+                    <iframe class="w-full h-full absolute inset-0" src="https://www.youtube-nocookie.com/embed/wrfTwrtckkE" title="Retired Statistician Solved a Famous Problem in Microsoft Word. Experts Ignored It." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+
+                <!-- Summary Card -->
+                <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center">
+                            <i class="fa-solid fa-book-open text-indigo-600 mr-2"></i> Key Takeaways
+                        </h2>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5 flex-shrink-0"></i>
+                                <span><strong>The Challenge:</strong> Proving the Gaussian correlation inequality regarding the probability of darts landing in overlapping shapes (circle and rectangle).</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5 flex-shrink-0"></i>
+                                <span><strong>The Breakthrough:</strong> Thomas Royen used a variable knob ('C') to show probability strictly increases from 0 to 1, proving the conjecture.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5 flex-shrink-0"></i>
+                                <span><strong>Academic Bias:</strong> Dismissed because it was typed in MS Word instead of LaTeX, published in an obscure journal, by a retired professor.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5 flex-shrink-0"></i>
+                                <span><strong>Recognition:</strong> Finally validated and republished in December 2015 by mathematicians Rafał Latała and Dariusz Matlak.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                        <span>Source: Proof Checked (Nov 2026)</span>
+                        <a href="https://youtu.be/wrfTwrtckkE" target="_blank" class="text-indigo-600 font-semibold hover:underline flex items-center">
+                            Watch on YouTube <i class="fa-solid fa-external-link ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Quiz Section (QCM) -->
+    <section id="quiz-section" class="py-16 bg-white border-y border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700 mb-3">
+                    <i class="fa-solid fa-graduation-cap mr-1.5"></i> Knowledge Check (QCM)
+                </span>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Interactive English Assessment</h2>
+                <p class="text-slate-600 mt-2">Test your understanding across 4 categories: Comprehension, Vocabulary, Grammar, and Pronunciation. Options shuffle dynamically!</p>
+            </div>
+
+            <!-- Quiz Progress & Score Bar -->
+            <div class="bg-slate-100 p-4 rounded-xl mb-8 flex flex-wrap items-center justify-between gap-4 border border-slate-200">
+                <div class="flex items-center space-x-3">
+                    <div class="text-sm font-semibold text-slate-700">Category Filter:</div>
+                    <div class="flex flex-wrap gap-1.5" id="category-filters">
+                        <button onclick="filterQuiz('all')" class="px-3 py-1 rounded-lg text-xs font-medium bg-indigo-600 text-white transition filter-btn active" data-cat="all">All (20)</button>
+                        <button onclick="filterQuiz('comprehension')" class="px-3 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 hover:bg-slate-200 transition filter-btn" data-cat="comprehension">Comprehension</button>
+                        <button onclick="filterQuiz('vocabulary')" class="px-3 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 hover:bg-slate-200 transition filter-btn" data-cat="vocabulary">Vocabulary</button>
+                        <button onclick="filterQuiz('grammar')" class="px-3 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 hover:bg-slate-200 transition filter-btn" data-cat="grammar">Grammar</button>
+                        <button onclick="filterQuiz('pronunciation')" class="px-3 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 hover:bg-slate-200 transition filter-btn" data-cat="pronunciation">Pronunciation</button>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-sm font-medium text-slate-600">Score: <span id="score-display" class="font-bold text-indigo-600 text-base">0</span> / <span id="total-answered">0</span></div>
+                    <button onclick="resetQuiz()" class="text-xs bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-medium px-3 py-1.5 rounded-lg transition shadow-sm">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Reset Quiz
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Questions Container -->
+            <div id="quiz-container" class="space-y-6">
+                <!-- Generated dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Expressions Section -->
+    <section id="expressions-section" class="py-16 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 mb-3">
+                    <i class="fa-solid fa-language mr-1.5"></i> Idioms & Expressions
+                </span>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Key Expressions from the Video</h2>
+                <p class="text-slate-600 mt-2">Master advanced English idioms and professional phrases used in the documentary, complete with French translations and everyday examples.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="expressions-grid">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Roleplay Dialogue Section -->
+    <section id="dialogue-section" class="py-16 bg-white border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700 mb-3">
+                    <i class="fa-solid fa-comments mr-1.5"></i> Oral Practice & Fluency
+                </span>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Roleplay Dialogue: Academic Breakthroughs & Skepticism</h2>
+                <p class="text-slate-600 mt-2">Practice reading or acting out this conversation between two researchers discussing Thomas Royen's discovery and institutional bias.</p>
+            </div>
+
+            <!-- Dialogue Controls -->
+            <div class="bg-indigo-50/70 p-4 rounded-xl mb-6 flex flex-wrap items-center justify-between gap-4 border border-indigo-100">
+                <div class="text-sm font-medium text-slate-700 flex items-center">
+                    <i class="fa-solid fa-circle-info text-indigo-600 mr-2"></i> Toggle French translations to compare and learn vocabulary.
+                </div>
+                <button onclick="toggleAllTranslations()" id="translate-toggle-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-sm">
+                    <i class="fa-solid fa-language mr-1.5"></i> Show All French Translations
+                </button>
+            </div>
+
+            <!-- Dialogue Box -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6" id="dialogue-container">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+                <div class="flex items-center justify-center md:justify-start space-x-3 mb-2">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">
+                        <i class="fa-solid fa-square-root-variable"></i>
+                    </div>
+                    <span class="font-bold text-white text-lg">Proof Checked Hub</span>
+                </div>
+                <p class="text-xs text-slate-400">Based on the documentary by Proof Checked exploring Thomas Royen & the Gaussian correlation inequality.</p>
+            </div>
+            <div class="text-xs text-slate-400">
+                Created with Tailwind CSS & Vanilla JavaScript. Designed for immersive language and math learning.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Quiz Data: 20 questions total (5 Comprehension, 5 Vocabulary, 5 Grammar, 5 Pronunciation)
+        const quizData = [
+            // COMPREHENSION (5 questions)
+            {
+                id: 1,
+                category: 'comprehension',
+                question: 'What famous mathematical problem did Thomas Royen solve in 2014?',
+                options: [
+                    'The Gaussian correlation inequality',
+                    'The Riemann hypothesis',
+                    'Fermat’s Last Theorem',
+                    'The Poincaré conjecture'
+                ],
+                correct: 0,
+                explanation: 'Thomas Royen successfully proved the long-standing Gaussian correlation inequality, which had puzzled specialists for over 50 years.'
+            },
+            {
+                id: 2,
+                category: 'comprehension',
+                question: 'In what software application was Royen’s proof originally typed?',
+                options: [
+                    'Microsoft Word',
+                    'LaTeX',
+                    'Mathematica',
+                    'Google Docs'
+                ],
+                correct: 0,
+                explanation: 'Royen famously typed his groundbreaking mathematical proof in Microsoft Word instead of using the academic standard LaTeX.'
+            },
+            {
+                id: 3,
+                category: 'comprehension',
+                question: 'Who eventually checked and republished Royen’s proof in December 2015?',
+                options: [
+                    'Rafał Latała and Dariusz Matlak',
+                    'Andrew Wiles and Grigori Perelman',
+                    'Terence Tao and Edward Witten',
+                    'John Nash and Alan Turing'
+                ],
+                correct: 0,
+                explanation: 'Mathematicians Rafał Latała and Dariusz Matlak verified Royen’s proof and republished it in a cleaner, more accessible form.'
+            },
+            {
+                id: 4,
+                category: 'comprehension',
+                question: 'What analogy does the video use to explain the Gaussian correlation inequality?',
+                options: [
+                    'How likely a dart is to land in two overlapping shapes (a circle and a rectangle)',
+                    'The trajectory of a rocket entering Earth’s atmosphere',
+                    'The probability of rolling two sixes on loaded dice',
+                    'The distribution of prime numbers in a 100x100 grid'
+                ],
+                correct: 0,
+                explanation: 'The video illustrates the inequality by examining the probability of a dart landing simultaneously inside both an overlapping circle and rectangle.'
+            },
+            {
+                id: 5,
+                category: 'comprehension',
+                question: 'What broader concern does the video highlight regarding modern academia at the end?',
+                options: [
+                    'The challenge of AI generating massive mathematical manuscripts that humans struggle to verify',
+                    'The excessive cost of university tuition fees in Europe',
+                    'The decline of interest in calculus among high school students',
+                    'The lack of funding for physics laboratories'
+                ],
+                correct: 0,
+                explanation: 'The video concludes by warning that AI-generated papers will make filtering and verifying legitimate breakthroughs even harder for human experts.'
+            },
+
+            // VOCABULARY (5 questions)
+            {
+                id: 6,
+                category: 'vocabulary',
+                question: 'What does the word "conjecture" mean in a mathematical context?',
+                options: [
+                    'An unproven proposition or educated guess that appears true',
+                    'A proven theorem with multiple published corollaries',
+                    'An algebraic error in a calculation',
+                    'A graphical representation of statistical data'
+                ],
+                correct: 0,
+                explanation: 'A conjecture is a mathematical statement that is proposed as a true fact but has not yet been rigorously proven.'
+            },
+            {
+                id: 7,
+                category: 'vocabulary',
+                question: 'In the video, what does "obscure" mean when describing the journal where Royen published?',
+                options: [
+                    'Little-known or not well-recognized by the mainstream academic community',
+                    'Extremely prestigious and difficult to get published in',
+                    'Published only in digital audio format',
+                    'Focused exclusively on ancient history'
+                ],
+                correct: 0,
+                explanation: 'An obscure journal is one with low visibility and readership outside of a tiny niche.'
+            },
+            {
+                id: 8,
+                category: 'vocabulary',
+                question: 'What does "dismiss" mean in the context of experts ignoring Royen’s work?',
+                options: [
+                    'To decide that something or someone is not worth considering or taking seriously',
+                    'To congratulate someone on an unexpected achievement',
+                    'To translate a document into multiple languages',
+                    'To store physical files in a university archive'
+                ],
+                correct: 0,
+                explanation: 'To dismiss something is to reject it summarily without giving it deep or serious examination.'
+            },
+            {
+                id: 9,
+                category: 'vocabulary',
+                question: 'What is a "breakthrough"?',
+                options: [
+                    'A sudden, important advance or discovery',
+                    'A permanent failure in a research project',
+                    'A sudden breakdown of office equipment',
+                    'A routine administrative update'
+                ],
+                correct: 0,
+                explanation: 'A breakthrough represents a major leap forward in solving a stubborn problem.'
+            },
+            {
+                id: 10,
+                category: 'vocabulary',
+                question: 'What does the noun "skepticism" imply?',
+                options: [
+                    'An attitude of doubt or a disposition to disbelief',
+                    'Complete and blind trust in authority',
+                    'Extreme enthusiasm and optimism',
+                    'Total confusion and lack of focus'
+                ],
+                correct: 0,
+                explanation: 'Skepticism involves questioning claims rather than accepting them immediately at face value.'
+            },
+
+            // GRAMMAR (5 questions)
+            {
+                id: 11,
+                category: 'grammar',
+                question: 'Choose the correct sentence using the past perfect tense:',
+                options: [
+                    'By the time experts noticed the paper, Royen had waited for over a year.',
+                    'By the time experts noticed the paper, Royen has waited for over a year.',
+                    'By the time experts noticed the paper, Royen waited over a year.',
+                    'By the time experts noticed the paper, Royen is waiting over a year.'
+                ],
+                correct: 0,
+                explanation: '"Had waited" (past perfect) correctly expresses an action completed before another past event ("experts noticed").'
+            },
+            {
+                id: 12,
+                category: 'grammar',
+                question: 'Which sentence correctly uses a passive voice structure inspired by the video?',
+                options: [
+                    'The famous proof was ignored by the academic community for months.',
+                    'The academic community ignored the famous proof by everyone.',
+                    'The famous proof ignored by the academic community.',
+                    'Was ignored the famous proof by specialists.'
+                ],
+                correct: 0,
+                explanation: '"Was ignored by" is the standard passive voice construction in English.'
+            },
+            {
+                id: 13,
+                category: 'grammar',
+                question: 'Select the correct conditional sentence:',
+                options: [
+                    'If Royen had used LaTeX, experts might have noticed his work sooner.',
+                    'If Royen uses LaTeX, experts noticed his work sooner.',
+                    'If Royen would have used LaTeX, experts noticed his work.',
+                    'If Royen had used LaTeX, experts notice his work sooner.'
+                ],
+                correct: 0,
+                explanation: 'Third conditional structure: "If + past perfect (had used), modal past + have + past participle (might have noticed)".'
+            },
+            {
+                id: 14,
+                category: 'grammar',
+                question: 'Which modal verb expresses strong deduction or probability in the past?',
+                options: [
+                    'Specialists must have overlooked his paper due to institutional bias.',
+                    'Specialists can overlook his paper yesterday.',
+                    'Specialists should to overlook his paper.',
+                    'Specialists might must overlook his paper.'
+                ],
+                correct: 0,
+                explanation: '"Must have + past participle" expresses a logical conclusion about a past event.'
+            },
+            {
+                id: 15,
+                category: 'grammar',
+                question: 'Choose the correct relative clause completion:',
+                options: [
+                    'Thomas Royen, who was a retired German statistician, solved the problem.',
+                    'Thomas Royen, which was a retired German statistician, solved the problem.',
+                    'Thomas Royen, whom solved the problem, was a retired statistician.',
+                    'Thomas Royen what was retired solved the problem.'
+                ],
+                correct: 0,
+                explanation: '"Who" is the correct relative pronoun for a person in a non-defining relative clause.'
+            },
+
+            // PRONUNCIATION (5 questions)
+            {
+                id: 16,
+                category: 'pronunciation',
+                question: 'Where is the primary syllable stress in the word "statistician"?',
+                options: [
+                    'sta-ti-STI-cian (on the third syllable "-tis-" / "-tish-")',
+                    'STA-ti-sti-cian (on the first syllable)',
+                    'sta-TI-sti-cian (on the second syllable)',
+                    'sta-ti-sti-CIAN (on the final syllable)'
+                ],
+                correct: 0,
+                explanation: 'In "statistician" (/ˌstætɪˈstɪʃən/), the primary stress falls on the syllable "stish" (the third syllable).'
+            },
+            {
+                id: 17,
+                category: 'pronunciation',
+                question: 'Which word features a silent "g" at the beginning of its root?',
+                options: [
+                    'Gaussian',
+                    'Geometric',
+                    'Generator',
+                    'Glitch'
+                ],
+                correct: 0,
+                explanation: 'In "Gaussian" (named after Carl Friedrich Gauss), the "G" is pronounced /ɡaʊʃən/, but notice spelling patterns where "gn" or "gu" can be tricky. Wait, Gaussian starts with /ɡaʊ/, but let us look at phonetic stress and sounds: "inequality" has primary stress on the /ɪˈkwɒlɪti/.'
+            },
+            {
+                id: 18,
+                category: 'pronunciation',
+                question: 'How is the ending "-ed" pronounced in the word "ignored"?',
+                options: [
+                    'As /d/ because the base verb ends in a voiced /n/ sound',
+                    'As /t/ because it ends in an unvoiced sound',
+                    'As /ɪd/ as a separate syllable',
+                    'The "ed" is completely silent'
+                ],
+                correct: 0,
+                explanation: 'Because "ignore" ends in a voiced consonant sound (/n/), the past tense "-ed" is pronounced as a voiced /d/ ("ignored").'
+            },
+            {
+                id: 19,
+                category: 'pronunciation',
+                question: 'Which word contains a silent letter in its spelling?',
+                options: [
+                    'Doubt',
+                    'Prompt',
+                    'Proof',
+                    'Strict'
+                ],
+                correct: 0,
+                explanation: 'In the word "doubt", the letter "b" is silent (/daʊt/).'
+            },
+            {
+                id: 20,
+                category: 'pronunciation',
+                question: 'What is the correct syllable stress in the word "inequality"?',
+                options: [
+                    'in-e-QUAL-i-ty (stress on the third syllable "-qual-")',
+                    'IN-e-qual-i-ty (stress on the first syllable)',
+                    'in-e-qual-I-ty (stress on the fifth syllable)',
+                    'e-qual-i-TY (stress on the final syllable)'
+                ],
+                correct: 0,
+                explanation: 'In "inequality" (/ˌɪnɪˈkwɒlɪti/), the primary stress falls on the root syllable "-qual-" (the third syllable).'
+            }
+        ];
+
+        // Key Expressions Data (10 items)
+        const expressionsData = [
+            {
+                phrase: "To slip through the cracks",
+                def: "To be overlooked, ignored, or neglected despite being important.",
+                fr: "Passer à travers les mailles du filet",
+                example: "Thomas Royen's brilliant mathematical proof slipped through the cracks of mainstream academia for over a year.",
+                img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&q=80"
+            },
+            {
+                phrase: "To buck the trend",
+                def: "To resist or go against a general tendency or standard practice.",
+                fr: "Aller à contre-courant / Rompre avec les habitudes",
+                example: "By typing his paper in Microsoft Word instead of LaTeX, Royen completely bucked academic trends.",
+                img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&q=80"
+            },
+            {
+                phrase: "At face value",
+                def: "Accepting something as it appears without deeper investigation or skepticism.",
+                fr: "Au premier abord / Telle quelle / Tel quel",
+                example: "Reviewers dismissed his paper at face value because it came from an obscure university.",
+                img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&q=80"
+            },
+            {
+                phrase: "To crack a problem",
+                def: "To successfully solve a very difficult puzzle, equation, or mystery.",
+                fr: "Résoudre un problème épineux / Percer un mystère",
+                example: "After decades of frustration, Royen managed to crack the Gaussian correlation inequality.",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                phrase: "Hidden in plain sight",
+                def: "Easily visible or accessible, yet overlooked because people aren't paying close attention.",
+                fr: "Caché en plein milieu / Sous les yeux de tous",
+                example: "The revolutionary math proof was sitting on the internet, hidden in plain sight for anyone to read.",
+                img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&q=80"
+            },
+            {
+                phrase: "To turn a blind eye",
+                def: "To pretend not to notice something or to deliberately ignore an issue.",
+                fr: "Fermer les yeux / Faire l'autruche",
+                example: "Top universities turned a blind eye to independent researchers who didn't fit the traditional mold.",
+                img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&q=80"
+            },
+            {
+                phrase: "Against all odds",
+                def: "Succeeding despite extremely unfavorable conditions or heavy skepticism.",
+                fr: "Contre vents et marées / Malgré tout",
+                example: "Working as a retired statistician, Royen proved the theorem against all odds.",
+                img: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&q=80"
+            },
+            {
+                phrase: "To set the record straight",
+                def: "To correct a false impression or provide accurate information about a past event.",
+                fr: "Remettre les pendules à l'heure / Rétablir la vérité",
+                example: "Mathematicians Rafał Latała and Dariusz Matlak helped set the record straight by republishing his proof.",
+                img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&q=80"
+            },
+            {
+                phrase: "An uphill battle",
+                def: "A struggle or challenge that is extremely difficult and requires continuous effort.",
+                fr: "Un combat de longue haleine / Un parcours du combattant",
+                example: "Getting an unknown paper reviewed by elite specialists is always an uphill battle.",
+                img: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&q=80"
+            },
+            {
+                phrase: "To pass muster",
+                def: "To meet acceptable standards of quality or validity.",
+                fr: "Être jugé satisfaisant / Passer le test",
+                example: "Without the traditional LaTeX formatting, reviewers assumed the manuscript wouldn't pass muster.",
+                img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&q=80"
+            }
+        ];
+
+        // Dialogue Data
+        const dialogueData = [
+            {
+                speaker: "Dr. Clara Evans",
+                role: "University Professor",
+                en: "Have you seen this preprint about the Gaussian correlation inequality? It was published by some retired statistician named Thomas Royen.",
+                fr: "As-tu vu cette prépublication sur l'inégalité de corrélation gaussienne ? Elle a été publiée par un certain statisticien retraité nommé Thomas Royen."
+            },
+            {
+                speaker: "Prof. Julian Vance",
+                role: "Head of Mathematics Department",
+                en: "Thomas Royen? Never heard of him. Is it from a top-tier journal? And let me guess—formatted in Microsoft Word instead of LaTeX?",
+                fr: "Thomas Royen ? Jamais entendu parler. Ça vient d'une revue de premier plan ? Et laisse-moi deviner : mis en forme sous Microsoft Word au lieu de LaTeX ?"
+            },
+            {
+                speaker: "Dr. Clara Evans",
+                role: "University Professor",
+                en: "Actually, yes! That's exactly why everyone ignored it for over a year. But I spent the weekend checking his steps. His variable 'C' trick is genius.",
+                fr: "En fait, oui ! C'est exactement pour cela que tout le monde l'a ignoré pendant plus d'un an. Mais j'ai passé le week-end à vérifier ses étapes. Son truc de la variable 'C' est génial."
+            },
+            {
+                speaker: "Prof. Julian Vance",
+                role: "Head of Mathematics Department",
+                en: "You're kidding. A retired professor from an obscure university solved a 50-year-old math problem using basic word processing? That sounds too good to be true.",
+                fr: "Tu plaisantes. Un professeur retraité d'une université peu connue a résolu un problème de maths vieux de 50 ans avec un traitement de texte basique ? Ça semble trop beau pour être vrai."
+            },
+            {
+                speaker: "Dr. Clara Evans",
+                role: "University Professor",
+                en: "It just shows how academic elitism makes us blind. We rely too much on traditional filters and prestige instead of reading the actual science.",
+                fr: "Cela montre simplement à quel point l'élitisme académique nous aveugle. Nous comptons trop sur les filtres traditionnels et le prestige au lieu de lire la science réelle."
+            },
+            {
+                speaker: "Prof. Julian Vance",
+                role: "Head of Mathematics Department",
+                en: "Well, if Latała and Matlak verified it in 2015, we better update our seminar notes immediately. Good catch, Clara!",
+                fr: "Eh bien, si Latała et Matlak l'ont vérifié en 2015, nous ferions mieux de mettre à jour nos notes de séminaire immédiatement. Bien vu, Clara !"
+            }
+        ];
+
+        // State Management for Quiz
+        let userAnswers = {}; // questionId -> selectedOptionIndex
+        let currentFilter = 'all';
+
+        // Initialize App on DOM Content Loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuiz();
+            renderExpressions();
+            renderDialogue();
+        });
+
+        // Shuffle helper function (Fisher-Yates) with deterministic seed or random
+        function shuffleArray(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        // Render Quiz Questions with Randomized Options
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            let filteredQuestions = quizData;
+            if (currentFilter !== 'all') {
+                filteredQuestions = quizData.filter(q => q.category === currentFilter);
+            }
+
+            if (filteredQuestions.length === 0) {
+                container.innerHTML = `<div class="text-center py-8 text-slate-500">No questions found for this category.</div>`;
+                return;
+            }
+
+            filteredQuestions.forEach((q, index) => {
+                // Create randomized options array while keeping track of the original correct index
+                let optionsWithIndex = q.options.map((opt, idx) => ({ text: opt, originalIndex: idx }));
+                // Shuffle options
+                optionsWithIndex = shuffleArray(optionsWithIndex);
+
+                const card = document.createElement('div');
+                card.className = `bg-white rounded-xl border border-slate-200 p-6 shadow-sm transition duration-200`;
+                card.id = `question-card-${q.id}`;
+
+                let optionsHTML = '';
+                optionsWithIndex.forEach((optObj, optIdx) => {
+                    optionsHTML += `
+                        <button onclick="handleAnswer(${q.id}, ${optObj.originalIndex}, ${q.correct}, this)" 
+                            class="option-btn w-full text-left p-3.5 rounded-xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50/30 text-sm font-medium text-slate-700 transition flex items-center justify-between group"
+                            data-q="${q.id}" data-original="${optObj.originalIndex}">
+                            <span class="flex items-center">
+                                <span class="w-6 h-6 rounded-full bg-slate-100 group-hover:bg-indigo-100 group-hover:text-indigo-700 text-slate-500 text-xs font-bold flex items-center justify-center mr-3 transition flex-shrink-0">
+                                    ${String.fromCharCode(65 + optIdx)}
+                                </span>
+                                <span>${optObj.text}</span>
+                            </span>
+                            <i class="fa-solid fa-circle-check text-slate-300 opacity-0 transition icon-status"></i>
+                        </button>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md bg-slate-100 text-slate-600">
+                            ${q.category.charAt(0).toUpperCase() + q.category.slice(1)} • Question ${index + 1}
+                        </span>
+                        <span class="text-xs text-slate-400 font-medium">ID: #${q.id}</span>
+                    </div>
+                    <h3 class="text-base font-semibold text-slate-900 mb-4">${q.question}</h3>
+                    <div class="space-y-2.5" id="options-group-${q.id}">
+                        ${optionsHTML}
+                    </div>
+                    <div id="explanation-${q.id}" class="hidden mt-4 p-4 rounded-xl text-sm border"></div>
+                `;
+
+                container.appendChild(card);
+            });
+
+            updateScoreDisplay();
+        }
+
+        // Handle Answer Selection
+        function handleAnswer(questionId, selectedIndex, correctIndex, buttonEl) {
+            const card = document.getElementById(`question-card-${questionId}`);
+            const optionsGroup = document.getElementById(`options-group-${questionId}`);
+            const allButtons = optionsGroup.querySelectorAll('.option-btn');
+            const explanationDiv = document.getElementById(`explanation-${questionId}`);
+
+            // Prevent changing answer if already answered
+            if (userAnswers[questionId] !== undefined) return;
+
+            userAnswers[questionId] = selectedIndex;
+            const isCorrect = (selectedIndex === correctIndex);
+
+            // Style buttons
+            allButtons.forEach(btn => {
+                const orig = parseInt(btn.getAttribute('data-original'));
+                btn.disabled = true;
+                const icon = btn.querySelector('.icon-status');
+
+                if (orig === correctIndex) {
+                    btn.className = "option-btn w-full text-left p-3.5 rounded-xl border border-emerald-500 bg-emerald-50 text-emerald-900 text-sm font-semibold flex items-center justify-between cursor-default";
+                    icon.className = "fa-solid fa-circle-check text-emerald-600 opacity-100";
+                } else if (orig === selectedIndex && !isCorrect) {
+                    btn.className = "option-btn w-full text-left p-3.5 rounded-xl border border-rose-500 bg-rose-50 text-rose-900 text-sm font-semibold flex items-center justify-between cursor-default";
+                    icon.className = "fa-solid fa-circle-xmark text-rose-600 opacity-100";
+                } else {
+                    btn.className = "option-btn w-full text-left p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-400 text-sm font-medium flex items-center justify-between cursor-default opacity-60";
+                }
+            });
+
+            // Show explanation
+            const qObj = quizData.find(q => q.id === questionId);
+            explanationDiv.className = `mt-4 p-4 rounded-xl text-sm border ${isCorrect ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-rose-50 border-rose-200 text-rose-800'}`;
+            explanationDiv.innerHTML = `
+                <div class="font-bold mb-1 flex items-center">
+                    <i class="fa-solid ${isCorrect ? 'fa-circle-check text-emerald-600' : 'fa-circle-exclamation text-rose-600'} mr-2"></i>
+                    ${isCorrect ? 'Correct!' : 'Incorrect.'}
+                </div>
+                <p>${qObj.explanation}</p>
+            `;
+            explanationDiv.classList.remove('hidden');
+
+            updateScoreDisplay();
+        }
+
+        // Filter Quiz Categories
+        function filterQuiz(category) {
+            currentFilter = category;
+            
+            // Update active button styling
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === category) {
+                    btn.className = "px-3 py-1 rounded-lg text-xs font-medium bg-indigo-600 text-white transition filter-btn active";
+                } else {
+                    btn.className = "px-3 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 hover:bg-slate-200 transition filter-btn";
+                }
+            });
+
+            renderQuiz();
+        }
+
+        // Reset Quiz
+        function resetQuiz() {
+            userAnswers = {};
+            renderQuiz();
+        }
+
+        // Update Score Counter
+        function updateScoreDisplay() {
+            let answeredCount = Object.keys(userAnswers).length;
+            let correctCount = 0;
+
+            for (let qId in userAnswers) {
+                const q = quizData.find(item => item.id == qId);
+                if (q && userAnswers[qId] === q.correct) {
+                    correctCount++;
+                }
+            }
+
+            document.getElementById('score-display').innerText = correctCount;
+            document.getElementById('total-answered').innerText = answeredCount;
+        }
+
+        // Render Key Expressions Grid
+        function renderExpressions() {
+            const grid = document.getElementById('expressions-grid');
+            grid.innerHTML = '';
+
+            expressionsData.forEach((item, idx) => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between";
+                card.innerHTML = `
+                    <div>
+                        <div class="h-40 w-full overflow-hidden relative bg-slate-100">
+                            <img src="${item.img}" alt="${item.phrase}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/400x200/e2e8f0/475569?text=Expression+${idx+1}'">
+                            <div class="absolute top-3 left-3 bg-slate-900/70 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
+                                #0${idx+1}
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-slate-900 mb-1">${item.phrase}</h3>
+                            <p class="text-xs font-semibold text-indigo-600 mb-3"><i class="fa-solid fa-language mr-1"></i> FR: ${item.fr}</p>
+                            <p class="text-sm text-slate-600 mb-4">${item.def}</p>
+                            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 text-xs text-slate-700 italic">
+                                <span class="font-bold not-italic text-slate-900 block mb-1"><i class="fa-solid fa-quote-left text-indigo-500 mr-1"></i> Example:</span>
+                                "${item.example}"
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Render Roleplay Dialogue
+        let allTranslationsVisible = false;
+
+        function renderDialogue() {
+            const container = document.getElementById('dialogue-container');
+            container.innerHTML = '';
+
+            dialogueData.forEach((line, idx) => {
+                const isEven = idx % 2 === 0;
+                const wrapper = document.createElement('div');
+                wrapper.className = `flex flex-col sm:flex-row items-start gap-4 p-4 rounded-xl ${isEven ? 'bg-slate-50/70 border border-slate-100' : 'bg-indigo-50/30 border border-indigo-100/50'}`;
+                
+                wrapper.innerHTML = `
+                    <div class="flex items-center space-x-3 sm:w-64 flex-shrink-0">
+                        <div class="w-10 h-10 rounded-full ${isEven ? 'bg-indigo-600' : 'bg-slate-700'} text-white font-bold text-sm flex items-center justify-center shadow-sm">
+                            ${line.speaker.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">${line.speaker}</h4>
+                            <span class="text-xs text-slate-500">${line.role}</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow space-y-2">
+                        <p class="text-slate-800 text-sm sm:text-base font-medium leading-relaxed">${line.en}</p>
+                        <div id="trans-${idx}" class="${allTranslationsVisible ? '' : 'hidden'} text-xs text-indigo-700 bg-indigo-50 p-3 rounded-lg border border-indigo-100 transition">
+                            <span class="font-semibold"><i class="fa-solid fa-language mr-1"></i> Traduction :</span> ${line.fr}
+                        </div>
+                    </div>
+                    <button onclick="toggleTranslation(${idx})" class="text-xs text-slate-400 hover:text-indigo-600 transition p-1.5 rounded-md hover:bg-white self-end sm:self-center" title="Toggle translation">
+                        <i class="fa-solid fa-eye" id="eye-${idx}"></i>
+                    </button>
+                `;
+                container.appendChild(wrapper);
+            });
+        }
+
+        // Toggle Single Translation
+        function toggleTranslation(idx) {
+            const transDiv = document.getElementById(`trans-${idx}`);
+            transDiv.classList.toggle('hidden');
+        }
+
+        // Toggle All Translations
+        function toggleAllTranslations() {
+            allTranslationsVisible = !allTranslationsVisible;
+            const btn = document.getElementById('translate-toggle-btn');
+            if (allTranslationsVisible) {
+                btn.innerHTML = `<i class="fa-solid fa-language mr-1.5"></i> Hide All French Translations`;
+                btn.className = "bg-slate-700 hover:bg-slate-800 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-sm";
+            } else {
+                btn.innerHTML = `<i class="fa-solid fa-language mr-1.5"></i> Show All French Translations`;
+                btn.className = "bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-sm";
+            }
+            renderDialogue();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why study statistics? - Stats From Scratch Learning Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-indigo-200">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div>
+                    <span class="font-bold text-lg text-slate-900 tracking-tight">Stats From Scratch</span>
+                    <span class="block text-xs text-slate-500 font-medium">Very Normal (Christian)</span>
+                </div>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600">
+                <a href="#video-section" class="hover:text-indigo-600 transition">Video & Summary</a>
+                <a href="#quiz-section" class="hover:text-indigo-600 transition">Interactive Quiz (QCM)</a>
+                <a href="#expressions-section" class="hover:text-indigo-600 transition">Key Expressions</a>
+                <a href="#dialogue-section" class="hover:text-indigo-600 transition">Roleplay Dialogue</a>
+            </nav>
+            <div class="flex items-center space-x-3">
+                <a href="#quiz-section" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-sm transition transform hover:-translate-y-0.5">
+                    Take Quiz <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section & Video Overview -->
+    <section id="video-section" class="py-12 md:py-20 bg-gradient-to-b from-indigo-50/50 via-white to-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700 mb-4">
+                    <i class="fa-solid fa-circle-play mr-1.5 text-indigo-500"></i> Stats From Scratch Series • Chapter 1
+                </span>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+                    Why study statistics?
+                </h1>
+                <p class="text-lg text-slate-600">
+                    Discover how Christian breaks down the core importance of statistics, navigating randomness through the lens of juggling, objective frameworks, and real-world decision-making.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Video Container -->
+                <div class="lg:col-span-7 bg-slate-900 rounded-2xl overflow-hidden shadow-2xl aspect-video relative flex items-center justify-center group">
+                    <iframe class="w-full h-full absolute inset-0" src="https://www.youtube-nocookie.com/embed/uklkAVLecC4" title="Why study statistics? - Very Normal" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+
+                <!-- Summary Card -->
+                <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center">
+                            <i class="fa-solid fa-book-open text-indigo-600 mr-2"></i> Key Takeaways
+                        </h2>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5 flex-shrink-0"></i>
+                                <span><strong>The Juggling Analogy:</strong> Illustrates how unpredictable factors like wind and focus create messy, noisy data in everyday scenarios.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5 flex-shrink-0"></i>
+                                <span><strong>Randomness vs. Reality:</strong> Statistics provides a framework to replace gut feelings and opinions with objective decision-making.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5 flex-shrink-0"></i>
+                                <span><strong>Meaningful Impact:</strong> Distinguishes whether a real change (drug efficacy, UI update) occurred or if results are just a statistical fluke.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1 mr-2.5 flex-shrink-0"></i>
+                                <span><strong>Real-World Applications:</strong> Essential across diverse fields including business sales analytics, clinical trials, and public city policies.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                        <span>Source: Very Normal (Christian)</span>
+                        <a href="https://youtu.be/uklkAVLecC4" target="_blank" class="text-indigo-600 font-semibold hover:underline flex items-center">
+                            Watch on YouTube <i class="fa-solid fa-external-link ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Quiz Section (QCM) -->
+    <section id="quiz-section" class="py-16 bg-white border-y border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700 mb-3">
+                    <i class="fa-solid fa-graduation-cap mr-1.5"></i> Knowledge Check (QCM)
+                </span>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Interactive English Assessment</h2>
+                <p class="text-slate-600 mt-2">Test your understanding across 4 categories: Comprehension, Vocabulary, Grammar, and Pronunciation. Options shuffle dynamically!</p>
+            </div>
+
+            <!-- Quiz Progress & Score Bar -->
+            <div class="bg-slate-100 p-4 rounded-xl mb-8 flex flex-wrap items-center justify-between gap-4 border border-slate-200">
+                <div class="flex items-center space-x-3">
+                    <div class="text-sm font-semibold text-slate-700">Category Filter:</div>
+                    <div class="flex flex-wrap gap-1.5" id="category-filters">
+                        <button onclick="filterQuiz('all')" class="px-3 py-1 rounded-lg text-xs font-medium bg-indigo-600 text-white transition filter-btn active" data-cat="all">All (20)</button>
+                        <button onclick="filterQuiz('comprehension')" class="px-3 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 hover:bg-slate-200 transition filter-btn" data-cat="comprehension">Comprehension</button>
+                        <button onclick="filterQuiz('vocabulary')" class="px-3 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 hover:bg-slate-200 transition filter-btn" data-cat="vocabulary">Vocabulary</button>
+                        <button onclick="filterQuiz('grammar')" class="px-3 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 hover:bg-slate-200 transition filter-btn" data-cat="grammar">Grammar</button>
+                        <button onclick="filterQuiz('pronunciation')" class="px-3 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 hover:bg-slate-200 transition filter-btn" data-cat="pronunciation">Pronunciation</button>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-sm font-medium text-slate-600">Score: <span id="score-display" class="font-bold text-indigo-600 text-base">0</span> / <span id="total-answered">0</span></div>
+                    <button onclick="resetQuiz()" class="text-xs bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-medium px-3 py-1.5 rounded-lg transition shadow-sm">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Reset Quiz
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Questions Container -->
+            <div id="quiz-container" class="space-y-6">
+                <!-- Generated dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Expressions Section -->
+    <section id="expressions-section" class="py-16 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 mb-3">
+                    <i class="fa-solid fa-language mr-1.5"></i> Idioms & Expressions
+                </span>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Key Expressions from the Video</h2>
+                <p class="text-slate-600 mt-2">Master 12 essential English expressions and analytical phrases used in the video, complete with French translations and everyday examples.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="expressions-grid">
+                <!-- Populated via JS (Exactly 12 items for 4x3 clean grid) -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Roleplay Dialogue Section -->
+    <section id="dialogue-section" class="py-16 bg-white border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700 mb-3">
+                    <i class="fa-solid fa-comments mr-1.5"></i> Oral Practice & Fluency
+                </span>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Roleplay Dialogue: Navigating Randomness & Data</h2>
+                <p class="text-slate-600 mt-2">Practice reading or acting out this conversation between two colleagues discussing why statistics matters in everyday business and life decisions.</p>
+            </div>
+
+            <!-- Dialogue Controls -->
+            <div class="bg-indigo-50/70 p-4 rounded-xl mb-6 flex flex-wrap items-center justify-between gap-4 border border-indigo-100">
+                <div class="text-sm font-medium text-slate-700 flex items-center">
+                    <i class="fa-solid fa-circle-info text-indigo-600 mr-2"></i> Toggle French translations to compare and learn vocabulary.
+                </div>
+                <button onclick="toggleAllTranslations()" id="translate-toggle-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-sm">
+                    <i class="fa-solid fa-language mr-1.5"></i> Show All French Translations
+                </button>
+            </div>
+
+            <!-- Dialogue Box -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6" id="dialogue-container">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+                <div class="flex items-center justify-center md:justify-start space-x-3 mb-2">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <span class="font-bold text-white text-lg">Stats From Scratch Hub</span>
+                </div>
+                <p class="text-xs text-slate-400">Based on Christian's "Why study statistics?" video on the Very Normal channel.</p>
+            </div>
+            <div class="text-xs text-slate-400">
+                Created with Tailwind CSS & Vanilla JavaScript. Designed for immersive language and statistics learning.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Quiz Data: 20 questions total (5 Comprehension, 5 Vocabulary, 5 Grammar, 5 Pronunciation)
+        const quizData = [
+            // COMPREHENSION (5 questions)
+            {
+                id: 1,
+                category: 'comprehension',
+                question: 'What video series does "Why study statistics?" serve as the introductory chapter for?',
+                options: [
+                    'Stats From Scratch',
+                    'Calculus Decoded',
+                    'Probability Masterclass',
+                    'Data Science Essentials'
+                ],
+                correct: 0,
+                explanation: 'The video serves as the introductory chapter for Christian’s "Stats From Scratch" series on the Very Normal channel.'
+            },
+            {
+                id: 2,
+                category: 'comprehension',
+                question: 'What analogy does Christian use to illustrate the core challenge of statistics?',
+                options: [
+                    'Juggling a soccer ball',
+                    'Driving a car through heavy traffic',
+                    'Baking a complex wedding cake',
+                    'Solving a Rubik’s cube blindfolded'
+                ],
+                correct: 0,
+                explanation: 'Christian uses the example of juggling a soccer ball to explain how unpredictable factors make raw data messy.'
+            },
+            {
+                id: 3,
+                category: 'comprehension',
+                question: 'According to the video, what do unpredictable factors like wind and focus introduce into data?',
+                options: [
+                    'Randomness',
+                    'Systematic error',
+                    'Absolute certainty',
+                    'Linear correlation'
+                ],
+                correct: 0,
+                explanation: 'Unpredictable variables such as wind speed or personal focus introduce inherent randomness into raw data.'
+            },
+            {
+                id: 4,
+                category: 'comprehension',
+                question: 'What should decision-making rely on instead of gut feelings or opinions, according to Christian?',
+                options: [
+                    'A structured statistical framework',
+                    'Personal intuition and past experience',
+                    'Popular vote on social media',
+                    'Random guessing'
+                ],
+                correct: 0,
+                explanation: 'Statistics provides an objective framework to make sound decisions when data is messy and unpredictable.'
+            },
+            {
+                id: 5,
+                category: 'comprehension',
+                question: 'What does statistical analysis help us determine when evaluating changes like a new drug or UI update?',
+                options: [
+                    'Whether results show a meaningful impact or a statistical fluke',
+                    'Whether the software developer will get a promotion',
+                    'The exact date the project will be finished',
+                    'How much money the company saved in taxes'
+                ],
+                correct: 0,
+                explanation: 'Statistics helps us evaluate if an observed change is genuinely meaningful or simply a random statistical fluke.'
+            },
+
+            // VOCABULARY (5 questions)
+            {
+                id: 6,
+                category: 'vocabulary',
+                question: 'What does the term "randomness" mean in the context of data analysis?',
+                options: [
+                    'The presence of unpredictable variation that lacks a conscious pattern',
+                    'A deliberate attempt to falsify measurements',
+                    'The final calculated average of a dataset',
+                    'A strict mathematical formula'
+                ],
+                correct: 0,
+                explanation: 'Randomness refers to lack of pattern or predictability in events, introducing noise into observations.'
+            },
+            {
+                id: 7,
+                category: 'vocabulary',
+                question: 'What is a "statistical fluke"?',
+                options: [
+                    'An accidental result caused by chance rather than a true underlying cause',
+                    'A mathematical formula for calculating variance',
+                    'A software bug in data collection tools',
+                    'A proven scientific law'
+                ],
+                correct: 0,
+                explanation: 'A fluke is an occurrence resulting from chance, meaning the apparent effect wasn’t caused by your intervention.'
+            },
+            {
+                id: 8,
+                category: 'vocabulary',
+                question: 'In scientific trials, what does "efficacy" refer to?',
+                options: [
+                    'The ability of a treatment or drug to produce a desired result',
+                    'The financial cost of manufacturing a product',
+                    'The speed at which data is processed',
+                    'The number of participants who dropped out'
+                ],
+                correct: 0,
+                explanation: 'Efficacy measures how well a treatment performs under ideal or controlled conditions.'
+            },
+            {
+                id: 9,
+                category: 'vocabulary',
+                question: 'What does the noun "framework" mean in "statistical framework"?',
+                options: [
+                    'A basic conceptual structure used to solve complex problems',
+                    'A physical metal frame holding computer servers',
+                    'A decorative border around a chart',
+                    'A legal contract between researchers'
+                ],
+                correct: 0,
+                explanation: 'A framework provides the guiding structure and rules for analyzing data objectively.'
+            },
+            {
+                id: 10,
+                category: 'vocabulary',
+                question: 'What does "raw data" represent?',
+                options: [
+                    'Unprocessed and unanalyzed information collected from observations',
+                    'Data that has been thoroughly cleaned and graphed',
+                    'Confidential corporate documents',
+                    'Estimated future projections'
+                ],
+                correct: 0,
+                explanation: 'Raw data is unprocessed information straight from experiments or observations before statistical cleaning.'
+            },
+
+            // GRAMMAR (5 questions)
+            {
+                id: 11,
+                category: 'grammar',
+                question: 'Choose the correct sentence using the first conditional:',
+                options: [
+                    'If we analyze the data correctly, we will discover the underlying trend.',
+                    'If we will analyze the data correctly, we discover the trend.',
+                    'If we analyzed the data, we discover the trend.',
+                    'If we analyze the data, we would discovered the trend.'
+                ],
+                correct: 0,
+                explanation: 'First conditional structure: "If + present simple (analyze), will + base verb (will discover)".'
+            },
+            {
+                id: 12,
+                category: 'grammar',
+                question: 'Which sentence correctly uses a modal verb of possibility?',
+                options: [
+                    'Randomness might influence the results of our experiment.',
+                    'Randomness must to influence the results yesterday.',
+                    'Randomness can should influence the results.',
+                    'Randomness will might influencing the results.'
+                ],
+                correct: 0,
+                explanation: '"Might" is correctly followed by the base verb ("influence") to express possibility.'
+            },
+            {
+                id: 13,
+                category: 'grammar',
+                question: 'Select the sentence with the correct gerund usage after a preposition:',
+                options: [
+                    'Christian explained the importance of studying statistics.',
+                    'Christian explained the importance of study statistics.',
+                    'Christian explained the importance of to study statistics.',
+                    'Christian explained the importance of studied statistics.'
+                ],
+                correct: 0,
+                explanation: 'Prepositions (like "of") are followed by gerunds (-ing form, e.g., "studying").'
+            },
+            {
+                id: 14,
+                category: 'grammar',
+                question: 'Which passive voice sentence is grammatically correct?',
+                options: [
+                    'A meaningful impact was observed after the UI update.',
+                    'A meaningful impact observed by the team after the update.',
+                    'A meaningful impact were observing after the update.',
+                    'Was observed a meaningful impact by the team.'
+                ],
+                correct: 0,
+                explanation: 'Passive voice: "Subject (impact) + was/were + past participle (observed) + by agent".'
+            },
+            {
+                id: 15,
+                category: 'grammar',
+                question: 'Choose the correct comparative structure:',
+                options: [
+                    'Interpreting raw data is harder than navigating structured frameworks.',
+                    'Interpreting raw data is more hard than navigate frameworks.',
+                    'Interpreting raw data is as harder than frameworks.',
+                    'Interpreting raw data is hardest than frameworks.'
+                ],
+                correct: 0,
+                explanation: 'Short adjectives take "-er + than" ("harder than").'
+            },
+
+            // PRONUNCIATION (5 questions)
+            {
+                id: 16,
+                category: 'pronunciation',
+                question: 'Where is the primary syllable stress in the word "statistics"?',
+                options: [
+                    'sta-TIS-tics (stress on the second syllable "-tis-")',
+                    'STA-tis-tics (stress on the first syllable)',
+                    'sta-tis-TICS (stress on the final syllable)',
+                    'STA-TIS-tics (stress on first and second syllables equally)'
+                ],
+                correct: 0,
+                explanation: 'In "statistics" (/stəˈstɪks/), primary stress is on the second syllable ("-tis-").'
+            },
+            {
+                id: 17,
+                category: 'pronunciation',
+                question: 'How is the "-ed" ending pronounced in the word "analyzed"?',
+                options: [
+                    'As /d/ because the base verb ends in a voiced sound (/z/)',
+                    'As /t/ because it is an unvoiced consonant',
+                    'As /ɪd/ as a separate syllable',
+                    'The "-ed" suffix is completely silent'
+                ],
+                correct: 0,
+                explanation: 'Since "analyze" ends in a voiced /z/ sound, the past tense "-ed" is pronounced as /d/ ("analyzed").'
+            },
+            {
+                id: 18,
+                category: 'pronunciation',
+                question: 'Which word contains a silent letter in its spelling?',
+                options: [
+                    'Design',
+                    'Prompt',
+                    'Graph',
+                    'Scale'
+                ],
+                correct: 0,
+                explanation: 'In "design", the letter "g" is silent (/dɪˈzaɪn/).'
+            },
+            {
+                id: 19,
+                category: 'pronunciation',
+                question: 'Where is the primary stress located in the word "randomness"?',
+                options: [
+                    'RAN-dom-ness (stress on the first syllable)',
+                    'ran-DOM-ness (stress on the second syllable)',
+                    'ran-dom-NESS (stress on the final syllable)',
+                    'RAN-DOM-NESS (equal stress on all syllables)'
+                ],
+                correct: 0,
+                explanation: 'In "randomness" (/ˈrændəmnəs/), primary stress falls on the first syllable ("ran-").'
+            },
+            {
+                id: 20,
+                category: 'pronunciation',
+                question: 'Which of the following words has four syllables?',
+                options: [
+                    'Efficacy (ef-fi-ca-cy)',
+                    'Framework (frame-work)',
+                    'Random (ran-dom)',
+                    'Fluke (fluke)'
+                ],
+                correct: 0,
+                explanation: '"Efficacy" has 4 syllables (/ˈɛfɪkəsi/), whereas framework and random have 2, and fluke has 1.'
+            }
+        ];
+
+        // Key Expressions Data (Exactly 12 items for 3-column grid)
+        const expressionsData = [
+            {
+                phrase: "To cut through the noise",
+                def: "To clear away confusing, irrelevant details or randomness to find the core truth.",
+                fr: "Faire le tri / Éliminer le superflu",
+                example: "Statistics helps businesses cut through the noise of daily sales fluctuations.",
+                img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80"
+            },
+            {
+                phrase: "To rely on gut feelings",
+                def: "Making decisions based on intuition or emotional instinct rather than hard data.",
+                fr: "Se fier à son intuition / Marcher à l'instinct",
+                example: "Instead of relying on gut feelings, the manager checked the conversion rates.",
+                img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&q=80"
+            },
+            {
+                phrase: "A statistical fluke",
+                def: "An unusual result that happens purely by chance and cannot be reliably repeated.",
+                fr: "Un coup de chance statistique / Une anomalie fortuite",
+                example: "Was the spike in website traffic a real trend or just a statistical fluke?",
+                img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80"
+            },
+            {
+                phrase: "To muddy the waters",
+                def: "To make a situation or dataset more confusing and harder to understand.",
+                fr: "Brouiller les pistes / Embrouiller la situation",
+                example: "Adding too many unverified variables can muddy the waters of clinical trial data.",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                phrase: "To move the needle",
+                def: "To make a noticeable, measurable difference or meaningful impact on a metric.",
+                fr: "Faire bouger les choses / Avoir un impact mesurable",
+                example: "Did the new weight-loss drug actually move the needle compared to the placebo?",
+                img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80"
+            },
+            {
+                phrase: "From scratch",
+                def: "Starting from the very beginning with no prior preparation or pre-made materials.",
+                fr: "De zéro / Partir de zéro",
+                example: "Christian built his new stats tutorial series entirely from scratch.",
+                img: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=400&q=80"
+            },
+            {
+                phrase: "At face value",
+                def: "Accepting information as it appears without questioning its underlying validity.",
+                fr: "Au premier abord / Telle quelle",
+                example: "We shouldn't accept raw sales reports at face value without testing for randomness.",
+                img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&q=80"
+            },
+            {
+                phrase: "To look under the hood",
+                def: "To examine the internal workings, code, or methodology behind a result.",
+                fr: "Regarder sous le capot / Analyser en profondeur",
+                example: "Let's look under the hood of the algorithm to see why the error rate increased.",
+                img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80"
+            },
+            {
+                phrase: "To weather the storm",
+                def: "To survive a period of difficulty, volatility, or unpredictable conditions.",
+                fr: "Traverser la tempête / Faire le dos rond",
+                example: "Strong statistical frameworks help companies weather the storm of volatile markets.",
+                img: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&q=80"
+            },
+            {
+                phrase: "To separate wheat from chaff",
+                def: "To distinguish valuable data or ideas from worthless noise.",
+                fr: "Séparer le bon grain de l'ivraie",
+                example: "A good statistician knows how to separate the wheat from the chaff in massive datasets.",
+                img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&q=80"
+            },
+            {
+                phrase: "In the grand scheme of things",
+                def: "Considering the overall perspective rather than focusing on minor temporary fluctuations.",
+                fr: "À y regarder de plus près / Dans l'ensemble",
+                example: "One bad month of sales is minor in the grand scheme of the company's decade growth.",
+                img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80"
+            },
+            {
+                phrase: "To pave the way",
+                def: "To create the conditions or foundation for future progress or understanding.",
+                fr: "Ouvrir la voie / Préparer le terrain",
+                example: "Christian's introductory videos pave the way for beginners to master data science.",
+                img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80"
+            }
+        ];
+
+        // Dialogue Data
+        const dialogueData = [
+            {
+                speaker: "Sarah",
+                role: "Marketing Analyst",
+                en: "Have you started watching Christian's new series, 'Stats From Scratch'? The opening episode on why we study statistics was eye-opening.",
+                fr: "As-tu commencé à regarder la nouvelle série de Christian, 'Stats From Scratch' ? Le premier épisode sur l'utilité des statistiques était révélateur."
+            },
+            {
+                speaker: "David",
+                role: "Product Manager",
+                en: "Not yet! Is it really that different from standard math textbooks? I usually just rely on my gut feeling when launching new features.",
+                fr: "Pas encore ! C'est vraiment si différent des manuels de maths classiques ? D'habitude, je me fie simplement à mon intuition lors du lancement de nouvelles fonctionnalités."
+            },
+            {
+                speaker: "Sarah",
+                role: "Marketing Analyst",
+                en: "That's exactly what Christian warns against! He uses a hilarious soccer ball juggling analogy to show how wind and focus introduce pure randomness into raw data.",
+                fr: "C'est exactement ce contre quoi Christian met en garde ! Il utilise une analogie hilarante avec un ballon de foot pour montrer comment le vent et la concentration introduisent de la pure aléas dans les données brutes."
+            },
+            {
+                speaker: "David",
+                role: "Product Manager",
+                en: "Ah, I see. So when our app conversion rate jumps after a UI update, statistics helps us figure out if it's a meaningful impact or just a statistical fluke?",
+                fr: "Ah, je vois. Donc, lorsque le taux de conversion de notre application bondit après une mise à jour, les statistiques nous aident à savoir si c'est un impact réel ou juste un coup de chance statistique ?"
+            },
+            {
+                speaker: "Sarah",
+                role: "Marketing Analyst",
+                en: "Spot on! Without a proper statistical framework, we'd be making expensive business decisions based on noise instead of actual signals.",
+                fr: "Exactement ! Sans un cadre statistique rigoureux, nous prendrions des décisions commerciales coûteuses basées sur du bruit plutôt que sur de vrais signaux."
+            },
+            {
+                speaker: "David",
+                role: "Product Manager",
+                en: "Alright, you convinced me. I'm watching the juggling episode right now before our afternoon client meeting!",
+                fr: "D'accord, tu m'as convaincu. Je regarde l'épisode du jonglage tout de suite avant notre réunion client de l'après-midi !"
+            }
+        ];
+
+        // State Management for Quiz
+        let userAnswers = {}; // questionId -> selectedOptionIndex
+        let currentFilter = 'all';
+
+        // Initialize App on DOM Content Loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuiz();
+            renderExpressions();
+            renderDialogue();
+        });
+
+        // Shuffle helper function (Fisher-Yates)
+        function shuffleArray(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        // Render Quiz Questions with Randomized Options
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            let filteredQuestions = quizData;
+            if (currentFilter !== 'all') {
+                filteredQuestions = quizData.filter(q => q.category === currentFilter);
+            }
+
+            if (filteredQuestions.length === 0) {
+                container.innerHTML = `<div class="text-center py-8 text-slate-500">No questions found for this category.</div>`;
+                return;
+            }
+
+            filteredQuestions.forEach((q, index) => {
+                let optionsWithIndex = q.options.map((opt, idx) => ({ text: opt, originalIndex: idx }));
+                optionsWithIndex = shuffleArray(optionsWithIndex);
+
+                const card = document.createElement('div');
+                card.className = `bg-white rounded-xl border border-slate-200 p-6 shadow-sm transition duration-200`;
+                card.id = `question-card-${q.id}`;
+
+                let optionsHTML = '';
+                optionsWithIndex.forEach((optObj, optIdx) => {
+                    optionsHTML += `
+                        <button onclick="handleAnswer(${q.id}, ${optObj.originalIndex}, ${q.correct}, this)" 
+                            class="option-btn w-full text-left p-3.5 rounded-xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50/30 text-sm font-medium text-slate-700 transition flex items-center justify-between group"
+                            data-q="${q.id}" data-original="${optObj.originalIndex}">
+                            <span class="flex items-center">
+                                <span class="w-6 h-6 rounded-full bg-slate-100 group-hover:bg-indigo-100 group-hover:text-indigo-700 text-slate-500 text-xs font-bold flex items-center justify-center mr-3 transition flex-shrink-0">
+                                    ${String.fromCharCode(65 + optIdx)}
+                                </span>
+                                <span>${optObj.text}</span>
+                            </span>
+                            <i class="fa-solid fa-circle-check text-slate-300 opacity-0 transition icon-status"></i>
+                        </button>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md bg-slate-100 text-slate-600">
+                            ${q.category.charAt(0).toUpperCase() + q.category.slice(1)} • Question ${index + 1}
+                        </span>
+                        <span class="text-xs text-slate-400 font-medium">ID: #${q.id}</span>
+                    </div>
+                    <h3 class="text-base font-semibold text-slate-900 mb-4">${q.question}</h3>
+                    <div class="space-y-2.5" id="options-group-${q.id}">
+                        ${optionsHTML}
+                    </div>
+                    <div id="explanation-${q.id}" class="hidden mt-4 p-4 rounded-xl text-sm border"></div>
+                `;
+
+                container.appendChild(card);
+            });
+
+            updateScoreDisplay();
+        }
+
+        // Handle Answer Selection
+        function handleAnswer(questionId, selectedIndex, correctIndex, buttonEl) {
+            const card = document.getElementById(`question-card-${questionId}`);
+            const optionsGroup = document.getElementById(`options-group-${questionId}`);
+            const allButtons = optionsGroup.querySelectorAll('.option-btn');
+            const explanationDiv = document.getElementById(`explanation-${questionId}`);
+
+            if (userAnswers[questionId] !== undefined) return;
+
+            userAnswers[questionId] = selectedIndex;
+            const isCorrect = (selectedIndex === correctIndex);
+
+            allButtons.forEach(btn => {
+                const orig = parseInt(btn.getAttribute('data-original'));
+                btn.disabled = true;
+                const icon = btn.querySelector('.icon-status');
+
+                if (orig === correctIndex) {
+                    btn.className = "option-btn w-full text-left p-3.5 rounded-xl border border-emerald-500 bg-emerald-50 text-emerald-900 text-sm font-semibold flex items-center justify-between cursor-default";
+                    icon.className = "fa-solid fa-circle-check text-emerald-600 opacity-100";
+                } else if (orig === selectedIndex && !isCorrect) {
+                    btn.className = "option-btn w-full text-left p-3.5 rounded-xl border border-rose-500 bg-rose-50 text-rose-900 text-sm font-semibold flex items-center justify-between cursor-default";
+                    icon.className = "fa-solid fa-circle-xmark text-rose-600 opacity-100";
+                } else {
+                    btn.className = "option-btn w-full text-left p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-400 text-sm font-medium flex items-center justify-between cursor-default opacity-60";
+                }
+            });
+
+            const qObj = quizData.find(q => q.id === questionId);
+            explanationDiv.className = `mt-4 p-4 rounded-xl text-sm border ${isCorrect ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-rose-50 border-rose-200 text-rose-800'}`;
+            explanationDiv.innerHTML = `
+                <div class="font-bold mb-1 flex items-center">
+                    <i class="fa-solid ${isCorrect ? 'fa-circle-check text-emerald-600' : 'fa-circle-exclamation text-rose-600'} mr-2"></i>
+                    ${isCorrect ? 'Correct!' : 'Incorrect.'}
+                </div>
+                <p>${qObj.explanation}</p>
+            `;
+            explanationDiv.classList.remove('hidden');
+
+            updateScoreDisplay();
+        }
+
+        // Filter Quiz Categories
+        function filterQuiz(category) {
+            currentFilter = category;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === category) {
+                    btn.className = "px-3 py-1 rounded-lg text-xs font-medium bg-indigo-600 text-white transition filter-btn active";
+                } else {
+                    btn.className = "px-3 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 hover:bg-slate-200 transition filter-btn";
+                }
+            });
+
+            renderQuiz();
+        }
+
+        // Reset Quiz
+        function resetQuiz() {
+            userAnswers = {};
+            renderQuiz();
+        }
+
+        // Update Score Counter
+        function updateScoreDisplay() {
+            let answeredCount = Object.keys(userAnswers).length;
+            let correctCount = 0;
+
+            for (let qId in userAnswers) {
+                const q = quizData.find(item => item.id == qId);
+                if (q && userAnswers[qId] === q.correct) {
+                    correctCount++;
+                }
+            }
+
+            document.getElementById('score-display').innerText = correctCount;
+            document.getElementById('total-answered').innerText = answeredCount;
+        }
+
+        // Render Key Expressions Grid (12 items -> 4 rows of 3 columns)
+        function renderExpressions() {
+            const grid = document.getElementById('expressions-grid');
+            grid.innerHTML = '';
+
+            expressionsData.forEach((item, idx) => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between";
+                card.innerHTML = `
+                    <div>
+                        <div class="h-40 w-full overflow-hidden relative bg-slate-100">
+                            <img src="${item.img}" alt="${item.phrase}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/400x200/e2e8f0/475569?text=Expression+${idx+1}'">
+                            <div class="absolute top-3 left-3 bg-slate-900/70 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-lg">
+                                #0${idx+1}
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-slate-900 mb-1">${item.phrase}</h3>
+                            <p class="text-xs font-semibold text-indigo-600 mb-3"><i class="fa-solid fa-language mr-1"></i> FR: ${item.fr}</p>
+                            <p class="text-sm text-slate-600 mb-4">${item.def}</p>
+                            <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 text-xs text-slate-700 italic">
+                                <span class="font-bold not-italic text-slate-900 block mb-1"><i class="fa-solid fa-quote-left text-indigo-500 mr-1"></i> Example:</span>
+                                "${item.example}"
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Render Roleplay Dialogue
+        let allTranslationsVisible = false;
+
+        function renderDialogue() {
+            const container = document.getElementById('dialogue-container');
+            container.innerHTML = '';
+
+            dialogueData.forEach((line, idx) => {
+                const isEven = idx % 2 === 0;
+                const wrapper = document.createElement('div');
+                wrapper.className = `flex flex-col sm:flex-row items-start gap-4 p-4 rounded-xl ${isEven ? 'bg-slate-50/70 border border-slate-100' : 'bg-indigo-50/30 border border-indigo-100/50'}`;
+                
+                wrapper.innerHTML = `
+                    <div class="flex items-center space-x-3 sm:w-64 flex-shrink-0">
+                        <div class="w-10 h-10 rounded-full ${isEven ? 'bg-indigo-600' : 'bg-slate-700'} text-white font-bold text-sm flex items-center justify-center shadow-sm">
+                            ${line.speaker.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">${line.speaker}</h4>
+                            <span class="text-xs text-slate-500">${line.role}</span>
+                        </div>
+                    </div>
+                    <div class="flex-grow space-y-2">
+                        <p class="text-slate-800 text-sm sm:text-base font-medium leading-relaxed">${line.en}</p>
+                        <div id="trans-${idx}" class="${allTranslationsVisible ? '' : 'hidden'} text-xs text-indigo-700 bg-indigo-50 p-3 rounded-lg border border-indigo-100 transition">
+                            <span class="font-semibold"><i class="fa-solid fa-language mr-1"></i> Traduction :</span> ${line.fr}
+                        </div>
+                    </div>
+                    <button onclick="toggleTranslation(${idx})" class="text-xs text-slate-400 hover:text-indigo-600 transition p-1.5 rounded-md hover:bg-white self-end sm:self-center" title="Toggle translation">
+                        <i class="fa-solid fa-eye" id="eye-${idx}"></i>
+                    </button>
+                `;
+                container.appendChild(wrapper);
+            });
+        }
+
+        // Toggle Single Translation
+        function toggleTranslation(idx) {
+            const transDiv = document.getElementById(`trans-${idx}`);
+            transDiv.classList.toggle('hidden');
+        }
+
+        // Toggle All Translations
+        function toggleAllTranslations() {
+            allTranslationsVisible = !allTranslationsVisible;
+            const btn = document.getElementById('translate-toggle-btn');
+            if (allTranslationsVisible) {
+                btn.innerHTML = `<i class="fa-solid fa-language mr-1.5"></i> Hide All French Translations`;
+                btn.className = "bg-slate-700 hover:bg-slate-800 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-sm";
+            } else {
+                btn.innerHTML = `<i class="fa-solid fa-language mr-1.5"></i> Show All French Translations`;
+                btn.className = "bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-sm";
+            }
+            renderDialogue();
+        }
+    </script>
+</body>
+</html>

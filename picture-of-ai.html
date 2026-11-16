@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Picture of AI Is Out of Date - Interactive Learning Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ai: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            cyan: '#06b6d4',
+                            purple: '#a855f7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .glassmorphism {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .ai-gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 glassmorphism text-white px-4 lg:px-8 py-3.5 flex items-center justify-between shadow-xl">
+        <div class="flex items-center space-x-3">
+            <div class="bg-gradient-to-tr from-cyan-500 via-indigo-500 to-purple-600 p-2.5 rounded-xl text-white font-bold text-xl flex items-center justify-center w-10 h-10 shadow-lg shadow-cyan-500/20">
+                <i class="fa-solid fa-microchip"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-base md:text-lg tracking-tight">Local Optima Insights</h1>
+                <p class="text-xs text-slate-400 hidden sm:block">AI Models Evolution & Reasoning Benchmark Analysis</p>
+            </div>
+        </div>
+        <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
+            <a href="#takeaways" class="hover:text-cyan-400 transition-colors">4 Key Takeaways</a>
+            <a href="#quiz" class="hover:text-cyan-400 transition-colors">Interactive Quiz</a>
+            <a href="#expressions" class="hover:text-cyan-400 transition-colors">12 AI Terms</a>
+            <a href="#dialogue" class="hover:text-cyan-400 transition-colors">Bilingual Dialogue</a>
+        </nav>
+        <a href="https://youtu.be/aZFCrRGSRsQ?si=S1N6LdFK4jV4Ntxp" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white text-xs md:text-sm font-semibold px-4 py-2 rounded-full transition-all shadow-md hover:shadow-red-500/30">
+            <i class="fa-brands fa-youtube text-lg"></i>
+            <span>Watch Original</span>
+        </a>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+        <!-- Hero Section -->
+        <section class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950 border border-slate-800 p-6 sm:p-10 shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold px-3 py-1.5 rounded-full">
+                        <i class="fa-solid fa-atom text-xs"></i> AI Reasoning Paradigm Shift (2023–2026)
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                        Your Picture of AI Is <span class="ai-gradient-text">Out of Date</span>
+                    </h2>
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                        Testing 21 different models demonstrates how modern AI has evolved beyond viral failure traps like the <strong class="text-white">"strawberry" letter count</strong> or the <strong class="text-white font-medium">car wash logic riddle</strong>. Modern models no longer just guess next tokens—they <strong class="text-cyan-400">think before answering</strong>.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#quiz" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold px-6 py-3 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-cyan-500/20">
+                            <i class="fa-solid fa-brain"></i> Take Knowledge Assessment
+                        </a>
+                        <a href="#takeaways" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold px-6 py-3 rounded-xl transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb"></i> View Core Insights
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Video Card Preview -->
+                <div class="lg:col-span-5">
+                    <div class="relative group rounded-2xl overflow-hidden border border-slate-700 bg-slate-950 shadow-2xl">
+                        <div class="aspect-video w-full bg-slate-800 relative flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="AI Neural Network Visual" class="object-cover w-full h-full opacity-60 group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                            <a href="https://youtu.be/aZFCrRGSRsQ?si=S1N6LdFK4jV4Ntxp" target="_blank" rel="noopener noreferrer" class="absolute flex items-center justify-center w-16 h-16 rounded-full bg-red-600 text-white text-2xl shadow-xl hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </a>
+                        </div>
+                        <div class="p-4 bg-slate-900/90 border-t border-slate-800">
+                            <h3 class="font-bold text-white text-sm line-clamp-1">Your Picture of AI Is Out of Date</h3>
+                            <p class="text-xs text-slate-400 mt-1 flex items-center gap-2">
+                                <span><i class="fa-solid fa-user-gear"></i> Local Optima</span> • <span><i class="fa-regular fa-clock"></i> AI Benchmarking</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 Key Takeaways Section -->
+        <section id="takeaways" class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-diagram-project text-cyan-400"></i> Key Architectural Takeaways
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    Discover how AI evaluation has shifted from instant pattern matching to private reasoning chains.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="takeaways-grid">
+                <!-- JavaScript will inject takeaways here -->
+            </div>
+        </section>
+
+        <!-- Interactive Multiple Choice Quiz (QCM) -->
+        <section id="quiz" class="bg-slate-900/90 rounded-3xl border border-slate-800 p-6 sm:p-10 shadow-2xl space-y-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3">
+                        <i class="fa-solid fa-list-check text-purple-400"></i> Interactive Knowledge Assessment (QCM)
+                    </h2>
+                    <p class="text-slate-400 text-sm mt-1">20 questions with equal answer distribution (5 options per letter A, B, C, D).</p>
+                </div>
+
+                <!-- Quiz Live Score & Progress -->
+                <div class="bg-slate-950 px-5 py-3 rounded-2xl border border-slate-800 flex items-center gap-6 w-full md:w-auto justify-between">
+                    <div>
+                        <span class="text-xs text-slate-400 block uppercase font-semibold">Total Score</span>
+                        <span class="text-2xl font-black text-cyan-400" id="score-text">0 / 20</span>
+                    </div>
+                    <div class="w-32 bg-slate-800 rounded-full h-3 overflow-hidden border border-slate-700">
+                        <div class="bg-gradient-to-r from-cyan-400 via-indigo-500 to-purple-500 h-full w-0 transition-all duration-300" id="quiz-progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Category Navigation Tabs -->
+            <div class="flex flex-wrap gap-2 border-b border-slate-800 pb-4" id="quiz-tabs">
+                <button onclick="switchTab('comprehension')" id="tab-comprehension" class="quiz-tab px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 bg-cyan-600 text-white shadow-lg">
+                    <i class="fa-solid fa-book-open"></i> 1. Comprehension (5)
+                </button>
+                <button onclick="switchTab('vocabulary')" id="tab-vocabulary" class="quiz-tab px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-750">
+                    <i class="fa-solid fa-spell-check"></i> 2. AI Vocabulary (5)
+                </button>
+                <button onclick="switchTab('grammar')" id="tab-grammar" class="quiz-tab px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-750">
+                    <i class="fa-solid fa-code-branch"></i> 3. Grammar (5)
+                </button>
+                <button onclick="switchTab('pronunciation')" id="tab-pronunciation" class="quiz-tab px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-750">
+                    <i class="fa-solid fa-volume-high"></i> 4. Pronunciation (5)
+                </button>
+            </div>
+
+            <!-- Questions Container -->
+            <div id="quiz-questions-container" class="space-y-6">
+                <!-- Dynamically rendered questions per tab -->
+            </div>
+        </section>
+
+        <!-- 12 Common Expressions & Vocabulary (Illustrated) -->
+        <section id="expressions" class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-language text-emerald-400"></i> 12 Key AI Expressions & Technical Idioms
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    Master essential vocabulary used in modern artificial intelligence discussions with French translations and daily life examples.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="expressions-grid">
+                <!-- JavaScript will inject expressions here -->
+            </div>
+        </section>
+
+        <!-- Interactive Bilingual Dialogue Section -->
+        <section id="dialogue" class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 rounded-3xl border border-indigo-800/40 p-6 sm:p-10 shadow-2xl space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800 pb-6">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3">
+                        <i class="fa-solid fa-comments text-amber-400"></i> Interactive Tech Dialogue
+                    </h2>
+                    <p class="text-slate-300 text-sm mt-1">Elena and Marcus discuss how AI reasoning models solved legacy benchmarks.</p>
+                </div>
+
+                <!-- Language Toggle Button -->
+                <button id="lang-toggle-btn" onclick="toggleDialogueLanguage()" class="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20 text-sm">
+                    <i class="fa-solid fa-language text-lg"></i>
+                    <span id="lang-toggle-text">Passer au Français</span>
+                </button>
+            </div>
+
+            <!-- Dialogue Chat Feed -->
+            <div class="space-y-4 max-w-4xl mx-auto pt-2" id="dialogue-container">
+                <!-- Dynamically populated dialogue bubbles -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-xs text-slate-500 mt-16">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 Local Optima AI Analysis Hub. Based on empirical model evaluations.</p>
+            <p class="flex items-center gap-2 text-slate-400">
+                <span>Created for Interactive Language & AI Literacy</span>
+                <i class="fa-solid fa-microchip text-cyan-400"></i>
+            </p>
+        </div>
+    </footer>
+
+    <!-- App Logic Script -->
+    <script>
+        // --- 1. TAKEAWAYS DATA ---
+        const takeaways = [
+            {
+                time: "3:01, 5:31",
+                title: "The Power of 'Thinking' Tokens",
+                icon: "fa-brain-circuit",
+                color: "from-cyan-500 to-blue-600",
+                description: "Models that generate hidden internal scratchpads ('reasoning tokens') before producing final answers drastically reduce errors in multi-step math and letter counting."
+            },
+            {
+                time: "10:34",
+                title: "The Problem with Expectation Bias",
+                icon: "fa-bullseye-pointer",
+                color: "from-purple-500 to-indigo-600",
+                description: "AI errors often stem from predicting what a prompt *usually* asks (e.g., assuming a classic riddle variant or standard 5-finger hand) instead of carefully reading the custom input."
+            },
+            {
+                time: "9:10, 10:34",
+                title: "Jagged Performance Capabilities",
+                icon: "fa-chart-line-down",
+                color: "from-rose-500 to-amber-600",
+                description: "An AI can perform advanced code refactoring or philosophical synthesis while simultaneously tripping up on simple visual anomalies, demonstrating uneven ('jagged') skill profiles."
+            },
+            {
+                time: "11:23",
+                title: "Evolution of Benchmark Testing",
+                icon: "fa-vial-circle-check",
+                color: "from-emerald-500 to-teal-600",
+                description: "Standard public benchmarks quickly get contaminated in training datasets. True AI evaluation requires fresh, non-viral prompts that force novel step-by-step reasoning."
+            }
+        ];
+
+        // --- 2. QCM QUIZ DATA (20 Questions - 5 per category, strict 5A, 5B, 5C, 5D correct answers) ---
+        // Answer Key Map:
+        // Comprehension:  Q1: A, Q2: B, Q3: C, Q4: D, Q5: A  (A:2, B:1, C:1, D:1)
+        // Vocabulary:     Q1: B, Q2: C, Q3: D, Q4: A, Q5: B  (A:1, B:2, C:1, D:1)
+        // Grammar:        Q1: C, Q2: D, Q3: A, Q4: B, Q5: C  (A:1, B:1, C:2, D:1)
+        // Pronunciation:  Q1: D, Q2: A, Q3: B, Q4: C, Q5: D  (A:1, B:1, C:1, D:2)
+        // GRAND TOTAL: A=5, B=5, C=5, D=5!
+
+        const quizData = {
+            comprehension: [
+                {
+                    id: "c1",
+                    question: "According to the video, what is the primary reason modern AI models can now solve previously failing riddles?",
+                    options: [
+                        "They utilize hidden 'thinking' cycles to deliberate before responding.",
+                        "They have memorized every single riddle on the internet.",
+                        "They are equipped with larger graphic processing units (GPUs).",
+                        "They automatically consult search engines in real-time."
+                    ],
+                    correct: 0, // A
+                    explanation: "Reasoning models generate internal chain-of-thought tokens before producing their final output, allowing step-by-step problem solving."
+                },
+                {
+                    id: "c2",
+                    question: "Why do AI models sometimes fail at simple customized prompts?",
+                    options: [
+                        "Their hardware overheats during arithmetic computations.",
+                        "They suffer from expectation bias by predicting standard dataset answers.",
+                        "They are programmed to refuse answering trick questions.",
+                        "They lack internet connectivity during user sessions."
+                    ],
+                    correct: 1, // B
+                    explanation: "Expectation bias causes models to assume a prompt is a standard, famous internet question rather than analyzing specific novel tweaks."
+                },
+                {
+                    id: "c3",
+                    question: "What does the term 'Jagged Performance' imply regarding current AI capabilities?",
+                    options: [
+                        "Models perform slowly during peak internet traffic hours.",
+                        "AI models render images with sharp, jagged geometric edges.",
+                        "A model can excel at complex logic while failing at simple intuitive tasks.",
+                        "Models lose accuracy when processing long text documents."
+                    ],
+                    correct: 2, // C
+                    explanation: "'Jagged performance' describes the paradoxical gap where AI solves high-level calculus but stumbles on subtle visual or logical edge cases."
+                },
+                {
+                    id: "c4",
+                    question: "Why does the creator argue that traditional AI benchmarks are outdated?",
+                    options: [
+                        "Benchmark tests take too many days to run on modern computers.",
+                        "Old benchmark tests were written exclusively in obsolete programming languages.",
+                        "Modern users no longer care about logic or mathematical accuracy.",
+                        "Famous public benchmark questions become contaminated within training data."
+                    ],
+                    correct: 3, // D
+                    explanation: "Static public benchmarks leak into training datasets, making models look smart via memorization rather than true reasoning."
+                },
+                {
+                    id: "c5",
+                    question: "How many different AI models were evaluated across the 2023–2026 period in Local Optima's study?",
+                    options: [
+                        "21 different models",
+                        "5 models",
+                        "50 models",
+                        "100 models"
+                    ],
+                    correct: 0, // A
+                    explanation: "The video tracked the evolution of 21 distinct LLMs to document the transition from simple next-token prediction to reasoning models."
+                }
+            ],
+            vocabulary: [
+                {
+                    id: "v1",
+                    question: "In artificial intelligence, what is a 'Benchmark'?",
+                    options: [
+                        "A physical workbench used for assembling robotic units.",
+                        "A standardized test used to evaluate and compare model performance.",
+                        "A security firewall preventing data leaks.",
+                        "A database storing user passwords."
+                    ],
+                    correct: 1, // B
+                    explanation: "A benchmark is a standardized set of tasks or questions used to measure and compare AI capabilities objectively."
+                },
+                {
+                    id: "v2",
+                    question: "What does 'Chain of Thought' (CoT) prompting enable an AI to do?",
+                    options: [
+                        "Connect to multiple cloud servers at the same time.",
+                        "Translate sentences into ten languages simultaneously.",
+                        "Break down complex problems into step-by-step intermediate reasoning steps.",
+                        "Generate synthetic voice audio automatically."
+                    ],
+                    correct: 2, // C
+                    explanation: "'Chain of Thought' encourages models to output intermediate reasoning steps, drastically improving accuracy on complex logic."
+                },
+                {
+                    id: "v3",
+                    question: "What is an 'Edge Case' in software and AI evaluation?",
+                    options: [
+                        "The black border surrounding a user interface.",
+                        "A prompt submitted from the geographic edge of a network.",
+                        "A common query answered millions of times daily.",
+                        "An uncommon or extreme operating scenario that tests system boundaries."
+                    ],
+                    correct: 3, // D
+                    explanation: "An edge case is a rare or unusual situation that tests whether an algorithm can handle unexpected inputs gracefully."
+                },
+                {
+                    id: "v4",
+                    question: "What does 'Data Contamination' mean in machine learning?",
+                    options: [
+                        "Test dataset items mistakenly leaking into the model's training data.",
+                        "Computer viruses corrupting hard drive storage files.",
+                        "Formatting mistakes in a spreadsheet database.",
+                        "User comments flooding a public server."
+                    ],
+                    correct: 0, // A
+                    explanation: "Data contamination occurs when benchmark questions exist in training data, causing models to memorize answers rather than reason."
+                },
+                {
+                    id: "v5",
+                    question: "What is a 'Reasoning Model' in the context of modern AI?",
+                    options: [
+                        "A computer monitor designed for high-resolution graphics.",
+                        "An AI model optimized to allocate compute time to think before generating an answer.",
+                        "A traditional database query processor.",
+                        "A chatbot designed solely for customer service greetings."
+                    ],
+                    correct: 1, // B
+                    explanation: "Reasoning models spend inference computation ('thinking tokens') to systematically analyze problems before responding."
+                }
+            ],
+            grammar: [
+                {
+                    id: "g1",
+                    question: "Which sentence correctly uses the Past Perfect tense to describe AI model evolution?",
+                    options: [
+                        "AI models fail riddles until developers update them.",
+                        "AI models were failing riddles before new versions arrive.",
+                        "AI models had failed those riddles for years before reasoning architectures were introduced.",
+                        "AI models have fail those riddles before 2026."
+                    ],
+                    correct: 2, // C
+                    explanation: "Option C correctly uses the Past Perfect ('had failed') for an action completed before another past event ('were introduced')."
+                },
+                {
+                    id: "g2",
+                    question: "Identify the sentence that correctly uses a passive voice construction:",
+                    options: [
+                        "Local Optima tested twenty-one models in the benchmark study.",
+                        "The benchmarks were created by software engineers to test AI.",
+                        "Reasoning tokens allow the model to think before answering.",
+                        "Many researchers write fresh prompts every month."
+                    ],
+                    correct: 3, // Wait, G2 needs D correct! Let's adjust choices so D is the unambiguous passive sentence:
+                    options: [
+                        "Local Optima tested twenty-one models across three years.",
+                        "The creator published a video about AI reasoning.",
+                        "AI models make mistakes on customized prompts.",
+                        "Twenty-one different AI models were evaluated in the comprehensive study."
+                    ],
+                    correct: 3, // D
+                    explanation: "Option D is in passive voice ('were evaluated'), focusing on the object rather than the agent."
+                },
+                {
+                    id: "g3",
+                    question: "Which sentence correctly applies an adverb to modify an adjective?",
+                    options: [
+                        "The new AI model performed significantly better on multi-digit multiplication.",
+                        "The new AI model performed significant better on multi-digit multiplication.",
+                        "The new AI model performed significance better on multi-digit multiplication.",
+                        "The new AI model performed more significant better on multi-digit multiplication."
+                    ],
+                    correct: 0, // A
+                    explanation: "Option A correctly uses the adverb 'significantly' to modify the comparative adjective 'better'."
+                },
+                {
+                    id: "g4",
+                    question: "Select the sentence with the correct inverted structure after 'Not only':",
+                    options: [
+                        "Not only AI models solve riddles, but they also write code.",
+                        "Not only do modern AI models solve riddles, but they also generate detailed reasoning chains.",
+                        "Not only AI models are solving riddles, but also writing code.",
+                        "Not only modern AI models solved riddles, but they generate logic."
+                    ],
+                    correct: 1, // B
+                    explanation: "Option B correctly applies subject-auxiliary inversion ('Not only do modern AI models solve...') after a negative adverbial opener."
+                },
+                {
+                    id: "g5",
+                    question: "Which sentence correctly uses 'fewer' versus 'less'?",
+                    options: [
+                        "Modern reasoning models make less errors than legacy models.",
+                        "Modern reasoning models make lesser errors than legacy models.",
+                        "Modern reasoning models make fewer errors on complex logic puzzles.",
+                        "Modern reasoning models make few errors than legacy models."
+                    ],
+                    correct: 2, // C
+                    explanation: "'Errors' is a countable noun, so 'fewer' must be used instead of 'less'."
+                }
+            ],
+            pronunciation: [
+                {
+                    id: "p1",
+                    question: "Where is the primary stress placed in the word 'PARADIGM' /ˈpærədaɪm/?",
+                    options: [
+                        "On the second syllable: pa-RA-digm",
+                        "On the third syllable: pa-ra-DIGM",
+                        "Stress is shared equally across both syllables.",
+                        "On the first syllable: PA-ra-digm"
+                    ],
+                    correct: 3, // D
+                    explanation: "'PARADIGM' is pronounced with primary stress on the first syllable: /ˈpær.ə.daɪm/."
+                },
+                {
+                    id: "p2",
+                    question: "Which word has its primary stress on the FIRST syllable?",
+                    options: [
+                        "BENCHMARK /ˈbentʃmɑːrk/",
+                        "EVALUATE /ɪˈvæljueɪt/",
+                        "BIAS /baɪ.əs/ -- Wait, let's pick clean option!",
+                        "CONTAMINATION /kənˌtæmɪˈneɪʃn/"
+                    ],
+                    // Let's ensure option A is unambiguously stress on 1st syllable:
+                    options: [
+                        "BENCHMARK /ˈbentʃ.mɑːrk/",
+                        "ALGORITHM /... wait, both are 1st!",
+                        "REASONING /... wait!",
+                    ],
+                    // Let's refine P2 options cleanly:
+                    options: [
+                        "BENCHMARK /ˈbentʃ.mɑːrk/",
+                        "EVALUATE /ɪˈvæl.ju.eɪt/",
+                        "ANOMALY /əˈnɒm.ə.li/",
+                        "CONTAMINATION /kənˌtæm.ɪˈneɪ.ʃən/"
+                    ],
+                    correct: 0, // A
+                    explanation: "'BENCHMARK' has primary stress on the first syllable /ˈbentʃ.mɑːrk/. The others are stressed on later syllables."
+                },
+                {
+                    id: "p3",
+                    question: "How is the silent letter in the word 'SUBTLE' /ˈsʌt.əl/ handled in English?",
+                    options: [
+                        "The letter 'u' is silent.",
+                        "The letter 'b' is completely silent.",
+                        "The letter 't' is silent.",
+                        "The letter 'l' is silent."
+                    ],
+                    correct: 1, // B
+                    explanation: "In 'subtle' /ˈsʌt.əl/, the letter 'b' is silent."
+                },
+                {
+                    id: "p4",
+                    question: "Which word contains the same vowel sound as 'THINK' /ɪ/?",
+                    options: [
+                        "BIAS /ˈbaɪ.əs/",
+                        "CHAIN /tʃeɪn/",
+                        "RIDDLE /ˈrɪd.əl/",
+                        "PROMPT /prɒmpt/"
+                    ],
+                    correct: 2, // C
+                    explanation: "'Riddle' /ˈrɪd.əl/ contains the short /ɪ/ vowel sound, matching 'think' /θɪŋk/."
+                },
+                {
+                    id: "p5",
+                    question: "How is the suffix '-tion' pronounced in words like 'EVALUATION' /ɪˌvæl.juˈeɪ.ʃən/?",
+                    options: [
+                        "Pronounced as /ti.oːn/",
+                        "Pronounced as /teɪ.ʃən/",
+                        "Pronounced as /tʃən/",
+                        "Pronounced as /ʃən/ (shun)"
+                    ],
+                    correct: 3, // D
+                    explanation: "The suffix '-tion' is regularly pronounced as /ʃən/ (rhyming with 'shun')."
+                }
+            ]
+        };
+
+        const userAnswers = {};
+
+        // --- 3. 12 KEY EXPRESSIONS DATA ---
+        const expressions = [
+            {
+                term: "Out of Date",
+                translation: "Périmé / Dépassé",
+                definition: "No longer current, accurate, or aligned with modern reality.",
+                example: "Assuming AI still fails at simple letter counting is an out-of-date perspective.",
+                image: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Thinking Tokens",
+                translation: "Jetons de réflexion interne",
+                definition: "Private, non-displayed model output used for reasoning before giving an answer.",
+                example: "Reasoning models spend 500 thinking tokens checking edge cases before generating code.",
+                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Expectation Bias",
+                translation: "Biais d'attente / Biais de prédiction",
+                definition: "The tendency of an AI to output what it expects from training rather than analyzing custom prompt details.",
+                example: "The AI failed the custom riddle because expectation bias made it recite a classic version.",
+                image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Jagged Performance",
+                translation: "Performance en dents de scie",
+                definition: "Uneven capabilities where a system performs brilliantly at complex tasks but stumbles on simple ones.",
+                example: "His software displays jagged performance—it writes quantum math but misinterprets plain layout rules.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Edge Case",
+                translation: "Cas limite / Cas particulier",
+                definition: "An unusual input parameter or situation that tests the boundaries of an algorithm.",
+                example: "Testing an image model with a six-fingered hand is a classic edge case.",
+                image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Data Contamination",
+                translation: "Contamination des données",
+                definition: "When evaluation benchmark questions leak into the AI's training dataset.",
+                example: "High benchmark scores can be misleading if data contamination allowed the model to memorize the test.",
+                image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Scratchpad",
+                translation: "Zone de brouillon interne",
+                definition: "An internal workspace where an AI writes intermediate steps during logical deduction.",
+                example: "The LLM used its scratchpad to multiply large numbers step by step.",
+                image: "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Next-Token Prediction",
+                translation: "Prédiction du prochain jeton",
+                definition: "The foundational process of predicting the most statistically likely word sequence.",
+                example: "Early LLMs relied purely on next-token prediction without deliberative reasoning.",
+                image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Failure Point",
+                translation: "Point de défaillance / Piège",
+                definition: "A specific input or condition that consistently causes a system to produce errors.",
+                example: "Counting the letter 'r' in 'strawberry' was a notorious failure point for 2023 models.",
+                image: "https://images.unsplash.com/photo-1594322436404-5a0526db4d13?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Benchmark Test",
+                translation: "Test d'évaluation / Test étalon",
+                definition: "A standardized evaluation suite used to measure capabilities across different systems.",
+                example: "Engineers designed a new benchmark test to measure spatial reasoning in AI.",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Step-by-Step Reasoning",
+                translation: "Raisonnement étape par étape",
+                definition: "Solving a problem systematically by breaking it down into sequential logical deductions.",
+                example: "Step-by-step reasoning helps modern models solve complex word puzzles without guessing.",
+                image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Paradigm Shift",
+                translation: "Changement de paradigme",
+                definition: "A fundamental change in approach, architecture, or underlying assumptions.",
+                example: "Moving from simple language prediction to reasoning models represents a massive paradigm shift.",
+                image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // --- 4. BILINGUAL DIALOGUE DATA ---
+        let currentLang = 'en'; // 'en' or 'fr'
+
+        const dialogueData = [
+            {
+                speaker: "Elena",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80",
+                role: "AI Research Engineer",
+                side: "left",
+                en: "Did you watch Local Optima's latest video? It completely changes how we evaluate model benchmarks!",
+                fr: "As-tu vu la dernière vidéo de Local Optima ? Elle change complètement notre façon d'évaluer les tests d'IA !"
+            },
+            {
+                speaker: "Marcus",
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
+                role: "Software Architect",
+                side: "right",
+                en: "I did! It's wild to see how riddles that defeated AI in 2023—like counting 'r's in 'strawberry'—are easily solved now.",
+                fr: "Oui ! C'est fou de voir comment des énigmes qui mettaient l'IA en échec en 2023—comme compter les 'r' dans 'strawberry'—sont aujourd'hui résolues facilement."
+            },
+            {
+                speaker: "Elena",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80",
+                role: "AI Research Engineer",
+                side: "left",
+                en: "Exactly. The big breakthrough isn't just bigger datasets; it's giving models 'thinking tokens' to compute reasoning privately before generating the answer.",
+                fr: "Exactement. La grande percée ne vient pas seulement de données plus vastes ; c'est d'accorder aux modèles des 'jetons de réflexion' pour raisonner en privé avant de répondre."
+            },
+            {
+                speaker: "Marcus",
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
+                role: "Software Architect",
+                side: "right",
+                en: "That makes total sense. But what about expectation bias? Why do models still get tricked when you modify a classic riddle?",
+                fr: "C'est très logique. Mais qu'en est-il du biais d'attente ? Pourquoi les modèles se font-ils encore piéger lorsqu'on modifie une énigme classique ?"
+            },
+            {
+                speaker: "Elena",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80",
+                role: "AI Research Engineer",
+                side: "left",
+                en: "Because models still lean on statistical training expectations! If a prompt looks 90% like a famous riddle, the AI tries to answer the version it remembers rather than your prompt.",
+                fr: "Parce que les modèles s'appuient toujours sur les prédictions statistiques de leur entraînement ! Si une question ressemble à 90% à une énigme connue, l'IA répond à la version mémorisée plutôt qu'à ton texte exact."
+            },
+            {
+                speaker: "Marcus",
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
+                role: "Software Architect",
+                side: "right",
+                en: "So to truly test AI today, we need brand-new, non-viral prompts that force step-by-step logic. Static public benchmarks are officially out of date!",
+                fr: "Donc pour tester l'IA aujourd'hui, il nous faut des questions inédites et non virales qui forcent une logique étape par étape. Les tests publics statiques sont officiellement périmés !"
+            }
+        ];
+
+        // --- RENDER FUNCTIONS ---
+
+        // 1. Render Takeaways
+        function renderTakeaways() {
+            const grid = document.getElementById('takeaways-grid');
+            grid.innerHTML = takeaways.map(t => `
+                <div class="group bg-slate-900/90 hover:bg-slate-900 rounded-2xl border border-slate-800 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-700 shadow-xl flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono font-semibold bg-slate-950 border border-slate-800 text-cyan-400 px-3 py-1 rounded-full flex items-center gap-1.5">
+                                <i class="fa-solid fa-clock"></i> Timestamps: ${t.time}
+                            </span>
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br ${t.color} flex items-center justify-center text-white text-lg shadow-md">
+                                <i class="fa-solid ${t.icon}"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">${t.title}</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">${t.description}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 2. Render Quiz Questions
+        let activeTab = 'comprehension';
+
+        function switchTab(tabKey) {
+            activeTab = tabKey;
+            
+            document.querySelectorAll('.quiz-tab').forEach(btn => {
+                btn.className = 'quiz-tab px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 bg-slate-800 text-slate-300 hover:bg-slate-750';
+            });
+            const activeBtn = document.getElementById(`tab-${tabKey}`);
+            if(activeBtn) {
+                activeBtn.className = 'quiz-tab px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 bg-cyan-600 text-white shadow-lg';
+            }
+
+            renderQuizQuestions();
+        }
+
+        function renderQuizQuestions() {
+            const container = document.getElementById('quiz-questions-container');
+            const questions = quizData[activeTab];
+
+            container.innerHTML = questions.map((q, idx) => {
+                const answered = userAnswers[q.id];
+                const isSelected = (optIdx) => answered && answered.selected === optIdx;
+
+                return `
+                    <div class="bg-slate-950/80 rounded-2xl border border-slate-800 p-6 space-y-4 shadow-md">
+                        <div class="flex items-start justify-between gap-4">
+                            <h3 class="font-bold text-white text-base sm:text-lg flex items-start gap-3">
+                                <span class="bg-slate-900 text-cyan-400 font-mono text-sm px-2.5 py-1 rounded-lg border border-slate-800">Q${idx + 1}</span>
+                                <span>${q.question}</span>
+                            </h3>
+                        </div>
+
+                        <!-- 4 Options -->
+                        <div class="grid grid-cols-1 gap-3 pt-2">
+                            ${q.options.map((opt, optIdx) => {
+                                const optionLetter = String.fromCharCode(65 + optIdx); // A, B, C, D
+                                let btnStyle = "bg-slate-900 hover:bg-slate-800 border-slate-800 text-slate-200";
+
+                                if (answered) {
+                                    if (optIdx === q.correct) {
+                                        btnStyle = "bg-emerald-950/90 border-emerald-500 text-emerald-200 font-medium";
+                                    } else if (isSelected(optIdx)) {
+                                        btnStyle = "bg-rose-950/90 border-rose-500 text-rose-200 font-medium";
+                                    } else {
+                                        btnStyle = "bg-slate-900/40 border-slate-900 text-slate-600 opacity-50";
+                                    }
+                                }
+
+                                return `
+                                    <button 
+                                        onclick="handleAnswer('${q.id}', ${optIdx})"
+                                        ${answered ? 'disabled' : ''}
+                                        class="w-full text-left p-3.5 rounded-xl border text-sm sm:text-base transition-all flex items-start gap-3 ${btnStyle} ${!answered ? 'hover:border-cyan-500 hover:text-white' : ''}"
+                                    >
+                                        <span class="font-mono font-bold text-xs uppercase px-2 py-0.5 rounded bg-slate-950 border border-slate-800 text-slate-300">
+                                            ${optionLetter}
+                                        </span>
+                                        <span class="flex-1">${opt}</span>
+                                        ${answered && optIdx === q.correct ? '<i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>' : ''}
+                                        ${answered && isSelected(optIdx) && optIdx !== q.correct ? '<i class="fa-solid fa-circle-xmark text-rose-400 text-lg"></i>' : ''}
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+
+                        <!-- Feedback Explanation -->
+                        ${answered ? `
+                            <div class="p-4 rounded-xl text-xs sm:text-sm border transition-all ${answered.selected === q.correct ? 'bg-emerald-900/20 border-emerald-700/60 text-emerald-200' : 'bg-slate-900 border-slate-800 text-slate-300'}">
+                                <p class="font-bold mb-1 flex items-center gap-2 text-cyan-400">
+                                    <i class="fa-solid fa-circle-info"></i> Explanation:
+                                </p>
+                                <p class="leading-relaxed">${q.explanation}</p>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function handleAnswer(questionId, selectedIdx) {
+            let foundQuestion = null;
+            for (const category in quizData) {
+                const q = quizData[category].find(item => item.id === questionId);
+                if (q) {
+                    foundQuestion = q;
+                    break;
+                }
+            }
+
+            if (!foundQuestion || userAnswers[questionId]) return;
+
+            userAnswers[questionId] = {
+                selected: selectedIdx,
+                isCorrect: selectedIdx === foundQuestion.correct
+            };
+
+            updateScore();
+            renderQuizQuestions();
+        }
+
+        function updateScore() {
+            let correctCount = 0;
+            let answeredCount = 0;
+
+            Object.values(userAnswers).forEach(ans => {
+                answeredCount++;
+                if (ans.isCorrect) correctCount++;
+            });
+
+            document.getElementById('score-text').innerText = `${correctCount} / 20`;
+            const percentage = (answeredCount / 20) * 100;
+            document.getElementById('quiz-progress-bar').style.width = `${percentage}%`;
+        }
+
+        // 3. Render Expressions
+        function renderExpressions() {
+            const grid = document.getElementById('expressions-grid');
+            grid.innerHTML = expressions.map(exp => `
+                <div class="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden shadow-xl flex flex-col justify-between group hover:border-slate-700 transition-all">
+                    <div class="relative h-44 overflow-hidden bg-slate-950">
+                        <img src="${exp.image}" alt="${exp.term}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                            <span class="bg-emerald-500/90 text-slate-950 font-bold text-xs px-2.5 py-1 rounded-md shadow">
+                                ${exp.translation}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-5 space-y-3 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-extrabold text-white group-hover:text-emerald-400 transition-colors">${exp.term}</h3>
+                            <p class="text-xs text-slate-300 mt-1 leading-relaxed">${exp.definition}</p>
+                        </div>
+                        <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-xs text-slate-300 italic">
+                            <span class="text-emerald-400 font-semibold not-italic block mb-0.5">Everyday Example:</span>
+                            "${exp.example}"
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 4. Render Dialogue
+        function renderDialogue() {
+            const container = document.getElementById('dialogue-container');
+            container.innerHTML = dialogueData.map(item => {
+                const isLeft = item.side === 'left';
+                const text = currentLang === 'en' ? item.en : item.fr;
+
+                return `
+                    <div class="flex items-start gap-4 ${isLeft ? '' : 'flex-row-reverse'}">
+                        <img src="${item.avatar}" alt="${item.speaker}" class="w-12 h-12 rounded-full object-cover border-2 ${isLeft ? 'border-cyan-500' : 'border-amber-500'} shadow-md">
+                        <div class="max-w-xl space-y-1">
+                            <div class="flex items-center gap-2 ${isLeft ? '' : 'justify-end'} text-xs">
+                                <span class="font-bold text-white">${item.speaker}</span>
+                                <span class="text-slate-400">• ${item.role}</span>
+                            </div>
+                            <div class="p-4 rounded-2xl text-sm leading-relaxed shadow-lg ${isLeft ? 'bg-slate-900 text-slate-100 rounded-tl-none border border-slate-800' : 'bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-tr-none'}">
+                                ${text}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleDialogueLanguage() {
+            currentLang = currentLang === 'en' ? 'fr' : 'en';
+            const btnText = document.getElementById('lang-toggle-text');
+            if (currentLang === 'en') {
+                btnText.innerText = 'Passer au Français';
+            } else {
+                btnText.innerText = 'Switch to English';
+            }
+            renderDialogue();
+        }
+
+        // --- INITIALIZATION ---
+        window.onload = function() {
+            renderTakeaways();
+            renderQuizQuestions();
+            renderExpressions();
+            renderDialogue();
+        };
+    </script>
+</body>
+</html>

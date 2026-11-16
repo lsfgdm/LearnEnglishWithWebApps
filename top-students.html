@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Top 1% Students Actually Study - Interactive Learning Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        harvard: '#A51C30',
+                        mit: '#A31F34',
+                        stanford: '#8C1515'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .card-gradient {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(243,244,246,0.9) 100%);
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 glassmorphism border-b border-slate-700 bg-slate-900/90 text-white px-4 lg:px-8 py-3 flex items-center justify-between shadow-lg">
+        <div class="flex items-center space-x-3">
+            <div class="bg-gradient-to-r from-red-600 via-purple-600 to-blue-600 p-2 rounded-lg text-white font-bold text-xl flex items-center justify-center w-10 h-10 shadow-md">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-base md:text-lg tracking-tight">Top 1% Study Masterclass</h1>
+                <p class="text-xs text-slate-400 hidden sm:block">Harvard • MIT • Stanford Empirical Learning</p>
+            </div>
+        </div>
+        <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+            <a href="#strategies" class="hover:text-blue-400 transition-colors">10 Strategies</a>
+            <a href="#quiz" class="hover:text-blue-400 transition-colors">Interactive QCM</a>
+            <a href="#expressions" class="hover:text-blue-400 transition-colors">12 Vocabulary</a>
+            <a href="#dialogue" class="hover:text-blue-400 transition-colors">Bilingual Dialogue</a>
+        </nav>
+        <a href="https://youtu.be/f4vurgyl5-I" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-xs md:text-sm font-semibold px-4 py-2 rounded-full transition-all shadow-md hover:shadow-red-500/20">
+            <i class="fa-brands fa-youtube text-lg"></i>
+            <span>Watch Original</span>
+        </a>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+        <!-- Hero & Video Section -->
+        <section class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-indigo-950 border border-slate-700/60 p-6 sm:p-10 shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-semibold px-3 py-1 rounded-full">
+                        <i class="fa-solid fa-flask text-xs"></i> Research-Backed Cognitive Psychology
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                        How Top 1% Students <span class="bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">Actually Study</span>
+                    </h2>
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                        Based on evidence from Harvard, MIT, and Stanford, standard passive habits like highlighting and re-reading create a <strong class="text-white">false sense of mastery</strong>. Real breakthrough results come from deliberate active recall, spaced repetition, and cognitive struggle.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#quiz" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-blue-600/30">
+                            <i class="fa-solid fa-circle-play"></i> Start Quiz Assessment
+                        </a>
+                        <a href="#strategies" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 font-semibold px-6 py-3 rounded-xl transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-list-check"></i> Explore 10 Tactics
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Video Card Preview -->
+                <div class="lg:col-span-5">
+                    <div class="relative group rounded-2xl overflow-hidden border border-slate-700 bg-slate-950 shadow-2xl">
+                        <div class="aspect-video w-full bg-slate-800 relative flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80" alt="Study session" class="object-cover w-full h-full opacity-60 group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                            <a href="https://youtu.be/f4vurgyl5-I" target="_blank" rel="noopener noreferrer" class="absolute flex items-center justify-center w-16 h-16 rounded-full bg-red-600 text-white text-2xl shadow-xl hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </a>
+                        </div>
+                        <div class="p-4 bg-slate-900 border-t border-slate-800">
+                            <h3 class="font-bold text-white text-sm line-clamp-1">How Top 1% Students Actually Study (Harvard, MIT, Stanford)</h3>
+                            <p class="text-xs text-slate-400 mt-1 flex items-center gap-2">
+                                <span><i class="fa-solid fa-user-circle"></i> Mr. Harris</span> • <span><i class="fa-regular fa-clock"></i> 11:53</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10 Core Study Strategies Section -->
+        <section id="strategies" class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-brain text-blue-400"></i> The 10 High-Yield Study Strategies
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    Click any card to explore how these evidence-based techniques outperform passive study habits.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="strategies-grid">
+                <!-- Javascript will inject strategies here -->
+            </div>
+        </section>
+
+        <!-- Interactive Multiple Choice Quiz (QCM) -->
+        <section id="quiz" class="bg-slate-800/80 rounded-3xl border border-slate-700 p-6 sm:p-10 shadow-2xl space-y-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-700 pb-6">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3">
+                        <i class="fa-solid fa-clipboard-question text-purple-400"></i> Assessment & Quiz (QCM)
+                    </h2>
+                    <p class="text-slate-400 text-sm mt-1">20 balanced questions covering comprehension, vocabulary, grammar, and pronunciation.</p>
+                </div>
+
+                <!-- Quiz Live Score & Progress -->
+                <div class="bg-slate-900 px-5 py-3 rounded-2xl border border-slate-700 flex items-center gap-6 w-full md:w-auto justify-between">
+                    <div>
+                        <span class="text-xs text-slate-400 block uppercase font-semibold">Total Score</span>
+                        <span class="text-2xl font-black text-blue-400" id="score-text">0 / 20</span>
+                    </div>
+                    <div class="w-32 bg-slate-800 rounded-full h-3 overflow-hidden border border-slate-700">
+                        <div class="bg-gradient-to-r from-blue-500 to-indigo-500 h-full w-0 transition-all duration-300" id="quiz-progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Category Navigation Tabs -->
+            <div class="flex flex-wrap gap-2 border-b border-slate-700/60 pb-4" id="quiz-tabs">
+                <button onclick="switchTab('comprehension')" id="tab-comprehension" class="quiz-tab px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 bg-blue-600 text-white shadow-lg">
+                    <i class="fa-solid fa-book-open"></i> 1. Comprehension (5)
+                </button>
+                <button onclick="switchTab('vocabulary')" id="tab-vocabulary" class="quiz-tab px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 bg-slate-700/60 text-slate-300 hover:bg-slate-700">
+                    <i class="fa-solid fa-spell-check"></i> 2. Vocabulary (5)
+                </button>
+                <button onclick="switchTab('grammar')" id="tab-grammar" class="quiz-tab px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 bg-slate-700/60 text-slate-300 hover:bg-slate-700">
+                    <i class="fa-solid fa-code-branch"></i> 3. Grammar (5)
+                </button>
+                <button onclick="switchTab('pronunciation')" id="tab-pronunciation" class="quiz-tab px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 bg-slate-700/60 text-slate-300 hover:bg-slate-700">
+                    <i class="fa-solid fa-volume-high"></i> 4. Pronunciation (5)
+                </button>
+            </div>
+
+            <!-- Questions Container -->
+            <div id="quiz-questions-container" class="space-y-6">
+                <!-- Dynamically rendered questions per tab -->
+            </div>
+        </section>
+
+        <!-- 12 Common Expressions & Vocabulary (Illustrated) -->
+        <section id="expressions" class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-language text-emerald-400"></i> 12 Key Academic Expressions
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    Master key English idioms and vocabulary from the video with French translations and daily life applications.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="expressions-grid">
+                <!-- Javascript will inject expressions here -->
+            </div>
+        </section>
+
+        <!-- Interactive Bilingual Dialogue Section -->
+        <section id="dialogue" class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 rounded-3xl border border-indigo-800/50 p-6 sm:p-10 shadow-2xl space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-700/80 pb-6">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3">
+                        <i class="fa-solid fa-comments text-amber-400"></i> Interactive Student Dialogue
+                    </h2>
+                    <p class="text-slate-300 text-sm mt-1">Alex and Sam discuss shifting from passive studying to top 1% active strategies.</p>
+                </div>
+
+                <!-- Language Toggle Button -->
+                <button id="lang-toggle-btn" onclick="toggleDialogueLanguage()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20 text-sm">
+                    <i class="fa-solid fa-language text-lg"></i>
+                    <span id="lang-toggle-text">Traduire en Français</span>
+                </button>
+            </div>
+
+            <!-- Dialogue Chat Feed -->
+            <div class="space-y-4 max-w-4xl mx-auto pt-2" id="dialogue-container">
+                <!-- Dynamically populated dialogue bubbles -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-xs text-slate-500 mt-16">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 Top 1% Study Hub. Educational content based on Mr. Harris's research analysis.</p>
+            <p class="flex items-center gap-2">
+                <span>Built for effective active learning</span>
+                <i class="fa-solid fa-bolt text-amber-400"></i>
+            </p>
+        </div>
+    </footer>
+
+    <!-- App Logic Script -->
+    <script>
+        // --- 1. STRATEGIES DATA ---
+        const strategies = [
+            {
+                time: "0:51",
+                title: "Read with a Question",
+                icon: "fa-magnifying-glass-question",
+                color: "from-blue-500 to-indigo-600",
+                description: "Preview text by examining headings, summaries, and key arguments before reading in-depth. Formulate specific questions to seek answers while reading."
+            },
+            {
+                time: "1:10",
+                title: "Annotate, Don't Highlight",
+                icon: "fa-pen-to-square",
+                color: "from-indigo-500 to-purple-600",
+                description: "Highlighting creates a false sense of security. Engage deeply by writing concise summary notes, criticisms, and questions directly in the margins."
+            },
+            {
+                time: "3:04",
+                title: "Test Yourself (Active Recall)",
+                icon: "fa-brain",
+                color: "from-purple-500 to-pink-600",
+                description: "Actively retrieve information from memory without looking at notes. Flashcards, practice quizzes, and blank-sheet summaries build robust neural pathways."
+            },
+            {
+                time: "3:56",
+                title: "Spread it Out (Spaced Repetition)",
+                icon: "fa-calendar-days",
+                color: "from-pink-500 to-rose-600",
+                description: "Replace last-minute cramming with distributed practice over days or weeks. The cognitive effort of forgetting and relearning solidifies long-term retention."
+            },
+            {
+                time: "4:41",
+                title: "Mix it Up (Interleaving)",
+                icon: "fa-shuffle",
+                color: "from-rose-500 to-orange-600",
+                description: "Avoid blocked practice (doing 20 identical math problems). Shuffle different problem types together to train your brain to recognize which formula to apply."
+            },
+            {
+                time: "5:37",
+                title: "Write in Your Own Words",
+                icon: "fa-file-signature",
+                color: "from-amber-500 to-yellow-600",
+                description: "Avoid copying definitions verbatim. Translating complex concepts into your own vocabulary forces true semantic processing and deep comprehension."
+            },
+            {
+                time: "6:32",
+                title: "Plan Before Studying",
+                icon: "fa-clipboard-list",
+                color: "from-emerald-500 to-teal-600",
+                description: "Dedicate 15 minutes prior to studying to outline precise goals and tactics. Meta-cognitive planning significantly boosts study efficiency and GPA."
+            },
+            {
+                time: "7:17",
+                title: "Explain to Others (Feynman Technique)",
+                icon: "fa-chalkboard-user",
+                color: "from-teal-500 to-cyan-600",
+                description: "Teach concepts to a peer or pretend to explain them to a 10-year-old. Exposing gaps in your logic forces you to simplify and master the material."
+            },
+            {
+                time: "8:18",
+                title: "Engage Actively in Class",
+                icon: "fa-comments-dollar",
+                color: "from-cyan-500 to-blue-600",
+                description: "Replace passive listening during lectures with active problem-solving, asking clarifying questions, and taking structured interactive notes."
+            },
+            {
+                time: "10:10",
+                title: "Sleep & Circadian Rhythm",
+                icon: "fa-moon",
+                color: "from-blue-600 to-indigo-800",
+                description: "Sleep before 2 a.m. and maintain consistency. Memory consolidation occurs during deep sleep stages; sleep deprivation directly harms exam scores."
+            }
+        ];
+
+        // --- 2. QCM QUIZ DATA (20 Questions - 5 per category, balanced A/B/C/D correct options) ---
+        // Option rotation for each category:
+        // Cat 1 (Comprehension): Q1: A, Q2: B, Q3: C, Q4: D, Q5: A
+        // Cat 2 (Vocabulary): Q1: B, Q2: C, Q3: D, Q4: A, Q5: B
+        // Cat 3 (Grammar): Q1: C, Q2: D, Q3: A, Q4: B, Q5: C
+        // Cat 4 (Pronunciation): Q1: D, Q2: A, Q3: B, Q4: C, Q5: D
+        // Total across 20 questions: 5 A's, 5 B's, 5 C's, 5 D's!
+
+        const quizData = {
+            comprehension: [
+                {
+                    id: "c1",
+                    question: "According to the video, why is highlighting textbook passages often ineffective for long-term learning?",
+                    options: [
+                        "It creates a false sense of productivity without forcing active cognitive engagement.",
+                        "It physically damages textbook pages and makes them hard to read later.",
+                        "It takes up more time than writing out full summary essays.",
+                        "It is only useful for mathematics and not applicable to humanities."
+                    ],
+                    correct: 0, // A
+                    explanation: "Highlighting feels productive, but research shows it is passive and creates an illusion of competence rather than deep memory storage."
+                },
+                {
+                    id: "c2",
+                    question: "What is the main benefit of 'interleaving' (mixing up problem types during study)?",
+                    options: [
+                        "It allows students to finish their homework much faster with less effort.",
+                        "It trains the brain to categorize problems and choose the correct strategy on exams.",
+                        "It guarantees that you never make arithmetic mistakes again.",
+                        "It eliminates the need to study theoretical concepts altogether."
+                    ],
+                    correct: 1, // B
+                    explanation: "Interleaving forces your brain to discriminate between different types of problems, mirroring real exam conditions."
+                },
+                {
+                    id: "c3",
+                    question: "How long should a student spend planning before a study session to maximize effectiveness?",
+                    options: [
+                        "At least 2 hours of comprehensive schedule building.",
+                        "Only 30 seconds to skim the table of contents.",
+                        "Around 15 minutes focused on setting specific targets and tactics.",
+                        "Planning is unnecessary if you study for more than 4 hours."
+                    ],
+                    correct: 2, // C
+                    explanation: "Spending ~15 minutes outlining what to study and how to execute it significantly raises academic results."
+                },
+                {
+                    id: "c4",
+                    question: "According to research cited in the video, what critical role does sleep play in studying?",
+                    options: [
+                        "Sleep is only important for physical recovery after exercise.",
+                        "Sleeping immediately after a test helps forget stressful answers.",
+                        "Staying up past 3:00 a.m. increases focus through adrenaline spikes.",
+                        "Sleep consolidates memories and reinforces neural connections forged during study."
+                    ],
+                    correct: 3, // D
+                    explanation: "Sleep—especially before 2:00 a.m.—is essential for memory consolidation and cognitive performance."
+                },
+                {
+                    id: "c5",
+                    question: "Why does the video suggest that effective study habits often feel 'clumsy' or difficult at first?",
+                    options: [
+                        "Because mental strain and effort are signals of genuine learning and memory formation.",
+                        "Because top universities intentionally make study software difficult to use.",
+                        "Because students lack the baseline intelligence required for active recall.",
+                        "Because active recall only works when a student is physically exhausted."
+                    ],
+                    correct: 0, // A
+                    explanation: "Cognitive effort ('desirable difficulty') feels harder than passive reading, but it is precisely what locks knowledge into long-term memory."
+                }
+            ],
+            vocabulary: [
+                {
+                    id: "v1",
+                    question: "What does the term 'Spaced Repetition' refer to?",
+                    options: [
+                        "Repeating words continuously without taking a break.",
+                        "Distributing study sessions over increasing intervals of time.",
+                        "Studying in different room locations to improve focus.",
+                        "Taking long breaks between each sentence while reading."
+                    ],
+                    correct: 1, // B
+                    explanation: "'Spaced Repetition' is a learning technique where review sessions are spaced out over time to exploit the psychological spacing effect."
+                },
+                {
+                    id: "v2",
+                    question: "What is the meaning of 'Active Recall' in cognitive learning?",
+                    options: [
+                        "Reading a text three times out loud.",
+                        "Listening to a recorded lecture while sleeping.",
+                        "Retrieving information from memory without looking at the source.",
+                        "Copying definitions directly into a notebook."
+                    ],
+                    correct: 2, // C
+                    explanation: "'Active Recall' means stimulating memory retrieval during the learning process by self-testing without notes."
+                },
+                {
+                    id: "v3",
+                    question: "In an academic context, what does the word 'Cramming' mean?",
+                    options: [
+                        "Organizing notes alphabetically into neat folders.",
+                        "Working in groups to teach junior students.",
+                        "Summarizing a chapter using diagrammatic mind maps.",
+                        "Studying intensely to absorb massive amounts of material right before an exam."
+                    ],
+                    correct: 3, // D
+                    explanation: "'Cramming' is trying to memorize lots of information in a very short period right before a deadline."
+                },
+                {
+                    id: "v4",
+                    question: "What does 'Verbatim' mean when taking lecture notes?",
+                    options: [
+                        "Word-for-word, copying exact phrasing without modification.",
+                        "Summarizing key ideas using visual diagrams.",
+                        "Translating notes into a foreign language.",
+                        "Writing down only numbers and statistical data."
+                    ],
+                    correct: 0, // A
+                    explanation: "'Verbatim' means copying word-for-word, which top students avoid because rephrasing forces true understanding."
+                },
+                {
+                    id: "v5",
+                    question: "What does 'Cognitive Load' refer to?",
+                    options: [
+                        "The physical weight of heavy textbooks in a backpack.",
+                        "The amount of mental effort and working memory being used.",
+                        "The total number of hours spent sitting at a desk.",
+                        "The emotional stress experienced during exam week."
+                    ],
+                    correct: 1, // B
+                    explanation: "'Cognitive Load' relates to the amount of information processing required in working memory during learning."
+                }
+            ],
+            grammar: [
+                {
+                    id: "g1",
+                    question: "Which sentence correctly uses a conditional structure regarding study habits?",
+                    options: [
+                        "If students study actively, they retain information much better.",
+                        "If students will study actively, they retained information better.",
+                        "If students studied actively, they would have retain information better.",
+                        "If students had study actively, they retain information better."
+                    ],
+                    correct: 2, // C (Wait: Q1 of Grammar needs C correct. Let's check: "If students studied actively, they would retain..." Let's adjust C to be grammatically flawless condition!)
+                    // Let's refine options for Grammar Q1 to make C unambiguously correct:
+                    options: [
+                        "If students will study actively, they would get higher marks.",
+                        "If students studied active, they get higher marks.",
+                        "If students had used active recall, they would have scored higher on the test.",
+                        "If students study actively, they would scored higher."
+                    ],
+                    correct: 2, // C - Third conditional: If + past perfect, would have + past participle.
+                    explanation: "Option C correctly uses the Third Conditional structure ('If + past perfect..., would have + past participle') for past hypothetical situations."
+                },
+                {
+                    id: "g2",
+                    question: "Identify the sentence that correctly employs a gerund as a subject:",
+                    options: [
+                        "To reviewing notes passively is recommended by top experts.",
+                        "Review notes passively is creating a false sense of security.",
+                        "Is reviewing notes passively helpful for exams?",
+                        "Testing yourself regularly is far more effective than re-reading."
+                    ],
+                    correct: 3, // D
+                    explanation: "In option D, 'Testing yourself regularly' is a gerund phrase correctly functioning as the subject of the sentence."
+                },
+                {
+                    id: "g3",
+                    question: "Choose the sentence with correct parallel structure regarding study techniques:",
+                    options: [
+                        "Top students prefer reading actively, annotating margins, and to test themselves.",
+                        "Top students prefer to read actively, annotating margins, and testing themselves.",
+                        "Top students prefer reading actively, annotating margins, and testing themselves.",
+                        "Top students prefer read actively, annotate margins, and test themselves."
+                    ],
+                    correct: 0, // Wait, Q3 needs A correct! Let's make Option A parallel and correct!
+                    // Let's fix options for G3 so A is correct:
+                    options: [
+                        "Top students excel by setting goals, organizing materials, and testing their memory.",
+                        "Top students excel by setting goals, to organize materials, and testing memory.",
+                        "Top students excel by set goals, organizing materials, and test memory.",
+                        "Top students excel to set goals, organizing materials, and to test memory."
+                    ],
+                    correct: 0, // A
+                    explanation: "Option A maintains parallel structure using three gerund phrases after the preposition 'by': setting, organizing, testing."
+                },
+                {
+                    id: "g4",
+                    question: "Which sentence correctly uses the modal verb 'should' for academic recommendations?",
+                    options: [
+                        "Students should to review their notes within 24 hours.",
+                        "Students should reviewing their notes within 24 hours.",
+                        "Students should review their notes within 24 hours.",
+                        "Students should reviewed their notes within 24 hours."
+                    ],
+                    correct: 1, // Wait: Q4 needs B correct! Let's structure B as the correct answer for modal/relative clause/syntax:
+                    // Let's adjust G4 so B is the clean correct answer:
+                    options: [
+                        "Not only top students study hard, but also they study smart.",
+                        "Not only do top students study hard, but they also use active recall.",
+                        "Not only top students do study hard, but also using active recall.",
+                        "Not only top students are studying hard, but they also studying smart."
+                    ],
+                    correct: 1, // B - Inversion with negative adverbial 'Not only do...'
+                    explanation: "Option B correctly applies subject-auxiliary inversion after the negative adverbial phrase 'Not only do top students...'"
+                },
+                {
+                    id: "g5",
+                    question: "Select the sentence with the correct relative pronoun usage:",
+                    options: [
+                        "The study technique who Mr. Harris recommended is active recall.",
+                        "The study technique where Mr. Harris recommended is active recall.",
+                        "The study technique which Mr. Harris recommended is active recall.",
+                        "The study technique whom Mr. Harris recommended is active recall."
+                    ],
+                    correct: 2, // C
+                    explanation: "Option C correctly uses 'which' (or 'that') to refer to a thing or concept ('study technique')."
+                }
+            ],
+            pronunciation: [
+                {
+                    id: "p1",
+                    question: "Where is the primary stress placed in the word 'RETRIEVAL' /rɪˈtriːvəl/?",
+                    options: [
+                        "On the first syllable: RE-trie-val",
+                        "On the third syllable: re-trie-VAL",
+                        "On the middle syllable: re-TRIE-val",
+                        "Stress is distributed equally across all syllables."
+                    ],
+                    correct: 3, // Wait: Q1 of Pronunciation needs D correct! Let's check:
+                    // Let's adjust options for P1 so D is correct:
+                    options: [
+                        "On the first syllable (RE-trie-val)",
+                        "On the last syllable (re-trie-VAL)",
+                        "On the silent prefix (RET-rie-val)",
+                        "On the second syllable (re-TRIE-val)"
+                    ],
+                    correct: 3, // D - re-TRIE-val
+                    explanation: "The word 'retrieval' is pronounced with stress on the second syllable: /rɪˈtriː.vəl/."
+                },
+                {
+                    id: "p2",
+                    question: "Which of the following words has the primary stress on the FIRST syllable?",
+                    options: [
+                        "MARGIN /ˈmɑːrdʒɪn/",
+                        "CONSOLIDATE /kənˈsɒlɪdeɪt/",
+                        "TECHNIQUE /tekˈniːk/",
+                        "REPERTORY /rɪˈpɜːrtəri/"
+                    ],
+                    correct: 0, // A
+                    explanation: "'MARGIN' is stressed on the first syllable /ˈmɑːr.dʒɪn/, whereas the others are stressed on later syllables."
+                },
+                {
+                    id: "p3",
+                    question: "How is the suffix '-ed' pronounced in the word 'ANNOTATED' /æn.ə.teɪ.tɪd/?",
+                    options: [
+                        "As a simple /t/ sound.",
+                        "As an extra syllable /ɪd/ or /əd/.",
+                        "As a voiced /d/ sound.",
+                        "The '-ed' is completely silent."
+                    ],
+                    correct: 1, // B
+                    explanation: "When a verb ends in a /t/ or /d/ sound (like annotate), the past tense '-ed' is pronounced as an extra syllable: /tɪd/."
+                },
+                {
+                    id: "p4",
+                    question: "Which word contains the same vowel sound as 'SLEEP' /iː/?",
+                    options: [
+                        "CRAM /kræm/",
+                        "GAP /ɡæp/",
+                        "PEER /pɪər/ or RETRIEVE /rɪˈtriːv/",
+                        "SHUFFLE /ˈʃʌf.əl/"
+                    ],
+                    correct: 2, // C (RETRIEVE /riː/)
+                    explanation: "'Retrieve' contains the long /iː/ vowel sound, matching the vowel sound in 'sleep'."
+                },
+                {
+                    id: "p5",
+                    question: "In the word 'PSYCHOLOGY' /saɪˈkɒl.ə.dʒi/, which letter is SILENT?",
+                    options: [
+                        "The letter 'c'",
+                        "The letter 'o'",
+                        "The letter 'g'",
+                        "The letter 'p'"
+                    ],
+                    correct: 3, // D
+                    explanation: "In words starting with 'psych-' (like psychology), the initial letter 'p' is silent: /saɪˈkɒl.ə.dʒi/."
+                }
+            ]
+        };
+
+        // Track answered questions
+        const userAnswers = {};
+
+        // --- 3. 12 KEY EXPRESSIONS DATA ---
+        const expressions = [
+            {
+                term: "Active Recall",
+                translation: "Rappel actif",
+                definition: "Testing your brain to retrieve stored information without looking at notes.",
+                example: "Instead of re-reading my biology textbook, I used active recall by quizzing myself with flashcards.",
+                image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Spaced Repetition",
+                translation: "Répétition espacée",
+                definition: "Reviewing information at systematically spaced intervals over time.",
+                example: "She mastered 500 Spanish vocabulary words in two months using spaced repetition software.",
+                image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Cramming",
+                translation: "Bâclage / Bourrage de crâne",
+                definition: "Studying intensely right before an exam without proper long-term spacing.",
+                example: "Cramming all night before the final exam left Mark exhausted and unable to remember key formulas.",
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "False Sense of Security",
+                translation: "Faux sentiment de sécurité",
+                definition: "The misleading feeling that you master material simply because it looks familiar.",
+                example: "Re-reading highlighted notes gave Sarah a false sense of security until she faced the actual test.",
+                image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Margin Notes",
+                translation: "Notes de marge / Annotations",
+                definition: "Short explanations, summaries, or questions written in text margins.",
+                example: "His textbook margins were filled with insightful margin notes that simplified complex concepts.",
+                image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Shuffled Practice (Interleaving)",
+                translation: "Entraînement mélangé",
+                definition: "Mixing different types of topics or problem types during a single session.",
+                example: "By using shuffled practice in math, I learned when to apply calculus versus algebra.",
+                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Peer Instruction",
+                translation: "Instruction par les pairs",
+                definition: "Teaching or explaining concepts to fellow classmates to deepen understanding.",
+                example: "Our study group relies on peer instruction; explaining physics to David helped me spot my own mistakes.",
+                image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Lock in Knowledge",
+                translation: "Ancrer / Consolider les connaissances",
+                definition: "To permanently consolidate newly learned concepts into long-term memory.",
+                example: "Getting 8 hours of sleep after studying helps lock in knowledge effectively.",
+                image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Relearn",
+                translation: "Réapprendre",
+                definition: "Refreshing memory on material that has been partially forgotten over time.",
+                example: "It takes much less time to relearn organic chemistry concepts when reviewing before midterms.",
+                image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Clumsy at First",
+                translation: "Maladroit / Pénible au début",
+                definition: "Feeling awkward or difficult when adopting a new, unfamiliar habit.",
+                example: "Active recall felt clumsy at first, but after a week my memory retention doubled.",
+                image: "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Lecture",
+                translation: "Cours magistral",
+                definition: "An educational talk given to an audience or class at university.",
+                example: "Instead of passively listening in the lecture, I actively framed questions for the professor.",
+                image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                term: "Academic Performance",
+                translation: "Performance / Résultats académiques",
+                definition: "The level of achievement and grades a student attains in educational settings.",
+                example: "Adopting high-yield study techniques led to a dramatic jump in her academic performance.",
+                image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // --- 4. BILINGUAL DIALOGUE DATA ---
+        let currentLang = 'en'; // 'en' or 'fr'
+
+        const dialogueData = [
+            {
+                speaker: "Alex",
+                avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+                role: "Pre-Med Student at Harvard",
+                side: "left",
+                en: "Hey Sam! I spent 5 hours highlighting my chemistry textbook yesterday, but during today's pop quiz, my mind went completely blank. I don't get it!",
+                fr: "Salut Sam ! J'ai passé 5 heures hier à surligner mon manuel de chimie, mais pendant le contrôle surprise aujourd'hui, j'ai eu un trou noir total. Je ne comprends pas !"
+            },
+            {
+                speaker: "Sam",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+                role: "Computer Science Student at MIT",
+                side: "right",
+                en: "I used to do that all the time! Highlighting creates a false sense of security. You recognize the words while looking at them, so your brain thinks it knows the material.",
+                fr: "Je faisais ça tout le temps avant ! Surligner crée un faux sentiment de sécurité. Tu reconnais les mots en les regardant, alors ton cerveau pense qu'il maîtrise le sujet."
+            },
+            {
+                speaker: "Alex",
+                avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+                role: "Pre-Med Student at Harvard",
+                side: "left",
+                en: "Really? So what should I be doing instead? I thought re-reading and highlighting was the standard way to study.",
+                fr: "Vraiment ? Que devrais-je faire à la place ? Je pensais que relire et surligner était la méthode standard pour réviser."
+            },
+            {
+                speaker: "Sam",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+                role: "Computer Science Student at MIT",
+                side: "right",
+                en: "Top 1% students use Active Recall and Spaced Repetition. Close the book and test yourself! Or explain the concept in your own words to someone else like you're teaching them.",
+                fr: "Les étudiants du top 1% utilisent le Rappel Actif et la Répétition Espacée. Ferme le livre et teste-toi ! Ou explique le concept avec tes propres mots à quelqu'un d'autre comme si tu lui enseignais."
+            },
+            {
+                speaker: "Alex",
+                avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+                role: "Pre-Med Student at Harvard",
+                side: "left",
+                en: "That sounds so much harder and kind of clumsy to start doing...",
+                fr: "Ça a l'air tellement plus difficile et un peu pénible au début..."
+            },
+            {
+                speaker: "Sam",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+                role: "Computer Science Student at MIT",
+                side: "right",
+                en: "That struggle is the exact key! When your brain works hard to retrieve information, it locks in knowledge permanently. Plus, make sure you get sleep before 2 a.m. to consolidate it!",
+                fr: "Cet effort est exactement la clé ! Quand ton cerveau travaille dur pour extraire l'information, il consolide durablement les connaissances. De plus, veille à dormir avant 2h du matin pour fixer tout ça !"
+            }
+        ];
+
+        // --- RENDER FUNCTIONS ---
+
+        // 1. Render Strategies
+        function renderStrategies() {
+            const grid = document.getElementById('strategies-grid');
+            grid.innerHTML = strategies.map(s => `
+                <div class="group bg-slate-800/90 hover:bg-slate-800 rounded-2xl border border-slate-700/80 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-slate-500 shadow-xl flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono font-semibold bg-slate-900 border border-slate-700 text-slate-300 px-3 py-1 rounded-full flex items-center gap-1.5">
+                                <i class="fa-regular fa-clock text-blue-400"></i> ${s.time}
+                            </span>
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center text-white text-lg shadow-md">
+                                <i class="fa-solid ${s.icon}"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">${s.title}</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">${s.description}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 2. Render Quiz Questions
+        let activeTab = 'comprehension';
+
+        function switchTab(tabKey) {
+            activeTab = tabKey;
+            
+            // Update Tab Styling
+            document.querySelectorAll('.quiz-tab').forEach(btn => {
+                btn.className = 'quiz-tab px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 bg-slate-700/60 text-slate-300 hover:bg-slate-700';
+            });
+            const activeBtn = document.getElementById(`tab-${tabKey}`);
+            if(activeBtn) {
+                activeBtn.className = 'quiz-tab px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 bg-blue-600 text-white shadow-lg';
+            }
+
+            renderQuizQuestions();
+        }
+
+        function renderQuizQuestions() {
+            const container = document.getElementById('quiz-questions-container');
+            const questions = quizData[activeTab];
+
+            container.innerHTML = questions.map((q, idx) => {
+                const answered = userAnswers[q.id];
+                const isSelected = (optIdx) => answered && answered.selected === optIdx;
+                const isCorrect = (optIdx) => optIdx === q.correct;
+
+                return `
+                    <div class="bg-slate-900/90 rounded-2xl border border-slate-700 p-6 space-y-4 shadow-md">
+                        <div class="flex items-start justify-between gap-4">
+                            <h3 class="font-bold text-white text-base sm:text-lg flex items-start gap-3">
+                                <span class="bg-slate-800 text-blue-400 font-mono text-sm px-2.5 py-1 rounded-lg border border-slate-700">Q${idx + 1}</span>
+                                <span>${q.question}</span>
+                            </h3>
+                        </div>
+
+                        <!-- 4 Choices -->
+                        <div class="grid grid-cols-1 gap-3 pt-2">
+                            ${q.options.map((opt, optIdx) => {
+                                const optionLetter = String.fromCharCode(65 + optIdx); // A, B, C, D
+                                let btnStyle = "bg-slate-800 hover:bg-slate-750 border-slate-700 text-slate-200";
+
+                                if (answered) {
+                                    if (optIdx === q.correct) {
+                                        btnStyle = "bg-emerald-950/80 border-emerald-500 text-emerald-200 font-medium";
+                                    } else if (isSelected(optIdx)) {
+                                        btnStyle = "bg-rose-950/80 border-rose-500 text-rose-200 font-medium";
+                                    } else {
+                                        btnStyle = "bg-slate-800/40 border-slate-800 text-slate-500 opacity-60";
+                                    }
+                                }
+
+                                return `
+                                    <button 
+                                        onclick="handleAnswer('${q.id}', ${optIdx})"
+                                        ${answered ? 'disabled' : ''}
+                                        class="w-full text-left p-3.5 rounded-xl border text-sm sm:text-base transition-all flex items-start gap-3 ${btnStyle} ${!answered ? 'hover:border-blue-500 hover:text-white' : ''}"
+                                    >
+                                        <span class="font-mono font-bold text-xs uppercase px-2 py-0.5 rounded bg-slate-950 border border-slate-700 text-slate-300">
+                                            ${optionLetter}
+                                        </span>
+                                        <span class="flex-1">${opt}</span>
+                                        ${answered && optIdx === q.correct ? '<i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>' : ''}
+                                        ${answered && isSelected(optIdx) && optIdx !== q.correct ? '<i class="fa-solid fa-circle-xmark text-rose-400 text-lg"></i>' : ''}
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+
+                        <!-- Feedback & Concise Explanation -->
+                        ${answered ? `
+                            <div class="p-4 rounded-xl text-xs sm:text-sm border transition-all ${answered.selected === q.correct ? 'bg-emerald-900/30 border-emerald-700/60 text-emerald-200' : 'bg-slate-800 border-slate-700 text-slate-300'}">
+                                <p class="font-bold mb-1 flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-info"></i> Explanation:
+                                </p>
+                                <p class="leading-relaxed">${q.explanation}</p>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function handleAnswer(questionId, selectedIdx) {
+            let foundQuestion = null;
+            for (const category in quizData) {
+                const q = quizData[category].find(item => item.id === questionId);
+                if (q) {
+                    foundQuestion = q;
+                    break;
+                }
+            }
+
+            if (!foundQuestion || userAnswers[questionId]) return;
+
+            userAnswers[questionId] = {
+                selected: selectedIdx,
+                isCorrect: selectedIdx === foundQuestion.correct
+            };
+
+            updateScore();
+            renderQuizQuestions();
+        }
+
+        function updateScore() {
+            let correctCount = 0;
+            let answeredCount = 0;
+
+            Object.values(userAnswers).forEach(ans => {
+                answeredCount++;
+                if (ans.isCorrect) correctCount++;
+            });
+
+            document.getElementById('score-text').innerText = `${correctCount} / 20`;
+            const percentage = (answeredCount / 20) * 100;
+            document.getElementById('quiz-progress-bar').style.width = `${percentage}%`;
+        }
+
+        // 3. Render Expressions
+        function renderExpressions() {
+            const grid = document.getElementById('expressions-grid');
+            grid.innerHTML = expressions.map(exp => `
+                <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden shadow-xl flex flex-col justify-between group hover:border-slate-500 transition-all">
+                    <div class="relative h-44 overflow-hidden bg-slate-900">
+                        <img src="${exp.image}" alt="${exp.term}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                        <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                            <span class="bg-emerald-500/90 text-slate-950 font-bold text-xs px-2.5 py-1 rounded-md shadow">
+                                ${exp.translation}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-5 space-y-3 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-extrabold text-white group-hover:text-emerald-400 transition-colors">${exp.term}</h3>
+                            <p class="text-xs text-slate-300 mt-1 leading-relaxed">${exp.definition}</p>
+                        </div>
+                        <div class="bg-slate-900/80 border border-slate-700/80 rounded-xl p-3 text-xs text-slate-300 italic">
+                            <span class="text-emerald-400 font-semibold not-italic block mb-0.5">Everyday Context:</span>
+                            "${exp.example}"
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 4. Render Dialogue
+        function renderDialogue() {
+            const container = document.getElementById('dialogue-container');
+            container.innerHTML = dialogueData.map(item => {
+                const isLeft = item.side === 'left';
+                const text = currentLang === 'en' ? item.en : item.fr;
+
+                return `
+                    <div class="flex items-start gap-4 ${isLeft ? '' : 'flex-row-reverse'}">
+                        <img src="${item.avatar}" alt="${item.speaker}" class="w-12 h-12 rounded-full object-cover border-2 ${isLeft ? 'border-blue-500' : 'border-amber-500'} shadow-md">
+                        <div class="max-w-xl space-y-1">
+                            <div class="flex items-center gap-2 ${isLeft ? '' : 'justify-end'} text-xs">
+                                <span class="font-bold text-white">${item.speaker}</span>
+                                <span class="text-slate-400">• ${item.role}</span>
+                            </div>
+                            <div class="p-4 rounded-2xl text-sm leading-relaxed shadow-lg ${isLeft ? 'bg-slate-800 text-slate-100 rounded-tl-none border border-slate-700' : 'bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-tr-none'}">
+                                ${text}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleDialogueLanguage() {
+            currentLang = currentLang === 'en' ? 'fr' : 'en';
+            const btnText = document.getElementById('lang-toggle-text');
+            if (currentLang === 'en') {
+                btnText.innerText = 'Traduire en Français';
+            } else {
+                btnText.innerText = 'Switch to English';
+            }
+            renderDialogue();
+        }
+
+        // --- INITIALIZE ON WINDOW LOAD ---
+        window.onload = function() {
+            renderStrategies();
+            renderQuizQuestions();
+            renderExpressions();
+            renderDialogue();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn English with Computer Vision: Hough Transforms</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#111827',
+                            950: '#030712',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-cyan-500 selection:text-slate-950 pb-16">
+
+    <!-- Header Navigation -->
+    <header className="border-b border-slate-800 bg-slate-950/90 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-xl text-slate-950 shadow-lg shadow-cyan-500/20 font-black text-xl">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                        Tech English Masterclass
+                    </h1>
+                    <p class="text-xs text-slate-400">How Hough Transforms Teach Computers to See</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 bg-slate-900 px-3.5 py-1.5 rounded-full text-xs font-semibold text-cyan-400 border border-slate-800">
+                <i class="fa-solid fa-sparkles"></i>
+                <span>Computer Vision & AI Vocabulary</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 pt-8 space-y-12">
+
+        <!-- SECTION 1: Embedded Video & Overview Cards -->
+        <section class="space-y-6">
+            <div class="flex items-center gap-2 text-cyan-400 font-bold text-xs tracking-wider uppercase">
+                <i class="fa-solid fa-circle-play text-sm"></i>
+                <h2>Video Context & Key Concepts</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                <!-- Video Player Container -->
+                <div class="lg:col-span-7 bg-slate-900 rounded-2xl p-2.5 border border-slate-800 shadow-2xl">
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black">
+                        <iframe 
+                            class="w-full h-full border-0"
+                            src="https://www.youtube.com/embed/wtDJZJdNYTw" 
+                            title="How Hough Transforms Teach Computers to See" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Video Summary Highlights Box -->
+                <div class="lg:col-span-5 bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-4">
+                    <div class="flex items-center gap-2 text-cyan-400">
+                        <i class="fa-solid fa-microchip text-lg"></i>
+                        <h3 class="text-lg font-bold text-white">Core Technical Highlights</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        The <strong>Hough transform</strong> is a cornerstone algorithm in computer vision used by autonomous vehicle systems to identify continuous straight lines and geometries in noisy pixel data.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-3 border-t border-slate-800 pt-4">
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-cyan-400 font-bold mt-0.5"><i class="fa-solid fa-bolt"></i></span>
+                            <span><strong>Brute-Force Problem:</strong> Calculating all point-pair lines is computationally prohibitive and prone to failure from noise.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-cyan-400 font-bold mt-0.5"><i class="fa-solid fa-chart-line"></i></span>
+                            <span><strong>Parameter Space:</strong> Maps pixels into curves where co-linear points intersect at exact peak coordinates.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-cyan-400 font-bold mt-0.5"><i class="fa-solid fa-table-cells"></i></span>
+                            <span><strong>Accumulator Grid:</strong> A matrix of accumulator cells that collect votes to highlight legitimate shapes.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="text-cyan-400 font-bold mt-0.5"><i class="fa-solid fa-compass"></i></span>
+                            <span><strong>Polar Coordinates:</strong> Uses $(\rho, \theta)$ angle-distance coordinates to prevent vertical line infinite slope errors ($m=\infty$).</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: 20-Question Quiz -->
+        <section class="space-y-6 pt-6 border-t border-slate-800/80">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2 text-cyan-400 font-bold text-xs tracking-wider uppercase">
+                        <i class="fa-solid fa-graduation-cap text-sm"></i>
+                        <h2>Comprehension & Language Quiz</h2>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mt-1">Test Your English Skills (20 Questions)</h3>
+                </div>
+
+                <!-- Score Counter -->
+                <div class="flex items-center gap-4 bg-slate-900/90 px-4 py-2.5 rounded-xl border border-slate-800">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-trophy text-amber-400 text-sm"></i>
+                        <span class="text-sm font-semibold text-slate-200">
+                            Score: <span id="score-display" class="text-cyan-400 font-bold">0</span> / <span id="answered-display">0</span>
+                        </span>
+                    </div>
+                    <button id="reset-quiz-btn" class="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors border-l border-slate-800 pl-3">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span>Reset</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Category Filter Tabs -->
+            <div class="flex flex-wrap gap-2 pt-1" id="quiz-tabs">
+                <button data-cat="All" class="quiz-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20">All (20)</button>
+                <button data-cat="Comprehension" class="quiz-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-900 text-slate-300 hover:bg-slate-800">Comprehension (5)</button>
+                <button data-cat="Vocabulary" class="quiz-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-900 text-slate-300 hover:bg-slate-800">Vocabulary (5)</button>
+                <button data-cat="Grammar" class="quiz-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-900 text-slate-300 hover:bg-slate-800">Grammar (5)</button>
+                <button data-cat="Pronunciation" class="quiz-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-900 text-slate-300 hover:bg-slate-800">Pronunciation (5)</button>
+            </div>
+
+            <!-- Quiz Container -->
+            <div id="quiz-container" class="grid grid-cols-1 gap-6">
+                <!-- Generated by JS -->
+            </div>
+        </section>
+
+        <!-- SECTION 3: 12 Key Expressions -->
+        <section class="space-y-6 pt-6 border-t border-slate-800/80">
+            <div>
+                <div class="flex items-center gap-2 text-cyan-400 font-bold text-xs tracking-wider uppercase">
+                    <i class="fa-solid fa-book-bookmark text-sm"></i>
+                    <h2>Vocabulary & Expressions</h2>
+                </div>
+                <h3 class="text-2xl font-bold text-white mt-1">12 Essential Technical Expressions</h3>
+                <p class="text-sm text-slate-400 mt-1">Key phrasing used in computer vision research and engineering. Click translation buttons to check French meanings.</p>
+            </div>
+
+            <div id="expressions-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Generated by JS -->
+            </div>
+        </section>
+
+        <!-- SECTION 4: Dialogue -->
+        <section class="space-y-6 pt-6 border-t border-slate-800/80">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2 text-cyan-400 font-bold text-xs tracking-wider uppercase">
+                        <i class="fa-solid fa-comments text-sm"></i>
+                        <h2>Real-World Discussion</h2>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mt-1">Engineering Dialogue</h3>
+                </div>
+
+                <button id="toggle-dialogue-lang-btn" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold text-xs shadow-lg shadow-cyan-500/20 hover:opacity-90 transition-opacity">
+                    <i class="fa-solid fa-language text-base"></i>
+                    <span id="dialogue-lang-label">Traduire le dialogue en français</span>
+                </button>
+            </div>
+
+            <!-- Chat Bubbles Box -->
+            <div id="dialogue-container" class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 space-y-4 shadow-xl">
+                <!-- Generated by JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto px-4 mt-16 pt-6 border-t border-slate-800/80 text-center text-xs text-slate-500">
+        <p>Computer Vision Technical English Masterclass • "How Hough Transforms Teach Computers to See"</p>
+    </footer>
+
+    <!-- JavaScript App Logic -->
+    <script>
+        // 1. QUIZ DATA (20 Questions - Non-cyclical answers: A, D, B, C, A, C, B, D, A, C, B, D, A, D, B, A, B, C, A, A)
+        const quizQuestions = [
+            // --- Comprehension (1-5) ---
+            {
+                id: 1,
+                category: "Comprehension",
+                question: "Why are brute-force methods avoided when detecting lines in real-time computer vision?",
+                options: [
+                    { key: "A", text: "They are computationally too expensive and easily disrupted by image noise." },
+                    { key: "B", text: "They only work on 3D volumetric images." },
+                    { key: "C", text: "They require polar coordinates to process horizontal pixels." },
+                    { key: "D", text: "They cannot detect lines angled at 45 degrees." }
+                ],
+                correct: "A",
+                explanation: "Pairwise line testing requires calculating line parameters between every pair of edge points, creating massive computational overhead ($O(N^2)$) and breaking down with image noise."
+            },
+            {
+                id: 2,
+                category: "Comprehension",
+                question: "How does 'parameter space' solve the computational challenge of line detection?",
+                options: [
+                    { key: "A", text: "By converting color images into monochrome binary masks." },
+                    { key: "B", text: "By automatically discarding noisy background pixels." },
+                    { key: "C", text: "By turning optical camera signals into high-frequency audio." },
+                    { key: "D", text: "By mapping each image point to a curve representing all possible lines passing through it." }
+                ],
+                correct: "D",
+                explanation: "Parameter space reverses the perspective: instead of asking which points lie on a line, points vote for candidate line parameters. Intersecting curves pinpoint true lines."
+            },
+            {
+                id: 3,
+                category: "Comprehension",
+                question: "What is the primary function of the accumulator grid in the Hough transform?",
+                options: [
+                    { key: "A", text: "It compresses raw camera frames before saving to disk." },
+                    { key: "B", text: "It serves as a 2D voting space where local peak cells indicate strong line candidates." },
+                    { key: "C", text: "It converts polar coordinates back into Cartesian slope-intercept form." },
+                    { key: "D", text: "It increases lens brightness in low-light environments." }
+                ],
+                correct: "B",
+                explanation: "The accumulator grid discretizes parameter space into bin cells. Points 'vote' into cells, and cells with the highest vote totals (peaks) represent detected lines."
+            },
+            {
+                id: 4,
+                category: "Comprehension",
+                question: "Why do computer vision engineers switch from slope-intercept form (y = mx + b) to polar coordinates (r, θ)?",
+                options: [
+                    { key: "A", text: "Slope-intercept equations fail on horizontal lines." },
+                    { key: "B", text: "Polar coordinates are faster to render on GPU hardware." },
+                    { key: "C", text: "Vertical lines have an infinite slope (m = ∞) in slope-intercept form, causing computational errors." },
+                    { key: "D", text: "Polar coordinates eliminate the need for an accumulator matrix." }
+                ],
+                correct: "C",
+                explanation: "Vertical lines have a slope of infinity ($m = \\infty$), causing division-by-zero errors in computers. Polar coordinates $(\\rho, \\theta)$ bound parameters smoothly for all orientations."
+            },
+            {
+                id: 5,
+                category: "Comprehension",
+                question: "How can Hough transform voting logic be generalized beyond straight lines?",
+                options: [
+                    { key: "A", text: "It can detect circles, ellipses, and 3D object centers by extending parameter space dimensions." },
+                    { key: "B", text: "It automatically translates foreign text visible in raw images." },
+                    { key: "C", text: "It converts video streams into 3D audio tracks." },
+                    { key: "D", text: "It reduces neural network training times by 90 percent." }
+                ],
+                correct: "A",
+                explanation: "By defining parameter equations for circles $(x-a)^2 + (y-b)^2 = r^2$ or 3D models, points can vote into multi-dimensional accumulators for arbitrary geometries."
+            },
+
+            // --- Vocabulary (6-10) ---
+            {
+                id: 6,
+                category: "Vocabulary",
+                question: "In algorithm design, what does the term 'brute-force' mean?",
+                options: [
+                    { key: "A", text: "A delicate mathematical shortcut." },
+                    { key: "B", text: "An automated neural network training routine." },
+                    { key: "C", text: "An exhaustive approach relying on raw computing power to test every possibility." },
+                    { key: "D", text: "A physical mechanical malfunction in hardware." }
+                ],
+                correct: "C",
+                explanation: "'Brute-force' describes methods that try all potential candidate solutions directly without using intelligent heuristic optimizations."
+            },
+            {
+                id: 7,
+                category: "Vocabulary",
+                question: "What does 'noise' refer to in digital image processing?",
+                options: [
+                    { key: "A", text: "Background sound picked up by an embedded microphone." },
+                    { key: "B", text: "Unwanted visual speckles, artifacts, or random pixel distortions." },
+                    { key: "C", text: "The computational whirring sound of a graphics card." },
+                    { key: "D", text: "The frame rate speed of a digital camera sensor." }
+                ],
+                correct: "B",
+                explanation: "In image processing, 'noise' refers to random variations of brightness or color information in images that degrade visual accuracy."
+            },
+            {
+                id: 8,
+                category: "Vocabulary",
+                question: "The technical verb 'to intersect' means to:",
+                options: [
+                    { key: "A", text: "Split a single vector into equal halves." },
+                    { key: "B", text: "Rotate a 2D matrix by 90 degrees." },
+                    { key: "C", text: "Smooth out pixel edges using Gaussian blur." },
+                    { key: "D", text: "Cross or meet at a shared coordinate point." }
+                ],
+                correct: "D",
+                explanation: "When lines or parameter curves intersect, they share a common point or coordinate in their respective spaces."
+            },
+            {
+                id: 9,
+                category: "Vocabulary",
+                question: "What characterizes a 'real-time application' in autonomous driving?",
+                options: [
+                    { key: "A", text: "Software that processes sensor data instantly as fast as input arrives." },
+                    { key: "B", text: "Software that only runs during daylight hours." },
+                    { key: "C", text: "A system that records time-lapse footage for later review." },
+                    { key: "D", text: "An offline simulation environment." }
+                ],
+                correct: "A",
+                explanation: "Real-time systems must process incoming visual frames fast enough (e.g., within milliseconds) to steer or brake safety systems live."
+            },
+            {
+                id: 10,
+                category: "Vocabulary",
+                question: "What is an 'accumulator' in the context of the Hough Transform?",
+                options: [
+                    { key: "A", text: "A high-voltage battery powering vehicle electronics." },
+                    { key: "B", text: "A memory cache that cleans corrupted video files." },
+                    { key: "C", text: "A discrete grid/array structure used to tally votes for geometric candidate parameters." },
+                    { key: "D", text: "A specialized physical optical sensor." }
+                ],
+                correct: "C",
+                explanation: "An accumulator is a 2D or multi-dimensional matrix data structure where votes are aggregated to detect statistical parameter peaks."
+            },
+
+            // --- Grammar (11-15) ---
+            {
+                id: 11,
+                category: "Grammar",
+                question: "Choose the sentence that correctly uses the Passive Voice for technical documentation:",
+                options: [
+                    { key: "A", text: "The camera sensor captures images fast." },
+                    { key: "B", text: "Edge points are mapped into parameter space by the algorithm." },
+                    { key: "C", text: "Engineers mapped the edge points into parameter space." },
+                    { key: "D", text: "Mapping edge points into parameter space." }
+                ],
+                correct: "B",
+                explanation: "'Are mapped by' follows passive voice structure (Subject + verb 'to be' + past participle + agent), which emphasizes the action rather than the actor."
+            },
+            {
+                id: 12,
+                category: "Grammar",
+                question: "Select the correct First Conditional sentence (Real Future Condition):",
+                options: [
+                    { key: "A", text: "If we will switch to polar coordinates, we avoid infinite slope errors." },
+                    { key: "B", text: "If we switched to polar coordinates, we will avoid infinite slope errors." },
+                    { key: "C", text: "If we had switched to polar coordinates, we will avoid errors." },
+                    { key: "D", text: "If we switch to polar coordinates, we will avoid infinite slope errors." }
+                ],
+                correct: "D",
+                explanation: "First conditional structure: 'If' + Present Simple ('switch'), main clause with 'will' + base verb ('will avoid')."
+            },
+            {
+                id: 13,
+                category: "Grammar",
+                question: "Complete with the correct preposition: 'Each edge point votes _____ candidate cells in the grid.'",
+                options: [
+                    { key: "A", text: "for" },
+                    { key: "B", text: "on" },
+                    { key: "C", text: "with" },
+                    { key: "D", text: "to" }
+                ],
+                correct: "A",
+                explanation: "The verb 'vote' takes the preposition 'for' when indicating support toward a target cell or choice."
+            },
+            {
+                id: 14,
+                category: "Grammar",
+                question: "Which sentence correctly uses a relative clause to define a concept?",
+                options: [
+                    { key: "A", text: "The accumulator grid which it collects votes is essential." },
+                    { key: "B", text: "The accumulator grid where collects votes is essential." },
+                    { key: "C", text: "The accumulator grid, that collects votes, is essential." },
+                    { key: "D", text: "The accumulator grid, which tallies point votes, filters out noisy data." }
+                ],
+                correct: "D",
+                explanation: "'which tallies point votes' is a non-defining relative clause properly set off by commas using 'which'."
+            },
+            {
+                id: 15,
+                category: "Grammar",
+                question: "Choose the correct modal verb for system capability:",
+                options: [
+                    { key: "A", text: "This algorithm can process 60 frames per second effortlessly." },
+                    { key: "B", text: "This algorithm can to process 60 frames per second." },
+                    { key: "C", text: "This algorithm is can process 60 frames per second." },
+                    { key: "D", text: "This algorithm capable process 60 frames per second." }
+                ],
+                correct: "A",
+                explanation: "The modal verb 'can' takes the base form of the main verb ('process') without 'to'."
+            },
+
+            // --- Pronunciation (16-20) ---
+            {
+                id: 16,
+                category: "Pronunciation",
+                question: "Where is the primary stress located in the word 'ACCUMULATOR'?",
+                options: [
+                    { key: "A", text: "ac-CU-mu-la-tor (2nd syllable)" },
+                    { key: "B", text: "AC-cu-mu-la-tor (1st syllable)" },
+                    { key: "C", text: "ac-cu-MU-la-tor (3rd syllable)" },
+                    { key: "D", text: "ac-cu-mu-LA-tor (4th syllable)" }
+                ],
+                correct: "A",
+                explanation: "In standard English phonetics, 'accumulator' places primary stress on the 2nd syllable: /əˈkjuː.mjə.leɪ.tər/."
+            },
+            {
+                id: 17,
+                category: "Pronunciation",
+                question: "How is the vowel sound in 'noise' (/nɔɪz/) classified?",
+                options: [
+                    { key: "A", text: "A short single vowel as in 'bit'." },
+                    { key: "B", text: "A diphthong /ɔɪ/ glide as in 'boy' or 'coin'." },
+                    { key: "C", text: "A long back vowel as in 'no'." },
+                    { key: "D", text: "A silent vowel combination." }
+                ],
+                correct: "B",
+                explanation: "The 'oi' spelling in 'noise' represents the diphthong /ɔɪ/, sliding from /ɔ/ to /ɪ/."
+            },
+            {
+                id: 18,
+                category: "Pronunciation",
+                question: "Which of the following technical terms contains a silent letter pair?",
+                options: [
+                    { key: "A", text: "Vector" },
+                    { key: "B", text: "Matrix" },
+                    { key: "C", text: "High (in high-pass filter)" },
+                    { key: "D", text: "Gradient" }
+                ],
+                correct: "C",
+                explanation: "In 'high' (/haɪ/), the letters 'gh' are silent."
+            },
+            {
+                id: 19,
+                category: "Pronunciation",
+                question: "How is the surname 'Hough' in Hough Transform pronounced?",
+                options: [
+                    { key: "A", text: "Rhyming with 'cough' (/kɒf/ -> /hɒf/) or 'huff' (/hʌf/)" },
+                    { key: "B", text: "Rhyming with 'through' (/θruː/ -> /huː/)" },
+                    { key: "C", text: "Rhyming with 'plow' (/plaʊ/ -> /haʊ/)" },
+                    { key: "D", text: "Rhyming with 'though' (/ðoʊ/ -> /hoʊ/)" }
+                ],
+                correct: "A",
+                explanation: "The surname Hough in computer vision is pronounced /hʌf/ or /hɒf/ (rhyming with 'huff' or 'hoff')."
+            },
+            {
+                id: 20,
+                category: "Pronunciation",
+                question: "Which technical word pair forms a homophone (words pronounced identically)?",
+                options: [
+                    { key: "A", text: "Plane / Plain" },
+                    { key: "B", text: "Line / Lane" },
+                    { key: "C", text: "Grid / Greed" },
+                    { key: "D", text: "Peak / Pick" }
+                ],
+                correct: "A",
+                explanation: "'Plane' (a 2D geometric surface) and 'plain' are homophones, both pronounced /pleɪn/."
+            }
+        ];
+
+        // 2. 12 ESSENTIAL EXPRESSIONS DATA
+        const expressionsData = [
+            {
+                id: 1,
+                expression: "Brute-force method",
+                phonetic: "/bruːt fɔːrs ˈmɛθəd/",
+                icon: "fa-bolt",
+                enExample: "Testing every pixel pair is a brute-force method that exhausts computing power.",
+                frTranslation: "Méthode par force brute",
+                frExample: "Tester chaque paire de pixels est une méthode par force brute qui épuise la puissance de calcul."
+            },
+            {
+                id: 2,
+                expression: "Parameter space",
+                phonetic: "/pəˈræmɪtər speɪs/",
+                icon: "fa-chart-area",
+                enExample: "Points map to sinusoids in parameter space to reveal line alignment.",
+                frTranslation: "Espace des paramètres",
+                frExample: "Les points se projettent en sinusoïdes dans l'espace des paramètres pour révéler l'alignement des lignes."
+            },
+            {
+                id: 3,
+                expression: "Accumulator grid",
+                phonetic: "/əˈkjuːmjəleɪtər ɡrɪd/",
+                icon: "fa-table-cells",
+                enExample: "The accumulator grid counts votes to find peak candidate parameters.",
+                frTranslation: "Grille d'accumulation",
+                frExample: "La grille d'accumulation compte les votes pour trouver les paramètres candidats principaux."
+            },
+            {
+                id: 4,
+                expression: "Slope-intercept method",
+                phonetic: "/sloʊp ˈɪntərsɛpt ˈmɛθəd/",
+                icon: "fa-chart-line",
+                enExample: "The slope-intercept method fails for vertical lines due to infinite slope.",
+                frTranslation: "Méthode équation réduite (y = ax + b)",
+                frExample: "La méthode de l'équation réduite échoue pour les lignes verticales à cause d'une pente infinie."
+            },
+            {
+                id: 5,
+                expression: "Polar coordinates",
+                phonetic: "/ˈpoʊlər koʊˈɔːrdɪneɪts/",
+                icon: "fa-compass",
+                enExample: "Polar coordinates represent lines using angle and radial distance.",
+                frTranslation: "Coordonnées polaires",
+                frExample: "Les coordonnées polaires représentent les lignes avec un angle et une distance radiale."
+            },
+            {
+                id: 6,
+                expression: "Filter out noise",
+                phonetic: "/ˈfɪltər aʊt nɔɪz/",
+                icon: "fa-filter",
+                enExample: "Thresholding helps filter out noise caused by camera glare.",
+                frTranslation: "Filtrer / éliminer le bruit",
+                frExample: "Le seuillage aide à filtrer le bruit causé par les reflets de la caméra."
+            },
+            {
+                id: 7,
+                expression: "Feature extraction",
+                phonetic: "/ˈfiːtʃər ɪkˈstrækʃən/",
+                icon: "fa-wand-magic-sparkles",
+                enExample: "Hough transform is widely used for feature extraction in lane detection.",
+                frTranslation: "Extraction de caractéristiques",
+                frExample: "La transformation de Hough est largement utilisée pour l'extraction de caractéristiques dans la détection des voies."
+            },
+            {
+                id: 8,
+                expression: "Trade-off",
+                phonetic: "/ˈtreɪd ɒf/",
+                icon: "fa-scale-balanced",
+                enExample: "Engineers balance a trade-off between grid resolution and processing speed.",
+                frTranslation: "Compromis / arbitrage",
+                frExample: "Les ingénieurs trouvent un compromis entre la résolution de la grille et la vitesse de traitement."
+            },
+            {
+                id: 9,
+                expression: "Real-time processing",
+                phonetic: "/riːl taɪm ˈprəʊsɛsɪŋ/",
+                icon: "fa-stopwatch",
+                enExample: "Self-driving cars require real-time processing to respond safely.",
+                frTranslation: "Traitement en temps réel",
+                frExample: "Les voitures autonomes nécessitent un traitement en temps réel pour réagir en toute sécurité."
+            },
+            {
+                id: 10,
+                expression: "Intersect at a point",
+                phonetic: "/ˌɪntərˈsɛkt æt ə pɔɪnt/",
+                icon: "fa-crosshairs",
+                enExample: "Curves that intersect at a point signal co-linear pixels in the image.",
+                frTranslation: "S'intersecter / se croiser en un point",
+                frExample: "Les courbes qui se croisent en un point indiquent des pixels alignés dans l'image."
+            },
+            {
+                id: 11,
+                expression: "Vector representation",
+                phonetic: "/ˈvɛktər ˌrɛprɪzɛnˈteɪʃən/",
+                icon: "fa-draw-polygon",
+                enExample: "Converting pixels into a vector representation simplifies geometric modeling.",
+                frTranslation: "Représentation vectorielle",
+                frExample: "Convertir des pixels en une représentation vectorielle simplifie la modélisation géométrique."
+            },
+            {
+                id: 12,
+                expression: "Cast votes",
+                phonetic: "/kæst voʊts/",
+                icon: "fa-check-to-slot",
+                enExample: "All detected edge points cast votes into parameter space bins.",
+                frTranslation: "Voter / déposer des voix",
+                frExample: "Tous les points de contour détectés votent dans les cases de l'espace des paramètres."
+            }
+        ];
+
+        // 3. DIALOGUE DATA
+        const dialogueLines = [
+            {
+                speaker: "Alex",
+                role: "Computer Vision Student",
+                avatarBg: "bg-indigo-600",
+                textEn: "Hey Sarah! Have you reviewed the video on Hough Transforms for our autonomous robotics project?",
+                textFr: "Salut Sarah ! As-tu regardé la vidéo sur la transformation de Hough pour notre projet de robotique autonome ?"
+            },
+            {
+                speaker: "Sarah",
+                role: "AI Engineer Intern",
+                avatarBg: "bg-teal-600",
+                textEn: "Yes! It finally made sense why we can't just use standard slope-intercept equations (y = mx + b) for lane detection.",
+                textFr: "Oui ! J'ai enfin compris pourquoi on ne peut pas utiliser les équations réduites classiques (y = ax + b) pour la détection des voies."
+            },
+            {
+                speaker: "Alex",
+                role: "Computer Vision Student",
+                avatarBg: "bg-indigo-600",
+                textEn: "Exactly! Because vertical lines have an infinite slope, which crashes calculations. Switching to polar coordinates (r, θ) is brilliant.",
+                textFr: "Exactement ! Parce que les lignes verticales ont une pente infinie, ce qui fait planter les calculs. Passer aux coordonnées polaires (r, θ) est brillant."
+            },
+            {
+                speaker: "Sarah",
+                role: "AI Engineer Intern",
+                avatarBg: "bg-teal-600",
+                textEn: "I also loved the voting concept of the accumulator grid. Each edge pixel votes for parameter pairs, and local peaks reveal true geometric lines.",
+                textFr: "J'ai aussi adoré le concept de vote de la grille d'accumulation. Chaque pixel de contour vote pour des paires de paramètres, et les pics révèlent les vraies lignes géométriques."
+            },
+            {
+                speaker: "Alex",
+                role: "Computer Vision Student",
+                avatarBg: "bg-indigo-600",
+                textEn: "That voting mechanism is what makes it so robust against image noise and clutter. It filters out random stray pixels effortlessly.",
+                textFr: "C'est ce mécanisme de vote qui le rend si robuste face au bruit et aux éléments parasites. Il filtre les pixels isolés sans effort."
+            },
+            {
+                speaker: "Sarah",
+                role: "AI Engineer Intern",
+                avatarBg: "bg-teal-600",
+                textEn: "And it doesn't stop at 2D lines! The narrator explained how it generalizes to circles and even 3D object detection for particle physics.",
+                textFr: "Et ça ne s'arrête pas aux lignes 2D ! Le narrateur a expliqué comment cela s'étend aux cercles et même à la détection d'objets 3D pour la physique des particules."
+            },
+            {
+                speaker: "Alex",
+                role: "Computer Vision Student",
+                avatarBg: "bg-indigo-600",
+                textEn: "Awesome. Let's implement the OpenCV HoughLines function in our code repository right away!",
+                textFr: "Génial. Implémentons la fonction OpenCV HoughLines dans notre dépôt de code dès maintenant !"
+            }
+        ];
+
+        // STATE APP VARIABLES
+        let userAnswers = {};
+        let activeCategory = 'All';
+        let visibleTranslations = {};
+        let showDialogueFr = false;
+
+        // RENDER QUIZ FUNCTION
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            const filtered = activeCategory === 'All' 
+                ? quizQuestions 
+                : quizQuestions.filter(q => q.category === activeCategory);
+
+            container.innerHTML = filtered.map(q => {
+                const selected = userAnswers[q.id];
+                const isAnswered = Boolean(selected);
+
+                let cardBorderStyle = "bg-slate-900/60 border-slate-800";
+                if (isAnswered) {
+                    cardBorderStyle = selected === q.correct 
+                        ? "bg-emerald-950/20 border-emerald-500/50" 
+                        : "bg-rose-950/20 border-rose-500/50";
+                }
+
+                return `
+                    <div class="p-6 rounded-2xl border transition-all ${cardBorderStyle}">
+                        <div class="mb-4">
+                            <span class="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-slate-800 text-cyan-400 border border-slate-700">
+                                ${q.category} • Question ${q.id}
+                            </span>
+                            <h4 class="text-lg font-bold text-white mt-2 leading-snug">${q.question}</h4>
+                        </div>
+
+                        <!-- Options Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                            ${q.options.map(opt => {
+                                let btnStyle = "bg-slate-800/80 border-slate-700 text-slate-200 hover:bg-slate-700/80";
+                                let keyBadgeStyle = "bg-slate-700 text-slate-300";
+
+                                if (isAnswered) {
+                                    if (opt.key === q.correct) {
+                                        btnStyle = "bg-emerald-600/30 border-emerald-500 text-emerald-200 font-semibold";
+                                        keyBadgeStyle = "bg-emerald-500 text-slate-950";
+                                    } else if (opt.key === selected) {
+                                        btnStyle = "bg-rose-600/30 border-rose-500 text-rose-200 font-semibold";
+                                        keyBadgeStyle = "bg-rose-500 text-white";
+                                    } else {
+                                        btnStyle = "bg-slate-900/40 border-slate-800 text-slate-500 opacity-50 cursor-not-allowed";
+                                    }
+                                }
+
+                                return `
+                                    <button 
+                                        onclick="selectAnswer(${q.id}, '${opt.key}')"
+                                        ${isAnswered ? 'disabled' : ''}
+                                        class="flex items-start gap-3 p-3.5 rounded-xl border text-left text-sm transition-all ${btnStyle}"
+                                    >
+                                        <span class="w-6 h-6 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 ${keyBadgeStyle}">
+                                            ${opt.key}
+                                        </span>
+                                        <span class="mt-0.5 leading-relaxed">${opt.text}</span>
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+
+                        <!-- Feedback Box -->
+                        ${isAnswered ? `
+                            <div class="p-4 rounded-xl flex items-start gap-3 text-sm animate-fade-in ${
+                                selected === q.correct 
+                                    ? 'bg-emerald-900/30 text-emerald-300 border border-emerald-800/50' 
+                                    : 'bg-rose-900/30 text-rose-300 border border-rose-800/50'
+                            }">
+                                <i class="fa-solid ${selected === q.correct ? 'fa-circle-check text-emerald-400' : 'fa-circle-xmark text-rose-400'} text-lg shrink-0 mt-0.5"></i>
+                                <div>
+                                    <p class="font-bold mb-1">
+                                        ${selected === q.correct ? "Correct!" : `Incorrect. The correct answer is (${q.correct}).`}
+                                    </p>
+                                    <p class="text-xs leading-relaxed opacity-90">${q.explanation}</p>
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+
+            updateScore();
+        }
+
+        // SELECT ANSWER HANDLER
+        function selectAnswer(qId, key) {
+            if (userAnswers[qId]) return;
+            userAnswers[qId] = key;
+            renderQuiz();
+        }
+
+        // UPDATE SCORE DISPLAY
+        function updateScore() {
+            const answeredCount = Object.keys(userAnswers).length;
+            const correctCount = Object.keys(userAnswers).reduce((acc, qId) => {
+                const q = quizQuestions.find(item => item.id === parseInt(qId));
+                return q && userAnswers[qId] === q.correct ? acc + 1 : acc;
+            }, 0);
+
+            document.getElementById('score-display').textContent = correctCount;
+            document.getElementById('answered-display').textContent = answeredCount;
+        }
+
+        // RENDER EXPRESSIONS
+        function renderExpressions() {
+            const container = document.getElementById('expressions-container');
+            container.innerHTML = expressionsData.map(item => {
+                const showFr = visibleTranslations[item.id];
+                return `
+                    <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-700 transition-all">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-cyan-400 text-lg">
+                                    <i class="fa-solid ${item.icon}"></i>
+                                </div>
+                                <span class="text-xs font-mono text-cyan-400/90 bg-cyan-950/50 px-2.5 py-1 rounded-md border border-cyan-800/30">
+                                    ${item.phonetic}
+                                </span>
+                            </div>
+
+                            <h4 class="text-lg font-bold text-white">${item.expression}</h4>
+
+                            <!-- English Example -->
+                            <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800/80 text-xs text-slate-300 space-y-1">
+                                <div class="flex items-center gap-1.5 text-cyan-400 font-semibold">
+                                    <i class="fa-solid fa-quote-left text-[10px]"></i>
+                                    <span>English Example:</span>
+                                </div>
+                                <p class="italic text-slate-300">"${item.enExample}"</p>
+                            </div>
+
+                            <!-- French Translation Box -->
+                            ${showFr ? `
+                                <div class="bg-cyan-950/30 border border-cyan-800/40 p-3 rounded-xl text-xs space-y-1 text-cyan-200 animate-fade-in">
+                                    <p class="font-bold text-cyan-300">Traduction : ${item.frTranslation}</p>
+                                    <p class="italic text-cyan-100/80">Exemple : "${item.frExample}"</p>
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <button 
+                            onclick="toggleExpressionFr(${item.id})"
+                            class="mt-4 w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition-colors flex items-center justify-center gap-2 border border-slate-700"
+                        >
+                            <i class="fa-solid fa-language text-cyan-400"></i>
+                            <span>${showFr ? "Masquer la traduction" : "Afficher la traduction"}</span>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleExpressionFr(id) {
+            visibleTranslations[id] = !visibleTranslations[id];
+            renderExpressions();
+        }
+
+        // RENDER DIALOGUE
+        function renderDialogue() {
+            const container = document.getElementById('dialogue-container');
+            container.innerHTML = dialogueLines.map(line => {
+                const isSarah = line.speaker === 'Sarah';
+                return `
+                    <div class="flex gap-3 max-w-3xl ${isSarah ? 'ml-auto flex-row-reverse' : ''}">
+                        <div class="w-10 h-10 rounded-full ${line.avatarBg} text-white font-bold flex items-center justify-center text-sm shrink-0 shadow-md">
+                            ${line.speaker[0]}
+                        </div>
+                        <div class="p-4 rounded-2xl border text-sm space-y-1 ${
+                            isSarah 
+                                ? 'bg-slate-800/90 border-slate-700 text-slate-100 rounded-tr-none' 
+                                : 'bg-slate-900 border-slate-800 text-slate-100 rounded-tl-none'
+                        }">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-xs text-cyan-400">${line.speaker}</span>
+                                <span class="text-[10px] text-slate-400">(${line.role})</span>
+                            </div>
+                            <p class="leading-relaxed text-slate-200 font-normal">
+                                ${showDialogueFr ? line.textFr : line.textEn}
+                            </p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // INITIALIZATION AND EVENT LISTENERS
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuiz();
+            renderExpressions();
+            renderDialogue();
+
+            // Quiz category filter tab handlers
+            document.querySelectorAll('.quiz-tab').forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    document.querySelectorAll('.quiz-tab').forEach(t => {
+                        t.className = "quiz-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-900 text-slate-300 hover:bg-slate-800";
+                    });
+                    e.target.className = "quiz-tab px-4 py-2 rounded-xl text-xs font-bold transition-all bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/20";
+                    activeCategory = e.target.getAttribute('data-cat');
+                    renderQuiz();
+                });
+            });
+
+            // Reset quiz button
+            document.getElementById('reset-quiz-btn').addEventListener('click', () => {
+                userAnswers = {};
+                renderQuiz();
+            });
+
+            // Global dialogue translation toggle
+            document.getElementById('toggle-dialogue-lang-btn').addEventListener('click', () => {
+                showDialogueFr = !showDialogueFr;
+                document.getElementById('dialogue-lang-label').textContent = showDialogueFr 
+                    ? "Traduire en anglais / Show English" 
+                    : "Traduire le dialogue en français";
+                renderDialogue();
+            });
+        });
+    </script>
+</body>
+</html>

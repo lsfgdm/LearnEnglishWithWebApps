@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>English Learning Hub</title>
-  <!-- Telegram WebApp SDK for seamless integration -->
+  <!-- Telegram WebApp SDK -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     :root {
@@ -15,7 +15,7 @@
       --text-main: #0f172a;
       --text-muted: #475569;
       --border: #e2e8f0;
-      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
       --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
 
@@ -34,67 +34,99 @@
     }
 
     .container {
-      max-width: 800px;
+      max-width: 860px;
       margin: 0 auto;
     }
 
     header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 35px;
     }
 
     header h1 {
-      font-size: 2.5rem;
+      font-size: 2.4rem;
       color: var(--text-main);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       font-weight: 800;
+      letter-spacing: -0.02em;
     }
 
     header p {
       font-size: 1.1rem;
       color: var(--text-muted);
-      max-width: 600px;
+      max-width: 580px;
       margin: 0 auto;
     }
 
     /* Search Bar Styling */
     .search-box {
-      margin-bottom: 35px;
-      position: relative;
+      margin-bottom: 24px;
     }
 
     .search-input {
       width: 100%;
       padding: 18px 24px;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       border: 2px solid var(--border);
       border-radius: 14px;
       outline: none;
       background-color: var(--card-bg);
       color: var(--text-main);
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
       transition: all 0.2s ease;
     }
 
     .search-input:focus {
       border-color: var(--primary-color);
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    /* Category Filter Pills */
+    .categories-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 35px;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    .filter-btn.active {
+      background-color: var(--primary-color);
+      color: #ffffff;
+      border-color: var(--primary-color);
     }
 
     /* Lessons Grid */
     .lessons-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 22px;
     }
 
     .lesson-card {
       background: var(--card-bg);
       border-radius: 16px;
       border: 1px solid var(--border);
-      padding: 28px;
+      padding: 24px;
       box-shadow: var(--shadow);
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -104,88 +136,93 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .lesson-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-3px);
       box-shadow: var(--shadow-hover);
       border-color: var(--primary-color);
     }
 
+    /* Harmonized & Accessible Badges */
     .badge {
       display: inline-block;
       padding: 4px 12px;
       border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 15px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin-bottom: 12px;
       align-self: flex-start;
     }
 
-    .badge-acquisition {
-      background-color: #e0e7ff;
-      color: #3730a3;
+    .badge-sports {
+      background-color: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .badge-politics {
+      background-color: #ffedd5;
+      color: #c2410c;
     }
 
     .badge-grammar {
       background-color: #dbeafe;
-      color: #1e40af;
-    }
-
-    .badge-listening {
-      background-color: #fce7f3;
-      color: #9d174d;
+      color: #1d4ed8;
     }
 
     .badge-fluency {
       background-color: #fef3c7;
-      color: #92400e;
+      color: #b45309;
     }
-    
+
+    .badge-listening {
+      background-color: #fce7f3;
+      color: #be185d;
+    }
+
     .badge-daily {
       background-color: #dcfce7;
-      color: #166534;
+      color: #15803d;
     }
 
-    .badge-politics {
-      background-color: #fed7aa;
-      color: #9a3412;
-    }
-
-    .badge-science {
-      background-color:#fed7aa;
-      color:#1d4ed8; 
-    }
-
-    .badge-sports {
-      background-color: #bae6fd;
-      color: #0369a1;
-    }
-
-    .badge-students {
-      background-color: cyan;
-      color: rgb(205, 4, 161);
+    .badge-acquisition {
+      background-color: #e0e7ff;
+      color: #4338ca;
     }
 
     .badge-tech {
-      background-color: black;
-      color: rgb(14, 205, 4);
+      background-color: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+    }
+
+    .badge-science {
+      background-color: #f3e8ff;
+      color: #6b21a8;
+    }
+
+    .badge-students {
+      background-color: #fae8ff;
+      color: #86198f;
     }
 
     .lesson-title {
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       font-weight: 700;
       margin-bottom: 10px;
       color: var(--text-main);
+      line-height: 1.35;
     }
 
     .lesson-description {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       margin-bottom: 20px;
       flex-grow: 1;
+      line-height: 1.5;
     }
 
     .card-footer {
@@ -193,7 +230,8 @@
       align-items: center;
       justify-content: space-between;
       border-top: 1px solid var(--border);
-      padding-top: 15px;
+      padding-top: 14px;
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--primary-color);
     }
@@ -203,14 +241,14 @@
     }
 
     .lesson-card:hover .arrow-icon {
-      transform: translateX(5px);
+      transform: translateX(4px);
     }
 
     .no-results {
       text-align: center;
       color: var(--text-muted);
-      padding: 30px 0;
-      font-size: 1.1rem;
+      padding: 40px 0;
+      font-size: 1.05rem;
       display: none;
     }
   </style>
@@ -234,6 +272,16 @@
     >
   </div>
 
+  <!-- Optional Category Filters -->
+  <div class="categories-filter" id="categories-filter">
+    <button class="filter-btn" data-category="High Tech">High Tech</button>
+    <button class="filter-btn" data-category="Sports & Analysis">Sports</button>
+    <button class="filter-btn" data-category="Science">Science</button>
+    <button class="filter-btn" data-category="Fluency">Fluency</button>
+    <button class="filter-btn" data-category="Listening">Listening</button>
+    <button class="filter-btn" data-category="Grammar">Grammar</button>
+  </div>
+
   <!-- Container for Dynamic Lesson Cards -->
   <main class="lessons-grid" id="lessons-grid"></main>
 
@@ -244,13 +292,11 @@
 </div>
 
 <script>
-  // Initialize Telegram WebApp SDK if available
   if (window.Telegram && window.Telegram.WebApp) {
     window.Telegram.WebApp.ready();
     window.Telegram.WebApp.expand();
   }
 
-  // Database of available lessons
   const lessons = [
     {
       title: "Manchester United Are STILL Going Nowhere...",
@@ -263,49 +309,49 @@
       title: "THE BIGGEST SCANDAL IN PREMIER LEAGUE HISTORY",
       badgeText: "Sports & Analysis",
       badgeClass: "badge-sports",
-      description: "Includes an embedded iframe of the TobeyWorld video alongside timestamped breakdown summaries (115 Charges, Retrospective Winners, Lawsuits, Maresca/Romano critiques, predicted sanctions).",
+      description: "TobeyWorld video analysis with timestamped breakdown summaries (115 Charges, Retrospective Winners, Lawsuits, Maresca/Romano critiques).",
       url: "man_city.html"
     },
     {
       title: "Why Mbappé Will NOT Win the Ballon d'Or",
       badgeText: "Sports & Analysis",
       badgeClass: "badge-sports",
-      description: "Why Mbappé Will NOT Win the Ballon d'Or? Includes 20 interactive quiz questions and 12 key football expressions.",
+      description: "In-depth debate on Mbappé's chances for individual honors. Includes 20 interactive quiz questions and 12 key football expressions.",
       url: "mbappe.html"
     },
     {
       title: "The Mbappé-China Controversy Is Worse Than You Think…",
       badgeText: "Sports & Analysis",
       badgeClass: "badge-sports",
-      description: "Why Mbappé vs China controversy is worse than you think? Includes 20 interactive quiz questions and 12 key football expressions.",
+      description: "Geopolitical and commercial breakdown of Mbappé's image rights controversy. Includes 20 quiz questions and 12 expressions.",
       url: "mbappe-china.html"
     },
     {
       title: "Why I HATE the Ballon D'Or!",
       badgeText: "Sports & Analysis",
       badgeClass: "badge-sports",
-      description: "An in-depth critique arguing that football's highest individual accolade has devolved into a political popularity contest. Includes 20 interactive quiz questions, 10 key football expressions, and resources for IELTS.",
+      description: "Critique of modern individual football awards as political popularity contests. Includes 20 quiz questions and IELTS vocabulary.",
       url: "ballondor.html"
     },
     {
       title: "Is Kylian Mbappe Running Out Of Time?",
       badgeText: "Sports & Analysis",
       badgeClass: "badge-sports",
-      description: "Is Kylian Mbappe Running Out Of Time? Includes 20 interactive quiz questions, 10 key football expressions, and resources for IELTS.",
+      description: "Career momentum assessment of Kylian Mbappé. Includes 20 interactive quiz questions, 10 football terms, and IELTS practice.",
       url: "mbappe-running-out-of-time.html"
     },
     {
       title: "Haaland To Be Greatest Goalscorer EVER?",
       badgeText: "Sports & Analysis",
       badgeClass: "badge-sports",
-      description: "Analysis with Thierry Henry, Jamie Carragher & Micah Richards (CBS Sports Golazo). Includes 20 interactive quiz questions and 10 key football expressions.",
+      description: "CBS Sports Golazo analysis with Thierry Henry, Jamie Carragher & Micah Richards. Includes 20 quiz questions and 10 key expressions.",
       url: "haaland.html"
     },
     {
       title: "Why the Political Spectrum is Useless",
       badgeText: "Politics & Logic",
       badgeClass: "badge-politics",
-      description: "Explore high-dimensional political thinking. Includes 20 comprehension, vocabulary, grammar, and pronunciation questions plus 10 key expressions.",
+      description: "Explore high-dimensional political philosophy. Includes 20 comprehension, vocabulary, grammar, and pronunciation questions plus 10 key expressions.",
       url: "political-spectrum.html"
     },
     {
@@ -326,156 +372,165 @@
       title: "I Speak English at Native Speed",
       badgeText: "Listening & Native Speed",
       badgeClass: "badge-listening",
-      description: "Practice your listening comprehension with Evie's video. Includes a 20-question quiz and key British English expressions.",
+      description: "Practice your listening comprehension with Evie's fast-paced video. Includes a 20-question quiz and key British English expressions.",
       url: "evie-lesson.html"
     },
     {
-      title: "This is the *Only* Method to Become Fluent",
+      title: "This is the Only Method to Become Fluent",
       badgeText: "Fluency & Method",
       badgeClass: "badge-fluency",
-      description: "Acquire vocabulary first.",
+      description: "Understand the core principles of vocabulary acquisition and natural memory integration.",
       url: "cat-lesson.html"
     },
     {
       title: "Learn How to Think In English ( Stop Translating in Your Head )",
       badgeText: "Daily & Easy",
       badgeClass: "badge-daily",
-      description: "5 Concrete Exercises you can put in practice daily.",
+      description: "5 concrete daily exercises to stop mental translation and improve response time.",
       url: "english-class.html"
     },
     {
       title: "How to learn a language fast and effortlessly | TEDx",
       badgeText: "Acquisition & Immersion",
       badgeClass: "badge-acquisition",
-      description: "Discover Victoria Obiageli's method of natural language acquisition through comprehensible input rather than traditional study. Includes 20 quiz questions.",
+      description: "Discover Victoria Obiageli's method of natural language acquisition through comprehensible input rather than traditional study.",
       url: "tedx-acquisition.html"
     },
     {
       title: "The Beach Boys - I get around (Lyrics)",
-      badgeText: "Song",
+      badgeText: "Song & Listening",
       badgeClass: "badge-listening",
-      description: "Learn English With The Beach Boys",
+      description: "Learn classic American English phrasal verbs and pronunciation through lyrics by The Beach Boys.",
       url: "igetaround.html"
     },
     {
       title: "The Beatles - Help! (Lyrics)",
-      badgeText: "Song",
+      badgeText: "Song & Listening",
       badgeClass: "badge-listening",
-      description: "Learn English With The Beatles",
+      description: "Practice listening comprehension and connected speech with lyrics by The Beatles.",
       url: "help.html"
     },
     {
       title: "The Eagles - Hotel California (Lyrics)",
-      badgeText: "Song",
+      badgeText: "Song & Listening",
       badgeClass: "badge-listening",
-      description: "Learn English With The Eagles",
+      description: "Explore narrative storytelling, figurative language, and vocabulary in classic rock lyrics.",
       url: "hotel_california.html"
     },
     {
       title: "The one OpenAI announcement that can actually make you money...",
       badgeText: "High Tech",
       badgeClass: "badge-tech",
-      description: "Major announcements from OpenAI DevDay 2026. Includes 20 comprehension, vocabulary, grammar, and pronunciation questions plus 10 key expressions.",
+      description: "Fireship breakdown of key announcements from OpenAI DevDay. Includes 20 quiz questions and tech vocabulary.",
       url: "fireship-opendev-2026.html"
     },
     {
       title: "I am sad about AI in maths",
       badgeText: "High Tech",
       badgeClass: "badge-tech",
-      description: "How AI has solved maths and the consequences. Includes 20 comprehension, vocabulary, grammar, and pronunciation questions plus 10 key expressions.",
+      description: "Sophie Maclean discusses automated theorem proving and the future of human reasoning in mathematics.",
       url: "sophiemaclean.html"
     },
     {
       title: "OpenCode Got Hacked BADLY",
       badgeText: "High Tech",
       badgeClass: "badge-tech",
-      description: "OpenCode Hacked. Includes 20 comprehension, vocabulary, grammar, and pronunciation questions plus 10 key expressions.",
+      description: "Cybersecurity incident analysis covering supply chain attacks and software vulnerabilities. Includes 20 quiz questions.",
       url: "opencode.html"
     },
     {
       title: "What if AI was never invented?",
       badgeText: "High Tech",
       badgeClass: "badge-tech",
-      description: "Counterfactual Lab. Includes 20 comprehension, vocabulary, grammar, and pronunciation questions plus 10 key expressions.",
+      description: "Counterfactual analysis of computer science history and technological evolution. Includes 20 quiz questions.",
       url: "what-if-ai-was-not-invented.html"
     },
     {
       title: "The Secretary Problem Visually Explained",
       badgeText: "High Tech",
       badgeClass: "badge-tech",
-      description: "The Secretary Problem Visually Explained. Includes 20 comprehension, vocabulary, grammar, and pronunciation questions plus 10 key expressions.",
+      description: "Optimal stopping theory visual guide. Includes 20 comprehension, vocabulary, grammar, and pronunciation questions.",
       url: "secretary.html"
     },
     {
-      title: "A Retired Statistician Solved a Famous Problem in Microsoft Word. Experts Ignored It.",
+      title: "A Retired Statistician Solved a Famous Problem in Microsoft Word",
       badgeText: "Science",
       badgeClass: "badge-science",
-      description: "A Retired Statistician Solved a Famous Problem in Microsoft Word. Experts Ignored It. Includes 20 comprehension, vocabulary, grammar, and pronunciation questions plus 10 key expressions.",
+      description: "The story of theoretical breakthroughs outside academia. Includes 20 comprehension and vocabulary questions.",
       url: "statistician.html"
     },
     {
-      title: "Why study statistics? Experts Ignored It.",
+      title: "Why study statistics?",
       badgeText: "Science",
       badgeClass: "badge-science",
-      description: "Why study statistics? Includes 20 comprehension, vocabulary, grammar, and pronunciation questions plus 10 key expressions.",
+      description: "The importance of data literacy and probability in daily decision-making. Includes 20 interactive quiz questions.",
       url: "why-stats.html"
     },
     {
       title: "16 Emergency Medicine Subspecialties Explained",
       badgeText: "Science",
       badgeClass: "badge-science",
-      description: "16 Emergency Medicine Subspecialties Explained Includes 20 comprehension, vocabulary, grammar, and pronunciation questions plus 10 key expressions.",
+      description: "Medical jargon, clinical specializations, and healthcare vocabulary explained simply. Includes 20 quiz questions.",
       url: "emergency-doctor-specialities.html"
     },
     {
       title: "How Top 1% Students Actually Study (Harvard, MIT, Stanford)",
-      badgeText: "Study",
+      badgeText: "Study & Mindset",
       badgeClass: "badge-students",
-      description: "How Top 1% Students Actually Study (Harvard, MIT, Stanford). Includes 20 quiz questions.",
+      description: "Active recall, spaced repetition, and cognitive study techniques used at top universities.",
       url: "top-students.html"
     },
     {
       title: "Your Picture of AI Is Out of Date",
       badgeText: "High Tech",
       badgeClass: "badge-tech",
-      description: "Your Picture of AI Is Out of Date. Includes 20 comprehension, vocabulary, grammar, and pronunciation questions plus 10 key expressions.",
+      description: "Analysis of rapid AI evolution, multimodal models, and autonomous agents. Includes 20 interactive quiz questions.",
       url: "picture-of-ai.html"
     },
     {
       title: "How Hough Transforms Teach Computers to See",
       badgeText: "High Tech",
       badgeClass: "badge-tech",
-      description: "How Hough Transforms Teach Computers to See. Includes 20 comprehension, vocabulary, grammar, and pronunciation questions plus 10 key expressions.",
+      description: "Computer vision fundamentals, parameter space mapping, and voting accumulators. Includes 20 interactive quiz questions.",
       url: "hough-transform.html"
     },
     {
       title: "Why Video Game Piracy Is Getting Out Of Control",
       badgeText: "High Tech",
       badgeClass: "badge-tech",
-      description: "Why Video Game Piracy Is Getting Out Of Control. Includes 20 comprehension, vocabulary, grammar, and pronunciation questions plus 10 key expressions.",
+      description: "Documentary breakdown on digital ownership, DRM failures, and consumer service problems in gaming.",
       url: "gtavi.html"
-    },
+    }
   ];
 
   const searchInput = document.getElementById('search-input');
   const lessonsGrid = document.getElementById('lessons-grid');
   const noResults = document.getElementById('no-results');
+  const filterBtns = document.querySelectorAll('.filter-btn');
 
-  function filterLessons(query) {
+  let selectedCategory = null;
+
+  function filterLessons() {
     lessonsGrid.innerHTML = '';
-    const cleanQuery = query.toLowerCase().trim();
+    const cleanQuery = searchInput.value.toLowerCase().trim();
 
-    // If search box is empty, clear results completely
-    if (cleanQuery === '') {
+    // Google Search logic: If search is completely empty AND no category pill is clicked, show NOTHING
+    if (cleanQuery === '' && !selectedCategory) {
       noResults.style.display = 'none';
       return;
     }
 
-    const filteredLessons = lessons.filter(lesson => 
-      lesson.title.toLowerCase().includes(cleanQuery) || 
-      lesson.description.toLowerCase().includes(cleanQuery) ||
-      lesson.badgeText.toLowerCase().includes(cleanQuery)
-    );
+    const filteredLessons = lessons.filter(lesson => {
+      const matchesSearch = cleanQuery === '' || 
+        lesson.title.toLowerCase().includes(cleanQuery) || 
+        lesson.description.toLowerCase().includes(cleanQuery) ||
+        lesson.badgeText.toLowerCase().includes(cleanQuery);
+
+      const matchesCategory = !selectedCategory || 
+        lesson.badgeText.toLowerCase().includes(selectedCategory.toLowerCase());
+
+      return matchesSearch && matchesCategory;
+    });
 
     if (filteredLessons.length === 0) {
       noResults.style.display = 'block';
@@ -502,10 +557,26 @@
     }
   }
 
-  // Event listener for active typing
-  searchInput.addEventListener('input', (e) => {
-    filterLessons(e.target.value);
+  // Handle Category Filter Buttons
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.getAttribute('data-category');
+      
+      if (btn.classList.contains('active')) {
+        btn.classList.remove('active');
+        selectedCategory = null;
+      } else {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedCategory = category;
+      }
+      
+      filterLessons();
+    });
   });
+
+  // Event listener for active typing
+  searchInput.addEventListener('input', filterLessons);
 </script>
 
 </body>
